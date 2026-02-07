@@ -20,7 +20,7 @@
     "react": "latest",
     "react-dom": "latest",
     "react-hook-form": "latest",
-    "shadcn": "latest",
+    "socket.io-client": "latest",
     "sonner": "latest",
     "tailwind-merge": "latest",
     "tw-animate-css": "latest",
