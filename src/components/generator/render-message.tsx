@@ -1,6 +1,6 @@
 'use client';
 
-import type { UseChatHelpers } from '@ai-sdk/react';
+import type { UIMessage, UseChatHelpers } from '@ai-sdk/react';
 import { useEffect } from 'react';
 import { toast } from 'sonner';
 import { useStickToBottom } from 'use-stick-to-bottom';
@@ -8,20 +8,12 @@ import AiResponse from './text/ai-response';
 import UserMessage from './text/user-message';
 
 type PropsType = {
-  useChat: UseChatHelpers & {
-    addToolResult: ({
-      toolCallId,
-      result,
-    }: {
-      toolCallId: string;
-      result: unknown;
-    }) => void;
-  };
+  useChat: UseChatHelpers<UIMessage>;
   isThinking: boolean;
 };
 
 export function RenderMessage({ useChat, isThinking }: PropsType) {
-  const { messages, setMessages, reload, error } = useChat;
+  const { messages, setMessages, regenerate, error } = useChat;
   const { contentRef, scrollRef } = useStickToBottom();
 
   useEffect(() => {
@@ -52,9 +44,7 @@ export function RenderMessage({ useChat, isThinking }: PropsType) {
                         key={`${message.id}-${i}`}
                         message={part.text}
                         showActions={
-                          // showActions is true only for the last user message
                           messages.length - 1 === messageIdx ||
-                          // if ai responded it should be second to last
                           messages.length - 2 === messageIdx
                         }
                         onEdit={async (newMessage) => {
@@ -72,7 +62,7 @@ export function RenderMessage({ useChat, isThinking }: PropsType) {
                             });
                           });
 
-                          reload();
+                          regenerate();
                         }}
                       />
                     );

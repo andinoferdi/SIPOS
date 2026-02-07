@@ -9,10 +9,12 @@ import { useState } from 'react';
 
 export default function Page() {
   const [isThinking, setIsThinking] = useState(false);
+  const [input, setInput] = useState('');
 
   const chatHandler = useChat({
     generateId: createIdGenerator({ prefix: 'msgc' }),
-    onResponse: () => setIsThinking(false),
+    onFinish: () => setIsThinking(false),
+    onError: () => setIsThinking(false),
   });
 
   return (
@@ -22,13 +24,17 @@ export default function Page() {
       <div className="px-5 md:px-12">
         <form
           onSubmit={(e) => {
+            e.preventDefault();
+            if (!input.trim()) return;
+
             setIsThinking(true);
-            chatHandler.handleSubmit(e);
+            chatHandler.sendMessage({ text: input });
+            setInput('');
           }}
         >
           <GeneratorInput
-            value={chatHandler.input}
-            onChange={chatHandler.handleInputChange}
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
           />
         </form>
 

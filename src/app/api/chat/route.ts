@@ -1,13 +1,18 @@
 import { AI_MODEL } from '@/lib/ai/model';
 import { PROMPT } from '@/lib/ai/prompts';
 import { errorHandler, getMostRecentUserMessage } from '@/lib/utils';
-import { createIdGenerator, streamText } from 'ai';
+import {
+  convertToModelMessages,
+  createIdGenerator,
+  streamText,
+  type UIMessage,
+} from 'ai';
 
 export const maxDuration = 50;
 
 export async function POST(req: Request) {
   try {
-    const { messages } = await req.json();
+    const { messages }: { messages: UIMessage[] } = await req.json();
 
     const userMessage = getMostRecentUserMessage(messages);
 
@@ -20,17 +25,16 @@ export async function POST(req: Request) {
     const result = streamText({
       model: AI_MODEL,
       system: PROMPT,
-      messages,
-      experimental_generateMessageId: createIdGenerator({
-        prefix: 'msgs',
-      }),
+      messages: await convertToModelMessages(messages),
     });
 
-    return result.toDataStreamResponse({
-      getErrorMessage:
-        process.env.NODE_ENV === 'development' ? errorHandler : undefined,
+    return result.toUIMessageStreamResponse({
+      originalMessages: messages,
+      generateMessageId: createIdGenerator({ prefix: 'msgs' }),
     });
   } catch (error) {
-    console.log(error);
+    return new Response(errorHandler(error), {
+      status: 500,
+    });
   }
 }

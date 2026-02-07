@@ -1,4 +1,4 @@
-import type { Message } from "@ai-sdk/react";
+import type { UIMessage } from "ai";
 
 export type HistoryGroup = "Today" | "Yesterday";
 
@@ -6,17 +6,17 @@ export interface HistorySession {
   id: string;
   title: string;
   group: HistoryGroup;
-  messages: Message[];
+  messages: UIMessage[];
 }
 
 const createMessage = (
   id: string,
   role: "user" | "assistant",
   content: string
-): Message => ({
+): UIMessage => ({
   id,
   role,
-  content,
+  parts: [{ type: "text", text: content }],
 });
 
 export const aiHistorySessions: HistorySession[] = [

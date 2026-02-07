@@ -19,19 +19,17 @@ export default function AiTextGenerator() {
   const [isCopiedByMessageId, setIsCopiedByMessageId] = useState<
     Record<string, boolean>
   >({});
+  const [input, setInput] = useState("");
 
   const {
     messages,
-    input,
-    handleInputChange,
-    handleSubmit,
+    sendMessage,
     status,
     setMessages,
-    setInput,
     error,
   } = useChat({
     generateId: createIdGenerator({ prefix: "msgd" }),
-    initialMessages: aiHistorySessions[0]?.messages ?? [],
+    messages: aiHistorySessions[0]?.messages ?? [],
   });
 
   const textareaRef = useRef<HTMLTextAreaElement | null>(null);
@@ -78,7 +76,8 @@ export default function AiTextGenerator() {
       return;
     }
     setActiveSessionId(null);
-    handleSubmit(event);
+    sendMessage({ text: input });
+    setInput("");
   };
 
   const copyMessage = (messageId: string, text: string) => {
@@ -248,15 +247,22 @@ export default function AiTextGenerator() {
                   <textarea
                     ref={textareaRef}
                     value={input}
-                    onChange={handleInputChange}
+                    onChange={(event) => setInput(event.target.value)}
                     placeholder="Type your prompt here..."
                     className="h-20 max-h-48 w-full resize-none border-none bg-transparent p-0 font-normal text-gray-800 outline-none placeholder:text-gray-400 focus:ring-0 dark:text-white"
                     onKeyDown={(event) => {
                       if (event.key === "Enter" && !event.shiftKey) {
                         event.preventDefault();
-                        onPromptSubmit(
-                          event as unknown as React.FormEvent<HTMLFormElement>
-                        );
+                        if (
+                          !input.trim() ||
+                          status === "submitted" ||
+                          status === "streaming"
+                        ) {
+                          return;
+                        }
+                        setActiveSessionId(null);
+                        sendMessage({ text: input });
+                        setInput("");
                       }
                     }}
                   />
@@ -343,7 +349,7 @@ export default function AiTextGenerator() {
   );
 }
 
-function extractMessageText(message: { content: string; parts?: unknown[] }) {
+function extractMessageText(message: { content?: string; parts?: unknown[] }) {
   if (!message.parts || message.parts.length === 0) return message.content ?? "";
 
   const textParts = message.parts
