@@ -1,16 +1,16 @@
-﻿import type { Metadata } from "next";
+import { SidebarProvider } from "@/context/SidebarContext";
+import { Outfit } from "next/font/google";
+import type { ReactNode } from "react";
+import "flatpickr/dist/flatpickr.css";
 
-export const metadata: Metadata = {
-  title: "Dashboard | PropertyPOS",
-  description: "Dashboard area for POS operations.",
-};
+const outfit = Outfit({
+  subsets: ["latin"],
+});
 
-interface DashboardLayoutProps {
-  children: React.ReactNode;
+export default function DashboardLayout({ children }: { children: ReactNode }) {
+  return (
+    <div className={`${outfit.className} dashboard-root dark:bg-gray-900`}>
+      <SidebarProvider>{children}</SidebarProvider>
+    </div>
+  );
 }
-
-const DashboardLayout = ({ children }: DashboardLayoutProps) => {
-  return <section className="min-h-screen bg-dashboard-canvas">{children}</section>;
-};
-
-export default DashboardLayout;
