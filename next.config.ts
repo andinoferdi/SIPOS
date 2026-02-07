@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    qualities: [75, 90],
     remotePatterns: [
       {
         hostname: "avatars.githubusercontent.com",
@@ -13,7 +14,8 @@ const nextConfig: NextConfig = {
   },
   webpack(config) {
     config.module.rules.push({
-      test: /\.svg$/,
+      test: /\.svg$/i,
+      resourceQuery: { not: [/__next_metadata__/] },
       use: ["@svgr/webpack"],
     });
     return config;

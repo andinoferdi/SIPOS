@@ -31,7 +31,6 @@ export default function AiTextGenerator() {
     error,
   } = useChat({
     generateId: createIdGenerator({ prefix: "msgd" }),
-    sendExtraMessageFields: true,
     initialMessages: aiHistorySessions[0]?.messages ?? [],
   });
 

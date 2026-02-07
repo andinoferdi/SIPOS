@@ -12,7 +12,6 @@ export default function Page() {
 
   const chatHandler = useChat({
     generateId: createIdGenerator({ prefix: 'msgc' }),
-    sendExtraMessageFields: true,
     onResponse: () => setIsThinking(false),
   });
 
