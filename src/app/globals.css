@@ -13,6 +13,7 @@
   --color-border: var(--border);
   --color-card: var(--card);
   --color-card-foreground: var(--card-foreground);
+  --color-destructive: var(--destructive);
   --color-soft-teal: var(--soft-teal);
   --color-slate-light: var(--slate-light);
   --color-teal-accent: var(--teal-accent);
@@ -45,6 +46,7 @@
   --border: #e2e8f0;
   --card: #ffffff;
   --card-foreground: #0f172a;
+  --destructive: #ef4444;
   --soft-teal: #e0f2f1;
   --slate-light: #f1f5f9;
   --teal-accent: #2dd4bf;
@@ -71,6 +73,7 @@
   --border: #334155;
   --card: #1e293b;
   --card-foreground: #f8fafc;
+  --destructive: #f87171;
   --soft-teal: #0f172a;
   --slate-light: #0f172a;
   --teal-accent: #2dd4bf;

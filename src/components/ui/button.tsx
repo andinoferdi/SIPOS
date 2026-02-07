@@ -8,9 +8,9 @@ const buttonVariants = cva(
     variants: {
       variant: {
         primary: "bg-primary text-primary-foreground shadow-lg hover:opacity-90",
-        secondary: "bg-slate-100 text-slate-900 hover:bg-slate-200",
-        outline: "border border-slate-200 bg-card text-slate-700 hover:bg-slate-50",
-        ghost: "bg-transparent text-slate-700 hover:bg-slate-100",
+        secondary: "bg-muted text-foreground hover:opacity-90",
+        outline: "border border-border bg-card text-foreground hover:bg-muted",
+        ghost: "bg-transparent text-foreground hover:bg-muted",
       },
       size: {
         sm: "px-4 py-2 text-sm",
@@ -25,7 +25,7 @@ const buttonVariants = cva(
   },
 );
 
-type ButtonProps = ButtonHTMLAttributes<HTMLButtonElement> & VariantProps<typeof buttonVariants>;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement>, VariantProps<typeof buttonVariants> {}
 
 export const Button = ({ className, variant, size, ...props }: ButtonProps) => {
   return <button className={cn(buttonVariants({ variant, size, className }))} {...props} />;

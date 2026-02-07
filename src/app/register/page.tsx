@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { RegisterPage } from "@/blocks/register";
 
 export const metadata: Metadata = {

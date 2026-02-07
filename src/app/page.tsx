@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+﻿import type { Metadata } from "next";
 import { LandingPage } from "@/blocks/landing";
 
 export const metadata: Metadata = {

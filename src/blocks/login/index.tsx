@@ -1,4 +1,4 @@
-import { LoginForm } from "@/blocks/login/components/login-form";
+﻿import { LoginForm } from "@/blocks/login/components/login-form";
 import { LoginSocialProof } from "@/blocks/login/components/social-proof";
 
 export const LoginPage = () => {

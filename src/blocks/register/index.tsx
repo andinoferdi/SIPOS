@@ -1,4 +1,4 @@
-import { RegisterForm } from "@/blocks/register/components/register-form";
+﻿import { RegisterForm } from "@/blocks/register/components/register-form";
 import { RegisterSocialProof } from "@/blocks/register/components/social-proof";
 
 export const RegisterPage = () => {

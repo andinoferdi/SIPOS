@@ -3,10 +3,7 @@
 const GlobalErrorPage = ({
   error,
   reset,
-}: {
-  error: Error & { digest?: string };
-  reset: () => void;
-}) => {
+}: GlobalErrorPageProps) => {
   return (
     <html lang="en">
       <body className="flex min-h-screen items-center justify-center bg-background px-6">
@@ -19,5 +16,10 @@ const GlobalErrorPage = ({
     </html>
   );
 };
+
+interface GlobalErrorPageProps {
+  error: Error & { digest?: string };
+  reset: () => void;
+}
 
 export default GlobalErrorPage;
