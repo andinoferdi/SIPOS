@@ -1,9 +1,8 @@
-"use client";
-
+﻿"use client";;
 import Image from "next/image";
 import { FormEvent, useEffect, useRef } from "react";
-import ChatActionMenu from "./ChatActionMenu";
-import type { ChatContact, ChatMessage } from "./types";
+import ChatActionMenu from "@/components/chats/ChatActionMenu";
+import type { ChatContact, ChatMessage } from "@/components/chats/types";
 
 interface ChatConversationProps {
   contact: ChatContact;
@@ -14,14 +13,16 @@ interface ChatConversationProps {
   onOpenMobileSidebar: () => void;
 }
 
-export default function ChatConversation({
-  contact,
-  messages,
-  messageInput,
-  onMessageInputChange,
-  onSendMessage,
-  onOpenMobileSidebar,
-}: ChatConversationProps) {
+const ChatConversation = (
+  {
+    contact,
+    messages,
+    messageInput,
+    onMessageInputChange,
+    onSendMessage,
+    onOpenMobileSidebar,
+  }: ChatConversationProps,
+) => {
   const messagesEndRef = useRef<HTMLDivElement | null>(null);
 
   useEffect(() => {
@@ -201,9 +202,11 @@ export default function ChatConversation({
       </div>
     </div>
   );
-}
+};
 
-function HamburgerIcon() {
+export default ChatConversation;
+
+const HamburgerIcon = () => {
   return (
     <svg
       className="fill-current"
@@ -221,9 +224,9 @@ function HamburgerIcon() {
       />
     </svg>
   );
-}
+};
 
-function PhoneIcon() {
+const PhoneIcon = () => {
   return (
     <svg
       className="stroke-current"
@@ -240,9 +243,9 @@ function PhoneIcon() {
       />
     </svg>
   );
-}
+};
 
-function VideoIcon() {
+const VideoIcon = () => {
   return (
     <svg
       className="fill-current"
@@ -260,9 +263,9 @@ function VideoIcon() {
       />
     </svg>
   );
-}
+};
 
-function EmojiIcon() {
+const EmojiIcon = () => {
   return (
     <svg
       className="fill-current"
@@ -280,9 +283,9 @@ function EmojiIcon() {
       />
     </svg>
   );
-}
+};
 
-function AttachmentIcon() {
+const AttachmentIcon = () => {
   return (
     <svg
       className="fill-current"
@@ -300,9 +303,9 @@ function AttachmentIcon() {
       />
     </svg>
   );
-}
+};
 
-function MicrophoneIcon() {
+const MicrophoneIcon = () => {
   return (
     <svg
       className="stroke-current"
@@ -358,9 +361,9 @@ function MicrophoneIcon() {
       />
     </svg>
   );
-}
+};
 
-function SendIcon() {
+const SendIcon = () => {
   return (
     <svg
       width="20"
@@ -378,4 +381,4 @@ function SendIcon() {
       />
     </svg>
   );
-}
+};

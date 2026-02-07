@@ -1,9 +1,8 @@
 import { getCurrentYear } from '@/lib/utils';
 
-export default function SidebarWidget() {
+const SidebarWidget = () => {
   return (
     <div>
-      {/* <!-- User profile --> */}
       <div className="pt-5 pb-3 px-3 rounded-2xl widget-bg">
         <div className="flex items-center justify-between">
           <div>
@@ -15,7 +14,7 @@ export default function SidebarWidget() {
             </p>
           </div>
 
-          <span className="bg-white dark:bg-white/10 text-[#344054] dark:text-white/70 px-2 py-0.5 text-xs font-medium rounded-full">
+          <span className="bg-white dark:bg-white/10 text-[var(--color-brand-500)] dark:text-white/70 px-2 py-0.5 text-xs font-medium rounded-full">
             Free
           </span>
         </div>
@@ -45,4 +44,6 @@ export default function SidebarWidget() {
       </div>
     </div>
   );
-}
+};
+
+export default SidebarWidget;

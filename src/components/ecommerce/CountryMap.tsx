@@ -1,26 +1,24 @@
-import React from "react";
-// import { VectorMap } from "@react-jvectormap/core";
-import { worldMill } from "@react-jvectormap/world";
+import type { FC } from "react";
 import dynamic from "next/dynamic";
+import { worldMill } from "@react-jvectormap/world";
 
 const VectorMap = dynamic(
-  () => import("@react-jvectormap/core").then((mod) => mod.VectorMap),
-  { ssr: false }
+  () => import("@react-jvectormap/core").then((module) => module.VectorMap),
+  { ssr: false },
 );
 
-// Define the component props
 interface CountryMapProps {
   mapColor?: string;
 }
 
-type MarkerStyle = {
+interface MarkerStyle {
   initial: {
     fill: string;
-    r: number; // Radius for markers
+    r: number;
   };
-};
+}
 
-type Marker = {
+interface Marker {
   latLng: [number, number];
   name: string;
   style?: {
@@ -30,49 +28,40 @@ type Marker = {
     stroke?: string;
     strokeOpacity?: number;
   };
-};
+}
 
-const CountryMap: React.FC<CountryMapProps> = ({ mapColor }) => {
+const CountryMap: FC<CountryMapProps> = ({ mapColor }) => {
   return (
     <VectorMap
-      map={worldMill}
       backgroundColor="transparent"
-      markerStyle={
-        {
-          initial: {
-            fill: "#465FFF",
-            r: 4, // Custom radius for markers
-          }, // Type assertion to bypass strict CSS property checks
-        } as MarkerStyle
-      }
-      markersSelectable={true}
+      map={worldMill}
       markers={
         [
           {
             latLng: [37.2580397, -104.657039],
             name: "United States",
             style: {
-              fill: "#465FFF",
+              fill: "var(--color-brand-500)",
               borderWidth: 1,
               borderColor: "white",
-              stroke: "#383f47",
+              stroke: "var(--color-brand-500)",
             },
           },
           {
             latLng: [20.7504374, 73.7276105],
             name: "India",
-            style: { fill: "#465FFF", borderWidth: 1, borderColor: "white" },
+            style: { fill: "var(--color-brand-500)", borderWidth: 1, borderColor: "white" },
           },
           {
             latLng: [53.613, -11.6368],
             name: "United Kingdom",
-            style: { fill: "#465FFF", borderWidth: 1, borderColor: "white" },
+            style: { fill: "var(--color-brand-500)", borderWidth: 1, borderColor: "white" },
           },
           {
             latLng: [-25.0304388, 115.2092761],
             name: "Sweden",
             style: {
-              fill: "#465FFF",
+              fill: "var(--color-brand-500)",
               borderWidth: 1,
               borderColor: "white",
               strokeOpacity: 0,
@@ -80,14 +69,29 @@ const CountryMap: React.FC<CountryMapProps> = ({ mapColor }) => {
           },
         ] as Marker[]
       }
-      zoomOnScroll={false}
-      zoomMax={12}
-      zoomMin={1}
-      zoomAnimate={true}
-      zoomStep={1.5}
+      markersSelectable
+      markerStyle={
+        {
+          initial: {
+            fill: "var(--color-brand-500)",
+            r: 4,
+          },
+        } as MarkerStyle
+      }
+      regionLabelStyle={{
+        initial: {
+          fill: "var(--color-brand-500)",
+          fontWeight: 500,
+          fontSize: "13px",
+          stroke: "none",
+        },
+        hover: {},
+        selected: {},
+        selectedHover: {},
+      }}
       regionStyle={{
         initial: {
-          fill: mapColor || "#D0D5DD",
+          fill: mapColor || "var(--color-brand-500)",
           fillOpacity: 1,
           fontFamily: "Outfit",
           stroke: "none",
@@ -97,25 +101,19 @@ const CountryMap: React.FC<CountryMapProps> = ({ mapColor }) => {
         hover: {
           fillOpacity: 0.7,
           cursor: "pointer",
-          fill: "#465fff",
+          fill: "var(--color-brand-500)",
           stroke: "none",
         },
         selected: {
-          fill: "#465FFF",
+          fill: "var(--color-brand-500)",
         },
         selectedHover: {},
       }}
-      regionLabelStyle={{
-        initial: {
-          fill: "#35373e",
-          fontWeight: 500,
-          fontSize: "13px",
-          stroke: "none",
-        },
-        hover: {},
-        selected: {},
-        selectedHover: {},
-      }}
+      zoomAnimate
+      zoomMax={12}
+      zoomMin={1}
+      zoomOnScroll={false}
+      zoomStep={1.5}
     />
   );
 };

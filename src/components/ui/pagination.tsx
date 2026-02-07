@@ -1,33 +1,40 @@
-'use client';
+"use client";
 
-import { cn } from '@/lib/utils';
+import { cn } from "@/lib/utils";
 
-type PropsType = {
+interface PaginationProps {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
-};
+}
+
+interface PaginationButtonProps {
+  page: number;
+  isActive: boolean;
+  onPageChange: (page: number) => void;
+}
 
 const MAX_PAGES_SHOWN = 6;
 
-export function Pagination({
+export const Pagination = ({
   currentPage,
   totalPages,
   onPageChange,
-}: PropsType) {
+}: PaginationProps) => {
   return (
     <nav
-      role="navigation"
       aria-label="Pagination"
-      className="text-[#344054] font-medium"
+      className="font-medium text-gray-700"
+      role="navigation"
     >
-      <ul className="flex items-center justify-center flex-wrap gap-2 dark:text-[#98A2B3]">
+      <ul className="flex flex-wrap items-center justify-center gap-2 dark:text-gray-400">
         <li>
           <button
-            disabled={currentPage === 1}
             aria-label="Previous page"
+            className="rounded-lg border border-gray-300 px-3.5 py-2 shadow-xs hover:bg-gray-200/50 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-800/50"
+            disabled={currentPage === 1}
             onClick={() => onPageChange(currentPage - 1)}
-            className="px-3.5 py-2 rounded-lg shadow-xs border border-[#D0D5DD] hover:bg-gray-200/50 dark:bg-[#1D2939] dark:hover:bg-[#1D2939]/50 dark:border-[#344054] disabled:opacity-50 disabled:pointer-events-none"
+            type="button"
           >
             Previous
           </button>
@@ -54,9 +61,9 @@ export function Pagination({
                 return (
                   <li key={index}>
                     <PaginationButton
-                      page={index + 1}
                       isActive={isActive}
                       onPageChange={onPageChange}
+                      page={index + 1}
                     />
                   </li>
                 );
@@ -71,10 +78,6 @@ export function Pagination({
               );
             }
 
-            /**
-             * This logic ensures pagination buttons from 1-3 and the last 2 pages are visible
-             * and the rest in the middle are hidden and replaced with and ellipsis.
-             */
             if (index > 2 && index < totalPages - 2) {
               return null;
             }
@@ -83,9 +86,9 @@ export function Pagination({
           return (
             <li key={index}>
               <PaginationButton
-                page={index + 1}
                 isActive={isActive}
                 onPageChange={onPageChange}
+                page={index + 1}
               />
             </li>
           );
@@ -93,10 +96,11 @@ export function Pagination({
 
         <li>
           <button
-            disabled={currentPage === totalPages}
             aria-label="Next page"
+            className="rounded-lg border border-gray-300 px-3.5 py-2 shadow-xs hover:bg-gray-200/50 disabled:pointer-events-none disabled:opacity-50 dark:border-gray-700 dark:bg-gray-800 dark:hover:bg-gray-800/50"
+            disabled={currentPage === totalPages}
             onClick={() => onPageChange(currentPage + 1)}
-            className="px-3.5 py-2 rounded-lg shadow-xs border border-[#D0D5DD] hover:bg-gray-200/50 dark:bg-[#1D2939] dark:hover:bg-[#1D2939]/50 dark:border-[#344054] disabled:opacity-50 disabled:pointer-events-none"
+            type="button"
           >
             Next
           </button>
@@ -104,38 +108,38 @@ export function Pagination({
       </ul>
     </nav>
   );
-}
+};
 
-function PaginationButton({
+const PaginationButton = ({
   page,
   isActive,
   onPageChange,
-}: {
-  page: number;
-  isActive: boolean;
-  onPageChange: (page: number) => void;
-}) {
+}: PaginationButtonProps) => {
   return (
     <button
+      aria-current={isActive ? "page" : undefined}
       aria-label={`Go to page ${page}`}
-      aria-current={isActive ? 'page' : undefined}
       className={cn(
-        'size-10 rounded-lg shrink-0',
+        "size-10 shrink-0 rounded-lg",
         isActive
-          ? 'bg-primary-500 text-white'
-          : 'hover:bg-gray-200/50 dark:hover:bg-gray-800/80'
+          ? "bg-primary-500 text-white"
+          : "hover:bg-gray-200/50 dark:hover:bg-gray-800/80",
       )}
       onClick={() => onPageChange(page)}
+      type="button"
     >
       {page}
     </button>
   );
-}
+};
 
-function PaginationEllipsis() {
+const PaginationEllipsis = () => {
   return (
-    <button className="size-10 rounded-lg shrink-0 hover:bg-gray-200/50 dark:hover:bg-gray-800/80 cursor-default">
+    <button
+      className="size-10 shrink-0 cursor-default rounded-lg hover:bg-gray-200/50 dark:hover:bg-gray-800/80"
+      type="button"
+    >
       ...
     </button>
   );
-}
+};

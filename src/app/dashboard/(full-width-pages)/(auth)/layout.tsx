@@ -1,15 +1,17 @@
-import GridShape from "@/components/common/GridShape";
+﻿import GridShape from "@/components/common/GridShape";
 import ThemeTogglerTwo from "@/components/common/ThemeTogglerTwo";
 import { withDashboardBase } from "@/lib/dashboard-routes";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function AuthLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const AuthLayout = (
+  {
+    children,
+  }: {
+    children: React.ReactNode;
+  },
+) => {
   return (
     <div className="relative bg-white p-6 z-1 dark:bg-gray-900 sm:p-0">
       <div className="relative flex h-screen w-full flex-col justify-center dark:bg-gray-900 sm:p-0 lg:flex-row">
@@ -38,4 +40,6 @@ export default function AuthLayout({
       </div>
     </div>
   );
-}
+};
+
+export default AuthLayout;

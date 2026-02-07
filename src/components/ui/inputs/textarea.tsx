@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import { cn } from '@/lib/utils';
 import { forwardRef, useEffect, useRef, useState } from 'react';
@@ -43,13 +43,15 @@ type PropsType = Omit<TextareaProps, 'error' | 'value' | 'onChange'> & {
       }
   );
 
-export function AutoGrowingTextArea({
-  onChange,
-  withDefaultStyles,
-  className,
-  value: inputValue,
-  ...props
-}: PropsType) {
+export const AutoGrowingTextArea = (
+  {
+    onChange,
+    withDefaultStyles,
+    className,
+    value: inputValue,
+    ...props
+  }: PropsType,
+) => {
   const [value, setValue] = useState(inputValue || '');
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
@@ -85,4 +87,4 @@ export function AutoGrowingTextArea({
       {...props}
     />
   );
-}
+};

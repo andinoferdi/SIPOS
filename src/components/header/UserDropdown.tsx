@@ -1,22 +1,23 @@
-"use client";
+﻿"use client";;
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { Dropdown } from "../ui/dropdown/Dropdown";
-import { DropdownItem } from "../ui/dropdown/DropdownItem";
+import { Dropdown } from "@/components/ui/dropdown/Dropdown";
+import { DropdownItem } from "@/components/ui/dropdown/DropdownItem";
 import { withDashboardBase } from "@/lib/dashboard-routes";
 
-export default function UserDropdown() {
+const UserDropdown = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
-  e.stopPropagation();
-  setIsOpen((prev) => !prev);
-}
+  const toggleDropdown = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    e.stopPropagation();
+    setIsOpen((prev) => !prev);
+  };
 
-  function closeDropdown() {
+  const closeDropdown = () => {
     setIsOpen(false);
-  }
+  };
+
   return (
     <div className="relative">
       <button
@@ -169,4 +170,6 @@ function toggleDropdown(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
       </Dropdown>
     </div>
   );
-}
+};
+
+export default UserDropdown;

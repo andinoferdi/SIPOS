@@ -1,8 +1,8 @@
 import Image from 'next/image';
 
-type SVGPropsType = React.SVGProps<SVGSVGElement>;
+interface SVGPropsType extends React.SVGProps<SVGSVGElement> {}
 
-export function GradientBlob() {
+export const GradientBlob = () => {
   return (
     <div className="overflow-hidden">
       <Image
@@ -15,9 +15,9 @@ export function GradientBlob() {
       />
     </div>
   );
-}
+};
 
-export function GradientBlob2(props: SVGPropsType) {
+export const GradientBlob2 = (props: SVGPropsType) => {
   return (
     <svg
       width="930"
@@ -28,10 +28,10 @@ export function GradientBlob2(props: SVGPropsType) {
       {...props}
     >
       <g opacity="0.3" filter="url(#filter0_f_9248_10254)">
-        <circle cx="380.335" cy="380.335" r="179.665" fill="#FF58D5" />
+        <circle cx="380.335" cy="380.335" r="179.665" fill="var(--color-brand-500)" />
       </g>
       <g opacity="0.7" filter="url(#filter1_f_9248_10254)">
-        <circle cx="549.665" cy="380.335" r="179.665" fill="#4E6EFF" />
+        <circle cx="549.665" cy="380.335" r="179.665" fill="var(--color-brand-500)" />
       </g>
       <defs>
         <filter
@@ -79,4 +79,4 @@ export function GradientBlob2(props: SVGPropsType) {
       </defs>
     </svg>
   );
-}
+};

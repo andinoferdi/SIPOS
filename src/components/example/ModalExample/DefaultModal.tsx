@@ -1,15 +1,14 @@
-"use client";
+﻿"use client";;
 import React from "react";
-import ComponentCard from "../../common/ComponentCard";
+import ComponentCard from "@/components/common/ComponentCard";
 
-import { Modal } from "../../ui/modal";
-import Button from "../../ui/button/Button";
+import { Modal } from "@/components/ui/modal";
+import Button from "@/components/ui/button/Button";
 import { useModal } from "@/hooks/useModal";
 
-export default function DefaultModal() {
+const DefaultModal = () => {
   const { isOpen, openModal, closeModal } = useModal();
   const handleSave = () => {
-    // Handle save logic here
     console.log("Saving changes...");
     closeModal();
   };
@@ -50,4 +49,6 @@ export default function DefaultModal() {
       </ComponentCard>
     </div>
   );
-}
+};
+
+export default DefaultModal;

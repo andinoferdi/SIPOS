@@ -1,35 +1,34 @@
-import { ChevronDown2Icon } from '@/icons/icons';
-import { cn } from '@/lib/utils';
-import Link from 'next/link';
-import { usePathname } from 'next/navigation';
-import { navItems } from './nav-items';
-import { useEffect, useState } from 'react';
+﻿import { useEffect, useState } from "react";
+import Link from "next/link";
+import { usePathname } from "next/navigation";
+import { ChevronDown2Icon } from "@/icons/icons";
+import { cn } from "@/lib/utils";
+import { navItems } from "@/components/layout/header/nav-items";
 
-export default function DesktopNav() {
+const DesktopNav = () => {
   const pathname = usePathname();
-  const [activeDropdownKey, setActiveDropdownKey] = useState('');
+  const [activeDropdownKey, setActiveDropdownKey] = useState("");
 
-  function toggleActiveDropdown(key: string) {
-    setActiveDropdownKey((prevKey) => (prevKey === key ? '' : key));
-  }
+  const toggleActiveDropdown = (key: string) => {
+    setActiveDropdownKey((prevKey) => (prevKey === key ? "" : key));
+  };
 
   useEffect(() => {
-    // Hide dropdown on pathname changes
-    setActiveDropdownKey('');
+    setActiveDropdownKey("");
   }, [pathname]);
 
   return (
-    <nav className="hidden lg:flex lg:items-center bg-[#F9FAFB] dark:bg-white/3 rounded-full p-1 max-h-fit">
+    <nav className="hidden max-h-fit rounded-full bg-gray-50 p-1 dark:bg-white/3 lg:flex lg:items-center">
       {navItems.map((item) => {
-        if (item.type === 'link') {
+        if (item.type === "link") {
           return (
             <Link
               key={item.href}
               href={item.href}
               className={cn(
-                'text-gray-500 dark:text-gray-400 text-sm px-4 py-1.5 rounded-full hover:text-primary-500 font-medium',
+                "text-gray-500 dark:text-gray-400 text-sm px-4 py-1.5 rounded-full hover:text-primary-500 font-medium",
                 {
-                  'bg-white dark:bg-white/5 font-medium text-gray-800 dark:text-white/90 shadow-xs':
+                  "bg-white dark:bg-white/5 font-medium text-gray-800 dark:text-white/90 shadow-xs":
                     pathname === item.href,
                 }
               )}
@@ -39,7 +38,7 @@ export default function DesktopNav() {
           );
         }
 
-        if (item.type === 'dropdown') {
+        if (item.type === "dropdown") {
           const toggleThisDropdown = () => {
             toggleActiveDropdown(item.label);
           };
@@ -53,22 +52,22 @@ export default function DesktopNav() {
                 onMouseEnter={toggleThisDropdown}
                 onMouseLeave={toggleThisDropdown}
                 onKeyDown={(e) => {
-                  if (isDropdownActive && e.key === 'Escape') {
+                  if (isDropdownActive && e.key === "Escape") {
                     toggleThisDropdown();
                   }
                 }}
                 className={cn(
-                  'text-gray-500 dark:text-gray-400 hover:text-primary-500 group text-sm inline-flex gap-1 items-center px-4 py-1.5 font-medium rounded-full',
+                  "text-gray-500 dark:text-gray-400 hover:text-primary-500 group text-sm inline-flex gap-1 items-center px-4 py-1.5 font-medium rounded-full",
                   {
-                    'bg-white dark:bg-white/5 font-medium text-gray-800 dark:text-white/90 shadow-xs':
+                    "bg-white dark:bg-white/5 font-medium text-gray-800 dark:text-white/90 shadow-xs":
                       item.items.some(({ href }) => pathname?.includes(href)),
                   }
                 )}
               >
                 <span>{item.label}</span>
                 <ChevronDown2Icon
-                  className={cn('size-4 transition-transform duration-200', {
-                    'rotate-180': isDropdownActive,
+                  className={cn("size-4 transition-transform duration-200", {
+                    "rotate-180": isDropdownActive,
                   })}
                 />
               </button>
@@ -78,7 +77,7 @@ export default function DesktopNav() {
                   onMouseEnter={toggleThisDropdown}
                   onMouseLeave={toggleThisDropdown}
                   onKeyDown={(e) => {
-                    if (e.key === 'Escape') {
+                    if (e.key === "Escape") {
                       toggleThisDropdown();
                     }
                   }}
@@ -100,7 +99,10 @@ export default function DesktopNav() {
             </div>
           );
         }
+        return null;
       })}
     </nav>
   );
-}
+};
+
+export default DesktopNav;

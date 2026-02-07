@@ -14,14 +14,16 @@ interface ModalProps {
   };
 }
 
-export function Modal({
-  isOpen,
-  onClose,
-  title,
-  description,
-  children,
-  className,
-}: ModalProps) {
+export const Modal = (
+  {
+    isOpen,
+    onClose,
+    title,
+    description,
+    children,
+    className,
+  }: ModalProps,
+) => {
   useEffect(() => {
     const handleEscape = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
@@ -47,14 +49,12 @@ export function Modal({
       aria-modal="true"
     >
       <div className="flex items-center justify-center min-h-screen p-4">
-        {/* Background overlay */}
         <div
           className="fixed inset-0 bg-gray-800/80 backdrop-blur-lg transition-opacity"
           aria-hidden="true"
           onClick={onClose}
         />
 
-        {/* Modal panel */}
         <div
           className={cn(
             'bg-white dark:bg-gray-900 rounded-3xl text-left overflow-hidden sm:w-[590px] transform transition-all p-5 sm:p-12 relative',
@@ -79,7 +79,7 @@ export function Modal({
                   fillRule="evenodd"
                   clipRule="evenodd"
                   d="M5.09467 6.15615C4.80178 5.86325 4.80178 5.38838 5.09467 5.09549C5.38756 4.80259 5.86244 4.80259 6.15533 5.09549L9.99919 8.93934L13.8429 5.0956C14.1358 4.8027 14.6107 4.8027 14.9036 5.0956C15.1965 5.38849 15.1965 5.86336 14.9036 6.15626L11.0598 10L14.9036 13.8437C15.1965 14.1366 15.1965 14.6115 14.9036 14.9044C14.6107 15.1973 14.1358 15.1973 13.8429 14.9044L9.99919 11.0607L6.15533 14.9045C5.86244 15.1974 5.38756 15.1974 5.09467 14.9045C4.80178 14.6116 4.80178 14.1368 5.09467 13.8439L8.93853 10L5.09467 6.15615Z"
-                  fill="#667085"
+                  fill="var(--color-brand-500)"
                 />
               </svg>
             </button>
@@ -97,4 +97,4 @@ export function Modal({
       </div>
     </div>
   );
-}
+};

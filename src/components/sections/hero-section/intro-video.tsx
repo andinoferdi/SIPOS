@@ -1,4 +1,4 @@
-'use client';
+﻿'use client';
 
 import FsLightbox from 'fslightbox-react';
 import { useEffect, useState } from 'react';
@@ -6,7 +6,7 @@ import { createPortal } from 'react-dom';
 
 const videoUrl = 'https://www.youtube.com/watch?v=_iHmNaQBtKk';
 
-export function IntroVideo() {
+export const IntroVideo = () => {
   const [isMounted, setIsMounted] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
 
@@ -44,4 +44,4 @@ export function IntroVideo() {
         )}
     </>
   );
-}
+};

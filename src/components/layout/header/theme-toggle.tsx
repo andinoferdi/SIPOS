@@ -1,16 +1,17 @@
-"use client";
+﻿"use client";
 
-import { useTheme } from 'next-themes';
+import { useTheme } from "next-themes";
 
 const ThemeToggle = () => {
   const { setTheme, resolvedTheme } = useTheme();
 
-  const isDark = resolvedTheme === 'dark';
+  const isDark = resolvedTheme === "dark";
 
   return (
     <button
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="inline-flex items-center justify-center size-11 rounded-full bg-[#F2F4F7] dark:bg-white/5 text-[#667085] dark:text-white/60 hover:text-gray-800 dark:hover:text-white/90 hover:bg-gray-100 dark:hover:bg-white/10"
+      className="inline-flex size-11 items-center justify-center rounded-full bg-gray-100 text-gray-500 hover:bg-gray-200 hover:text-gray-800 dark:bg-white/5 dark:text-white/60 dark:hover:bg-white/10 dark:hover:text-white/90"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      type="button"
     >
       <svg
         className="size-5 dark:inline hidden"

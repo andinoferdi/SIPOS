@@ -1,8 +1,8 @@
-import React from "react";
-import YouTubeEmbed from "./YouTubeEmbed";
+﻿import React from "react";
+import YouTubeEmbed from "@/components/ui/video/YouTubeEmbed";
 import ComponentCard from "@/components/common/ComponentCard";
 
-export default function VideosExample() {
+const VideosExample = () => {
   return (
     <div>
       <div className="grid grid-cols-1 gap-5 sm:gap-6 xl:grid-cols-2">
@@ -25,4 +25,6 @@ export default function VideosExample() {
       </div>
     </div>
   );
-}
+};
+
+export default VideosExample;

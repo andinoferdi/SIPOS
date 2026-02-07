@@ -1,9 +1,9 @@
-"use client";
+﻿"use client";;
 import React, { useState } from "react";
-import ComponentCard from "../../common/ComponentCard";
-import Checkbox from "../input/Checkbox";
+import ComponentCard from "@/components/common/ComponentCard";
+import Checkbox from "@/components/form/input/Checkbox";
 
-export default function CheckboxComponents() {
+const CheckboxComponents = () => {
   const [isChecked, setIsChecked] = useState(false);
   const [isCheckedTwo, setIsCheckedTwo] = useState(true);
   const [isCheckedDisabled, setIsCheckedDisabled] = useState(false);
@@ -34,4 +34,6 @@ export default function CheckboxComponents() {
       </div>
     </ComponentCard>
   );
-}
+};
+
+export default CheckboxComponents;

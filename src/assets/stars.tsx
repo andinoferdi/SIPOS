@@ -1,4 +1,4 @@
-export function Stars() {
+export const Stars = () => {
   return (
     <svg
       width="22"
@@ -28,8 +28,8 @@ export function Stars() {
           y2="15.2943"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#FF58D5" />
-          <stop offset="1" stopColor="#FFA0E7" />
+          <stop stopColor="var(--color-brand-500)" />
+          <stop offset="1" stopColor="var(--color-brand-500)" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_9274_1469"
@@ -39,10 +39,10 @@ export function Stars() {
           y2="21.0295"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#7A5AF8" />
-          <stop offset="1" stopColor="#B5A2FF" />
+          <stop stopColor="var(--color-brand-500)" />
+          <stop offset="1" stopColor="var(--color-brand-500)" />
         </linearGradient>
       </defs>
     </svg>
   );
-}
+};

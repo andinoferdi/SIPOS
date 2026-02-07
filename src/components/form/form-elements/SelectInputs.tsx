@@ -1,12 +1,12 @@
-"use client";
+﻿"use client";;
 import React, { useState } from "react";
-import ComponentCard from "../../common/ComponentCard";
-import Label from "../Label";
-import Select from "../Select";
-import MultiSelect from "../MultiSelect";
+import ComponentCard from "@/components/common/ComponentCard";
+import Label from "@/components/form/Label";
+import Select from "@/components/form/Select";
+import MultiSelect from "@/components/form/MultiSelect";
 import { ChevronDownIcon } from "@/icons";
 
-export default function SelectInputs() {
+const SelectInputs = () => {
   const options = [
     { value: "marketing", label: "Marketing" },
     { value: "template", label: "Template" },
@@ -58,4 +58,6 @@ export default function SelectInputs() {
       </div>
     </ComponentCard>
   );
-}
+};
+
+export default SelectInputs;

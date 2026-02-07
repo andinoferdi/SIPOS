@@ -1,6 +1,6 @@
-import { CORE_FEATURES } from "./data";
+﻿import { CORE_FEATURES } from "@/components/sections/core-features/data";
 
-export function CoreFeatures() {
+export const CoreFeatures = () => {
   return (
     <section className="py-30 bg-gray-50 dark:bg-white/1 px-5">
       <div className="max-w-[72rem] mx-auto">
@@ -38,4 +38,4 @@ export function CoreFeatures() {
       </div>
     </section>
   );
-}
+};

@@ -1,23 +1,23 @@
-import { AI_MODEL } from '@/lib/ai/model';
-import { PROMPT } from '@/lib/ai/prompts';
-import { errorHandler, getMostRecentUserMessage } from '@/lib/utils';
+﻿import { AI_MODEL } from "@/lib/ai/model";
+import { PROMPT } from "@/lib/ai/prompts";
+import { errorHandler, getMostRecentUserMessage } from "@/lib/utils";
 import {
   convertToModelMessages,
   createIdGenerator,
   streamText,
   type UIMessage,
-} from 'ai';
+} from "ai";
 
 export const maxDuration = 50;
 
-export async function POST(req: Request) {
+export const POST = async (req: Request) => {
   try {
     const { messages }: { messages: UIMessage[] } = await req.json();
 
     const userMessage = getMostRecentUserMessage(messages);
 
     if (!userMessage) {
-      return new Response('No user message found', {
+      return new Response("No user message found", {
         status: 404,
       });
     }
@@ -30,11 +30,11 @@ export async function POST(req: Request) {
 
     return result.toUIMessageStreamResponse({
       originalMessages: messages,
-      generateMessageId: createIdGenerator({ prefix: 'msgs' }),
+      generateMessageId: createIdGenerator({ prefix: "msgs" }),
     });
   } catch (error) {
     return new Response(errorHandler(error), {
       status: 500,
     });
   }
-}
+};

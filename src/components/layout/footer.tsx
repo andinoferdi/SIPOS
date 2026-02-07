@@ -2,7 +2,7 @@ import { getCurrentYear } from "@/lib/utils";
 import Image from "next/image";
 import Link from "next/link";
 
-export default function Footer() {
+const Footer = () => {
   return (
     <footer className="relative overflow-hidden bg-gray-900">
       <span className="absolute top-0 -translate-x-1/2 left-1/2">
@@ -14,7 +14,7 @@ export default function Footer() {
           xmlns="http://www.w3.org/2000/svg"
         >
           <g filter="url(#filter0_f_11105_867)">
-            <circle cx="630" cy="-173.299" r="230" fill="#3B2EFF" />
+            <circle cx="630" cy="-173.299" r="230" fill="var(--color-brand-500)" />
           </g>
           <defs>
             <filter
@@ -348,4 +348,6 @@ export default function Footer() {
       </div>
     </footer>
   );
-}
+};
+
+export default Footer;

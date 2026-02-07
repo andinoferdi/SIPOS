@@ -1,4 +1,4 @@
-export const BILLING_PERIODS = [
+﻿export const BILLING_PERIODS = [
   {
     label: 'Monthly',
     key: 'monthly',
@@ -35,7 +35,7 @@ export const BILLING_PLANS = [
   {
     name: 'Free',
     description:
-      'For hobbyists exploring AI—get started with essential features and a small token allowance.',
+      'For hobbyists exploring AIâ€”get started with essential features and a small token allowance.',
     pricing: {
       monthly: {
         amount: AMOUNTS['free']['monthly'],
@@ -61,7 +61,7 @@ export const BILLING_PLANS = [
   {
     name: 'Plus plan',
     description:
-      'For developers building real products—higher limits and more flexible usage.',
+      'For developers building real productsâ€”higher limits and more flexible usage.',
     pricing: {
       monthly: {
         amount: AMOUNTS['plus']['monthly'],

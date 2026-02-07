@@ -1,7 +1,7 @@
-import Image from "next/image";
+﻿import Image from "next/image";
 import React from "react";
 
-export default function HeroLogos() {
+const HeroLogos = () => {
   return (
     <div className="wrapper">
       <div className="max-w-[1016px] relative z-30 mx-auto pt-14 pb-16">
@@ -62,4 +62,6 @@ export default function HeroLogos() {
       </div>
     </div>
   );
-}
+};
+
+export default HeroLogos;

@@ -1,35 +1,32 @@
-import {
+﻿import {
   Table,
   TableBody,
   TableCell,
   TableHeader,
   TableRow,
-} from "../ui/table";
-import Badge from "../ui/badge/Badge";
+} from "@/components/ui/table";
+import Badge from "@/components/ui/badge/Badge";
 import Image from "next/image";
 
-// Define the TypeScript interface for the table rows
 interface Product {
-  id: number; // Unique identifier for each product
-  name: string; // Product name
-  variants: string; // Number of variants (e.g., "1 Variant", "2 Variants")
-  category: string; // Category of the product
-  price: string; // Price of the product (as a string with currency symbol)
-  // status: string; // Status of the product
-  image: string; // URL or path to the product image
-  status: "Delivered" | "Pending" | "Canceled"; // Status of the product
+  id: number;
+  name: string;
+  variants: string;
+  category: string;
+  price: string;
+  image: string;
+  status: "Delivered" | "Pending" | "Canceled";
 }
 
-// Define the table data using the interface
 const tableData: Product[] = [
   {
     id: 1,
-    name: "MacBook Pro 13”",
+    name: "MacBook Pro 13â€",
     variants: "2 Variants",
     category: "Laptop",
     price: "$2399.00",
     status: "Delivered",
-    image: "/images/product/product-01.jpg", // Replace with actual image URL
+    image: "/images/product/product-01.jpg",
   },
   {
     id: 2,
@@ -38,7 +35,7 @@ const tableData: Product[] = [
     category: "Watch",
     price: "$879.00",
     status: "Pending",
-    image: "/images/product/product-02.jpg", // Replace with actual image URL
+    image: "/images/product/product-02.jpg",
   },
   {
     id: 3,
@@ -47,7 +44,7 @@ const tableData: Product[] = [
     category: "SmartPhone",
     price: "$1869.00",
     status: "Delivered",
-    image: "/images/product/product-03.jpg", // Replace with actual image URL
+    image: "/images/product/product-03.jpg",
   },
   {
     id: 4,
@@ -56,7 +53,7 @@ const tableData: Product[] = [
     category: "Electronics",
     price: "$1699.00",
     status: "Canceled",
-    image: "/images/product/product-04.jpg", // Replace with actual image URL
+    image: "/images/product/product-04.jpg",
   },
   {
     id: 5,
@@ -65,11 +62,11 @@ const tableData: Product[] = [
     category: "Accessories",
     price: "$240.00",
     status: "Delivered",
-    image: "/images/product/product-05.jpg", // Replace with actual image URL
+    image: "/images/product/product-05.jpg",
   },
 ];
 
-export default function RecentOrders() {
+const RecentOrders = () => {
   return (
     <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 pb-3 pt-4 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
       <div className="flex flex-col gap-2 mb-4 sm:flex-row sm:items-center sm:justify-between">
@@ -125,7 +122,6 @@ export default function RecentOrders() {
       </div>
       <div className="max-w-full overflow-x-auto">
         <Table>
-          {/* Table Header */}
           <TableHeader className="border-gray-100 dark:border-gray-800 border-y">
             <TableRow>
               <TableCell
@@ -155,7 +151,6 @@ export default function RecentOrders() {
             </TableRow>
           </TableHeader>
 
-          {/* Table Body */}
 
           <TableBody className="divide-y divide-gray-100 dark:divide-gray-800">
             {tableData.map((product) => (
@@ -208,4 +203,6 @@ export default function RecentOrders() {
       </div>
     </div>
   );
-}
+};
+
+export default RecentOrders;

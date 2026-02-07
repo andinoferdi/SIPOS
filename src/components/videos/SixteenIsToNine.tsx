@@ -1,6 +1,6 @@
-import React from "react";
+﻿import React from "react";
 
-export default function SixteenIsToNine() {
+const SixteenIsToNine = () => {
   return (
     <div className="aspect-4/3 overflow-hidden rounded-lg">
       <iframe
@@ -13,4 +13,6 @@ export default function SixteenIsToNine() {
       ></iframe>
     </div>
   );
-}
+};
+
+export default SixteenIsToNine;

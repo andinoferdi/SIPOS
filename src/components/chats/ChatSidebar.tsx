@@ -1,8 +1,7 @@
-"use client";
-
+﻿"use client";;
 import Image from "next/image";
-import ChatActionMenu from "./ChatActionMenu";
-import type { ChatContact } from "./types";
+import ChatActionMenu from "@/components/chats/ChatActionMenu";
+import type { ChatContact } from "@/components/chats/types";
 
 interface ChatSidebarProps {
   contacts: ChatContact[];
@@ -19,14 +18,16 @@ const presenceClassMap = {
   offline: "bg-error-500",
 } as const;
 
-export default function ChatSidebar({
-  contacts,
-  activeContactId,
-  searchTerm,
-  onSearchTermChange,
-  onSelectContact,
-  onCloseMobileSidebar,
-}: ChatSidebarProps) {
+const ChatSidebar = (
+  {
+    contacts,
+    activeContactId,
+    searchTerm,
+    onSearchTermChange,
+    onSelectContact,
+    onCloseMobileSidebar,
+  }: ChatSidebarProps,
+) => {
   return (
     <div className="flex h-full flex-col rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
       <div className="sticky px-4 pb-4 pt-4 sm:px-5 sm:pt-5 xl:pb-0">
@@ -118,9 +119,11 @@ export default function ChatSidebar({
       </div>
     </div>
   );
-}
+};
 
-function SearchIcon() {
+export default ChatSidebar;
+
+const SearchIcon = () => {
   return (
     <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
       <svg
@@ -140,9 +143,9 @@ function SearchIcon() {
       </svg>
     </span>
   );
-}
+};
 
-function CloseIcon() {
+const CloseIcon = () => {
   return (
     <svg
       width="24"
@@ -160,4 +163,4 @@ function CloseIcon() {
       />
     </svg>
   );
-}
+};

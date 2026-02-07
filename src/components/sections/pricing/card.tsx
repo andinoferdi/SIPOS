@@ -1,21 +1,21 @@
-import { CheckIcon } from '@/icons/icons';
-import GlowGradient from '@/assets/pricing/glow';
-import type { TBILLING_PLAN } from '@/components/sections/pricing/data';
-import { cn } from '@/lib/utils';
-import Link from 'next/link';
-import { PropsWithChildren } from 'react';
+﻿import Link from "next/link";
+import type { PropsWithChildren } from "react";
+import GlowGradient from "@/assets/pricing/glow";
+import { CheckIcon } from "@/icons/icons";
+import type { TBILLING_PLAN } from "@/components/sections/pricing/data";
+import { cn } from "@/lib/utils";
 
-type Props = {
+interface PricingCardProps {
   plan: TBILLING_PLAN;
-  billingPeriod: keyof TBILLING_PLAN['pricing'];
-};
+  billingPeriod: keyof TBILLING_PLAN["pricing"];
+}
 
-export function PricingCard({ plan, billingPeriod }: Props) {
+export const PricingCard = ({ plan, billingPeriod }: PricingCardProps) => {
   return (
     <div className="relative">
       <div
         className={`bg-white dark:bg-dark-primary rounded-[20px] shadow-one relative z-10 h-full ${
-          plan.popular ? 'relative border-2 border-primary-500' : ''
+          plan.popular ? "relative border-2 border-primary-500" : ""
         }`}
       >
         <div className="p-8">
@@ -52,14 +52,14 @@ export function PricingCard({ plan, billingPeriod }: Props) {
                 'block w-full px-8 py-3.5 mt-7 text-sm font-medium text-center rounded-full transition',
                 {
                   'dark:bg-dark-primary dark:text-white/90 dark:hover:bg-gray-800 dark:border-gray-800 text-gray-800 bg-white border border-gray-200 hover:bg-gray-50':
-                    plan.name.includes('Free'),
-                  'gradient-btn text-white': plan.popular,
-                  'dark:hover:bg-primary-500 dark:bg-white/[0.03] hover:bg-gray-900 text-white bg-gray-700':
-                    !plan.popular && !plan.name.includes('Free'),
+                    plan.name.includes("Free"),
+                  "gradient-btn text-white": plan.popular,
+                  "dark:hover:bg-primary-500 dark:bg-white/[0.03] hover:bg-gray-900 text-white bg-gray-700":
+                    !plan.popular && !plan.name.includes("Free"),
                 }
               )}
             >
-              {plan.cta}``
+              {plan.cta}
             </button>
           )}
         </div>
@@ -85,9 +85,9 @@ export function PricingCard({ plan, billingPeriod }: Props) {
       )}
     </div>
   );
-}
+};
 
-function ContactSalesLink({ children }: PropsWithChildren) {
+const ContactSalesLink = ({ children }: PropsWithChildren) => {
   return (
     <Link
       href="/contact"
@@ -96,4 +96,4 @@ function ContactSalesLink({ children }: PropsWithChildren) {
       {children}
     </Link>
   );
-}
+};

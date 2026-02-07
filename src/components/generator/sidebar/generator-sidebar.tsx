@@ -1,12 +1,12 @@
-import Link from 'next/link';
-import GeneratorSidebarNav from './generator-sidebar-nav';
-import SidebarWidget from './sidebar-widget';
+﻿import Link from "next/link";
+import GeneratorSidebarNav from "@/components/generator/sidebar/generator-sidebar-nav";
+import SidebarWidget from "@/components/generator/sidebar/sidebar-widget";
 
-export default function GeneratorSidebar({
+const GeneratorSidebar = ({
   sidebarOpen,
 }: {
   sidebarOpen: boolean;
-}) {
+}) => {
   return (
     <aside
       className={`max-lg:absolute inset-y-0 left-0 z-40 w-[288px] bg-white dark:bg-dark-primary border-r border-gray-100 dark:border-gray-800 transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
@@ -71,4 +71,6 @@ export default function GeneratorSidebar({
       </div>
     </aside>
   );
-}
+};
+
+export default GeneratorSidebar;

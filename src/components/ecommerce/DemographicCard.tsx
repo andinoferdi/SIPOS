@@ -1,22 +1,22 @@
-"use client";
+﻿"use client";;
 import Image from "next/image";
 
-import CountryMap from "./CountryMap";
+import CountryMap from "@/components/ecommerce/CountryMap";
 import { useState } from "react";
 import { MoreDotIcon } from "@/icons";
-import { Dropdown } from "../ui/dropdown/Dropdown";
-import { DropdownItem } from "../ui/dropdown/DropdownItem";
+import { Dropdown } from "@/components/ui/dropdown/Dropdown";
+import { DropdownItem } from "@/components/ui/dropdown/DropdownItem";
 
-export default function DemographicCard() {
+const DemographicCard = () => {
   const [isOpen, setIsOpen] = useState(false);
 
-  function toggleDropdown() {
+  const toggleDropdown = () => {
     setIsOpen(!isOpen);
-  }
+  };
 
-  function closeDropdown() {
+  const closeDropdown = () => {
     setIsOpen(false);
-  }
+  };
 
   return (
     <div className="rounded-2xl border border-gray-200 bg-white p-5 dark:border-gray-800 dark:bg-white/[0.03] sm:p-6">
@@ -128,4 +128,6 @@ export default function DemographicCard() {
       </div>
     </div>
   );
-}
+};
+
+export default DemographicCard;

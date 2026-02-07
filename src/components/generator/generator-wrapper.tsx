@@ -1,15 +1,15 @@
-'use client';
+﻿"use client";
 
-import { useState } from 'react';
-import GeneratorHeader from './generator-header';
-import GeneratorSidebar from './sidebar/generator-sidebar';
-import RightSidebar from './sidebar/chat-history-sidebar';
+import { useState } from "react";
+import GeneratorHeader from "@/components/generator/generator-header";
+import GeneratorSidebar from "@/components/generator/sidebar/generator-sidebar";
+import RightSidebar from "@/components/generator/sidebar/chat-history-sidebar";
 
-export default function GeneratorWrapper({
+const GeneratorWrapper = ({
   children,
 }: {
   children: React.ReactNode;
-}) {
+}) => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [rightSidebarOpen, setRightSidebarOpen] = useState(false);
 
@@ -37,7 +37,6 @@ export default function GeneratorWrapper({
           toggleIsOpen={toggleRightSidebar}
         />
 
-        {/* Overlays */}
         {sidebarOpen && (
           <div
             className="fixed inset-0 z-30 bg-gray-800/80 backdrop-blur-lg transition-opacity"
@@ -56,4 +55,6 @@ export default function GeneratorWrapper({
       </div>
     </div>
   );
-}
+};
+
+export default GeneratorWrapper;

@@ -1,75 +1,73 @@
-import { AttachmentIcon, LongArrowUpIcon } from '@/icons/icons';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef } from "react";
+import { AttachmentIcon, LongArrowUpIcon } from "@/icons/icons";
 
-type PropsType = {
+interface GeneratorInputProps {
   onChange?: (
-    e:
+    event:
       | React.ChangeEvent<HTMLInputElement>
-      | React.ChangeEvent<HTMLTextAreaElement>
+      | React.ChangeEvent<HTMLTextAreaElement>,
   ) => void;
   value?: string;
   disabled?: boolean;
-};
+}
 
-export default function GeneratorInput({
-  onChange,
-  value,
-  disabled,
-}: PropsType) {
+const GeneratorInput = ({ onChange, value, disabled }: GeneratorInputProps) => {
   const submitButtonRef = useRef<HTMLButtonElement>(null);
   const textareaRef = useRef<HTMLTextAreaElement>(null);
 
   useEffect(() => {
-    if (textareaRef.current) {
-      textareaRef.current.style.height = '0';
-      textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
+    if (!textareaRef.current) {
+      return;
     }
+
+    textareaRef.current.style.height = "0";
+    textareaRef.current.style.height = `${textareaRef.current.scrollHeight}px`;
   }, [value]);
 
   return (
-    <div className="sticky bottom-0 inset-x-0 z-30 mt-auto">
+    <div className="sticky inset-x-0 bottom-0 z-30 mt-auto">
       <div className="h-4" />
 
       <div
-        className="bg-white/15 dark:bg-white/5 border border-[#E4E7EC] dark:border-white/10 rounded-3xl backdrop-blur-[10px] shadow-theme-md overflow-hidden aria-disabled:opacity-70 aria-disabled:pointer-events-none"
         aria-disabled={disabled}
+        className="overflow-hidden rounded-3xl border border-gray-200 bg-white/15 shadow-theme-md backdrop-blur-[10px] aria-disabled:pointer-events-none aria-disabled:opacity-70 dark:border-white/10 dark:bg-white/5"
       >
         <div className="p-5 pb-0 pr-[calc((var(--spacing)*5)-10px)]">
           <textarea
-            ref={textareaRef}
-            placeholder="Type your message"
-            value={value}
+            className="custom-scrollbar max-h-44 w-full resize-none pb-8 leading-5 placeholder:text-sm focus:outline-0 dark:text-white/90 dark:placeholder:text-white/50"
             onChange={onChange}
-            onKeyDown={(e) => {
-              if (e.key === 'Enter' && !e.shiftKey) {
-                e.preventDefault();
+            onKeyDown={(event) => {
+              if (event.key === "Enter" && !event.shiftKey) {
+                event.preventDefault();
                 submitButtonRef.current?.click();
               }
             }}
-            className="dark:text-white/90 focus:outline-0 placeholder:text-sm dark:placeholder:text-white/50 resize-none max-h-44 leading-5 w-full custom-scrollbar pb-8"
+            placeholder="Type your message"
+            ref={textareaRef}
             required
             rows={1}
+            value={value}
           />
         </div>
-        <div className="flex justify-between items-center gap-2 p-3 pt-0">
-          <label htmlFor="attach-file" className="flex items-center gap-1.5">
+        <div className="flex items-center justify-between gap-2 p-3 pt-0">
+          <label className="flex items-center gap-1.5" htmlFor="attach-file">
             <input
-              type="file"
               accept=".pdf, .doc, .docx, .txt"
-              name="attachFile"
-              id="attach-file"
               className="sr-only"
+              id="attach-file"
+              name="attachFile"
+              type="file"
             />
             <AttachmentIcon />
 
-            <span className="text-[#98A2B3] text-sm">Attach file</span>
+            <span className="text-sm text-gray-400">Attach file</span>
           </label>
 
           <button
-            type="submit"
-            ref={submitButtonRef}
-            className="size-10 flex bg-[#1D2939] dark:bg-primary-500 dark:disabled:bg-white/20 transition items-center justify-center rounded-full text-white"
+            className="flex size-10 items-center justify-center rounded-full bg-gray-800 text-white transition dark:bg-primary-500 dark:disabled:bg-white/20"
             disabled={!value?.trim()}
+            ref={submitButtonRef}
+            type="submit"
           >
             <span className="sr-only">Submit</span>
             <LongArrowUpIcon />
@@ -80,4 +78,6 @@ export default function GeneratorInput({
       <div className="h-5" />
     </div>
   );
-}
+};
+
+export default GeneratorInput;

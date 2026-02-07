@@ -1,12 +1,12 @@
-import Image from 'next/image';
-import Link from 'next/link';
-import HeroLogos from '../hero-logos';
-import { Subheading } from './subheading';
-import { IntroVideo } from './intro-video';
+import Image from "next/image";
+import Link from "next/link";
+import HeroLogos from "@/components/sections/hero-logos";
+import { IntroVideo } from "@/components/sections/hero-section/intro-video";
+import { Subheading } from "@/components/sections/hero-section/subheading";
 
-export default function HeroSection() {
+const HeroSection = () => {
   return (
-    <section className="pt-16 relative overflow-hidden dark:bg-[#171F2E]">
+    <section className="pt-16 relative overflow-hidden dark:bg-[var(--color-brand-500)]">
       <div className="max-w-[120rem] mx-auto relative">
         <div className="wrapper">
           <div className="max-w-[800px] mx-auto">
@@ -59,10 +59,10 @@ export default function HeroSection() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <g opacity="0.7" filter="url(#filter0_f_9279_7148)">
-                  <circle cx="800" cy="500.03" r="300" fill="#4E6EFF" />
+                  <circle cx="800" cy="500.03" r="300" fill="var(--color-brand-500)" />
                 </g>
                 <g opacity="0.3" filter="url(#filter1_f_9279_7148)">
-                  <circle cx="500" cy="500.03" r="300" fill="#FF58D5" />
+                  <circle cx="500" cy="500.03" r="300" fill="var(--color-brand-500)" />
                 </g>
                 <defs>
                   <filter
@@ -148,4 +148,6 @@ export default function HeroSection() {
       <HeroLogos />
     </section>
   );
-}
+};
+
+export default HeroSection;

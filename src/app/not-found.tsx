@@ -2,7 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-export default function NotFoundPage() {
+const NotFoundPage = () => {
   return (
     <section className="min-h-screen flex justify-center items-center relative">
       <span className="absolute top-0">
@@ -14,10 +14,10 @@ export default function NotFoundPage() {
           xmlns="http://www.w3.org/2000/svg"
         >
           <g opacity="0.7" filter="url(#filter0_f_9289_13491)">
-            <circle cx="772" cy="-167.171" r="250" fill="#4E6EFF" />
+            <circle cx="772" cy="-167.171" r="250" fill="var(--color-brand-500)" />
           </g>
           <g opacity="0.3" filter="url(#filter1_f_9289_13491)">
-            <circle cx="450" cy="-167.171" r="250" fill="#FF58D5" />
+            <circle cx="450" cy="-167.171" r="250" fill="var(--color-brand-500)" />
           </g>
           <defs>
             <filter
@@ -109,4 +109,6 @@ export default function NotFoundPage() {
       </div>
     </section>
   );
-}
+};
+
+export default NotFoundPage;

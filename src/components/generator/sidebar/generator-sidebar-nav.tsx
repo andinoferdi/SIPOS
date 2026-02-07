@@ -1,5 +1,4 @@
-'use client';
-
+﻿'use client';;
 import { TextGeneratorIcon } from '@/icons/icons';
 import { cn } from '@/lib/utils';
 import Link from 'next/link';
@@ -13,7 +12,7 @@ const navItems = [
   },
 ];
 
-export default function GeneratorSidebarNav() {
+const GeneratorSidebarNav = () => {
   const pathname = usePathname();
 
   return (
@@ -44,4 +43,6 @@ export default function GeneratorSidebarNav() {
       </nav>
     </div>
   );
-}
+};
+
+export default GeneratorSidebarNav;

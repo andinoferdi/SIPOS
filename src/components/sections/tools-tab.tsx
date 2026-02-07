@@ -1,5 +1,4 @@
-'use client';
-
+﻿'use client';;
 import type React from 'react';
 import { Fragment, useState } from 'react';
 
@@ -13,7 +12,6 @@ import {
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
-// Define the tab type
 interface Tab {
   id: string;
   label: string;
@@ -24,10 +22,9 @@ interface Tab {
   description: string;
 }
 
-export default function AIToolsTabs() {
+const AIToolsTabs = () => {
   const [activeTab, setActiveTab] = useState('text');
 
-  // Tab data
   const tabs: Tab[] = [
     {
       id: 'text',
@@ -81,7 +78,6 @@ export default function AIToolsTabs() {
     },
   ];
 
-  // Find the active tab
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
 
   return (
@@ -100,7 +96,6 @@ export default function AIToolsTabs() {
 
         <div className="max-w-[1008px] mx-auto">
           <div>
-            {/* Tab Navigation */}
             <div className="overflow-x-auto custom-scrollbar mx-auto max-w-fit relative">
               <div className="flex gap-2 min-w-max rounded-full bg-gray-100 dark:bg-white/5 p-1">
                 {tabs.map((tab) => (
@@ -120,7 +115,6 @@ export default function AIToolsTabs() {
               </div>
             </div>
 
-            {/* Tab Content */}
 
             <div className="p-6 tab-img-bg overflow-hidden rounded-4xl mt-8">
               <div className="p-3 tab-img-overlay">
@@ -156,7 +150,6 @@ export default function AIToolsTabs() {
               </div>
             </div>
 
-            {/* Bottom Section */}
             <div className="mt-6 text-center">
               <h2 className="mb-2 text-xl font-bold text-gray-800 dark:text-white/90">
                 {currentTab.title}
@@ -173,4 +166,6 @@ export default function AIToolsTabs() {
       </div>
     </section>
   );
-}
+};
+
+export default AIToolsTabs;

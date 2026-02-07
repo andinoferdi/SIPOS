@@ -1,15 +1,14 @@
-"use client";
-
+﻿"use client";;
 import { useChat } from "@ai-sdk/react";
 import { createIdGenerator } from "ai";
 import copy from "copy-text-to-clipboard";
 import Link from "next/link";
 import { useEffect, useMemo, useRef, useState } from "react";
-import AiTextGeneratorHistorySidebar from "./AiTextGeneratorHistorySidebar";
-import { aiHistorySessions, type HistorySession } from "./data";
+import AiTextGeneratorHistorySidebar from "@/components/ai-text-generator/AiTextGeneratorHistorySidebar";
+import { aiHistorySessions, type HistorySession } from "@/components/ai-text-generator/data";
 import { withDashboardBase } from "@/lib/dashboard-routes";
 
-export default function AiTextGenerator() {
+const AiTextGenerator = () => {
   const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [historySearch, setHistorySearch] = useState("");
   const [showAllHistory, setShowAllHistory] = useState(false);
@@ -134,7 +133,6 @@ export default function AiTextGenerator() {
           </ol>
         </nav>
       </div>
-
       <div className="relative h-[calc(100vh-134px)] px-4 xl:flex xl:h-[calc(100vh-146px)] xl:px-0">
         <div className="my-6 flex items-center justify-between rounded-2xl border border-gray-200 bg-white p-3 dark:border-gray-800 dark:bg-gray-900 xl:hidden">
           <h4 className="pl-2 text-lg font-medium text-gray-800 dark:text-white/90">
@@ -313,7 +311,6 @@ export default function AiTextGenerator() {
           />
         </div>
       </div>
-
       <div
         className={`fixed inset-0 z-[70] xl:hidden ${
           isHistoryOpen ? "" : "pointer-events-none"
@@ -347,9 +344,11 @@ export default function AiTextGenerator() {
       </div>
     </div>
   );
-}
+};
 
-function extractMessageText(message: { content?: string; parts?: unknown[] }) {
+export default AiTextGenerator;
+
+const extractMessageText = (message: { content?: string; parts?: unknown[] }) => {
   if (!message.parts || message.parts.length === 0) return message.content ?? "";
 
   const textParts = message.parts
@@ -368,9 +367,9 @@ function extractMessageText(message: { content?: string; parts?: unknown[] }) {
     .join("");
 
   return textParts || message.content || "";
-}
+};
 
-function CopyIcon() {
+const CopyIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -389,9 +388,9 @@ function CopyIcon() {
       />
     </svg>
   );
-}
+};
 
-function AttachIcon() {
+const AttachIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -409,9 +408,9 @@ function AttachIcon() {
       />
     </svg>
   );
-}
+};
 
-function SendIcon() {
+const SendIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -429,9 +428,9 @@ function SendIcon() {
       />
     </svg>
   );
-}
+};
 
-function HamburgerIcon() {
+const HamburgerIcon = () => {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -450,4 +449,4 @@ function HamburgerIcon() {
       />
     </svg>
   );
-}
+};
