@@ -1,11 +1,12 @@
 import Footer from '@/components/layout/footer';
 import Header from '@/components/layout/header/header';
+import type { ReactNode } from 'react';
 
-export default function SiteLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+type SiteShellProps = {
+  children: ReactNode;
+};
+
+export default function SiteShell({ children }: SiteShellProps) {
   return (
     <div className="dark:bg-[#101828] flex flex-col flex-1">
       <Header />
