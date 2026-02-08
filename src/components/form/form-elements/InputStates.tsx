@@ -1,13 +1,14 @@
-﻿"use client";;
+"use client";
 import React, { useState } from "react";
-import ComponentCard from "@/components/common/ComponentCard";
-import Input from "@/components/form/input/InputField";
-import Label from "@/components/form/Label";
+import ComponentCard from "../../common/ComponentCard";
+import Input from "../input/InputField";
+import Label from "../Label";
 
-const InputStates = () => {
+export default function InputStates() {
   const [email, setEmail] = useState("");
   const [error, setError] = useState(false);
 
+  // Simulate a validation check
   const validateEmail = (value: string) => {
     const isValidEmail =
       /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(value);
@@ -26,6 +27,7 @@ const InputStates = () => {
       desc="Validation styles for error, success and disabled states on form controls."
     >
       <div className="space-y-5 sm:space-y-6">
+        {/* Error Input */}
         <div>
           <Label>Email</Label>
           <Input
@@ -38,6 +40,7 @@ const InputStates = () => {
           />
         </div>
 
+        {/* Success Input */}
         <div>
           <Label>Email</Label>
           <Input
@@ -50,6 +53,7 @@ const InputStates = () => {
           />
         </div>
 
+        {/* Disabled Input */}
         <div>
           <Label>Email</Label>
           <Input
@@ -63,6 +67,4 @@ const InputStates = () => {
       </div>
     </ComponentCard>
   );
-};
-
-export default InputStates;
+}

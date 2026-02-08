@@ -1,5 +1,5 @@
 {
-  "name": "SIPOS",
+  "name": "ai-starter-kit-oss",
   "version": "1.0.0",
   "private": true,
   "license": "MIT",
@@ -8,19 +8,12 @@
     "build": "next build",
     "start": "next start",
     "lint": "eslint .",
-    "postinstall": "prisma generate",
-    "test": "vitest run",
-    "test:watch": "vitest",
-    "check:code-rules": "node scripts/check-code-rules.mjs",
-    "db:generate": "prisma generate",
-    "db:push": "prisma db push",
-    "db:migrate": "prisma migrate dev",
+    "db:push": "npx drizzle-kit push",
+    "db:generate": "npx drizzle-kit generate",
+    "db:migrate": "npx drizzle-kit migrate",
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/webhooks/stripe"
   },
   "dependencies": {
-    "@radix-ui/react-slot": "latest",
-    "@prisma/client": "latest",
-    "@tanstack/react-query": "latest",
     "@ai-sdk/openai": "latest",
     "@ai-sdk/react": "latest",
     "@fullcalendar/core": "latest",
@@ -40,12 +33,11 @@
     "copy-text-to-clipboard": "latest",
     "flatpickr": "latest",
     "fslightbox-react": "latest",
-    "lucide-react": "latest",
     "next": "latest",
     "next-auth": "latest",
     "next-themes": "latest",
+    "openai": "latest",
     "pg": "latest",
-    "prisma": "latest",
     "react": "latest",
     "react-apexcharts": "latest",
     "react-dnd": "latest",
@@ -53,19 +45,12 @@
     "react-dom": "latest",
     "react-dropzone": "latest",
     "react-hook-form": "latest",
-    "socket.io": "latest",
-    "socket.io-client": "latest",
     "sonner": "latest",
     "swiper": "latest",
     "tailwind-merge": "latest",
-    "use-stick-to-bottom": "latest",
-    "zod": "latest",
-    "zustand": "latest"
+    "use-stick-to-bottom": "latest"
   },
   "devDependencies": {
-    "@testing-library/dom": "latest",
-    "@testing-library/react": "latest",
-    "@vitejs/plugin-react": "latest",
     "@eslint/eslintrc": "latest",
     "@svgr/webpack": "latest",
     "@tailwindcss/postcss": "latest",
@@ -78,12 +63,9 @@
     "@types/react-transition-group": "latest",
     "eslint": "latest",
     "eslint-config-next": "latest",
-    "jsdom": "latest",
     "postcss": "latest",
     "tailwindcss": "latest",
-    "typescript": "latest",
-    "vite-tsconfig-paths": "latest",
-    "vitest": "latest"
+    "typescript": "latest"
   },
   "overrides": {
     "@react-jvectormap/core": {

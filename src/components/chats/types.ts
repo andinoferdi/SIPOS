@@ -1,4 +1,4 @@
-﻿export type ChatPresence = "online" | "away" | "offline";
+export type ChatPresence = "online" | "away" | "offline";
 
 export type ChatSender = "me" | "contact";
 

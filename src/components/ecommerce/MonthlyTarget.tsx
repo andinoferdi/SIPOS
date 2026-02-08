@@ -1,19 +1,21 @@
-"use client";;
+"use client";
+// import Chart from "react-apexcharts";
 import { ApexOptions } from "apexcharts";
 
 import dynamic from "next/dynamic";
-import { Dropdown } from "@/components/ui/dropdown/Dropdown";
+import { Dropdown } from "../ui/dropdown/Dropdown";
 import { MoreDotIcon } from "@/icons";
 import { useState } from "react";
-import { DropdownItem } from "@/components/ui/dropdown/DropdownItem";
+import { DropdownItem } from "../ui/dropdown/DropdownItem";
+// Dynamically import the ReactApexChart component
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-const MonthlyTarget = () => {
+export default function MonthlyTarget() {
   const series = [75.55];
   const options: ApexOptions = {
-    colors: ["var(--color-brand-500)"],
+    colors: ["#465FFF"],
     chart: {
       fontFamily: "Outfit, sans-serif",
       type: "radialBar",
@@ -30,9 +32,9 @@ const MonthlyTarget = () => {
           size: "80%",
         },
         track: {
-          background: "var(--color-brand-500)",
+          background: "#E4E7EC",
           strokeWidth: "100%",
-          margin: 5,
+          margin: 5, // margin is in pixels
         },
         dataLabels: {
           name: {
@@ -42,7 +44,7 @@ const MonthlyTarget = () => {
             fontSize: "36px",
             fontWeight: "600",
             offsetY: -40,
-            color: "var(--color-brand-500)",
+            color: "#1D2939",
             formatter: function (val) {
               return val + "%";
             },
@@ -52,7 +54,7 @@ const MonthlyTarget = () => {
     },
     fill: {
       type: "solid",
-      colors: ["var(--color-brand-500)"],
+      colors: ["#465FFF"],
     },
     stroke: {
       lineCap: "round",
@@ -62,13 +64,13 @@ const MonthlyTarget = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
+  function toggleDropdown() {
     setIsOpen(!isOpen);
-  };
+  }
 
-  const closeDropdown = () => {
+  function closeDropdown() {
     setIsOpen(false);
-  };
+  }
 
   return (
     <div className="rounded-2xl border border-gray-200 bg-gray-100 dark:border-gray-800 dark:bg-white/[0.03]">
@@ -79,7 +81,7 @@ const MonthlyTarget = () => {
               Monthly Target
             </h3>
             <p className="mt-1 font-normal text-gray-500 text-theme-sm dark:text-gray-400">
-              Target youâ€™ve set for each month
+              Target you’ve set for each month
             </p>
           </div>
           <div className="relative inline-block">
@@ -146,7 +148,7 @@ const MonthlyTarget = () => {
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M7.26816 13.6632C7.4056 13.8192 7.60686 13.9176 7.8311 13.9176C7.83148 13.9176 7.83187 13.9176 7.83226 13.9176C8.02445 13.9178 8.21671 13.8447 8.36339 13.6981L12.3635 9.70076C12.6565 9.40797 12.6567 8.9331 12.3639 8.6401C12.0711 8.34711 11.5962 8.34694 11.3032 8.63973L8.5811 11.36L8.5811 2.5C8.5811 2.08579 8.24531 1.75 7.8311 1.75C7.41688 1.75 7.0811 2.08579 7.0811 2.5L7.0811 11.3556L4.36354 8.63975C4.07055 8.34695 3.59568 8.3471 3.30288 8.64009C3.01008 8.93307 3.01023 9.40794 3.30321 9.70075L7.26816 13.6632Z"
-                fill="var(--color-brand-500)"
+                fill="#D92D20"
               />
             </svg>
           </p>
@@ -171,7 +173,7 @@ const MonthlyTarget = () => {
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M7.60141 2.33683C7.73885 2.18084 7.9401 2.08243 8.16435 2.08243C8.16475 2.08243 8.16516 2.08243 8.16556 2.08243C8.35773 2.08219 8.54998 2.15535 8.69664 2.30191L12.6968 6.29924C12.9898 6.59203 12.9899 7.0669 12.6971 7.3599C12.4044 7.6529 11.9295 7.65306 11.6365 7.36027L8.91435 4.64004L8.91435 13.5C8.91435 13.9142 8.57856 14.25 8.16435 14.25C7.75013 14.25 7.41435 13.9142 7.41435 13.5L7.41435 4.64442L4.69679 7.36025C4.4038 7.65305 3.92893 7.6529 3.63613 7.35992C3.34333 7.06693 3.34348 6.59206 3.63646 6.29926L7.60141 2.33683Z"
-                fill="var(--color-brand-500)"
+                fill="#039855"
               />
             </svg>
           </p>
@@ -196,7 +198,7 @@ const MonthlyTarget = () => {
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M7.60141 2.33683C7.73885 2.18084 7.9401 2.08243 8.16435 2.08243C8.16475 2.08243 8.16516 2.08243 8.16556 2.08243C8.35773 2.08219 8.54998 2.15535 8.69664 2.30191L12.6968 6.29924C12.9898 6.59203 12.9899 7.0669 12.6971 7.3599C12.4044 7.6529 11.9295 7.65306 11.6365 7.36027L8.91435 4.64004L8.91435 13.5C8.91435 13.9142 8.57856 14.25 8.16435 14.25C7.75013 14.25 7.41435 13.9142 7.41435 13.5L7.41435 4.64442L4.69679 7.36025C4.4038 7.65305 3.92893 7.6529 3.63613 7.35992C3.34333 7.06693 3.34348 6.59206 3.63646 6.29926L7.60141 2.33683Z"
-                fill="var(--color-brand-500)"
+                fill="#039855"
               />
             </svg>
           </p>
@@ -204,6 +206,4 @@ const MonthlyTarget = () => {
       </div>
     </div>
   );
-};
-
-export default MonthlyTarget;
+}

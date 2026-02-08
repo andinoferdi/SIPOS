@@ -63,7 +63,7 @@
 }
 
 .button-bg {
-  background-image: linear-gradient(97deg, var(--color-brand-500) 0%, var(--color-brand-500) 140.21%);
+  background-image: linear-gradient(97deg, #725cff 0%, #b5b1ff 140.21%);
 }
 
 .tab-img-bg {
@@ -78,7 +78,7 @@
 
 [data-theme="light"] .tab-img-bg::after {
   border-radius: 32px;
-  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, var(--color-brand-500) 93.51%);
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0) 0%, #fff 93.51%);
   content: "";
   width: 100%;
   height: 100%;
@@ -89,7 +89,7 @@
 }
 
 [data-theme="dark"] .tab-img-bg::after {
-  background: linear-gradient(180deg, rgba(23, 31, 46, 0) 0%, var(--color-brand-500) 93.51%);
+  background: linear-gradient(180deg, rgba(23, 31, 46, 0) 0%, #171f2e 93.51%);
 }
 
 .tab-img-overlay {
@@ -114,13 +114,13 @@
 
 .benefits-bg {
   border-radius: 20px;
-  background: linear-gradient(216deg, var(--color-brand-500) 0%, var(--color-brand-500) 100%);
+  background: linear-gradient(216deg, #a2e4e4 0%, #1c9ef6 100%);
 }
 
 .gradient-bg-two {
   background-image: var(
     --Gradient-2,
-    linear-gradient(97deg, var(--color-brand-500) 0%, var(--color-brand-500) 140.21%)
+    linear-gradient(97deg, #725cff 0%, #b5b1ff 140.21%)
   );
 }
 
@@ -128,7 +128,7 @@
   background-image: linear-gradient(
     180deg,
     rgba(122, 90, 248, 0) 0%,
-    var(--color-brand-500) 100%
+    #7a5af8 100%
   );
 }
 
@@ -140,7 +140,7 @@
 .core-feature-icon {
   background-image: linear-gradient(
     180deg,
-    var(--color-brand-500) 0%,
+    #7a5af8 0%,
     rgba(122, 90, 248, 0) 100%
   );
   filter: drop-shadow(0px 23px 33px rgba(87, 80, 241, 0.59));
@@ -153,7 +153,9 @@
   border-radius: 50px;
 }
 
-
+/* .dark .core-feature-icon {
+  border: 5px solid #9b8afb;
+} */
 
 .contact-wrapper {
   border-radius: 24px;
@@ -163,17 +165,17 @@
 .dashboard-gradient {
   background-image: linear-gradient(
     92deg,
-    var(--Colors-Brand-500, var(--color-brand-500)) 0%,
-    var(--Colors-Brand-200, var(--color-brand-500)) 100%
+    var(--Colors-Brand-500, #7a5af8) 0%,
+    var(--Colors-Brand-200, #d9d6fe) 100%
   );
 }
 
 [data-theme="light"] .widget-bg {
   background-image: linear-gradient(
     180deg,
-    var(--color-brand-500) 0%,
-    var(--color-brand-500) 50%,
-    var(--color-brand-500) 100%
+    #f8fcff 0%,
+    #f1efff 50%,
+    #f8dcff 100%
   );
 }
 
@@ -199,19 +201,19 @@
   }
 }
 
-
+/* Desktop hover behavior */
 @media (min-width: 1024px) {
   .nav-item:hover .dropdown-menu {
     display: block;
   }
 
-  
+  /* Rotate arrow on hover for desktop */
   .nav-item:hover .dropdown-arrow {
     transform: rotate(180deg);
   }
 }
 
-
+/* Gradient border styles */
 .gradient-border {
   position: relative;
   background-clip: padding-box;
@@ -239,7 +241,7 @@
   z-index: 5;
 }
 
-
+/* This hides elements with x-cloak until Alpine.js is ready */
 [x-cloak] {
   display: none !important;
 }
@@ -248,7 +250,7 @@
   background-image: linear-gradient(
     180deg,
     rgba(255, 255, 255, 0) 0%,
-    var(--color-brand-500) 44.75%
+    #fff 44.75%
   );
 }
 
@@ -256,12 +258,12 @@
   background-image: linear-gradient(
     180deg,
     rgba(23, 31, 46, 0) 0%,
-    var(--color-brand-500) 44.75%
+    #171f2e 44.75%
   );
 }
 
 .gradient-btn {
-  background-image: linear-gradient(97deg, var(--color-brand-500) 0%, var(--color-brand-500) 140.21%);
+  background-image: linear-gradient(97deg, #725cff 0%, #b5b1ff 140.21%);
   color: white;
   background-size: 200% auto;
   background-position: 0% center;
@@ -272,7 +274,7 @@
 }
 
 .gradient-btn:hover {
-  background-image: linear-gradient(97deg, var(--color-brand-500) 0%, var(--color-brand-500) 140.21%);
+  background-image: linear-gradient(97deg, #b5b1ff 0%, #725cff 140.21%);
   background-position: 100% center;
 }
 
@@ -285,8 +287,8 @@
   height: 40px;
   mask-image: linear-gradient(
     90deg,
-    var(--color-brand-500),
-    var(--color-brand-500) 84%,
+    #000,
+    #000 84%,
     transparent 89%,
     transparent
   );
@@ -296,7 +298,19 @@
   mask-image: none;
 }
 
-
+/* .history-item::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 40px;
+  height: 40px;
+  background-image: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 16.49%,
+    #fff 90.64%
+  );
+} */
 
 @keyframes float {
   0% {
@@ -310,7 +324,7 @@
   }
 }
 
-
+/* Float vertically */
 @keyframes float-y {
   0%,
   100% {
@@ -321,7 +335,7 @@
   }
 }
 
-
+/* Float horizontally */
 @keyframes float-x {
   0%,
   100% {
@@ -332,7 +346,7 @@
   }
 }
 
-
+/* Float diagonally */
 @keyframes float-xy {
   0%,
   100% {
@@ -343,7 +357,7 @@
   }
 }
 
-
+/* Subtle slow float in reverse */
 @keyframes float-rev {
   0%,
   100% {
@@ -354,7 +368,7 @@
   }
 }
 
-
+/* Animation classes */
 .floating-1 {
   animation: float-y 3s ease-in-out infinite;
 }
@@ -371,7 +385,7 @@
   animation: float-rev 6s ease-in-out infinite;
 }
 
-
+/* Dashboard CSS merged */
 
 
 @theme {
@@ -407,104 +421,104 @@
 
   --color-current: currentColor;
   --color-transparent: transparent;
-  --color-white: var(--color-brand-500);
-  --color-black: var(--color-brand-500);
+  --color-white: #ffffff;
+  --color-black: #101828;
 
-  --color-brand-25: var(--color-brand-500);
-  --color-brand-50: var(--color-brand-500);
-  --color-brand-100: var(--color-brand-500);
-  --color-brand-200: var(--color-brand-500);
-  --color-brand-300: var(--color-brand-500);
-  --color-brand-400: var(--color-brand-500);
-  --color-brand-500: var(--color-brand-500);
-  --color-brand-600: var(--color-brand-500);
-  --color-brand-700: var(--color-brand-500);
-  --color-brand-800: var(--color-brand-500);
-  --color-brand-900: var(--color-brand-500);
-  --color-brand-950: var(--color-brand-500);
+  --color-brand-25: #f2f7ff;
+  --color-brand-50: #ecf3ff;
+  --color-brand-100: #dde9ff;
+  --color-brand-200: #c2d6ff;
+  --color-brand-300: #9cb9ff;
+  --color-brand-400: #7592ff;
+  --color-brand-500: #465fff;
+  --color-brand-600: #3641f5;
+  --color-brand-700: #2a31d8;
+  --color-brand-800: #252dae;
+  --color-brand-900: #262e89;
+  --color-brand-950: #161950;
 
-  --color-blue-light-25: var(--color-brand-500);
-  --color-blue-light-50: var(--color-brand-500);
-  --color-blue-light-100: var(--color-brand-500);
-  --color-blue-light-200: var(--color-brand-500);
-  --color-blue-light-300: var(--color-brand-500);
-  --color-blue-light-400: var(--color-brand-500);
-  --color-blue-light-500: var(--color-brand-500);
-  --color-blue-light-600: var(--color-brand-500);
-  --color-blue-light-700: var(--color-brand-500);
-  --color-blue-light-800: var(--color-brand-500);
-  --color-blue-light-900: var(--color-brand-500);
-  --color-blue-light-950: var(--color-brand-500);
+  --color-blue-light-25: #f5fbff;
+  --color-blue-light-50: #f0f9ff;
+  --color-blue-light-100: #e0f2fe;
+  --color-blue-light-200: #b9e6fe;
+  --color-blue-light-300: #7cd4fd;
+  --color-blue-light-400: #36bffa;
+  --color-blue-light-500: #0ba5ec;
+  --color-blue-light-600: #0086c9;
+  --color-blue-light-700: #026aa2;
+  --color-blue-light-800: #065986;
+  --color-blue-light-900: #0b4a6f;
+  --color-blue-light-950: #062c41;
 
-  --color-gray-25: var(--color-brand-500);
-  --color-gray-50: var(--color-brand-500);
-  --color-gray-100: var(--color-brand-500);
-  --color-gray-200: var(--color-brand-500);
-  --color-gray-300: var(--color-brand-500);
-  --color-gray-400: var(--color-brand-500);
-  --color-gray-500: var(--color-brand-500);
-  --color-gray-600: var(--color-brand-500);
-  --color-gray-700: var(--color-brand-500);
-  --color-gray-800: var(--color-brand-500);
-  --color-gray-900: var(--color-brand-500);
-  --color-gray-950: var(--color-brand-500);
-  --color-gray-dark: var(--color-brand-500);
+  --color-gray-25: #fcfcfd;
+  --color-gray-50: #f9fafb;
+  --color-gray-100: #f2f4f7;
+  --color-gray-200: #e4e7ec;
+  --color-gray-300: #d0d5dd;
+  --color-gray-400: #98a2b3;
+  --color-gray-500: #667085;
+  --color-gray-600: #475467;
+  --color-gray-700: #344054;
+  --color-gray-800: #1d2939;
+  --color-gray-900: #101828;
+  --color-gray-950: #0c111d;
+  --color-gray-dark: #1a2231;
 
-  --color-orange-25: var(--color-brand-500);
-  --color-orange-50: var(--color-brand-500);
-  --color-orange-100: var(--color-brand-500);
-  --color-orange-200: var(--color-brand-500);
-  --color-orange-300: var(--color-brand-500);
-  --color-orange-400: var(--color-brand-500);
-  --color-orange-500: var(--color-brand-500);
-  --color-orange-600: var(--color-brand-500);
-  --color-orange-700: var(--color-brand-500);
-  --color-orange-800: var(--color-brand-500);
-  --color-orange-900: var(--color-brand-500);
-  --color-orange-950: var(--color-brand-500);
+  --color-orange-25: #fffaf5;
+  --color-orange-50: #fff6ed;
+  --color-orange-100: #ffead5;
+  --color-orange-200: #fddcab;
+  --color-orange-300: #feb273;
+  --color-orange-400: #fd853a;
+  --color-orange-500: #fb6514;
+  --color-orange-600: #ec4a0a;
+  --color-orange-700: #c4320a;
+  --color-orange-800: #9c2a10;
+  --color-orange-900: #7e2410;
+  --color-orange-950: #511c10;
 
-  --color-success-25: var(--color-brand-500);
-  --color-success-50: var(--color-brand-500);
-  --color-success-100: var(--color-brand-500);
-  --color-success-200: var(--color-brand-500);
-  --color-success-300: var(--color-brand-500);
-  --color-success-400: var(--color-brand-500);
-  --color-success-500: var(--color-brand-500);
-  --color-success-600: var(--color-brand-500);
-  --color-success-700: var(--color-brand-500);
-  --color-success-800: var(--color-brand-500);
-  --color-success-900: var(--color-brand-500);
-  --color-success-950: var(--color-brand-500);
+  --color-success-25: #f6fef9;
+  --color-success-50: #ecfdf3;
+  --color-success-100: #d1fadf;
+  --color-success-200: #a6f4c5;
+  --color-success-300: #6ce9a6;
+  --color-success-400: #32d583;
+  --color-success-500: #12b76a;
+  --color-success-600: #039855;
+  --color-success-700: #027a48;
+  --color-success-800: #05603a;
+  --color-success-900: #054f31;
+  --color-success-950: #053321;
 
-  --color-error-25: var(--color-brand-500);
-  --color-error-50: var(--color-brand-500);
-  --color-error-100: var(--color-brand-500);
-  --color-error-200: var(--color-brand-500);
-  --color-error-300: var(--color-brand-500);
-  --color-error-400: var(--color-brand-500);
-  --color-error-500: var(--color-brand-500);
-  --color-error-600: var(--color-brand-500);
-  --color-error-700: var(--color-brand-500);
-  --color-error-800: var(--color-brand-500);
-  --color-error-900: var(--color-brand-500);
-  --color-error-950: var(--color-brand-500);
+  --color-error-25: #fffbfa;
+  --color-error-50: #fef3f2;
+  --color-error-100: #fee4e2;
+  --color-error-200: #fecdca;
+  --color-error-300: #fda29b;
+  --color-error-400: #f97066;
+  --color-error-500: #f04438;
+  --color-error-600: #d92d20;
+  --color-error-700: #b42318;
+  --color-error-800: #912018;
+  --color-error-900: #7a271a;
+  --color-error-950: #55160c;
 
-  --color-warning-25: var(--color-brand-500);
-  --color-warning-50: var(--color-brand-500);
-  --color-warning-100: var(--color-brand-500);
-  --color-warning-200: var(--color-brand-500);
-  --color-warning-300: var(--color-brand-500);
-  --color-warning-400: var(--color-brand-500);
-  --color-warning-500: var(--color-brand-500);
-  --color-warning-600: var(--color-brand-500);
-  --color-warning-700: var(--color-brand-500);
-  --color-warning-800: var(--color-brand-500);
-  --color-warning-900: var(--color-brand-500);
-  --color-warning-950: var(--color-brand-500);
+  --color-warning-25: #fffcf5;
+  --color-warning-50: #fffaeb;
+  --color-warning-100: #fef0c7;
+  --color-warning-200: #fedf89;
+  --color-warning-300: #fec84b;
+  --color-warning-400: #fdb022;
+  --color-warning-500: #f79009;
+  --color-warning-600: #dc6803;
+  --color-warning-700: #b54708;
+  --color-warning-800: #93370d;
+  --color-warning-900: #7a2e0e;
+  --color-warning-950: #4e1d09;
 
-  --color-theme-pink-500: var(--color-brand-500);
+  --color-theme-pink-500: #ee46bc;
 
-  --color-theme-purple-500: var(--color-brand-500);
+  --color-theme-purple-500: #7a5af8;
 
   --shadow-theme-md:
     0px 4px 8px -2px rgba(16, 24, 40, 0.1),
@@ -519,7 +533,7 @@
   --shadow-theme-xl:
     0px 20px 24px -4px rgba(16, 24, 40, 0.08),
     0px 8px 8px -4px rgba(16, 24, 40, 0.03);
-  --shadow-datepicker: -5px 0 0 var(--color-brand-500), 5px 0 0 var(--color-brand-500);
+  --shadow-datepicker: -5px 0 0 #262d3c, 5px 0 0 #262d3c;
   --shadow-focus-ring: 0px 0px 0px 4px rgba(70, 95, 255, 0.12);
   --shadow-slider-navigation:
     0px 1px 2px 0px rgba(16, 24, 40, 0.1), 0px 1px 3px 0px rgba(16, 24, 40, 0.1);
@@ -539,7 +553,14 @@
   --z-index-999999: 999999;
 }
 
+/*
+  The default border color has changed to `currentColor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
 
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
 @layer base {
   *,
   ::after,
@@ -615,12 +636,12 @@
 }
 
 @utility no-scrollbar {
-  
+  /* Chrome, Safari and Opera */
   &::-webkit-scrollbar {
     display: none;
   }
-  -ms-overflow-style: none; 
-  scrollbar-width: none; 
+  -ms-overflow-style: none; /* IE and Edge */
+  scrollbar-width: none; /* Firefox */
 }
 
 @utility custom-scrollbar {
@@ -637,13 +658,13 @@
   }
 }
 [data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: var(--color-brand-500);
+  background-color: #344054;
 }
 
 
 
 @layer utilities {
-  
+  /* For Remove Date Icon */
   input[type="date"]::-webkit-inner-spin-button,
   input[type="time"]::-webkit-inner-spin-button,
   input[type="date"]::-webkit-calendar-picker-indicator,
@@ -653,7 +674,7 @@
   }
 }
 
-
+/* third-party libraries CSS */
 .apexcharts-legend-text {
   @apply !text-gray-700 dark:!text-gray-400;
 }
@@ -787,7 +808,7 @@ span.flatpickr-weekday,
   @apply !bg-none;
 }
 .flatpickr-day.inRange {
-  box-shadow: -5px 0 0 var(--color-brand-500), 5px 0 0 var(--color-brand-500) !important;
+  box-shadow: -5px 0 0 #f9fafb, 5px 0 0 #f9fafb !important;
   @apply dark:!shadow-datepicker;
 }
 .flatpickr-day.inRange,
@@ -828,13 +849,13 @@ span.flatpickr-weekday,
 .flatpickr-day.selected.nextMonthDay,
 .flatpickr-day.startRange.nextMonthDay,
 .flatpickr-day.endRange.nextMonthDay {
-  background: var(--color-brand-500);
+  background: #465fff;
   @apply !border-brand-500 !bg-brand-500 hover:!border-brand-50 hover:!bg-brand-500;
 }
 .flatpickr-day.selected.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.startRange.startRange + .endRange:not(:nth-child(7n + 1)),
 .flatpickr-day.endRange.startRange + .endRange:not(:nth-child(7n + 1)) {
-  box-shadow: -10px 0 0 var(--color-brand-500);
+  box-shadow: -10px 0 0 #465fff;
 }
 
 .flatpickr-months .flatpickr-prev-month svg,
@@ -1101,7 +1122,7 @@ span.flatpickr-weekday,
 }
 
 .task {
-  transition: all 0.2s ease; 
+  transition: all 0.2s ease; /* Smooth transition for visual effects */
 }
 
 .task {
@@ -1109,10 +1130,10 @@ span.flatpickr-weekday,
   box-shadow: 0 1px 3px 0 rgba(16, 24, 40, 0.1),
     0 1px 2px 0 rgba(16, 24, 40, 0.06);
   opacity: 0.8;
-  cursor: grabbing; 
+  cursor: grabbing; /* Changes the cursor to indicate dragging */
 }
 
-
+/* End dashboard CSS merged */
 
 @theme inline {
   --color-success-500: #ecfdf3;

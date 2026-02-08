@@ -1,16 +1,19 @@
-"use client";;
+"use client";
+
 import { MinusIcon, PlusIcon } from "@/icons/icons";
 import { useState } from "react";
 
+// Define the FAQ item type
 interface FAQItem {
   id: number;
   question: string;
   answer: string;
 }
 
-const FaqAccordion = () => {
+export default function FaqAccordion() {
   const [activeItem, setActiveItem] = useState<number | null>(1);
 
+  // FAQ data
   const faqItems: FAQItem[] = [
     {
       id: 1,
@@ -49,7 +52,7 @@ const FaqAccordion = () => {
   };
 
   return (
-    <section id="faq" className="py-14 md:py-28 dark:bg-[var(--color-brand-500)]">
+    <section id="faq" className="py-14 md:py-28 dark:bg-[#171f2e]">
       <div className="wrapper">
         <div className="max-w-2xl mx-auto mb-12 text-center">
           <h2 className="mb-3 font-bold text-center text-gray-800 text-3xl dark:text-white/90 md:text-title-lg">
@@ -75,21 +78,18 @@ const FaqAccordion = () => {
       </div>
     </section>
   );
-};
+}
 
-export default FaqAccordion;
-
-const FAQItem = (
-  {
-    item,
-    isActive,
-    onToggle,
-  }: {
-    item: FAQItem;
-    isActive: boolean;
-    onToggle: () => void;
-  },
-) => {
+// FAQ Item Component
+function FAQItem({
+  item,
+  isActive,
+  onToggle,
+}: {
+  item: FAQItem;
+  isActive: boolean;
+  onToggle: () => void;
+}) {
   return (
     <div className="pb-5 border-b border-gray-200 dark:border-gray-800">
       <button
@@ -114,4 +114,4 @@ const FAQItem = (
       )}
     </div>
   );
-};
+}

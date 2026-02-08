@@ -1,15 +1,16 @@
-﻿"use client";;
+"use client";
 import React from "react";
-import ComponentCard from "@/components/common/ComponentCard";
-import Button from "@/components/ui/button/Button";
-import { Modal } from "@/components/ui/modal";
-import Label from "@/components/form/Label";
-import Input from "@/components/form/input/InputField";
+import ComponentCard from "../../common/ComponentCard";
+import Button from "../../ui/button/Button";
+import { Modal } from "../../ui/modal";
+import Label from "../../form/Label";
+import Input from "../../form/input/InputField";
 import { useModal } from "@/hooks/useModal";
 
-const FormInModal = () => {
+export default function FormInModal() {
   const { isOpen, openModal, closeModal } = useModal();
   const handleSave = () => {
+    // Handle save logic here
     console.log("Saving changes...");
     closeModal();
   };
@@ -67,6 +68,4 @@ const FormInModal = () => {
       </Modal>
     </ComponentCard>
   );
-};
-
-export default FormInModal;
+}

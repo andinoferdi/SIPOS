@@ -1,15 +1,15 @@
-"use client";
+'use client';
 
-import { CopyToClipboard } from "@/components/copy-to-clipboard";
+import { CopyToClipboard } from '@/components/copy-to-clipboard';
 
-interface AiResponseProps {
+type PropsType = {
   response: string;
-}
+};
 
-const AiResponse = ({ response }: AiResponseProps) => {
+export default function AiResponse({ response }: PropsType) {
   return (
     <div className="max-w-3xl whitespace-pre-wrap">
-      <div className="shadow-theme-xs max-w-3xl rounded-3xl rounded-bl-lg bg-white px-5 py-4 leading-7 dark:bg-white/5">
+      <div className="bg-white dark:bg-white/5 shadow-theme-xs rounded-3xl rounded-bl-lg py-4 px-5 max-w-3xl leading-7">
         {response}
       </div>
 
@@ -18,6 +18,4 @@ const AiResponse = ({ response }: AiResponseProps) => {
       </div>
     </div>
   );
-};
-
-export default AiResponse;
+}

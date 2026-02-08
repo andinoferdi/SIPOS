@@ -1,4 +1,4 @@
-﻿import type { ChatContact, ChatMessage } from "@/components/chats/types";
+import type { ChatContact, ChatMessage } from "./types";
 
 export const DEFAULT_CHAT_CONTACT_ID = "lindsey-curtis";
 

@@ -1,9 +1,9 @@
-﻿"use client";;
+"use client";
 import React from "react";
-import ComponentCard from "@/components/common/ComponentCard";
-import Switch from "@/components/form/switch/Switch";
+import ComponentCard from "../../common/ComponentCard";
+import Switch from "../switch/Switch";
 
-const ToggleSwitch = () => {
+export default function ToggleSwitch() {
   const handleSwitchChange = (checked: boolean) => {
     console.log("Switch is now:", checked ? "ON" : "OFF");
   };
@@ -39,6 +39,4 @@ const ToggleSwitch = () => {
       </div>
     </ComponentCard>
   );
-};
-
-export default ToggleSwitch;
+}

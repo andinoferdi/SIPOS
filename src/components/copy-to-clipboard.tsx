@@ -1,20 +1,20 @@
-﻿'use client';
+'use client';
 
 import { CheckMarkIcon, ClipboardIcon } from '@/icons/icons';
 import copy from 'copy-text-to-clipboard';
 import { useState } from 'react';
 
-export const CopyToClipboard = ({ text }: { text: string }) => {
+export function CopyToClipboard({ text }: { text: string }) {
   const [isCopied, setIsCopied] = useState(false);
 
-  const handleClick = () => {
+  function handleClick() {
     copy(text);
     setIsCopied(true);
 
     setTimeout(() => {
       setIsCopied(false);
     }, 3000);
-  };
+  }
 
   return (
     <button
@@ -29,4 +29,4 @@ export const CopyToClipboard = ({ text }: { text: string }) => {
       </span>
     </button>
   );
-};
+}

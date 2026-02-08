@@ -1,4 +1,5 @@
-'use client';;
+'use client';
+
 import { useState } from 'react';
 import {
   BILLING_PERIODS,
@@ -9,12 +10,12 @@ import { PricingCard } from '@/components/sections/pricing/card';
 
 type BillingPeriodKey = (typeof BILLING_PERIODS)[number]['key'];
 
-const PricingSection = () => {
+export default function PricingSection() {
   const [activeBillingPeriodKey, setActiveBillingPeriodKey] =
     useState<BillingPeriodKey>('monthly');
 
   return (
-    <section className="py-14 md:py-30 bg-gray-50 dark:bg-[var(--color-brand-500)] dark:bg-linear-180 dark:from-white/3 dark:from-[45.56%] dark:to-white/0">
+    <section className="py-14 md:py-30 bg-gray-50 dark:bg-[#171f2e] dark:bg-linear-180 dark:from-white/3 dark:from-[45.56%] dark:to-white/0">
       <div className="wrapper">
         <div className="max-w-2xl mx-auto mb-12 text-center">
           <h2 className="mb-3 font-bold text-center text-gray-800 text-3xl dark:text-white/90 md:text-title-lg">
@@ -28,8 +29,9 @@ const PricingSection = () => {
         </div>
 
         <div>
+          {/* Billing Toggle */}
           <div className="flex justify-center relative z-30 mt-12">
-            <div className="relative flex p-1 bg-white dark:bg-[var(--color-brand-500)] rounded-full shadow-theme-xs">
+            <div className="relative flex p-1 bg-white dark:bg-[#1D2939] rounded-full shadow-theme-xs">
               {BILLING_PERIODS.map((period) => (
                 <button
                   key={period.key}
@@ -70,6 +72,4 @@ const PricingSection = () => {
       </div>
     </section>
   );
-};
-
-export default PricingSection;
+}

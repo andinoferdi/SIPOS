@@ -1,14 +1,14 @@
-﻿"use client";
+'use client';
 
-import { SearchIcon } from "@/icons/icons";
-import { NewChat } from "@/components/generator/sidebar/new-chat";
+import { SearchIcon } from '@/icons/icons';
+import { NewChat } from './new-chat';
 
-interface RightSidebarProps {
+type PropsType = {
   isOpen: boolean;
   toggleIsOpen: () => void;
-}
+};
 
-const RightSidebar = ({ isOpen, toggleIsOpen }: RightSidebarProps) => {
+export default function RightSidebar({ isOpen, toggleIsOpen }: PropsType) {
   return (
     <aside
       className={`max-xl:absolute inset-y-0 right-0 z-50 min-w-[288px] max-w-[288px] bg-white dark:bg-dark-primary border-l border-gray-100 dark:border-gray-800 transform transition-transform duration-300 ease-in-out xl:translate-x-0 ${
@@ -32,6 +32,4 @@ const RightSidebar = ({ isOpen, toggleIsOpen }: RightSidebarProps) => {
       </div>
     </aside>
   );
-};
-
-export default RightSidebar;
+}

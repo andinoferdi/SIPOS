@@ -1,7 +1,7 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import React from "react";
 
-const ResponsiveImage = () => {
+export default function ResponsiveImage() {
   return (
     <div className="relative">
       <div className="overflow-hidden">
@@ -15,6 +15,4 @@ const ResponsiveImage = () => {
       </div>
     </div>
   );
-};
-
-export default ResponsiveImage;
+}

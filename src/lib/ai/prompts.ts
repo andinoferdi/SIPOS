@@ -1,4 +1,4 @@
-﻿export const PROMPT = `You are an AI text generator that creates high-quality, customized content based on user requirements.
+export const PROMPT = `You are an AI text generator that creates high-quality, customized content based on user requirements.
 
 Your responsibilities:
 - Respond in a conversational tone

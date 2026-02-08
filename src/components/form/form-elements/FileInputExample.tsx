@@ -1,10 +1,10 @@
-﻿"use client";;
+"use client";
 import React from "react";
-import ComponentCard from "@/components/common/ComponentCard";
-import FileInput from "@/components/form/input/FileInput";
-import Label from "@/components/form/Label";
+import ComponentCard from "../../common/ComponentCard";
+import FileInput from "../input/FileInput";
+import Label from "../Label";
 
-const FileInputExample = () => {
+export default function FileInputExample() {
   const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (file) {
@@ -20,6 +20,4 @@ const FileInputExample = () => {
       </div>
     </ComponentCard>
   );
-};
-
-export default FileInputExample;
+}

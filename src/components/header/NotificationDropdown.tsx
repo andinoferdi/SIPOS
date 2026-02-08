@@ -1,22 +1,22 @@
-﻿"use client";;
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
-import { Dropdown } from "@/components/ui/dropdown/Dropdown";
-import { DropdownItem } from "@/components/ui/dropdown/DropdownItem";
+import { Dropdown } from "../ui/dropdown/Dropdown";
+import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { withDashboardBase } from "@/lib/dashboard-routes";
 
-const NotificationDropdown = () => {
+export default function NotificationDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const [notifying, setNotifying] = useState(true);
 
-  const toggleDropdown = () => {
+  function toggleDropdown() {
     setIsOpen(!isOpen);
-  };
+  }
 
-  const closeDropdown = () => {
+  function closeDropdown() {
     setIsOpen(false);
-  };
+  }
 
   const handleClick = () => {
     toggleDropdown();
@@ -80,6 +80,7 @@ const NotificationDropdown = () => {
           </button>
         </div>
         <ul className="flex flex-col h-auto overflow-y-auto custom-scrollbar">
+          {/* Example notification items */}
           <li>
             <DropdownItem
               onItemClick={closeDropdown}
@@ -370,6 +371,7 @@ const NotificationDropdown = () => {
               </span>
             </DropdownItem>
           </li>
+          {/* Add more items as needed */}
         </ul>
         <Link
           href={withDashboardBase("/")}
@@ -380,6 +382,4 @@ const NotificationDropdown = () => {
       </Dropdown>
     </div>
   );
-};
-
-export default NotificationDropdown;
+}

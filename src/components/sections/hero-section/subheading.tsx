@@ -1,16 +1,16 @@
 import { Stars } from "@/assets/stars";
 
-interface SubheadingProps {
+type PropsType = {
   text: string;
-}
+};
 
-export const Subheading = ({ text }: SubheadingProps) => {
+export function Subheading({ text }: PropsType) {
   return (
-    <div className="mx-auto mb-6 max-w-fit rounded-full bg-linear-to-r from-[var(--color-brand-500)] to-[var(--color-brand-500)] p-0.5">
-      <div className="inline-flex items-center gap-2 rounded-full bg-white px-5 py-2 text-sm dark:bg-dark-primary dark:text-white/90">
+    <div className="rounded-full mb-6 max-w-fit mx-auto bg-linear-to-r from-[#FF58D580] to-[#4E6EFF80] p-0.5">
+      <div className="bg-white dark:bg-dark-primary py-2 text-sm items-center gap-2 px-5 inline-flex dark:text-white/90 rounded-full">
         <Stars />
         <p>{text}</p>
       </div>
     </div>
   );
-};
+}

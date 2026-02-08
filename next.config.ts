@@ -1,4 +1,4 @@
-import type { NextConfig } from "next";
+﻿import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
@@ -14,8 +14,7 @@ const nextConfig: NextConfig = {
   },
   webpack(config) {
     config.module.rules.push({
-      test: /\.svg$/i,
-      resourceQuery: { not: [/__next_metadata__/] },
+      test: /\.svg$/,
       use: ["@svgr/webpack"],
     });
     return config;

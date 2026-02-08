@@ -1,11 +1,11 @@
-﻿"use client";;
+"use client";
 import React from "react";
-import ComponentCard from "@/components/common/ComponentCard";
+import ComponentCard from "../../common/ComponentCard";
 
-import { Modal } from "@/components/ui/modal";
+import { Modal } from "../../ui/modal";
 import { useModal } from "@/hooks/useModal";
 
-const ModalBasedAlerts = () => {
+export default function ModalBasedAlerts() {
   const successModal = useModal();
   const infoModal = useModal();
   const warningModal = useModal();
@@ -38,6 +38,7 @@ const ModalBasedAlerts = () => {
           Danger Alert
         </button>
       </div>
+      {/* Success Modal */}
       <Modal
         isOpen={successModal.isOpen}
         onClose={successModal.closeModal}
@@ -96,6 +97,7 @@ const ModalBasedAlerts = () => {
           </div>
         </div>
       </Modal>
+      {/* Info Modal */}
       <Modal
         isOpen={infoModal.isOpen}
         onClose={infoModal.closeModal}
@@ -155,6 +157,7 @@ const ModalBasedAlerts = () => {
           </div>
         </div>
       </Modal>
+      {/* Warning Modal */}
       <Modal
         isOpen={warningModal.isOpen}
         onClose={warningModal.closeModal}
@@ -214,6 +217,7 @@ const ModalBasedAlerts = () => {
           </div>
         </div>
       </Modal>
+      {/* Error Modal */}
       <Modal
         isOpen={errorModal.isOpen}
         onClose={errorModal.closeModal}
@@ -275,6 +279,4 @@ const ModalBasedAlerts = () => {
       </Modal>
     </ComponentCard>
   );
-};
-
-export default ModalBasedAlerts;
+}

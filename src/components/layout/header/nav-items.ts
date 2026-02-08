@@ -1,4 +1,4 @@
-﻿export const navItems = [
+export const navItems = [
   {
     type: 'link',
     href: '/',

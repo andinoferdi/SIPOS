@@ -1,7 +1,7 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import React from "react";
 
-const GridShape = () => {
+export default function GridShape() {
   return (
     <>
       <div className="absolute right-0 top-0 -z-1 w-full max-w-[250px] xl:max-w-[450px]">
@@ -22,6 +22,4 @@ const GridShape = () => {
       </div>
     </>
   );
-};
-
-export default GridShape;
+}

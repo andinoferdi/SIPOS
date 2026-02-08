@@ -1,24 +1,25 @@
-﻿"use client";;
+"use client";
+
 import { useMemo, useState } from "react";
-import ChatConversation from "@/components/chats/ChatConversation";
-import ChatSidebar from "@/components/chats/ChatSidebar";
+import ChatConversation from "./ChatConversation";
+import ChatSidebar from "./ChatSidebar";
 import {
   chatContacts,
   DEFAULT_CHAT_CONTACT_ID,
   initialChatMessages,
-} from "@/components/chats/chat-data";
-import type { ChatMessage } from "@/components/chats/types";
+} from "./chat-data";
+import type { ChatMessage } from "./types";
 
-const cloneInitialMessages = () => {
+function cloneInitialMessages() {
   return Object.fromEntries(
     Object.entries(initialChatMessages).map(([contactId, messages]) => [
       contactId,
       [...messages],
     ])
   );
-};
+}
 
-const Chats = () => {
+export default function Chats() {
   const [activeContactId, setActiveContactId] = useState(DEFAULT_CHAT_CONTACT_ID);
   const [searchTerm, setSearchTerm] = useState("");
   const [messageInput, setMessageInput] = useState("");
@@ -101,6 +102,4 @@ const Chats = () => {
       </div>
     </div>
   );
-};
-
-export default Chats;
+}

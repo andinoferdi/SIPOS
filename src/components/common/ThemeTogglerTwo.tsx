@@ -1,8 +1,8 @@
-﻿"use client";;
+"use client";
 import React from "react";
 import { useTheme } from "next-themes";
 
-const ThemeTogglerTwo = () => {
+export default function ThemeTogglerTwo() {
   const { resolvedTheme, setTheme } = useTheme();
   return (
     <button
@@ -39,6 +39,4 @@ const ThemeTogglerTwo = () => {
       </svg>
     </button>
   );
-};
-
-export default ThemeTogglerTwo;
+}

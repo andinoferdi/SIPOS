@@ -1,4 +1,4 @@
-﻿import * as icons from "@/assets/homepage/core-features";
+import * as icons from "@/assets/homepage/core-features";
 
 export const CORE_FEATURES = [
   {

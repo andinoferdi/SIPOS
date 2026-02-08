@@ -1,4 +1,5 @@
-﻿"use client";;
+"use client";
+
 import { useState } from "react";
 import { MoreDotIcon } from "@/icons";
 import { Dropdown } from "@/components/ui/dropdown/Dropdown";
@@ -11,12 +12,10 @@ interface ChatActionMenuProps {
 
 const defaultItems = ["View Profile", "Mute Chat", "Delete Chat"];
 
-const ChatActionMenu = (
-  {
-    align = "right",
-    items = defaultItems,
-  }: ChatActionMenuProps,
-) => {
+export default function ChatActionMenu({
+  align = "right",
+  items = defaultItems,
+}: ChatActionMenuProps) {
   const [isOpen, setIsOpen] = useState(false);
 
   const toggleDropdown = () => {
@@ -49,6 +48,4 @@ const ChatActionMenu = (
       </Dropdown>
     </div>
   );
-};
-
-export default ChatActionMenu;
+}

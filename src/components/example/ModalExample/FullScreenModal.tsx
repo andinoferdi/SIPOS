@@ -1,17 +1,18 @@
-﻿"use client";;
+"use client";
 import { useModal } from "@/hooks/useModal";
-import ComponentCard from "@/components/common/ComponentCard";
+import ComponentCard from "../../common/ComponentCard";
 
-import Button from "@/components/ui/button/Button";
-import { Modal } from "@/components/ui/modal";
+import Button from "../../ui/button/Button";
+import { Modal } from "../../ui/modal";
 
-const FullScreenModal = () => {
+export default function FullScreenModal() {
   const {
     isOpen: isFullscreenModalOpen,
     openModal: openFullscreenModal,
     closeModal: closeFullscreenModal,
   } = useModal();
   const handleSave = () => {
+    // Handle save logic here
     console.log("Saving changes...");
     closeFullscreenModal();
   };
@@ -62,6 +63,4 @@ const FullScreenModal = () => {
       </Modal>
     </ComponentCard>
   );
-};
-
-export default FullScreenModal;
+}

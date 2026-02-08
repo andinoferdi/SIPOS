@@ -1,23 +1,18 @@
-﻿import { AI_MODEL } from "@/lib/ai/model";
-import { PROMPT } from "@/lib/ai/prompts";
-import { errorHandler, getMostRecentUserMessage } from "@/lib/utils";
-import {
-  convertToModelMessages,
-  createIdGenerator,
-  streamText,
-  type UIMessage,
-} from "ai";
+﻿import { AI_MODEL } from '@/lib/ai/model';
+import { PROMPT } from '@/lib/ai/prompts';
+import { errorHandler, getMostRecentUserMessage } from '@/lib/utils';
+import { createIdGenerator, streamText } from 'ai';
 
 export const maxDuration = 50;
 
-export const POST = async (req: Request) => {
+export async function POST(req: Request) {
   try {
-    const { messages }: { messages: UIMessage[] } = await req.json();
+    const { messages } = await req.json();
 
     const userMessage = getMostRecentUserMessage(messages);
 
     if (!userMessage) {
-      return new Response("No user message found", {
+      return new Response('No user message found', {
         status: 404,
       });
     }
@@ -25,16 +20,18 @@ export const POST = async (req: Request) => {
     const result = streamText({
       model: AI_MODEL,
       system: PROMPT,
-      messages: await convertToModelMessages(messages),
+      messages,
     });
 
     return result.toUIMessageStreamResponse({
       originalMessages: messages,
-      generateMessageId: createIdGenerator({ prefix: "msgs" }),
+      generateMessageId: createIdGenerator({
+        prefix: 'msgs',
+      }),
+      onError: process.env.NODE_ENV === 'development' ? errorHandler : undefined,
     });
   } catch (error) {
-    return new Response(errorHandler(error), {
-      status: 500,
-    });
+    console.log(error);
+    return new Response('Unexpected server error', { status: 500 });
   }
-};
+}

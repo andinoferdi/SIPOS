@@ -1,7 +1,7 @@
-﻿import Image from "next/image";
+import Image from "next/image";
 import React from "react";
 
-const TwoColumnImageGrid = () => {
+export default function TwoColumnImageGrid() {
   return (
     <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
       <div>
@@ -25,6 +25,4 @@ const TwoColumnImageGrid = () => {
       </div>
     </div>
   );
-};
-
-export default TwoColumnImageGrid;
+}

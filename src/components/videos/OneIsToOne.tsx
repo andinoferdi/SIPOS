@@ -1,6 +1,6 @@
-﻿import React from "react";
+import React from "react";
 
-const OneIsToOne = () => {
+export default function OneIsToOne() {
   return (
     <div className="overflow-hidden rounded-lg aspect-square">
       <iframe
@@ -13,6 +13,4 @@ const OneIsToOne = () => {
       ></iframe>
     </div>
   );
-};
-
-export default OneIsToOne;
+}

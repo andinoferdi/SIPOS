@@ -1,5 +1,6 @@
-﻿"use client";;
-import type { HistorySession } from "@/components/ai-text-generator/data";
+"use client";
+
+import type { HistorySession } from "./data";
 
 interface AiTextGeneratorHistorySidebarProps {
   sessions: HistorySession[];
@@ -12,18 +13,16 @@ interface AiTextGeneratorHistorySidebarProps {
   onToggleShowMore: () => void;
 }
 
-const AiTextGeneratorHistorySidebar = (
-  {
-    sessions,
-    activeSessionId,
-    searchTerm,
-    showAllHistory,
-    onSearchTermChange,
-    onNewChat,
-    onSelectSession,
-    onToggleShowMore,
-  }: AiTextGeneratorHistorySidebarProps,
-) => {
+export default function AiTextGeneratorHistorySidebar({
+  sessions,
+  activeSessionId,
+  searchTerm,
+  showAllHistory,
+  onSearchTermChange,
+  onNewChat,
+  onSelectSession,
+  onToggleShowMore,
+}: AiTextGeneratorHistorySidebarProps) {
   const todaySessions = sessions.filter((session) => session.group === "Today");
   const yesterdaySessions = sessions.filter(
     (session) => session.group === "Yesterday"
@@ -97,9 +96,7 @@ const AiTextGeneratorHistorySidebar = (
       )}
     </aside>
   );
-};
-
-export default AiTextGeneratorHistorySidebar;
+}
 
 interface HistoryGroupProps {
   title: string;
@@ -108,14 +105,12 @@ interface HistoryGroupProps {
   onSelectSession: (session: HistorySession) => void;
 }
 
-const HistoryGroup = (
-  {
-    title,
-    sessions,
-    activeSessionId,
-    onSelectSession,
-  }: HistoryGroupProps,
-) => {
+function HistoryGroup({
+  title,
+  sessions,
+  activeSessionId,
+  onSelectSession,
+}: HistoryGroupProps) {
   if (!sessions.length) return null;
 
   return (
@@ -153,9 +148,9 @@ const HistoryGroup = (
       </ul>
     </div>
   );
-};
+}
 
-const PlusIcon = () => {
+function PlusIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -174,9 +169,9 @@ const PlusIcon = () => {
       />
     </svg>
   );
-};
+}
 
-const SearchIcon = () => {
+function SearchIcon() {
   return (
     <svg
       className="fill-gray-500 dark:fill-gray-400"
@@ -194,9 +189,9 @@ const SearchIcon = () => {
       />
     </svg>
   );
-};
+}
 
-const MoreDotsIcon = () => {
+function MoreDotsIcon() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
@@ -215,9 +210,9 @@ const MoreDotsIcon = () => {
       />
     </svg>
   );
-};
+}
 
-const ChevronIcon = ({ className = "" }: { className?: string }) => {
+function ChevronIcon({ className = "" }: { className?: string }) {
   return (
     <svg
       className={`ml-2 transition-transform ${className}`}
@@ -237,4 +232,4 @@ const ChevronIcon = ({ className = "" }: { className?: string }) => {
       />
     </svg>
   );
-};
+}

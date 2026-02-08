@@ -1,8 +1,8 @@
-﻿import GridShape from "@/components/common/GridShape";
+import GridShape from "@/components/common/GridShape";
 import Image from "next/image";
 import Link from "next/link";
 
-const DashboardNotFound = () => {
+export default function DashboardNotFound() {
   return (
     <div className="relative z-1 flex min-h-screen flex-col items-center justify-center overflow-hidden p-6">
       <GridShape />
@@ -43,6 +43,4 @@ const DashboardNotFound = () => {
       </p>
     </div>
   );
-};
-
-export default DashboardNotFound;
+}

@@ -1,6 +1,6 @@
-interface IconProps extends React.SVGProps<SVGSVGElement> {}
+type IconProps = React.SVGProps<SVGSVGElement>;
 
-const GlowGradient = (props: IconProps) => {
+export default function GlowGradient(props: IconProps) {
   return (
     <svg
       width={800}
@@ -11,10 +11,10 @@ const GlowGradient = (props: IconProps) => {
       {...props}
     >
       <g opacity="0.2" filter="url(#filter0_f_9282_10364)">
-        <circle cx="479.835" cy="480.254" r="179.665" fill="var(--color-brand-500)" />
+        <circle cx="479.835" cy="480.254" r="179.665" fill="#FF58D5" />
       </g>
       <g opacity="0.1" filter="url(#filter1_f_9282_10364)">
-        <circle cx="619.165" cy="480.254" r="179.665" fill="var(--color-brand-500)" />
+        <circle cx="619.165" cy="480.254" r="179.665" fill="#4E6EFF" />
       </g>
       <defs>
         <filter
@@ -62,6 +62,4 @@ const GlowGradient = (props: IconProps) => {
       </defs>
     </svg>
   );
-};
-
-export default GlowGradient;
+}

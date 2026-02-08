@@ -1,12 +1,12 @@
-﻿"use client";;
+"use client";
 import React from "react";
-import ComponentCard from "@/components/common/ComponentCard";
-import Label from "@/components/form/Label";
-import Input from "@/components/form/input/InputField";
-import { EnvelopeIcon } from "@/icons";
-import PhoneInput from "@/components/form/group-input/PhoneInput";
+import ComponentCard from "../../common/ComponentCard";
+import Label from "../Label";
+import Input from "../input/InputField";
+import { EnvelopeIcon } from "../../../icons";
+import PhoneInput from "../group-input/PhoneInput";
 
-const InputGroup = () => {
+export default function InputGroup() {
   const countries = [
     { code: "US", label: "+1" },
     { code: "GB", label: "+44" },
@@ -53,6 +53,4 @@ const InputGroup = () => {
       </div>
     </ComponentCard>
   );
-};
-
-export default InputGroup;
+}

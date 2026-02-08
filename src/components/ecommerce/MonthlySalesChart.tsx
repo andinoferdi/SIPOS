@@ -1,18 +1,19 @@
-"use client";;
+"use client";
 import { ApexOptions } from "apexcharts";
 import dynamic from "next/dynamic";
 import { MoreDotIcon } from "@/icons";
-import { DropdownItem } from "@/components/ui/dropdown/DropdownItem";
+import { DropdownItem } from "../ui/dropdown/DropdownItem";
 import { useState } from "react";
-import { Dropdown } from "@/components/ui/dropdown/Dropdown";
+import { Dropdown } from "../ui/dropdown/Dropdown";
 
+// Dynamically import the ReactApexChart component
 const ReactApexChart = dynamic(() => import("react-apexcharts"), {
   ssr: false,
 });
 
-const MonthlySalesChart = () => {
+export default function MonthlySalesChart() {
   const options: ApexOptions = {
-    colors: ["var(--color-brand-500)"],
+    colors: ["#465fff"],
     chart: {
       fontFamily: "Outfit, sans-serif",
       type: "bar",
@@ -98,13 +99,13 @@ const MonthlySalesChart = () => {
   ];
   const [isOpen, setIsOpen] = useState(false);
 
-  const toggleDropdown = () => {
+  function toggleDropdown() {
     setIsOpen(!isOpen);
-  };
+  }
 
-  const closeDropdown = () => {
+  function closeDropdown() {
     setIsOpen(false);
-  };
+  }
 
   return (
     <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white px-5 pt-5 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6 sm:pt-6">
@@ -150,6 +151,4 @@ const MonthlySalesChart = () => {
       </div>
     </div>
   );
-};
-
-export default MonthlySalesChart;
+}
