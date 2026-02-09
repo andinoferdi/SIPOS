@@ -1,5 +1,5 @@
-﻿import { AI_MODEL } from '@/lib/ai/model';
-import { PROMPT } from '@/lib/ai/prompts';
+﻿import { AI_MODEL } from '@/features/ai/services/ai/model';
+import { PROMPT } from '@/features/ai/services/ai/prompts';
 import { errorHandler, getMostRecentUserMessage } from '@/lib/utils';
 import { createIdGenerator, streamText } from 'ai';
 

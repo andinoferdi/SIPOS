@@ -2,7 +2,8 @@ import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import { Onest } from 'next/font/google';
 import './globals.css';
-import { ToasterProvider } from './providers/toaster';
+import { QueryProvider } from './_shared/providers/query-provider';
+import { ToasterProvider } from './_shared/providers/toaster';
 
 const onest = Onest({
   subsets: ['latin'],
@@ -28,11 +29,11 @@ export default function RootLayout({
         className={`bg-gray-50 dark:bg-dark-secondary min-h-screen flex flex-col ${onest.className}`}
       >
         <ThemeProvider disableTransitionOnChange>
-          {/* ToasterProvider must render before the children components */}
-          {/* https://github.com/emilkowalski/sonner/issues/168#issuecomment-1773734618 */}
-          <ToasterProvider />
-
-          <div className="isolate flex flex-col flex-1">{children}</div>
+          <QueryProvider>
+            {/* Sonner toaster must render before children: https://github.com/emilkowalski/sonner/issues/168#issuecomment-1773734618 */}
+            <ToasterProvider />
+            <div className="isolate flex flex-col flex-1">{children}</div>
+          </QueryProvider>
         </ThemeProvider>
       </body>
     </html>
