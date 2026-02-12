@@ -30,7 +30,7 @@ export default function ResetPasswordForm({ resetToken }: PropsType) {
     setIsLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       toast.success(
         <pre>
@@ -49,10 +49,10 @@ export default function ResetPasswordForm({ resetToken }: PropsType) {
   return (
     <>
       <div className="text-center mb-8">
-        <h3 className="text-gray-800 font-bold text-3xl mb-2 dark:text-white/90">
+        <h3 className="text-[var(--token-gray-800)] font-bold text-3xl mb-2 dark:text-[var(--token-white-90)]">
           Change Password
         </h3>
-        <p className="text-gray-500 dark:text-gray-400">
+        <p className="text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
           Make sure to create a strong password to mark your projects.
         </p>
       </div>
@@ -90,7 +90,7 @@ export default function ResetPasswordForm({ resetToken }: PropsType) {
           />
 
           <button
-            className="bg-primary-500 hover:bg-primary-600 transition py-3 px-6 w-full font-medium text-white text-sm rounded-full"
+            className="bg-primary-500 hover:bg-primary-600 transition py-3 px-6 w-full font-medium text-[var(--token-white)] text-sm rounded-full"
             disabled={isLoading}
           >
             {isLoading ? 'Submitting...' : 'Reset Password'}

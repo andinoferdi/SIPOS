@@ -2,6 +2,61 @@
 
 @plugin "@tailwindcss/typography";
 
+:root {
+  --token-blue-500-8: color-mix(in oklab, var(--color-blue-500) 8%, transparent);
+  --token-blue-light-50: var(--color-blue-light-50);
+  --token-blue-light-500: var(--color-blue-light-500);
+  --token-blue-light-500-15: color-mix(in oklab, var(--color-blue-light-500) 15%, transparent);
+  --token-blue-light-500-30: color-mix(in oklab, var(--color-blue-light-500) 30%, transparent);
+  --token-blue-light-600: var(--color-blue-light-600);
+  --token-cyan-100: var(--color-cyan-100);
+  --token-cyan-600: var(--color-cyan-600);
+  --token-gray-100: var(--color-gray-100);
+  --token-gray-200: var(--color-gray-200);
+  --token-gray-200-50: color-mix(in oklab, var(--color-gray-200) 50%, transparent);
+  --token-gray-300: var(--color-gray-300);
+  --token-gray-400: var(--color-gray-400);
+  --token-gray-400-50: color-mix(in oklab, var(--color-gray-400) 50%, transparent);
+  --token-gray-50: var(--color-gray-50);
+  --token-gray-500: var(--color-gray-500);
+  --token-gray-600: var(--color-gray-600);
+  --token-gray-700: var(--color-gray-700);
+  --token-gray-800: var(--color-gray-800);
+  --token-gray-800-80: color-mix(in oklab, var(--color-gray-800) 80%, transparent);
+  --token-gray-900: var(--color-gray-900);
+  --token-gray-900-50: color-mix(in oklab, var(--color-gray-900) 50%, transparent);
+  --token-gray-950: var(--color-gray-950);
+  --token-gray-dark: var(--color-gray-dark);
+  --token-green-100: var(--color-green-100);
+  --token-green-600: var(--color-green-600);
+  --token-orange-100: var(--color-orange-100);
+  --token-orange-400: var(--color-orange-400);
+  --token-orange-600: var(--color-orange-600);
+  --token-pink-100: var(--color-pink-100);
+  --token-pink-600: var(--color-pink-600);
+  --token-purple-100: var(--color-purple-100);
+  --token-purple-600: var(--color-purple-600);
+  --token-red-400: var(--color-red-400);
+  --token-red-500: var(--color-red-500);
+  --token-white: var(--color-white);
+  --token-white-0: color-mix(in oklab, var(--color-white) 0%, transparent);
+  --token-white-1: color-mix(in oklab, var(--color-white) 1%, transparent);
+  --token-white-10: color-mix(in oklab, var(--color-white) 10%, transparent);
+  --token-white-15: color-mix(in oklab, var(--color-white) 15%, transparent);
+  --token-white-20: color-mix(in oklab, var(--color-white) 20%, transparent);
+  --token-white-25: color-mix(in oklab, var(--color-white) 25%, transparent);
+  --token-white-3: color-mix(in oklab, var(--color-white) 3%, transparent);
+  --token-white-30: color-mix(in oklab, var(--color-white) 30%, transparent);
+  --token-white-5: color-mix(in oklab, var(--color-white) 5%, transparent);
+  --token-white-50: color-mix(in oklab, var(--color-white) 50%, transparent);
+  --token-white-60: color-mix(in oklab, var(--color-white) 60%, transparent);
+  --token-white-70: color-mix(in oklab, var(--color-white) 70%, transparent);
+  --token-white-80: color-mix(in oklab, var(--color-white) 80%, transparent);
+  --token-white-90: color-mix(in oklab, var(--color-white) 90%, transparent);
+  --token-yellow-100: var(--color-yellow-100);
+  --token-yellow-600: var(--color-yellow-600);
+}
+
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
 @layer base {
@@ -153,10 +208,6 @@
   border-radius: 50px;
 }
 
-/* .dark .core-feature-icon {
-  border: 5px solid #9b8afb;
-} */
-
 .contact-wrapper {
   border-radius: 24px;
   box-shadow: 0px 32px 100px -12px rgba(16, 24, 40, 0.05);
@@ -201,19 +252,16 @@
   }
 }
 
-/* Desktop hover behavior */
 @media (min-width: 1024px) {
   .nav-item:hover .dropdown-menu {
     display: block;
   }
 
-  /* Rotate arrow on hover for desktop */
   .nav-item:hover .dropdown-arrow {
     transform: rotate(180deg);
   }
 }
 
-/* Gradient border styles */
 .gradient-border {
   position: relative;
   background-clip: padding-box;
@@ -241,7 +289,6 @@
   z-index: 5;
 }
 
-/* This hides elements with x-cloak until Alpine.js is ready */
 [x-cloak] {
   display: none !important;
 }
@@ -298,20 +345,6 @@
   mask-image: none;
 }
 
-/* .history-item::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40px;
-  height: 40px;
-  background-image: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 0) 16.49%,
-    #fff 90.64%
-  );
-} */
-
 @keyframes float {
   0% {
     transform: translateY(0px);
@@ -324,7 +357,6 @@
   }
 }
 
-/* Float vertically */
 @keyframes float-y {
   0%,
   100% {
@@ -335,7 +367,6 @@
   }
 }
 
-/* Float horizontally */
 @keyframes float-x {
   0%,
   100% {
@@ -346,7 +377,6 @@
   }
 }
 
-/* Float diagonally */
 @keyframes float-xy {
   0%,
   100% {
@@ -357,7 +387,6 @@
   }
 }
 
-/* Subtle slow float in reverse */
 @keyframes float-rev {
   0%,
   100% {
@@ -368,7 +397,6 @@
   }
 }
 
-/* Animation classes */
 .floating-1 {
   animation: float-y 3s ease-in-out infinite;
 }
@@ -384,9 +412,6 @@
 .floating-4 {
   animation: float-rev 6s ease-in-out infinite;
 }
-
-/* Dashboard CSS merged */
-
 
 @theme {
   --font-*: initial;
@@ -520,6 +545,51 @@
 
   --color-theme-purple-500: #7a5af8;
 
+  --color-neutral-600: #6b7280;
+
+  --color-accent-blue-500: #4e6eff;
+  --color-accent-blue-500-alpha: #4e6eff80;
+  --color-accent-pink-500: #ff58d5;
+  --color-accent-pink-500-alpha: #ff58d580;
+  --color-accent-pink-300: #ffa0e7;
+  --color-accent-purple-500: #7f68ff;
+  --color-accent-purple-300: #b5a2ff;
+  --color-accent-purple-200: #beb2ff;
+  --color-accent-indigo-600: #3b2eff;
+  --color-accent-violet-900: #2d0b70;
+  --color-accent-sky-500: #46b3f0;
+  --color-accent-sky-400: #17a7ff;
+  --color-accent-sky-200: #84d0ff;
+  --color-accent-coral-500: #ff745e;
+  --color-accent-coral-400: #ff6f58;
+  --color-accent-coral-200: #ffa293;
+  --color-accent-amber-500: #ffb128;
+  --color-accent-amber-400: #ffac19;
+  --color-accent-amber-200: #ffce78;
+  --color-accent-cyan-400: #2bcfff;
+  --color-accent-cyan-200: #8ee5ff;
+
+  --color-alert-red-500: #e80b26;
+  --color-alert-orange-500: #f59d31;
+  --color-alert-orange-600: #fc6020;
+
+  --color-social-google-blue: #4285f4;
+  --color-social-google-green: #34a853;
+  --color-social-google-yellow: #fbbc05;
+  --color-social-google-red: #eb4335;
+
+  --color-brand-figma-green: #0acf83;
+  --color-brand-figma-purple: #a259ff;
+  --color-brand-figma-orange: #f24e1e;
+  --color-brand-figma-coral: #ff7262;
+  --color-brand-figma-blue: #1abcfe;
+
+  --color-map-border-dark: #383f47;
+  --color-map-label-dark: #35373e;
+  --color-dark-surface-2: #1e2636;
+  --color-shadow-core-feature: rgba(107, 110, 148, 0.04);
+  --color-shadow-soft-black: rgba(0, 0, 0, 0.08);
+
   --shadow-theme-md:
     0px 4px 8px -2px rgba(16, 24, 40, 0.1),
     0px 2px 4px -2px rgba(16, 24, 40, 0.06);
@@ -553,14 +623,6 @@
   --z-index-999999: 999999;
 }
 
-/*
-  The default border color has changed to `currentColor` in Tailwind CSS v4,
-  so we've added these compatibility styles to make sure everything still
-  looks the same as it did with Tailwind CSS v3.
-
-  If we ever want to remove these styles, we need to add an explicit border
-  color utility to any element that depends on these defaults.
-*/
 @layer base {
   *,
   ::after,
@@ -636,12 +698,12 @@
 }
 
 @utility no-scrollbar {
-  /* Chrome, Safari and Opera */
+
   &::-webkit-scrollbar {
     display: none;
   }
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }
 
 @utility custom-scrollbar {
@@ -658,13 +720,11 @@
   }
 }
 [data-theme="dark"] .custom-scrollbar::-webkit-scrollbar-thumb {
-  background-color: #344054;
+  background-color: var(--color-gray-700);
 }
 
-
-
 @layer utilities {
-  /* For Remove Date Icon */
+
   input[type="date"]::-webkit-inner-spin-button,
   input[type="time"]::-webkit-inner-spin-button,
   input[type="date"]::-webkit-calendar-picker-indicator,
@@ -674,7 +734,6 @@
   }
 }
 
-/* third-party libraries CSS */
 .apexcharts-legend-text {
   @apply !text-gray-700 dark:!text-gray-400;
 }
@@ -898,17 +957,11 @@ span.flatpickr-weekday,
 
 .fc-button-group .fc-button.fc-prev-button:before {
   @apply inline-block mt-1;
-  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.0068 6L9.75684 12.25L16.0068 18.5' stroke='%23344054' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.0068 6L9.75684 12.25L16.0068 18.5' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
 }
 .fc-button-group .fc-button.fc-next-button:before {
   @apply inline-block mt-1;
-  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.50684 19L15.7568 12.75L9.50684 6.5' stroke='%23344054' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
-}
-[data-theme="dark"] .fc-button-group .fc-button.fc-prev-button:before {
-  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M16.0068 6L9.75684 12.25L16.0068 18.5' stroke='%2398A2B3' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
-}
-[data-theme="dark"] .fc-button-group .fc-button.fc-next-button:before {
-  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.50684 19L15.7568 12.75L9.50684 6.5' stroke='%2398A2B3' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
+  content: url("data:image/svg+xml,%3Csvg width='25' height='24' viewBox='0 0 25 24' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M9.50684 19L15.7568 12.75L9.50684 6.5' stroke='currentColor' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E%0A");
 }
 .fc-button-group .fc-button .fc-icon {
   @apply hidden;
@@ -1122,7 +1175,7 @@ span.flatpickr-weekday,
 }
 
 .task {
-  transition: all 0.2s ease; /* Smooth transition for visual effects */
+  transition: all 0.2s ease;
 }
 
 .task {
@@ -1130,10 +1183,8 @@ span.flatpickr-weekday,
   box-shadow: 0 1px 3px 0 rgba(16, 24, 40, 0.1),
     0 1px 2px 0 rgba(16, 24, 40, 0.06);
   opacity: 0.8;
-  cursor: grabbing; /* Changes the cursor to indicate dragging */
+  cursor: grabbing;
 }
-
-/* End dashboard CSS merged */
 
 @theme inline {
   --color-success-500: #ecfdf3;

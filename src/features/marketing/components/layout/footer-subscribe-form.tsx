@@ -30,17 +30,17 @@ export default function FooterSubscribeForm() {
         <input
           type="email"
           placeholder="Enter your email"
-          className="w-full h-12 p-4 text-sm text-white border border-gray-700 rounded-full placeholder:text-center placeholder:text-gray-400 placeholder:text-sm text-center placeholder:font-normal focus:outline-0"
+          className="w-full h-12 p-4 text-sm text-[var(--token-white)] border border-[var(--token-gray-700)] rounded-full placeholder:text-center placeholder:text-[var(--token-gray-400)] placeholder:text-sm text-center placeholder:font-normal focus:outline-0"
           disabled={isSubmitting}
           {...form.register('email')}
         />
         {form.formState.errors.email?.message && (
-          <p className="w-full text-center text-sm text-red-400">{form.formState.errors.email.message}</p>
+          <p className="w-full text-center text-sm text-[var(--token-red-400)]">{form.formState.errors.email.message}</p>
         )}
         <button
           type="submit"
           disabled={isSubmitting}
-          className="w-full px-6 py-3 text-sm font-medium text-white transition rounded-full cursor-pointer bg-primary-500 hover:bg-primary-600 disabled:opacity-75"
+          className="w-full px-6 py-3 text-sm font-medium text-[var(--token-white)] transition rounded-full cursor-pointer bg-primary-500 hover:bg-primary-600 disabled:opacity-75"
         >
           {isSubmitting ? 'Subscribing...' : 'Subscribe Now'}
         </button>

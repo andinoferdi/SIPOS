@@ -1,4 +1,4 @@
-﻿'use client';
+'use client';
 
 import type { UseChatHelpers } from '@ai-sdk/react';
 import type { UIMessage } from 'ai';
@@ -42,7 +42,7 @@ export function RenderMessage({ useChat, isThinking }: PropsType) {
       ref={scrollRef}
     >
       <div
-        className="text-gray-800 dark:text-white/90 space-y-6 max-w-none prose dark:prose-invert"
+        className="text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] space-y-6 max-w-none prose dark:prose-invert"
         ref={contentRef}
       >
         {messages.map((message, messageIdx) => {
@@ -84,7 +84,7 @@ export function RenderMessage({ useChat, isThinking }: PropsType) {
         })}
 
         {isThinking && (
-          <div className="text-gray-500 font-medium">Model is thinking...</div>
+          <div className="text-[var(--token-gray-500)] font-medium">Model is thinking...</div>
         )}
       </div>
     </div>

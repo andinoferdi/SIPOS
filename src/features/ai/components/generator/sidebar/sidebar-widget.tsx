@@ -3,24 +3,24 @@ import { getCurrentYear } from '@/lib/utils';
 export default function SidebarWidget() {
   return (
     <div>
-      {/* <!-- User profile --> */}
+
       <div className="pt-5 pb-3 px-3 rounded-2xl widget-bg">
         <div className="flex items-center justify-between">
           <div>
-            <p className="text-sm font-medium text-gray-800 dark:text-white/90">
+            <p className="text-sm font-medium text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
               John Doe
             </p>
-            <p className="text-sm text-gray-500 dark:text-gray-400">
+            <p className="text-sm text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
               john.doe@example.com
             </p>
           </div>
 
-          <span className="bg-white dark:bg-white/10 text-[#344054] dark:text-white/70 px-2 py-0.5 text-xs font-medium rounded-full">
+          <span className="bg-[var(--token-white)] dark:bg-[var(--token-white-10)] text-[var(--color-gray-700)] dark:text-[var(--token-white-70)] px-2 py-0.5 text-xs font-medium rounded-full">
             Free
           </span>
         </div>
         <div className="mt-5">
-          <button className="rounded-full gradient-btn text-white flex gap-2 items-center justify-center text-xs font-semibold w-full px-6 py-3">
+          <button className="rounded-full gradient-btn text-[var(--token-white)] flex gap-2 items-center justify-center text-xs font-semibold w-full px-6 py-3">
             Upgrade Plan
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -40,7 +40,7 @@ export default function SidebarWidget() {
           </button>
         </div>
       </div>
-      <div className="mt-3 px-3 text-center tracking-wide text-xs text-gray-400">
+      <div className="mt-3 px-3 text-center tracking-wide text-xs text-[var(--token-gray-400)]">
         &copy; {getCurrentYear()} All Right Reserved
       </div>
     </div>

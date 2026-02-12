@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-gray-900">
+    <footer className="relative overflow-hidden bg-[var(--token-gray-900)]">
       <span className="absolute top-0 -translate-x-1/2 left-1/2">
         <svg
           width="1260"
@@ -15,7 +15,7 @@ export default function Footer() {
           xmlns="http://www.w3.org/2000/svg"
         >
           <g filter="url(#filter0_f_11105_867)">
-            <circle cx="630" cy="-173.299" r="230" fill="#3B2EFF" />
+            <circle cx="630" cy="-173.299" r="230" fill="var(--color-accent-indigo-600)" />
           </g>
           <defs>
             <filter
@@ -55,7 +55,7 @@ export default function Footer() {
                     height={32}
                   />
                 </Link>
-                <p className="block text-sm text-gray-400 mb-9">
+                <p className="block text-sm text-[var(--token-gray-400)] mb-9">
                   A self-hosted AI starter kit built with Next.js, Tailwind CSS,
                   and OpenAI integrations. Perfect for developers and startups
                   to quickly build, deploy, and scale AI-powered SaaS products.
@@ -64,7 +64,7 @@ export default function Footer() {
                   <a
                     href="https://www.linkedin.com/company/pimjo/posts/?feedView=all"
                     target="_blank"
-                    className="text-gray-400 hover:text-white/80 size-10"
+                    className="text-[var(--token-gray-400)] hover:text-[var(--token-white-80)] size-10"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +95,7 @@ export default function Footer() {
                   <a
                     href="https://x.com/PimjoHQ"
                     target="_blank"
-                    className="text-gray-400 hover:text-white/80 size-10"
+                    className="text-[var(--token-gray-400)] hover:text-[var(--token-white-80)] size-10"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +113,7 @@ export default function Footer() {
                   <a
                     href="https://github.com/PIMJO"
                     target="_blank"
-                    className="text-gray-400 hover:text-white/80 size-10"
+                    className="text-[var(--token-gray-400)] hover:text-[var(--token-white-80)] size-10"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +173,7 @@ export default function Footer() {
                   <a
                     href="https://www.facebook.com/PimjoHQ"
                     target="_blank"
-                    className="text-gray-400 hover:text-white/80 size-10"
+                    className="text-[var(--token-gray-400)] hover:text-[var(--token-white-80)] size-10"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -206,105 +206,105 @@ export default function Footer() {
             <div className="lg:col-span-6 xl:col-span-5">
               <div className="grid sm:grid-cols-3 gap-7">
                 <div>
-                  <span className="block mb-6 text-sm text-gray-400">
+                  <span className="block mb-6 text-sm text-[var(--token-gray-400)]">
                     Services
                   </span>
                   <nav className="flex flex-col space-y-3">
                     <Link
                       href="/"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       Status
                     </Link>
                     <Link
                       href="/pricing"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       Pricing
                     </Link>
                     <Link
                       href="/pricing#faq"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       FAQ
                     </Link>
                     <Link
                       href="/contact"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       Help Docs
                     </Link>
                     <Link
                       href="/privacy"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       Privacy Policy
                     </Link>
                   </nav>
                 </div>
                 <div>
-                  <span className="block mb-6 text-sm text-gray-400">
+                  <span className="block mb-6 text-sm text-[var(--token-gray-400)]">
                     Features
                   </span>
                   <nav className="flex flex-col space-y-3">
                     <Link
                       href="/"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       HTML File Upload
                     </Link>
                     <Link
                       href="/"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       HTML website hosting
                     </Link>
                     <Link
                       href="/"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       Free Image Hosting
                     </Link>
                     <Link
                       href="/"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       Upload PDF Online
                     </Link>
                     <Link
                       href="/"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       Free Zip file hosting
                     </Link>
                   </nav>
                 </div>
                 <div>
-                  <span className="relative block mb-6 text-sm text-gray-400">
+                  <span className="relative block mb-6 text-sm text-[var(--token-gray-400)]">
                     Account
                   </span>
                   <nav className="flex flex-col space-y-3">
                     <Link
                       href="/login"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       Login
                     </Link>
                     <Link
                       href="/register"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       Sign Up
                     </Link>
                     <Link
                       href="/reset-password"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       Reset Password
                     </Link>
                     <Link
                       href="/contact"
-                      className="text-sm font-normal text-gray-400 transition hover:text-white"
+                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
                       Support
                     </Link>
@@ -314,10 +314,10 @@ export default function Footer() {
             </div>
             <div className="lg:col-span-3">
               <div>
-                <span className="block mb-6 text-sm text-gray-400">
+                <span className="block mb-6 text-sm text-[var(--token-gray-400)]">
                   Stay In Touch
                 </span>
-                <p className="block mb-5 text-sm text-gray-400">
+                <p className="block mb-5 text-sm text-[var(--token-gray-400)]">
                   Subscribe now for exclusive insights and offers!
                 </p>
                 <FooterSubscribeForm />
@@ -326,10 +326,10 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-gray-800">
+      <div className="border-t border-[var(--token-gray-800)]">
         <div className="container relative z-10 px-5 mx-auto sm:px-7">
           <div className="py-5 text-center">
-            <p className="text-sm text-gray-500">
+            <p className="text-sm text-[var(--token-gray-500)]">
               &copy; {getCurrentYear()} AiStarterKit - All Rights Reserved.
             </p>
           </div>

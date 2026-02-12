@@ -7,7 +7,7 @@ export default function ThemeTogglerTwo() {
   return (
     <button
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
-      className="inline-flex size-14 items-center justify-center rounded-full bg-brand-500 text-white transition-colors hover:bg-brand-600"
+      className="inline-flex size-14 items-center justify-center rounded-full bg-brand-500 text-[var(--token-white)] transition-colors hover:bg-brand-600"
     >
       <svg
         className="hidden dark:block"

@@ -18,7 +18,7 @@ export default function GeneratorSidebarNav() {
 
   return (
     <div className="px-5 py-6">
-      <h2 className="text-xs font-medium text-gray-400 dark:text-gray-400 capitalize tracking-wider">
+      <h2 className="text-xs font-medium text-[var(--token-gray-400)] dark:text-[var(--token-gray-400)] capitalize tracking-wider">
         Products
       </h2>
       <nav className="mt-3 space-y-1">
@@ -32,8 +32,8 @@ export default function GeneratorSidebarNav() {
               className={cn(
                 'relative flex gap-1.5 items-center h-11 px-2 py-3 text-sm font-medium rounded-full transition',
                 isActive
-                  ? 'bg-gray-100 dark:bg-white/5 dark:text-white/90 text-gray-800'
-                  : 'dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-white/90 text-gray-500 hover:bg-gray-100 hover:text-gray-800'
+                  ? 'bg-[var(--token-gray-100)] dark:bg-[var(--token-white-5)] dark:text-[var(--token-white-90)] text-[var(--token-gray-800)]'
+                  : 'dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-white-90)] text-[var(--token-gray-500)] hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-800)]'
               )}
             >
               {item.icon}

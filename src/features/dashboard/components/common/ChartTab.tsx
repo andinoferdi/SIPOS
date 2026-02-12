@@ -7,14 +7,14 @@ const ChartTab: React.FC = () => {
 
   const getButtonClass = (option: "optionOne" | "optionTwo" | "optionThree") =>
     selected === option
-      ? "shadow-theme-xs text-gray-900 dark:text-white bg-white dark:bg-gray-800"
-      : "text-gray-500 dark:text-gray-400";
+      ? "shadow-theme-xs text-[var(--token-gray-900)] dark:text-[var(--token-white)] bg-[var(--token-white)] dark:bg-[var(--token-gray-800)]"
+      : "text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]";
 
   return (
-    <div className="flex items-center gap-0.5 rounded-lg bg-gray-100 p-0.5 dark:bg-gray-900">
+    <div className="flex items-center gap-0.5 rounded-lg bg-[var(--token-gray-100)] p-0.5 dark:bg-[var(--token-gray-900)]">
       <button
         onClick={() => setSelected("optionOne")}
-        className={`px-3 py-2 font-medium w-full rounded-md text-theme-sm hover:text-gray-900   dark:hover:text-white ${getButtonClass(
+        className={`px-3 py-2 font-medium w-full rounded-md text-theme-sm hover:text-[var(--token-gray-900)]   dark:hover:text-[var(--token-white)] ${getButtonClass(
           "optionOne"
         )}`}
       >
@@ -23,7 +23,7 @@ const ChartTab: React.FC = () => {
 
       <button
         onClick={() => setSelected("optionTwo")}
-        className={`px-3 py-2 font-medium w-full rounded-md text-theme-sm hover:text-gray-900   dark:hover:text-white ${getButtonClass(
+        className={`px-3 py-2 font-medium w-full rounded-md text-theme-sm hover:text-[var(--token-gray-900)]   dark:hover:text-[var(--token-white)] ${getButtonClass(
           "optionTwo"
         )}`}
       >
@@ -32,7 +32,7 @@ const ChartTab: React.FC = () => {
 
       <button
         onClick={() => setSelected("optionThree")}
-        className={`px-3 py-2 font-medium w-full rounded-md text-theme-sm hover:text-gray-900   dark:hover:text-white ${getButtonClass(
+        className={`px-3 py-2 font-medium w-full rounded-md text-theme-sm hover:text-[var(--token-gray-900)]   dark:hover:text-[var(--token-white)] ${getButtonClass(
           "optionThree"
         )}`}
       >

@@ -18,7 +18,7 @@ export function IntroVideo() {
     <>
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="rounded-full video-popup flex h-12 gap-3 items-center text-sm border bg-white dark:bg-white/10 dark:border-white/[0.05] dark:text-white border-gray-100 p-1.5 pr-6"
+        className="rounded-full video-popup flex h-12 gap-3 items-center text-sm border bg-[var(--token-white)] dark:bg-[var(--token-white-10)] dark:border-[var(--token-white-5)] dark:text-[var(--token-white)] border-[var(--token-gray-100)] p-1.5 pr-6"
       >
         <span className="size-9 rounded-full gradient-bg-two inline-flex items-center justify-center text-sm font-medium">
           <svg

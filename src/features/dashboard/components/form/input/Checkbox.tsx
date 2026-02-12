@@ -1,13 +1,12 @@
 import type React from "react";
 
-interface CheckboxProps {
+type CheckboxProps = {
   label?: string;
   checked: boolean;
   className?: string;
   id?: string;
   onChange: (checked: boolean) => void;
-  disabled?: boolean;
-}
+  disabled?: boolean;};
 
 const Checkbox: React.FC<CheckboxProps> = ({
   label,
@@ -27,7 +26,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
         <input
           id={id}
           type="checkbox"
-          className={`w-5 h-5 appearance-none cursor-pointer dark:border-gray-700 border border-gray-300 checked:border-transparent rounded-md checked:bg-brand-500 disabled:opacity-60 
+          className={`w-5 h-5 appearance-none cursor-pointer dark:border-[var(--token-gray-700)] border border-[var(--token-gray-300)] checked:border-transparent rounded-md checked:bg-brand-500 disabled:opacity-60
           ${className}`}
           checked={checked}
           onChange={(e) => onChange(e.target.checked)}
@@ -62,7 +61,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
           >
             <path
               d="M11.6666 3.5L5.24992 9.91667L2.33325 7"
-              stroke="#E4E7EC"
+              stroke="var(--color-gray-200)"
               strokeWidth="2.33333"
               strokeLinecap="round"
               strokeLinejoin="round"
@@ -71,7 +70,7 @@ const Checkbox: React.FC<CheckboxProps> = ({
         )}
       </div>
       {label && (
-        <span className="text-sm font-medium text-gray-800 dark:text-gray-200">
+        <span className="text-sm font-medium text-[var(--token-gray-800)] dark:text-[var(--token-gray-200)]">
           {label}
         </span>
       )}

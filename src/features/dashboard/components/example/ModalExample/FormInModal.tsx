@@ -10,7 +10,6 @@ import { useModal } from "@/hooks/useModal";
 export default function FormInModal() {
   const { isOpen, openModal, closeModal } = useModal();
   const handleSave = () => {
-    // Handle save logic here
     console.log("Saving changes...");
     closeModal();
   };
@@ -25,7 +24,7 @@ export default function FormInModal() {
         className="max-w-[584px] p-5 lg:p-10"
       >
         <div>
-          <h4 className="mb-6 text-lg font-medium text-gray-800 dark:text-white/90">
+          <h4 className="mb-6 text-lg font-medium text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
             Personal Information
           </h4>
 

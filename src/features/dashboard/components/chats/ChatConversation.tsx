@@ -5,14 +5,13 @@ import { useEffect, useRef } from "react";
 import ChatActionMenu from "./ChatActionMenu";
 import type { ChatContact, ChatMessage } from "./types";
 
-interface ChatConversationProps {
+type ChatConversationProps = {
   contact: ChatContact;
   messages: ChatMessage[];
   messageInput: string;
   onMessageInputChange: (value: string) => void;
   onSendMessage: () => void;
-  onOpenMobileSidebar: () => void;
-}
+  onOpenMobileSidebar: () => void;};
 
 export default function ChatConversation({
   contact,
@@ -32,13 +31,13 @@ export default function ChatConversation({
   }, [contact.id, messages]);
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
-      <div className="sticky flex items-center justify-between border-b border-gray-200 px-5 py-4 dark:border-gray-800 xl:px-6">
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)]">
+      <div className="sticky flex items-center justify-between border-b border-[var(--token-gray-200)] px-5 py-4 dark:border-[var(--token-gray-800)] xl:px-6">
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={onOpenMobileSidebar}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-gray-300 text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-white/[0.03] xl:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--token-gray-300)] text-[var(--token-gray-700)] transition hover:bg-[var(--token-gray-100)] dark:border-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] xl:hidden"
             aria-label="Open contact list"
           >
             <HamburgerIcon />
@@ -52,13 +51,13 @@ export default function ChatConversation({
               height={48}
               className="h-full w-full overflow-hidden rounded-full object-cover object-center"
             />
-            <span className="absolute bottom-0 right-0 block h-3 w-3 rounded-full border-[1.5px] border-white bg-success-500 dark:border-gray-900" />
+            <span className="absolute bottom-0 right-0 block h-3 w-3 rounded-full border-[1.5px] border-[var(--token-white)] bg-success-500 dark:border-[var(--token-gray-900)]" />
           </div>
           <div>
-            <h5 className="text-sm font-medium text-gray-800 dark:text-white/90">
+            <h5 className="text-sm font-medium text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
               {contact.name}
             </h5>
-            <p className="text-theme-xs text-gray-500 dark:text-gray-400">
+            <p className="text-theme-xs text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
               {contact.role}
             </p>
           </div>
@@ -67,14 +66,14 @@ export default function ChatConversation({
         <div className="flex items-center gap-3">
           <button
             type="button"
-            className="text-gray-700 hover:text-brand-500 dark:text-gray-400 dark:hover:text-white/90"
+            className="text-[var(--token-gray-700)] hover:text-brand-500 dark:text-[var(--token-gray-400)] dark:hover:text-[var(--token-white-90)]"
             aria-label="Voice call"
           >
             <PhoneIcon />
           </button>
           <button
             type="button"
-            className="text-gray-700 hover:text-brand-500 dark:text-gray-400 dark:hover:text-white/90"
+            className="text-[var(--token-gray-700)] hover:text-brand-500 dark:text-[var(--token-gray-400)] dark:hover:text-[var(--token-white-90)]"
             aria-label="Video call"
           >
             <VideoIcon />
@@ -94,10 +93,10 @@ export default function ChatConversation({
             return (
               <div key={message.id} className="flex justify-end">
                 <div className="text-right">
-                  <div className="rounded-lg rounded-tr-sm bg-brand-500 px-3 py-2 text-white dark:bg-brand-500">
+                  <div className="rounded-lg rounded-tr-sm bg-brand-500 px-3 py-2 text-[var(--token-white)] dark:bg-brand-500">
                     <p className="text-sm">{message.text}</p>
                   </div>
-                  <p className="mt-2 text-theme-xs text-gray-500 dark:text-gray-400">
+                  <p className="mt-2 text-theme-xs text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
                     {message.timestamp}
                   </p>
                 </div>
@@ -129,11 +128,11 @@ export default function ChatConversation({
                   </div>
                 )}
                 {message.text && (
-                  <div className="rounded-lg rounded-tl-sm bg-gray-100 px-3 py-2 text-gray-800 dark:bg-white/5 dark:text-white/90">
+                  <div className="rounded-lg rounded-tl-sm bg-[var(--token-gray-100)] px-3 py-2 text-[var(--token-gray-800)] dark:bg-[var(--token-white-5)] dark:text-[var(--token-white-90)]">
                     <p className="text-sm">{message.text}</p>
                   </div>
                 )}
-                <p className="mt-2 text-theme-xs text-gray-500 dark:text-gray-400">
+                <p className="mt-2 text-theme-xs text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
                   {message.timestamp}
                 </p>
               </div>
@@ -143,12 +142,12 @@ export default function ChatConversation({
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="sticky bottom-0 border-t border-gray-200 p-3 dark:border-gray-800">
+      <div className="sticky bottom-0 border-t border-[var(--token-gray-200)] p-3 dark:border-[var(--token-gray-800)]">
         <div className="flex items-center justify-between gap-3">
           <div className="relative w-full">
             <button
               type="button"
-              className="absolute left-1 top-1/2 -translate-y-1/2 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white/90 sm:left-3"
+              className="absolute left-1 top-1/2 -translate-y-1/2 text-[var(--token-gray-500)] hover:text-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:text-[var(--token-white-90)] sm:left-3"
               aria-label="Add emoji"
             >
               <EmojiIcon />
@@ -168,21 +167,21 @@ export default function ChatConversation({
                   onSendMessage();
                 }
               }}
-              className="h-9 w-full border-none bg-transparent pl-12 pr-5 text-sm text-gray-800 placeholder:text-gray-400 focus:border-0 focus:outline-hidden focus:ring-0 dark:text-white/90"
+              className="h-9 w-full border-none bg-transparent pl-12 pr-5 text-sm text-[var(--token-gray-800)] placeholder:text-[var(--token-gray-400)] focus:border-0 focus:outline-hidden focus:ring-0 dark:text-[var(--token-white-90)]"
             />
           </div>
 
           <div className="flex items-center">
             <button
               type="button"
-              className="mr-2 text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white/90"
+              className="mr-2 text-[var(--token-gray-500)] hover:text-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:text-[var(--token-white-90)]"
               aria-label="Attach file"
             >
               <AttachmentIcon />
             </button>
             <button
               type="button"
-              className="text-gray-500 hover:text-gray-800 dark:text-gray-400 dark:hover:text-white/90"
+              className="text-[var(--token-gray-500)] hover:text-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:text-[var(--token-white-90)]"
               aria-label="Voice message"
             >
               <MicrophoneIcon />
@@ -190,7 +189,7 @@ export default function ChatConversation({
             <button
               type="button"
               onClick={onSendMessage}
-              className="ml-3 flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-white hover:bg-brand-600 xl:ml-5"
+              className="ml-3 flex h-9 w-9 items-center justify-center rounded-lg bg-brand-500 text-[var(--token-white)] hover:bg-brand-600 xl:ml-5"
               aria-label="Send message"
             >
               <SendIcon />

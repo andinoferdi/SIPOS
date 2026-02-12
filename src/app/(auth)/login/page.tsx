@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import type { Metadata } from 'next';
-import { SignInWithGithub, SignInWithGoogle } from './_components/social-auth';
+import { Suspense } from 'react';
 import SignInForm from '@/features/auth/components/signin-form';
 
 export const metadata: Metadata = {
@@ -12,35 +12,23 @@ export default function SignInPage() {
     <section className="py-28 relative overflow-hidden">
       <div className="wrapper">
         <div className="relative max-w-[600px] mx-auto">
-          <div className="contact-wrapper border p-8 sm:p-14 relative z-30 bg-white dark:bg-dark-primary dark:border-dark-primary border-gray-100">
+          <div className="contact-wrapper border p-8 sm:p-14 relative z-30 bg-[var(--token-white)] dark:bg-dark-primary dark:border-dark-primary border-[var(--token-gray-100)]">
             <div className="text-center mb-8">
-              <h3 className="text-gray-800 dark:text-white/90 font-bold text-3xl mb-2">
+              <h3 className="text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] font-bold text-3xl mb-2">
                 Sign In
               </h3>
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
                 Enter your email and password to sign in!
               </p>
             </div>
-            <div className="flex flex-col sm:flex-row justify-center gap-y-3.5 gap-x-5">
-              <SignInWithGoogle />
-              <SignInWithGithub />
-            </div>
-            <div className="relative py-3 sm:py-5">
-              <div className="absolute inset-0 flex items-center">
-                <div className="w-full border-t border-gray-200 dark:border-gray-800"></div>
-              </div>
-              <div className="relative flex justify-center text-sm">
-                <span className="p-2 text-gray-400 bg-white dark:bg-dark-primary sm:px-5 sm:py-2">
-                  Or
-                </span>
-              </div>
-            </div>
 
-            <SignInForm />
+            <Suspense fallback={null}>
+              <SignInForm />
+            </Suspense>
 
             <div className="mt-5">
-              <p className="text-gray-700 dark:text-gray-400 text-sm">
-                Don’t have an account?{' '}
+              <p className="text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] text-sm">
+                Don't have an account?{' '}
                 <Link
                   href="/register"
                   className="text-sm font-semibold text-primary-500"
@@ -62,10 +50,10 @@ export default function SignInPage() {
           xmlns="http://www.w3.org/2000/svg"
         >
           <g opacity="0.3" filter="url(#filter0_f_9248_10254)">
-            <circle cx="380.335" cy="380.335" r="179.665" fill="#FF58D5" />
+            <circle cx="380.335" cy="380.335" r="179.665" fill="var(--color-accent-pink-500)" />
           </g>
           <g opacity="0.7" filter="url(#filter1_f_9248_10254)">
-            <circle cx="549.665" cy="380.335" r="179.665" fill="#4E6EFF" />
+            <circle cx="549.665" cy="380.335" r="179.665" fill="var(--color-accent-blue-500)" />
           </g>
           <defs>
             <filter

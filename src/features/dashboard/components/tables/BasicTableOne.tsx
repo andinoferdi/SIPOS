@@ -10,7 +10,7 @@ import {
 import Badge from "../ui/badge/Badge";
 import Image from "next/image";
 
-interface Order {
+type Order = {
   id: number;
   user: {
     image: string;
@@ -22,10 +22,8 @@ interface Order {
     images: string[];
   };
   status: string;
-  budget: string;
-}
+  budget: string;};
 
-// Define the table data using the interface
 const tableData: Order[] = [
   {
     id: 1,
@@ -113,47 +111,46 @@ const tableData: Order[] = [
 
 export default function BasicTableOne() {
   return (
-    <div className="overflow-hidden rounded-xl border border-gray-200 bg-white dark:border-white/[0.05] dark:bg-white/[0.03]">
+    <div className="overflow-hidden rounded-xl border border-[var(--token-gray-200)] bg-[var(--token-white)] dark:border-[var(--token-white-5)] dark:bg-[var(--token-white-3)]">
       <div className="max-w-full overflow-x-auto">
         <div className="min-w-[1102px]">
           <Table>
-            {/* Table Header */}
-            <TableHeader className="border-b border-gray-100 dark:border-white/[0.05]">
+
+            <TableHeader className="border-b border-[var(--token-gray-100)] dark:border-[var(--token-white-5)]">
               <TableRow>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  className="px-5 py-3 font-medium text-[var(--token-gray-500)] text-start text-theme-xs dark:text-[var(--token-gray-400)]"
                 >
                   User
                 </TableCell>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  className="px-5 py-3 font-medium text-[var(--token-gray-500)] text-start text-theme-xs dark:text-[var(--token-gray-400)]"
                 >
                   Project Name
                 </TableCell>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  className="px-5 py-3 font-medium text-[var(--token-gray-500)] text-start text-theme-xs dark:text-[var(--token-gray-400)]"
                 >
                   Team
                 </TableCell>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  className="px-5 py-3 font-medium text-[var(--token-gray-500)] text-start text-theme-xs dark:text-[var(--token-gray-400)]"
                 >
                   Status
                 </TableCell>
                 <TableCell
                   isHeader
-                  className="px-5 py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                  className="px-5 py-3 font-medium text-[var(--token-gray-500)] text-start text-theme-xs dark:text-[var(--token-gray-400)]"
                 >
                   Budget
                 </TableCell>
               </TableRow>
             </TableHeader>
 
-            {/* Table Body */}
             <TableBody className="divide-y divide-gray-100 dark:divide-white/[0.05]">
               {tableData.map((order) => (
                 <TableRow key={order.id}>
@@ -168,24 +165,24 @@ export default function BasicTableOne() {
                         />
                       </div>
                       <div>
-                        <span className="block font-medium text-gray-800 text-theme-sm dark:text-white/90">
+                        <span className="block font-medium text-[var(--token-gray-800)] text-theme-sm dark:text-[var(--token-white-90)]">
                           {order.user.name}
                         </span>
-                        <span className="block text-gray-500 text-theme-xs dark:text-gray-400">
+                        <span className="block text-[var(--token-gray-500)] text-theme-xs dark:text-[var(--token-gray-400)]">
                           {order.user.role}
                         </span>
                       </div>
                     </div>
                   </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                  <TableCell className="px-4 py-3 text-[var(--token-gray-500)] text-start text-theme-sm dark:text-[var(--token-gray-400)]">
                     {order.projectName}
                   </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                  <TableCell className="px-4 py-3 text-[var(--token-gray-500)] text-start text-theme-sm dark:text-[var(--token-gray-400)]">
                     <div className="flex -space-x-2">
                       {order.team.images.map((teamImage, index) => (
                         <div
                           key={index}
-                          className="w-6 h-6 overflow-hidden border-2 border-white rounded-full dark:border-gray-900"
+                          className="w-6 h-6 overflow-hidden border-2 border-[var(--token-white)] rounded-full dark:border-[var(--token-gray-900)]"
                         >
                           <Image
                             width={24}
@@ -198,7 +195,7 @@ export default function BasicTableOne() {
                       ))}
                     </div>
                   </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-start text-theme-sm dark:text-gray-400">
+                  <TableCell className="px-4 py-3 text-[var(--token-gray-500)] text-start text-theme-sm dark:text-[var(--token-gray-400)]">
                     <Badge
                       size="sm"
                       color={
@@ -212,7 +209,7 @@ export default function BasicTableOne() {
                       {order.status}
                     </Badge>
                   </TableCell>
-                  <TableCell className="px-4 py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                  <TableCell className="px-4 py-3 text-[var(--token-gray-500)] text-theme-sm dark:text-[var(--token-gray-400)]">
                     {order.budget}
                   </TableCell>
                 </TableRow>

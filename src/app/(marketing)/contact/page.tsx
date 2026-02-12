@@ -10,12 +10,12 @@ export default function ContactPage() {
     <section className="py-28 relative">
       <div className="wrapper">
         <div className="relative max-w-[800px] mx-auto">
-          <div className="contact-wrapper border p-14 relative z-30 bg-white border-gray-100 dark:bg-dark-primary dark:border-gray-800">
+          <div className="contact-wrapper border p-14 relative z-30 bg-[var(--token-white)] border-[var(--token-gray-100)] dark:bg-dark-primary dark:border-[var(--token-gray-800)]">
             <div className="text-center mb-12">
-              <h3 className="text-gray-800 font-bold dark:text-white text-3xl mb-2">
+              <h3 className="text-[var(--token-gray-800)] font-bold dark:text-[var(--token-white)] text-3xl mb-2">
                 Need any Help? Get in touch
               </h3>
-              <p className="text-gray-500 dark:text-gray-400">
+              <p className="text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
                 Open a ticket, we will get back to you ASAP
               </p>
             </div>
@@ -32,10 +32,10 @@ export default function ContactPage() {
           xmlns="http://www.w3.org/2000/svg"
         >
           <g opacity="0.3" filter="url(#filter0_f_9248_10254)">
-            <circle cx="380.335" cy="380.335" r="179.665" fill="#FF58D5" />
+            <circle cx="380.335" cy="380.335" r="179.665" fill="var(--color-accent-pink-500)" />
           </g>
           <g opacity="0.7" filter="url(#filter1_f_9248_10254)">
-            <circle cx="549.665" cy="380.335" r="179.665" fill="#4E6EFF" />
+            <circle cx="549.665" cy="380.335" r="179.665" fill="var(--color-accent-blue-500)" />
           </g>
           <defs>
             <filter

@@ -14,7 +14,7 @@ export default function HealthStatusCard() {
   if (isLoading) {
     return (
       <ComponentCard title="API Health">
-        <p className="text-sm text-gray-500 dark:text-gray-400">Checking API status...</p>
+        <p className="text-sm text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">Checking API status...</p>
       </ComponentCard>
     );
   }
@@ -30,7 +30,7 @@ export default function HealthStatusCard() {
   if (!data) {
     return (
       <ComponentCard title="API Health">
-        <p className="text-sm text-gray-500 dark:text-gray-400">No data available.</p>
+        <p className="text-sm text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">No data available.</p>
       </ComponentCard>
     );
   }
@@ -38,13 +38,13 @@ export default function HealthStatusCard() {
   return (
     <ComponentCard title="API Health">
       <div className="space-y-1">
-        <p className="text-sm text-gray-800 dark:text-white/90">
+        <p className="text-sm text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
           Status: <span className="font-semibold">{data.status.toUpperCase()}</span>
         </p>
-        <p className="text-xs text-gray-500 dark:text-gray-400">
+        <p className="text-xs text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
           Updated: {formatTimestamp(data.timestamp)}
         </p>
-        {isFetching && <p className="text-xs text-gray-500 dark:text-gray-400">Refreshing...</p>}
+        {isFetching && <p className="text-xs text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">Refreshing...</p>}
       </div>
     </ComponentCard>
   );

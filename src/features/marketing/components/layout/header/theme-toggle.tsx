@@ -10,7 +10,7 @@ const ThemeToggle = () => {
   return (
     <button
       onClick={() => setTheme(isDark ? 'light' : 'dark')}
-      className="inline-flex items-center justify-center size-11 rounded-full bg-[#F2F4F7] dark:bg-white/5 text-[#667085] dark:text-white/60 hover:text-gray-800 dark:hover:text-white/90 hover:bg-gray-100 dark:hover:bg-white/10"
+      className="inline-flex items-center justify-center size-11 rounded-full bg-[var(--color-gray-100)] dark:bg-[var(--token-white-5)] text-[var(--color-gray-500)] dark:text-[var(--token-white-60)] hover:text-[var(--token-gray-800)] dark:hover:text-[var(--token-white-90)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-white-10)]"
     >
       <svg
         className="size-5 dark:inline hidden"

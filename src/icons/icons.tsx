@@ -28,7 +28,7 @@ export function PlusIcon() {
       viewBox="0 0 24 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="text-xl text-gray-400"
+      className="text-xl text-[var(--token-gray-400)]"
     >
       <g clipPath="url(#clip0_9283_3101)">
         <path
@@ -58,7 +58,7 @@ export function MinusIcon() {
       viewBox="0 0 24 25"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className="text-xl text-gray-400"
+      className="text-xl text-[var(--token-gray-400)]"
     >
       <g clipPath="url(#clip0_9283_3094)">
         <path d="M5 11.9194V13.9194H19V11.9194H5Z" fill="currentColor" />
@@ -176,8 +176,8 @@ export function TextGeneratorIcon({ className = '' }: { className?: string }) {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(22.0839 27.1287) rotate(-60.1772) scale(24.8321 24.8204)"
         >
-          <stop stopColor="#7F68FF" />
-          <stop offset="1" stopColor="#BEB2FF" />
+          <stop stopColor="var(--color-accent-purple-500)" />
+          <stop offset="1" stopColor="var(--color-accent-purple-200)" />
         </radialGradient>
       </defs>
     </svg>
@@ -287,8 +287,8 @@ export function ImageGeneratorIcon({ className = '' }: { className?: string }) {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(13.9454 22.1904) rotate(-58.7716) scale(25.6788 25.6788)"
         >
-          <stop stopColor="#FF6F58" />
-          <stop offset="1" stopColor="#FFA293" />
+          <stop stopColor="var(--color-accent-coral-400)" />
+          <stop offset="1" stopColor="var(--color-accent-coral-200)" />
         </radialGradient>
         <radialGradient
           id="paint1_radial_9279_147"
@@ -298,8 +298,8 @@ export function ImageGeneratorIcon({ className = '' }: { className?: string }) {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(13.9454 22.1904) rotate(-58.7716) scale(25.6788 25.6788)"
         >
-          <stop stopColor="#FF6F58" />
-          <stop offset="1" stopColor="#FFA293" />
+          <stop stopColor="var(--color-accent-coral-400)" />
+          <stop offset="1" stopColor="var(--color-accent-coral-200)" />
         </radialGradient>
       </defs>
     </svg>
@@ -405,8 +405,8 @@ export function CodeGeneratorIcon({ className = '' }: { className?: string }) {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(17.7385 20.5335) rotate(-60.1541) scale(16.9079 16.9079)"
         >
-          <stop stopColor="#17A7FF" />
-          <stop offset="1" stopColor="#84D0FF" />
+          <stop stopColor="var(--color-accent-sky-400)" />
+          <stop offset="1" stopColor="var(--color-accent-sky-200)" />
         </radialGradient>
       </defs>
     </svg>
@@ -512,8 +512,8 @@ export function VideoGeneratorIcon({ className = '' }: { className?: string }) {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(19.8733 18.8761) rotate(-52.4062) scale(16.3099 18.2642)"
         >
-          <stop stopColor="#FFAC19" />
-          <stop offset="1" stopColor="#FFCE78" />
+          <stop stopColor="var(--color-accent-amber-400)" />
+          <stop offset="1" stopColor="var(--color-accent-amber-200)" />
         </radialGradient>
       </defs>
     </svg>
@@ -619,8 +619,8 @@ export function EmailGeneratorIcon({ className = '' }: { className?: string }) {
           gradientUnits="userSpaceOnUse"
           gradientTransform="translate(18.8625 18.816) rotate(-52.4062) scale(16.1086 18.0387)"
         >
-          <stop stopColor="#2BCFFF" />
-          <stop offset="1" stopColor="#8EE5FF" />
+          <stop stopColor="var(--color-accent-cyan-400)" />
+          <stop offset="1" stopColor="var(--color-accent-cyan-200)" />
         </radialGradient>
       </defs>
     </svg>
@@ -631,7 +631,7 @@ export function CheckIconSm() {
   return (
     <svg
       xmlns="http://www.w3.org/2000/svg"
-      className="h-4 w-4 text-white"
+      className="h-4 w-4 text-[var(--token-white)]"
       fill="none"
       viewBox="0 0 24 24"
       stroke="currentColor"
@@ -851,7 +851,7 @@ export function ClipboardIcon(props: IconProps) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M5.85442 4.12576C5.85442 3.83581 6.08947 3.60076 6.37942 3.60076H13.8739C14.1638 3.60076 14.3989 3.83581 14.3989 4.12576L14.3989 11.6217C14.3989 11.9117 14.1638 12.1467 13.8739 12.1467H6.37942C6.08947 12.1467 5.85442 11.9117 5.85442 11.6217V4.12576ZM6.37942 2.40076C5.42673 2.40076 4.65442 3.17307 4.65442 4.12576V4.65991H4.12649C3.1738 4.65991 2.40149 5.43222 2.40149 6.38491V13.8747C2.40149 14.8273 3.1738 15.5997 4.12649 15.5997H11.6162C12.5689 15.5997 13.3412 14.8273 13.3412 13.8747V13.3467H13.8739C14.8266 13.3467 15.5989 12.5744 15.5989 11.6217L15.5989 4.12575C15.5989 3.17306 14.8266 2.40076 13.8739 2.40076H6.37942ZM12.1412 13.3467H6.37942C5.42673 13.3467 4.65442 12.5744 4.65442 11.6217V5.85991H4.12649C3.83654 5.85991 3.60149 6.09496 3.60149 6.38491V13.8747C3.60149 14.1646 3.83654 14.3997 4.12649 14.3997H11.6162C11.9062 14.3997 12.1412 14.1646 12.1412 13.8747L12.1412 13.3467Z"
-        fill="#98A2B3"
+        fill="var(--color-gray-400)"
       />
     </svg>
   );
@@ -927,7 +927,7 @@ export function SearchIcon(props: IconProps) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M2.58347 7.49905C2.58347 4.78457 4.78456 2.58374 7.50013 2.58374C10.2157 2.58374 12.4168 4.78457 12.4168 7.49905C12.4168 10.2135 10.2157 12.4144 7.50013 12.4144C4.78456 12.4144 2.58347 10.2135 2.58347 7.49905ZM7.50013 1.08374C3.95647 1.08374 1.08347 3.9558 1.08347 7.49905C1.08347 11.0423 3.95647 13.9144 7.50013 13.9144C9.00119 13.9144 10.3819 13.399 11.4749 12.5357L13.6356 14.6966C13.9285 14.9895 14.4034 14.9895 14.6963 14.6966C14.9892 14.4037 14.9892 13.9289 14.6963 13.636L12.5359 11.4754C13.4006 10.3823 13.9168 9.00095 13.9168 7.49905C13.9168 3.9558 11.0438 1.08374 7.50013 1.08374Z"
-        fill="#98A2B3"
+        fill="var(--color-gray-400)"
       />
     </svg>
   );
@@ -945,7 +945,7 @@ export function CheckMarkIcon(props: IconProps) {
     >
       <path
         d="M19.28 6.763a.75.75 0 010 1.06L9.863 17.24a.75.75 0 01-1.06 0L4.72 13.157a.75.75 0 011.06-1.06l3.553 3.552 8.887-8.886a.75.75 0 011.06 0z"
-        fill="#98A2B3"
+        fill="var(--color-gray-400)"
       />
     </svg>
   );
@@ -985,7 +985,7 @@ export function LongArrowUpIcon(props: IconProps) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M9.639 3.05a.748.748 0 01.567-.26h.001c.192 0 .385.073.531.22l5 4.997a.75.75 0 11-1.06 1.06l-3.722-3.72v11.528a.75.75 0 11-1.5 0V5.353L5.739 9.068a.75.75 0 01-1.06-1.061l4.96-4.958z"
-        fill="#fff"
+        fill="var(--color-white)"
       />
     </svg>
   );
@@ -1005,7 +1005,7 @@ export function AttachmentIcon(props: IconProps) {
         fillRule="evenodd"
         clipRule="evenodd"
         d="M10.668 12.035V13.454a.668.668 0 11-1.336 0V5.127a.75.75 0 00-1.5 0v8.325a2.168 2.168 0 104.337 0V5.129v-.03a3.587 3.587 0 00-7.174.03v8.326a5.005 5.005 0 0010.01 0v-5.49a.75.75 0 10-1.5 0v5.49a3.505 3.505 0 11-7.01 0v-5.49a.79.79 0 000-.018V5.128a2.087 2.087 0 114.173 0v6.907z"
-        fill="#667085"
+        fill="var(--color-gray-500)"
       />
     </svg>
   );
@@ -1105,19 +1105,19 @@ export function GoogleIcon(props: IconProps) {
     >
       <path
         d="M19.2511 10.1943C19.2511 9.47489 19.1915 8.94989 19.0626 8.40546H10.6797V11.6526H15.6003C15.5011 12.4596 14.9654 13.6749 13.7749 14.4915L13.7582 14.6002L16.4087 16.6125L16.5924 16.6305C18.2788 15.104 19.2511 12.8582 19.2511 10.1943Z"
-        fill="#4285F4"
+        fill="var(--color-social-google-blue)"
       />
       <path
         d="M10.6788 18.75C13.0895 18.75 15.1133 17.9722 16.5915 16.6305L13.774 14.4916C13.0201 15.0069 12.0081 15.3666 10.6788 15.3666C8.31773 15.3666 6.31379 13.8402 5.59944 11.7305L5.49473 11.7392L2.73868 13.8295L2.70264 13.9277C4.17087 16.786 7.18674 18.75 10.6788 18.75Z"
-        fill="#34A853"
+        fill="var(--color-social-google-green)"
       />
       <path
         d="M5.60014 11.7305C5.41165 11.1861 5.30257 10.6027 5.30257 9.99998C5.30257 9.39716 5.41165 8.81385 5.59022 8.26941L5.58523 8.15346L2.79464 6.0296L2.70333 6.07216C2.0982 7.25829 1.75098 8.59026 1.75098 9.99998C1.75098 11.4097 2.0982 12.7416 2.70333 13.9277L5.60014 11.7305Z"
-        fill="#FBBC05"
+        fill="var(--color-social-google-yellow)"
       />
       <path
         d="M10.6789 4.63331C12.3554 4.63331 13.4864 5.34303 14.1312 5.93612L16.6511 3.525C15.1035 2.11528 13.0895 1.25 10.6789 1.25C7.18676 1.25 4.17088 3.21387 2.70264 6.07218L5.58953 8.26943C6.31381 6.15972 8.31776 4.63331 10.6789 4.63331Z"
-        fill="#EB4335"
+        fill="var(--color-social-google-red)"
       />
     </svg>
   );
@@ -1250,23 +1250,23 @@ export function FigmaIcon(props: IconProps) {
     >
       <path
         d="M8 24C10.2091 24 12 22.2091 12 20V16H8C5.79086 16 4 17.7909 4 20C4 22.2091 5.79086 24 8 24Z"
-        fill="#0ACF83"
+        fill="var(--color-brand-figma-green)"
       />
       <path
         d="M4 12C4 9.79086 5.79086 8 8 8H12V16H8C5.79086 16 4 14.2091 4 12Z"
-        fill="#A259FF"
+        fill="var(--color-brand-figma-purple)"
       />
       <path
         d="M4 4C4 1.79086 5.79086 0 8 0H12V8H8C5.79086 8 4 6.20914 4 4Z"
-        fill="#F24E1E"
+        fill="var(--color-brand-figma-orange)"
       />
       <path
         d="M12 0H16C18.2091 0 20 1.79086 20 4C20 6.20914 18.2091 8 16 8H12V0Z"
-        fill="#FF7262"
+        fill="var(--color-brand-figma-coral)"
       />
       <path
         d="M20 12C20 14.2091 18.2091 16 16 16C13.7909 16 12 14.2091 12 12C12 9.79086 13.7909 8 16 8C18.2091 8 20 9.79086 20 12Z"
-        fill="#1ABCFE"
+        fill="var(--color-brand-figma-blue)"
       />
     </svg>
   );

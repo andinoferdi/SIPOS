@@ -19,15 +19,15 @@ export function Pagination({
     <nav
       role="navigation"
       aria-label="Pagination"
-      className="text-[#344054] font-medium"
+      className="text-[var(--color-gray-700)] font-medium"
     >
-      <ul className="flex items-center justify-center flex-wrap gap-2 dark:text-[#98A2B3]">
+      <ul className="flex items-center justify-center flex-wrap gap-2 dark:text-[var(--color-gray-400)]">
         <li>
           <button
             disabled={currentPage === 1}
             aria-label="Previous page"
             onClick={() => onPageChange(currentPage - 1)}
-            className="px-3.5 py-2 rounded-lg shadow-xs border border-[#D0D5DD] hover:bg-gray-200/50 dark:bg-[#1D2939] dark:hover:bg-[#1D2939]/50 dark:border-[#344054] disabled:opacity-50 disabled:pointer-events-none"
+            className="px-3.5 py-2 rounded-lg shadow-xs border border-[var(--color-gray-300)] hover:bg-[var(--token-gray-200-50)] dark:bg-[var(--color-gray-800)] dark:hover:bg-[var(--color-gray-800)]/50 dark:border-[var(--color-gray-700)] disabled:opacity-50 disabled:pointer-events-none"
           >
             Previous
           </button>
@@ -71,10 +71,6 @@ export function Pagination({
               );
             }
 
-            /**
-             * This logic ensures pagination buttons from 1-3 and the last 2 pages are visible
-             * and the rest in the middle are hidden and replaced with and ellipsis.
-             */
             if (index > 2 && index < totalPages - 2) {
               return null;
             }
@@ -96,7 +92,7 @@ export function Pagination({
             disabled={currentPage === totalPages}
             aria-label="Next page"
             onClick={() => onPageChange(currentPage + 1)}
-            className="px-3.5 py-2 rounded-lg shadow-xs border border-[#D0D5DD] hover:bg-gray-200/50 dark:bg-[#1D2939] dark:hover:bg-[#1D2939]/50 dark:border-[#344054] disabled:opacity-50 disabled:pointer-events-none"
+            className="px-3.5 py-2 rounded-lg shadow-xs border border-[var(--color-gray-300)] hover:bg-[var(--token-gray-200-50)] dark:bg-[var(--color-gray-800)] dark:hover:bg-[var(--color-gray-800)]/50 dark:border-[var(--color-gray-700)] disabled:opacity-50 disabled:pointer-events-none"
           >
             Next
           </button>
@@ -122,8 +118,8 @@ function PaginationButton({
       className={cn(
         'size-10 rounded-lg shrink-0',
         isActive
-          ? 'bg-primary-500 text-white'
-          : 'hover:bg-gray-200/50 dark:hover:bg-gray-800/80'
+          ? 'bg-primary-500 text-[var(--token-white)]'
+          : 'hover:bg-[var(--token-gray-200-50)] dark:hover:bg-[var(--token-gray-800-80)]'
       )}
       onClick={() => onPageChange(page)}
     >
@@ -134,7 +130,7 @@ function PaginationButton({
 
 function PaginationEllipsis() {
   return (
-    <button className="size-10 rounded-lg shrink-0 hover:bg-gray-200/50 dark:hover:bg-gray-800/80 cursor-default">
+    <button className="size-10 rounded-lg shrink-0 hover:bg-[var(--token-gray-200-50)] dark:hover:bg-[var(--token-gray-800-80)] cursor-default">
       ...
     </button>
   );

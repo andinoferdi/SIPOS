@@ -4,14 +4,13 @@ import Image from "next/image";
 import ChatActionMenu from "./ChatActionMenu";
 import type { ChatContact } from "./types";
 
-interface ChatSidebarProps {
+type ChatSidebarProps = {
   contacts: ChatContact[];
   activeContactId: string;
   searchTerm: string;
   onSearchTermChange: (value: string) => void;
   onSelectContact: (contactId: string) => void;
-  onCloseMobileSidebar: () => void;
-}
+  onCloseMobileSidebar: () => void;};
 
 const presenceClassMap = {
   online: "bg-success-500",
@@ -28,17 +27,17 @@ export default function ChatSidebar({
   onCloseMobileSidebar,
 }: ChatSidebarProps) {
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-gray-200 bg-white dark:border-gray-800 dark:bg-white/[0.03]">
+    <div className="flex h-full flex-col rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)]">
       <div className="sticky px-4 pb-4 pt-4 sm:px-5 sm:pt-5 xl:pb-0">
         <div className="flex items-start justify-between">
-          <h3 className="text-theme-xl font-semibold text-gray-800 dark:text-white/90 sm:text-2xl">
+          <h3 className="text-theme-xl font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] sm:text-2xl">
             Chats
           </h3>
           <div className="flex items-center gap-2">
             <button
               type="button"
               onClick={onCloseMobileSidebar}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-gray-300 text-gray-700 transition hover:bg-gray-100 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-white/[0.03] xl:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--token-gray-300)] text-[var(--token-gray-700)] transition hover:bg-[var(--token-gray-100)] dark:border-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] xl:hidden"
               aria-label="Close contact list"
             >
               <CloseIcon />
@@ -58,7 +57,7 @@ export default function ChatSidebar({
             placeholder="Search..."
             value={searchTerm}
             onChange={(event) => onSearchTermChange(event.target.value)}
-            className="dark:bg-dark-900 h-11 w-full rounded-lg border border-gray-300 bg-transparent py-2.5 pl-[42px] pr-3.5 text-sm text-gray-800 shadow-theme-xs placeholder:text-gray-400 focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30 dark:focus:border-brand-800"
+            className="dark:bg-dark-900 h-11 w-full rounded-lg border border-[var(--token-gray-300)] bg-transparent py-2.5 pl-[42px] pr-3.5 text-sm text-[var(--token-gray-800)] shadow-theme-xs placeholder:text-[var(--token-gray-400)] focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-900)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)] dark:focus:border-brand-800"
           />
         </div>
       </div>
@@ -66,7 +65,7 @@ export default function ChatSidebar({
       <div className="flex-1 overflow-auto px-4 pb-4 sm:px-5">
         <div className="custom-scrollbar max-h-full space-y-1 overflow-auto">
           {contacts.length === 0 && (
-            <p className="px-3 py-2 text-sm text-gray-500 dark:text-gray-400">
+            <p className="px-3 py-2 text-sm text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
               No chats found for "{searchTerm}".
             </p>
           )}
@@ -77,8 +76,8 @@ export default function ChatSidebar({
                 key={contact.id}
                 type="button"
                 onClick={() => onSelectContact(contact.id)}
-                className={`flex w-full cursor-pointer items-center gap-3 rounded-lg p-3 text-left transition hover:bg-gray-100 dark:hover:bg-white/[0.03] ${
-                  isActive ? "bg-gray-100 dark:bg-white/[0.03]" : ""
+                className={`flex w-full cursor-pointer items-center gap-3 rounded-lg p-3 text-left transition hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-white-3)] ${
+                  isActive ? "bg-[var(--token-gray-100)] dark:bg-[var(--token-white-3)]" : ""
                 }`}
               >
                 <div className="relative h-12 w-full max-w-[48px] rounded-full">
@@ -90,7 +89,7 @@ export default function ChatSidebar({
                     className="h-full w-full overflow-hidden rounded-full object-cover object-center"
                   />
                   <span
-                    className={`absolute bottom-0 right-0 block h-3 w-3 rounded-full border-[1.5px] border-white dark:border-gray-900 ${
+                    className={`absolute bottom-0 right-0 block h-3 w-3 rounded-full border-[1.5px] border-[var(--token-white)] dark:border-[var(--token-gray-900)] ${
                       presenceClassMap[contact.presence]
                     }`}
                   />
@@ -99,14 +98,14 @@ export default function ChatSidebar({
                 <div className="w-full">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <h5 className="text-sm font-medium text-gray-800 dark:text-white/90">
+                      <h5 className="text-sm font-medium text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
                         {contact.name}
                       </h5>
-                      <p className="mt-0.5 text-theme-xs text-gray-500 dark:text-gray-400">
+                      <p className="mt-0.5 text-theme-xs text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
                         {contact.role}
                       </p>
                     </div>
-                    <span className="text-theme-xs text-gray-400">
+                    <span className="text-theme-xs text-[var(--token-gray-400)]">
                       {contact.lastActive}
                     </span>
                   </div>
@@ -124,7 +123,7 @@ function SearchIcon() {
   return (
     <span className="pointer-events-none absolute left-4 top-1/2 -translate-y-1/2">
       <svg
-        className="fill-gray-500 dark:fill-gray-400"
+        className="fill-[var(--token-gray-500)] dark:fill-[var(--token-gray-400)]"
         width="20"
         height="20"
         viewBox="0 0 20 20"

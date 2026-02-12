@@ -15,13 +15,13 @@ export default function PricingSection() {
     useState<BillingPeriodKey>('monthly');
 
   return (
-    <section className="py-14 md:py-30 bg-gray-50 dark:bg-[#171f2e] dark:bg-linear-180 dark:from-white/3 dark:from-[45.56%] dark:to-white/0">
+    <section className="py-14 md:py-30 bg-[var(--token-gray-50)] dark:bg-[var(--color-dark-primary)] dark:bg-linear-180 dark:from-[var(--token-white-3)] dark:from-[45.56%] dark:to-[var(--token-white-0)]">
       <div className="wrapper">
         <div className="max-w-2xl mx-auto mb-12 text-center">
-          <h2 className="mb-3 font-bold text-center text-gray-800 text-3xl dark:text-white/90 md:text-title-lg">
+          <h2 className="mb-3 font-bold text-center text-[var(--token-gray-800)] text-3xl dark:text-[var(--token-white-90)] md:text-title-lg">
             Start Your Content Creation Journey with AI
           </h2>
-          <p className="max-w-xl mx-auto leading-6 text-gray-500 dark:text-gray-400">
+          <p className="max-w-xl mx-auto leading-6 text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
             Collaborate with AI to generate content that resonates with your
             audience, drives and delivers meaningful results across all
             platforms.
@@ -29,9 +29,9 @@ export default function PricingSection() {
         </div>
 
         <div>
-          {/* Billing Toggle */}
+
           <div className="flex justify-center relative z-30 mt-12">
-            <div className="relative flex p-1 bg-white dark:bg-[#1D2939] rounded-full shadow-theme-xs">
+            <div className="relative flex p-1 bg-[var(--token-white)] dark:bg-[var(--color-gray-800)] rounded-full shadow-theme-xs">
               {BILLING_PERIODS.map((period) => (
                 <button
                   key={period.key}
@@ -39,9 +39,9 @@ export default function PricingSection() {
                   className={cn(
                     'relative flex items-center gap-2 px-6 py-2 text-sm font-medium transition-colors duration-200' +
                       ' rounded-full' +
-                      ' text-gray-700 dark:text-gray-400',
+                      ' text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)]',
                     {
-                      'bg-gray-800 dark:bg-white/[0.05] text-white dark:text-white':
+                      'bg-[var(--token-gray-800)] dark:bg-[var(--token-white-5)] text-[var(--token-white)] dark:text-[var(--token-white)]':
                         period.key === activeBillingPeriodKey,
                       'pr-2': period.saving,
                     }
@@ -50,7 +50,7 @@ export default function PricingSection() {
                   {period.label}
 
                   {period.saving && (
-                    <span className="bg-orange-400 text-white text-xs px-2 py-0.5 rounded-full">
+                    <span className="bg-[var(--token-orange-400)] text-[var(--token-white)] text-xs px-2 py-0.5 rounded-full">
                       Save {period.saving}
                     </span>
                   )}

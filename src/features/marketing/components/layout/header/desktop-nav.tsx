@@ -14,12 +14,11 @@ export default function DesktopNav() {
   }
 
   useEffect(() => {
-    // Hide dropdown on pathname changes
     setActiveDropdownKey('');
   }, [pathname]);
 
   return (
-    <nav className="hidden lg:flex lg:items-center bg-[#F9FAFB] dark:bg-white/3 rounded-full p-1 max-h-fit">
+    <nav className="hidden lg:flex lg:items-center bg-[var(--color-gray-50)] dark:bg-[var(--token-white-3)] rounded-full p-1 max-h-fit">
       {navItems.map((item) => {
         if (item.type === 'link') {
           return (
@@ -27,9 +26,9 @@ export default function DesktopNav() {
               key={item.href}
               href={item.href}
               className={cn(
-                'text-gray-500 dark:text-gray-400 text-sm px-4 py-1.5 rounded-full hover:text-primary-500 font-medium',
+                'text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] text-sm px-4 py-1.5 rounded-full hover:text-primary-500 font-medium',
                 {
-                  'bg-white dark:bg-white/5 font-medium text-gray-800 dark:text-white/90 shadow-xs':
+                  'bg-[var(--token-white)] dark:bg-[var(--token-white-5)] font-medium text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] shadow-xs':
                     pathname === item.href,
                 }
               )}
@@ -58,9 +57,9 @@ export default function DesktopNav() {
                   }
                 }}
                 className={cn(
-                  'text-gray-500 dark:text-gray-400 hover:text-primary-500 group text-sm inline-flex gap-1 items-center px-4 py-1.5 font-medium rounded-full',
+                  'text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] hover:text-primary-500 group text-sm inline-flex gap-1 items-center px-4 py-1.5 font-medium rounded-full',
                   {
-                    'bg-white dark:bg-white/5 font-medium text-gray-800 dark:text-white/90 shadow-xs':
+                    'bg-[var(--token-white)] dark:bg-[var(--token-white-5)] font-medium text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] shadow-xs':
                       item.items.some(({ href }) => pathname?.includes(href)),
                   }
                 )}
@@ -82,14 +81,14 @@ export default function DesktopNav() {
                       toggleThisDropdown();
                     }
                   }}
-                  className="absolute right-0 w-[266px] bg-white dark:bg-dark-secondary dark:border-gray-800 rounded-2xl shadow-theme-lg border border-gray-100 p-3 z-50"
+                  className="absolute right-0 w-[266px] bg-[var(--token-white)] dark:bg-dark-secondary dark:border-[var(--token-gray-800)] rounded-2xl shadow-theme-lg border border-[var(--token-gray-100)] p-3 z-50"
                 >
                   <div className="space-y-1">
                     {item.items.map((subItem) => (
                       <Link
                         key={subItem.href}
                         href={subItem.href}
-                        className="flex items-center px-4 py-3 text-sm font-medium rounded-lg text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-white/5"
+                        className="flex items-center px-4 py-3 text-sm font-medium rounded-lg text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-white-5)]"
                       >
                         {subItem.label}
                       </Link>

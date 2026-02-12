@@ -72,7 +72,7 @@
         "./src/features/marketing/components/sections/*"
       ],
       "@/components/layout/*": [
-        "./src/features/marketing/components/layout/*"
+        "./src/components/layout/*"
       ],
       "@/components/generator/*": [
         "./src/features/ai/components/generator/*"

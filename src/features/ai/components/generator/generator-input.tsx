@@ -31,7 +31,7 @@ export default function GeneratorInput({
       <div className="h-4" />
 
       <div
-        className="bg-white/15 dark:bg-white/5 border border-[#E4E7EC] dark:border-white/10 rounded-3xl backdrop-blur-[10px] shadow-theme-md overflow-hidden aria-disabled:opacity-70 aria-disabled:pointer-events-none"
+        className="bg-[var(--token-white-15)] dark:bg-[var(--token-white-5)] border border-[var(--color-gray-200)] dark:border-[var(--token-white-10)] rounded-3xl backdrop-blur-[10px] shadow-theme-md overflow-hidden aria-disabled:opacity-70 aria-disabled:pointer-events-none"
         aria-disabled={disabled}
       >
         <div className="p-5 pb-0 pr-[calc((var(--spacing)*5)-10px)]">
@@ -46,7 +46,7 @@ export default function GeneratorInput({
                 submitButtonRef.current?.click();
               }
             }}
-            className="dark:text-white/90 focus:outline-0 placeholder:text-sm dark:placeholder:text-white/50 resize-none max-h-44 leading-5 w-full custom-scrollbar pb-8"
+            className="dark:text-[var(--token-white-90)] focus:outline-0 placeholder:text-sm dark:placeholder:text-[var(--token-white-50)] resize-none max-h-44 leading-5 w-full custom-scrollbar pb-8"
             required
             rows={1}
           />
@@ -62,13 +62,13 @@ export default function GeneratorInput({
             />
             <AttachmentIcon />
 
-            <span className="text-[#98A2B3] text-sm">Attach file</span>
+            <span className="text-[var(--color-gray-400)] text-sm">Attach file</span>
           </label>
 
           <button
             type="submit"
             ref={submitButtonRef}
-            className="size-10 flex bg-[#1D2939] dark:bg-primary-500 dark:disabled:bg-white/20 transition items-center justify-center rounded-full text-white"
+            className="size-10 flex bg-[var(--color-gray-800)] dark:bg-primary-500 dark:disabled:bg-[var(--token-white-20)] transition items-center justify-center rounded-full text-[var(--token-white)]"
             disabled={!value?.trim()}
           >
             <span className="sr-only">Submit</span>

@@ -14,10 +14,10 @@ export default function NotFoundPage() {
           xmlns="http://www.w3.org/2000/svg"
         >
           <g opacity="0.7" filter="url(#filter0_f_9289_13491)">
-            <circle cx="772" cy="-167.171" r="250" fill="#4E6EFF" />
+            <circle cx="772" cy="-167.171" r="250" fill="var(--color-accent-blue-500)" />
           </g>
           <g opacity="0.3" filter="url(#filter1_f_9289_13491)">
-            <circle cx="450" cy="-167.171" r="250" fill="#FF58D5" />
+            <circle cx="450" cy="-167.171" r="250" fill="var(--color-accent-pink-500)" />
           </g>
           <defs>
             <filter
@@ -80,15 +80,15 @@ export default function NotFoundPage() {
           className="mb-10 hidden dark:block"
           alt=""
         />
-        <h1 className="text-4xl font-black text-gray-800 mb-2 dark:text-white/90">
+        <h1 className="text-4xl font-black text-[var(--token-gray-800)] mb-2 dark:text-[var(--token-white-90)]">
           OPPS! Page Not Found
         </h1>
-        <p className="text-gray-500 text-base dark:text-gray-400">
+        <p className="text-[var(--token-gray-500)] text-base dark:text-[var(--token-gray-400)]">
           We are sorry, But the page you requested was not found
         </p>
         <Link
           href="/"
-          className="inline-flex mt-8 text-white text-sm gap-2 items-center bg-primary-500 rounded-full py-3 px-5 transition hover:bg-primary-600"
+          className="inline-flex mt-8 text-[var(--token-white)] text-sm gap-2 items-center bg-primary-500 rounded-full py-3 px-5 transition hover:bg-primary-600"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"

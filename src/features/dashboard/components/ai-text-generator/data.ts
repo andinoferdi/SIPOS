@@ -2,12 +2,11 @@
 
 export type HistoryGroup = 'Today' | 'Yesterday';
 
-export interface HistorySession {
+export type HistorySession = {
   id: string;
   title: string;
   group: HistoryGroup;
-  messages: UIMessage[];
-}
+  messages: UIMessage[];};
 
 const createMessage = (
   id: string,

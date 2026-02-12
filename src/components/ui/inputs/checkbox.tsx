@@ -4,12 +4,10 @@ import { CheckIconSm } from "@/icons/icons";
 import { cn } from '@/lib/utils';
 import * as React from "react";
 
-export interface CheckboxProps
-  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> {
+export type CheckboxProps = Omit<React.InputHTMLAttributes<HTMLInputElement>, "type"> & {
   label?: React.ReactNode;
   checkboxClassName?: string;
-  labelClassName?: string;
-}
+  labelClassName?: string;};
 
 const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
   (
@@ -61,7 +59,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
           className={cn(
             'flex h-4 w-4 items-center justify-center rounded border transition-all duration-200',
             'peer-checked:border-primary-500 peer-checked:bg-primary-500',
-            'peer-not-checked:border-gray-300 peer-not-checked:bg-white dark:peer-not-checked:border-gray-700 dark:peer-not-checked:bg-transparent',
+            'peer-not-checked:border-[var(--token-gray-300)] peer-not-checked:bg-[var(--token-white)] dark:peer-not-checked:border-[var(--token-gray-700)] dark:peer-not-checked:bg-transparent',
             props.disabled && 'opacity-50',
             checkboxClassName
           )}
@@ -72,7 +70,7 @@ const Checkbox = React.forwardRef<HTMLInputElement, CheckboxProps>(
         {label && (
           <span
             className={cn(
-              'block text-sm text-gray-700 dark:text-gray-400',
+              'block text-sm text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)]',
               labelClassName
             )}
           >

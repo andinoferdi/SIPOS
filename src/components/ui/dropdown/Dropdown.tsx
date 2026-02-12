@@ -2,12 +2,11 @@
 import type React from "react";
 import { useEffect, useRef } from "react";
 
-interface DropdownProps {
+type DropdownProps = {
   isOpen: boolean;
   onClose: () => void;
   children: React.ReactNode;
-  className?: string;
-}
+  className?: string;};
 
 export const Dropdown: React.FC<DropdownProps> = ({
   isOpen,
@@ -34,13 +33,12 @@ export const Dropdown: React.FC<DropdownProps> = ({
   };
 }, [onClose]);
 
-
   if (!isOpen) return null;
 
   return (
     <div
       ref={dropdownRef}
-      className={`absolute z-40  right-0 mt-2  rounded-xl border border-gray-200 bg-white  shadow-theme-lg dark:border-gray-800 dark:bg-gray-dark ${className}`}
+      className={`absolute z-40  right-0 mt-2  rounded-xl border border-[var(--token-gray-200)] bg-[var(--token-white)]  shadow-theme-lg dark:border-[var(--token-gray-800)] dark:bg-[var(--token-gray-dark)] ${className}`}
     >
       {children}
     </div>

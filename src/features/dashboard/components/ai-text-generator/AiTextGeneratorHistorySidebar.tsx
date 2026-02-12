@@ -2,7 +2,7 @@
 
 import type { HistorySession } from "./data";
 
-interface AiTextGeneratorHistorySidebarProps {
+type AiTextGeneratorHistorySidebarProps = {
   sessions: HistorySession[];
   activeSessionId: string | null;
   searchTerm: string;
@@ -10,8 +10,7 @@ interface AiTextGeneratorHistorySidebarProps {
   onSearchTermChange: (value: string) => void;
   onNewChat: () => void;
   onSelectSession: (session: HistorySession) => void;
-  onToggleShowMore: () => void;
-}
+  onToggleShowMore: () => void;};
 
 export default function AiTextGeneratorHistorySidebar({
   sessions,
@@ -34,11 +33,11 @@ export default function AiTextGeneratorHistorySidebar({
       : yesterdaySessions.slice(0, 4);
 
   return (
-    <aside className="flex h-full w-[280px] flex-col border-l border-gray-200 bg-white p-6 dark:border-gray-800 dark:bg-gray-900">
+    <aside className="flex h-full w-[280px] flex-col border-l border-[var(--token-gray-200)] bg-[var(--token-white)] p-6 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-gray-900)]">
       <button
         type="button"
         onClick={onNewChat}
-        className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-4 py-3 text-sm font-medium text-white transition hover:bg-brand-600"
+        className="flex w-full items-center justify-center gap-2 rounded-lg bg-brand-500 px-4 py-3 text-sm font-medium text-[var(--token-white)] transition hover:bg-brand-600"
       >
         <PlusIcon />
         New Chat
@@ -58,7 +57,7 @@ export default function AiTextGeneratorHistorySidebar({
             placeholder="Search..."
             value={searchTerm}
             onChange={(event) => onSearchTermChange(event.target.value)}
-            className="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-gray-300 bg-transparent py-2.5 pl-[42px] pr-3.5 text-sm text-gray-800 placeholder:text-gray-400 focus:outline-hidden focus:ring-3 dark:border-gray-700 dark:bg-gray-900 dark:text-white/90 dark:placeholder:text-white/30"
+            className="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-[var(--token-gray-300)] bg-transparent py-2.5 pl-[42px] pr-3.5 text-sm text-[var(--token-gray-800)] placeholder:text-[var(--token-gray-400)] focus:outline-hidden focus:ring-3 dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-900)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)]"
           />
         </div>
       </div>
@@ -78,7 +77,7 @@ export default function AiTextGeneratorHistorySidebar({
             activeSessionId={activeSessionId}
             onSelectSession={onSelectSession}
           />
-          <div className="pointer-events-none absolute bottom-0 left-0 z-10 h-8 w-full bg-gradient-to-t from-white to-transparent dark:from-gray-900" />
+          <div className="pointer-events-none absolute bottom-0 left-0 z-10 h-8 w-full bg-gradient-to-t from-[var(--token-white)] to-transparent dark:from-[var(--token-gray-900)]" />
         </div>
       </div>
 
@@ -87,7 +86,7 @@ export default function AiTextGeneratorHistorySidebar({
           <button
             type="button"
             onClick={onToggleShowMore}
-            className="flex w-full items-center justify-between text-xs font-medium text-gray-400"
+            className="flex w-full items-center justify-between text-xs font-medium text-[var(--token-gray-400)]"
           >
             <span>{showAllHistory ? "Show less..." : "Show more..."}</span>
             <ChevronIcon className={showAllHistory ? "rotate-180" : ""} />
@@ -98,12 +97,11 @@ export default function AiTextGeneratorHistorySidebar({
   );
 }
 
-interface HistoryGroupProps {
+type HistoryGroupProps = {
   title: string;
   sessions: HistorySession[];
   activeSessionId: string | null;
-  onSelectSession: (session: HistorySession) => void;
-}
+  onSelectSession: (session: HistorySession) => void;};
 
 function HistoryGroup({
   title,
@@ -115,28 +113,28 @@ function HistoryGroup({
 
   return (
     <div>
-      <p className="mb-3 pl-3 text-xs uppercase text-gray-400">{title}</p>
+      <p className="mb-3 pl-3 text-xs uppercase text-[var(--token-gray-400)]">{title}</p>
       <ul className="space-y-1">
         {sessions.map((session) => {
           const isActive = activeSessionId === session.id;
           return (
             <li
               key={session.id}
-              className={`group relative rounded-full px-3 py-1.5 transition hover:bg-gray-50 dark:hover:bg-gray-950 ${
-                isActive ? "bg-gray-100 dark:bg-gray-950" : ""
+              className={`group relative rounded-full px-3 py-1.5 transition hover:bg-[var(--token-gray-50)] dark:hover:bg-[var(--token-gray-950)] ${
+                isActive ? "bg-[var(--token-gray-100)] dark:bg-[var(--token-gray-950)]" : ""
               }`}
             >
               <div className="flex items-center justify-between gap-2">
                 <button
                   type="button"
                   onClick={() => onSelectSession(session)}
-                  className="block truncate text-left text-sm text-gray-700 dark:text-gray-400"
+                  className="block truncate text-left text-sm text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)]"
                 >
                   {session.title}
                 </button>
                 <button
                   type="button"
-                  className="invisible ml-2 rounded-full p-1 text-gray-700 hover:bg-gray-200 group-hover:visible dark:bg-gray-800 dark:text-gray-400"
+                  className="invisible ml-2 rounded-full p-1 text-[var(--token-gray-700)] hover:bg-[var(--token-gray-200)] group-hover:visible dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)]"
                   aria-label="History options"
                 >
                   <MoreDotsIcon />
@@ -174,7 +172,7 @@ function PlusIcon() {
 function SearchIcon() {
   return (
     <svg
-      className="fill-gray-500 dark:fill-gray-400"
+      className="fill-[var(--token-gray-500)] dark:fill-[var(--token-gray-400)]"
       width="20"
       height="20"
       viewBox="0 0 20 20"

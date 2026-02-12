@@ -1,5 +1,4 @@
 import React from "react";
-// import { VectorMap } from "@react-jvectormap/core";
 import { worldMill } from "@react-jvectormap/world";
 import dynamic from "next/dynamic";
 
@@ -8,10 +7,8 @@ const VectorMap = dynamic(
   { ssr: false }
 );
 
-// Define the component props
-interface CountryMapProps {
-  mapColor?: string;
-}
+type CountryMapProps = {
+  mapColor?: string;};
 
 type MarkerStyle = {
   initial: {
@@ -40,7 +37,7 @@ const CountryMap: React.FC<CountryMapProps> = ({ mapColor }) => {
       markerStyle={
         {
           initial: {
-            fill: "#465FFF",
+            fill: "var(--color-brand-500)",
             r: 4, // Custom radius for markers
           }, // Type assertion to bypass strict CSS property checks
         } as MarkerStyle
@@ -52,27 +49,27 @@ const CountryMap: React.FC<CountryMapProps> = ({ mapColor }) => {
             latLng: [37.2580397, -104.657039],
             name: "United States",
             style: {
-              fill: "#465FFF",
+              fill: "var(--color-brand-500)",
               borderWidth: 1,
               borderColor: "white",
-              stroke: "#383f47",
+              stroke: "var(--color-map-border-dark)",
             },
           },
           {
             latLng: [20.7504374, 73.7276105],
             name: "India",
-            style: { fill: "#465FFF", borderWidth: 1, borderColor: "white" },
+            style: { fill: "var(--color-brand-500)", borderWidth: 1, borderColor: "white" },
           },
           {
             latLng: [53.613, -11.6368],
             name: "United Kingdom",
-            style: { fill: "#465FFF", borderWidth: 1, borderColor: "white" },
+            style: { fill: "var(--color-brand-500)", borderWidth: 1, borderColor: "white" },
           },
           {
             latLng: [-25.0304388, 115.2092761],
             name: "Sweden",
             style: {
-              fill: "#465FFF",
+              fill: "var(--color-brand-500)",
               borderWidth: 1,
               borderColor: "white",
               strokeOpacity: 0,
@@ -87,7 +84,7 @@ const CountryMap: React.FC<CountryMapProps> = ({ mapColor }) => {
       zoomStep={1.5}
       regionStyle={{
         initial: {
-          fill: mapColor || "#D0D5DD",
+          fill: mapColor || "var(--color-gray-300)",
           fillOpacity: 1,
           fontFamily: "Outfit",
           stroke: "none",
@@ -97,17 +94,17 @@ const CountryMap: React.FC<CountryMapProps> = ({ mapColor }) => {
         hover: {
           fillOpacity: 0.7,
           cursor: "pointer",
-          fill: "#465fff",
+          fill: "var(--color-brand-500)",
           stroke: "none",
         },
         selected: {
-          fill: "#465FFF",
+          fill: "var(--color-brand-500)",
         },
         selectedHover: {},
       }}
       regionLabelStyle={{
         initial: {
-          fill: "#35373e",
+          fill: "var(--color-map-label-dark)",
           fontWeight: 500,
           fontSize: "13px",
           stroke: "none",

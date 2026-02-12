@@ -14,13 +14,13 @@ export function PricingCard({ plan, billingPeriod }: Props) {
   return (
     <div className="relative">
       <div
-        className={`bg-white dark:bg-dark-primary rounded-[20px] shadow-one relative z-10 h-full ${
+        className={`bg-[var(--token-white)] dark:bg-dark-primary rounded-[20px] shadow-one relative z-10 h-full ${
           plan.popular ? 'relative border-2 border-primary-500' : ''
         }`}
       >
         <div className="p-8">
           <div className="flex items-center justify-between">
-            <h2 className="text-lg font-semibold text-gray-800 dark:text-gray-400">
+            <h2 className="text-lg font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-gray-400)]">
               {plan.name}
             </h2>
             {plan.popular && (
@@ -30,17 +30,17 @@ export function PricingCard({ plan, billingPeriod }: Props) {
             )}
           </div>
           <p className="flex items-baseline mt-4">
-            <span className="text-4xl font-semibold text-gray-800 dark:text-white/90">
+            <span className="text-4xl font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
               {plan.pricing[billingPeriod].formattedPrice}
             </span>
 
             {!!plan.pricing[billingPeriod].amount && (
-              <span className="ml-1 text-sm text-gray-500 dark:text-gray-400">
+              <span className="ml-1 text-sm text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
                 {billingPeriod === 'yearly' ? 'Per year' : 'Per month'}
               </span>
             )}
           </p>
-          <p className="mt-3 text-sm text-gray-500 dark:text-gray-400">
+          <p className="mt-3 text-sm text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
             {plan.description}
           </p>
 
@@ -51,10 +51,10 @@ export function PricingCard({ plan, billingPeriod }: Props) {
               className={cn(
                 'block w-full px-8 py-3.5 mt-7 text-sm font-medium text-center rounded-full transition',
                 {
-                  'dark:bg-dark-primary dark:text-white/90 dark:hover:bg-gray-800 dark:border-gray-800 text-gray-800 bg-white border border-gray-200 hover:bg-gray-50':
+                  'dark:bg-dark-primary dark:text-[var(--token-white-90)] dark:hover:bg-[var(--token-gray-800)] dark:border-[var(--token-gray-800)] text-[var(--token-gray-800)] bg-[var(--token-white)] border border-[var(--token-gray-200)] hover:bg-[var(--token-gray-50)]':
                     plan.name.includes('Free'),
-                  'gradient-btn text-white': plan.popular,
-                  'dark:hover:bg-primary-500 dark:bg-white/[0.03] hover:bg-gray-900 text-white bg-gray-700':
+                  'gradient-btn text-[var(--token-white)]': plan.popular,
+                  'dark:hover:bg-primary-500 dark:bg-[var(--token-white-3)] hover:bg-[var(--token-gray-900)] text-[var(--token-white)] bg-[var(--token-gray-700)]':
                     !plan.popular && !plan.name.includes('Free'),
                 }
               )}
@@ -67,11 +67,11 @@ export function PricingCard({ plan, billingPeriod }: Props) {
           <ul className="space-y-3">
             {plan.features.map((feature) => (
               <li key={feature} className="flex items-start">
-                <div className="flex-shrink-0 text-gray-500 dark:text-gray-400">
+                <div className="flex-shrink-0 text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
                   <CheckIcon />
                 </div>
 
-                <p className="ml-2 text-sm text-gray-800 dark:text-white/90">
+                <p className="ml-2 text-sm text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
                   {feature}
                 </p>
               </li>
@@ -91,7 +91,7 @@ function ContactSalesLink({ children }: PropsWithChildren) {
   return (
     <Link
       href="/contact"
-      className="block w-full px-8 py-3.5 mt-7 text-sm font-medium text-center rounded-full transition dark:hover:bg-primary-500 dark:bg-white/[0.03] hover:bg-gray-900 text-white bg-gray-700"
+      className="block w-full px-8 py-3.5 mt-7 text-sm font-medium text-center rounded-full transition dark:hover:bg-primary-500 dark:bg-[var(--token-white-3)] hover:bg-[var(--token-gray-900)] text-[var(--token-white)] bg-[var(--token-gray-700)]"
     >
       {children}
     </Link>

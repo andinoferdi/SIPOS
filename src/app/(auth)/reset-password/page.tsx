@@ -48,7 +48,7 @@ function ResetPasswordSection({ children }: ResetPasswordSectionProps) {
     <section className="py-28 relative overflow-hidden">
       <div className="wrapper">
         <div className="relative max-w-[592px] mx-auto">
-          <div className="contact-wrapper border p-14 relative z-30 bg-white dark:bg-dark-primary dark:border-dark-primary border-gray-100">{children}</div>
+          <div className="contact-wrapper border p-14 relative z-30 bg-[var(--token-white)] dark:bg-dark-primary dark:border-dark-primary border-[var(--token-gray-100)]">{children}</div>
         </div>
       </div>
 

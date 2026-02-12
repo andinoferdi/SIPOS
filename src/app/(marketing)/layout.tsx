@@ -1,4 +1,4 @@
-import SiteShell from '@/features/marketing/components/layout/site-shell';
+import SiteShell from '@/components/layout/site-shell';
 import type { ReactNode } from 'react';
 
 type MarketingLayoutProps = {

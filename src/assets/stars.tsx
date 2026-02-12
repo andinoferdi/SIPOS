@@ -28,8 +28,8 @@ export function Stars() {
           y2="15.2943"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#FF58D5" />
-          <stop offset="1" stopColor="#FFA0E7" />
+          <stop stopColor="var(--color-accent-pink-500)" />
+          <stop offset="1" stopColor="var(--color-accent-pink-300)" />
         </linearGradient>
         <linearGradient
           id="paint1_linear_9274_1469"
@@ -39,8 +39,8 @@ export function Stars() {
           y2="21.0295"
           gradientUnits="userSpaceOnUse"
         >
-          <stop stopColor="#7A5AF8" />
-          <stop offset="1" stopColor="#B5A2FF" />
+          <stop stopColor="var(--color-primary-500)" />
+          <stop offset="1" stopColor="var(--color-accent-purple-300)" />
         </linearGradient>
       </defs>
     </svg>

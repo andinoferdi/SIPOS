@@ -15,30 +15,30 @@ export default function ModalBasedAlerts() {
       <div className="flex flex-wrap items-center gap-3">
         <button
           onClick={successModal.openModal}
-          className="px-4 py-3 text-sm font-medium text-white rounded-lg bg-success-500 shadow-theme-xs hover:bg-success-600"
+          className="px-4 py-3 text-sm font-medium text-[var(--token-white)] rounded-lg bg-success-500 shadow-theme-xs hover:bg-success-600"
         >
           Success Alert
         </button>
         <button
           onClick={infoModal.openModal}
-          className="px-4 py-3 text-sm font-medium text-white rounded-lg bg-blue-light-500 shadow-theme-xs hover:bg-blue-light-600"
+          className="px-4 py-3 text-sm font-medium text-[var(--token-white)] rounded-lg bg-[var(--token-blue-light-500)] shadow-theme-xs hover:bg-[var(--token-blue-light-600)]"
         >
           Info Alert
         </button>
         <button
           onClick={warningModal.openModal}
-          className="px-4 py-3 text-sm font-medium text-white rounded-lg bg-warning-500 shadow-theme-xs hover:bg-warning-600"
+          className="px-4 py-3 text-sm font-medium text-[var(--token-white)] rounded-lg bg-warning-500 shadow-theme-xs hover:bg-warning-600"
         >
           Warning Alert
         </button>
         <button
           onClick={errorModal.openModal}
-          className="px-4 py-3 text-sm font-medium text-white rounded-lg bg-error-500 shadow-theme-xs hover:bg-error-600"
+          className="px-4 py-3 text-sm font-medium text-[var(--token-white)] rounded-lg bg-error-500 shadow-theme-xs hover:bg-error-600"
         >
           Danger Alert
         </button>
       </div>
-      {/* Success Modal */}
+
       <Modal
         isOpen={successModal.isOpen}
         onClose={successModal.closeModal}
@@ -79,10 +79,10 @@ export default function ModalBasedAlerts() {
               </svg>
             </span>
           </div>
-          <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90 sm:text-title-sm">
+          <h4 className="mb-2 text-2xl font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] sm:text-title-sm">
             Well Done!
           </h4>
-          <p className="text-sm leading-6 text-gray-500 dark:text-gray-400">
+          <p className="text-sm leading-6 text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
             Lorem ipsum dolor sit amet consectetur. Feugiat ipsum libero tempor
             felis risus nisi non. Quisque eu ut tempor curabitur.
           </p>
@@ -90,14 +90,14 @@ export default function ModalBasedAlerts() {
           <div className="flex items-center justify-center w-full gap-3 mt-7">
             <button
               type="button"
-              className="flex justify-center w-full px-4 py-3 text-sm font-medium text-white rounded-lg bg-success-500 shadow-theme-xs hover:bg-success-600 sm:w-auto"
+              className="flex justify-center w-full px-4 py-3 text-sm font-medium text-[var(--token-white)] rounded-lg bg-success-500 shadow-theme-xs hover:bg-success-600 sm:w-auto"
             >
               Okay, Got It
             </button>
           </div>
         </div>
       </Modal>
-      {/* Info Modal */}
+
       <Modal
         isOpen={infoModal.isOpen}
         onClose={infoModal.closeModal}
@@ -106,7 +106,7 @@ export default function ModalBasedAlerts() {
         <div className="text-center">
           <div className="relative flex items-center justify-center z-1 mb-7">
             <svg
-              className="fill-blue-light-50 dark:fill-blue-light-500/15"
+              className="fill-[var(--token-blue-light-50)] dark:fill-[var(--token-blue-light-500-15)]"
               width="90"
               height="90"
               viewBox="0 0 90 90"
@@ -122,7 +122,7 @@ export default function ModalBasedAlerts() {
 
             <span className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
               <svg
-                className="fill-blue-light-500 dark:fill-blue-light-500"
+                className="fill-[var(--token-blue-light-500)] dark:fill-[var(--token-blue-light-500)]"
                 width="38"
                 height="38"
                 viewBox="0 0 38 38"
@@ -139,10 +139,10 @@ export default function ModalBasedAlerts() {
             </span>
           </div>
 
-          <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90 sm:text-title-sm">
+          <h4 className="mb-2 text-2xl font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] sm:text-title-sm">
             Information Alert!
           </h4>
-          <p className="text-sm leading-6 text-gray-500 dark:text-gray-400">
+          <p className="text-sm leading-6 text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
             Lorem ipsum dolor sit amet consectetur. Feugiat ipsum libero tempor
             felis risus nisi non. Quisque eu ut tempor curabitur.
           </p>
@@ -150,14 +150,14 @@ export default function ModalBasedAlerts() {
           <div className="flex items-center justify-center w-full gap-3 mt-7">
             <button
               type="button"
-              className="flex justify-center w-full px-4 py-3 text-sm font-medium text-white rounded-lg bg-blue-light-500 shadow-theme-xs hover:bg-blue-light-600 sm:w-auto"
+              className="flex justify-center w-full px-4 py-3 text-sm font-medium text-[var(--token-white)] rounded-lg bg-[var(--token-blue-light-500)] shadow-theme-xs hover:bg-[var(--token-blue-light-600)] sm:w-auto"
             >
               Okay, Got It
             </button>
           </div>
         </div>
       </Modal>
-      {/* Warning Modal */}
+
       <Modal
         isOpen={warningModal.isOpen}
         onClose={warningModal.closeModal}
@@ -182,7 +182,7 @@ export default function ModalBasedAlerts() {
 
             <span className="absolute -translate-x-1/2 -translate-y-1/2 left-1/2 top-1/2">
               <svg
-                className="fill-warning-600 dark:fill-orange-400"
+                className="fill-warning-600 dark:fill-[var(--token-orange-400)]"
                 width="38"
                 height="38"
                 viewBox="0 0 38 38"
@@ -199,10 +199,10 @@ export default function ModalBasedAlerts() {
             </span>
           </div>
 
-          <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90 sm:text-title-sm">
+          <h4 className="mb-2 text-2xl font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] sm:text-title-sm">
             Warning Alert!
           </h4>
-          <p className="text-sm leading-6 text-gray-500 dark:text-gray-400">
+          <p className="text-sm leading-6 text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
             Lorem ipsum dolor sit amet consectetur. Feugiat ipsum libero tempor
             felis risus nisi non. Quisque eu ut tempor curabitur.
           </p>
@@ -210,14 +210,14 @@ export default function ModalBasedAlerts() {
           <div className="flex items-center justify-center w-full gap-3 mt-7">
             <button
               type="button"
-              className="flex justify-center w-full px-4 py-3 text-sm font-medium text-white rounded-lg bg-warning-500 shadow-theme-xs hover:bg-warning-600 sm:w-auto"
+              className="flex justify-center w-full px-4 py-3 text-sm font-medium text-[var(--token-white)] rounded-lg bg-warning-500 shadow-theme-xs hover:bg-warning-600 sm:w-auto"
             >
               Okay, Got It
             </button>
           </div>
         </div>
       </Modal>
-      {/* Error Modal */}
+
       <Modal
         isOpen={errorModal.isOpen}
         onClose={errorModal.closeModal}
@@ -259,10 +259,10 @@ export default function ModalBasedAlerts() {
             </span>
           </div>
 
-          <h4 className="mb-2 text-2xl font-semibold text-gray-800 dark:text-white/90 sm:text-title-sm">
+          <h4 className="mb-2 text-2xl font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] sm:text-title-sm">
             Danger Alert!
           </h4>
-          <p className="text-sm leading-6 text-gray-500 dark:text-gray-400">
+          <p className="text-sm leading-6 text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
             Lorem ipsum dolor sit amet consectetur. Feugiat ipsum libero tempor
             felis risus nisi non. Quisque eu ut tempor curabitur.
           </p>
@@ -270,7 +270,7 @@ export default function ModalBasedAlerts() {
           <div className="flex items-center justify-center w-full gap-3 mt-7">
             <button
               type="button"
-              className="flex justify-center w-full px-4 py-3 text-sm font-medium text-white rounded-lg bg-error-500 shadow-theme-xs hover:bg-error-600 sm:w-auto"
+              className="flex justify-center w-full px-4 py-3 text-sm font-medium text-[var(--token-white)] rounded-lg bg-error-500 shadow-theme-xs hover:bg-error-600 sm:w-auto"
             >
               Okay, Got It
             </button>

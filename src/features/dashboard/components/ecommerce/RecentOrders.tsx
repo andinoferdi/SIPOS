@@ -8,23 +8,19 @@ import {
 import Badge from "../ui/badge/Badge";
 import Image from "next/image";
 
-// Define the TypeScript interface for the table rows
-interface Product {
+type Product = {
   id: number; // Unique identifier for each product
   name: string; // Product name
   variants: string; // Number of variants (e.g., "1 Variant", "2 Variants")
   category: string; // Category of the product
   price: string; // Price of the product (as a string with currency symbol)
-  // status: string; // Status of the product
   image: string; // URL or path to the product image
-  status: "Delivered" | "Pending" | "Canceled"; // Status of the product
-}
+  status: "Delivered" | "Pending" | "Canceled";};
 
-// Define the table data using the interface
 const tableData: Product[] = [
   {
     id: 1,
-    name: "MacBook Pro 13”",
+    name: "MacBook Pro 13Ã¢â‚¬Â",
     variants: "2 Variants",
     category: "Laptop",
     price: "$2399.00",
@@ -71,18 +67,18 @@ const tableData: Product[] = [
 
 export default function RecentOrders() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-gray-200 bg-white px-4 pb-3 pt-4 dark:border-gray-800 dark:bg-white/[0.03] sm:px-6">
+    <div className="overflow-hidden rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] px-4 pb-3 pt-4 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)] sm:px-6">
       <div className="flex flex-col gap-2 mb-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
-          <h3 className="text-lg font-semibold text-gray-800 dark:text-white/90">
+          <h3 className="text-lg font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
             Recent Orders
           </h3>
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-theme-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200">
+          <button className="inline-flex items-center gap-2 rounded-lg border border-[var(--token-gray-300)] bg-[var(--token-white)] px-4 py-2.5 text-theme-sm font-medium text-[var(--token-gray-700)] shadow-theme-xs hover:bg-[var(--token-gray-50)] hover:text-[var(--token-gray-800)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] dark:hover:text-[var(--token-gray-200)]">
             <svg
-              className="stroke-current fill-white dark:fill-gray-800"
+              className="stroke-current fill-[var(--token-white)] dark:fill-[var(--token-gray-800)]"
               width="20"
               height="20"
               viewBox="0 0 20 20"
@@ -118,44 +114,42 @@ export default function RecentOrders() {
             </svg>
             Filter
           </button>
-          <button className="inline-flex items-center gap-2 rounded-lg border border-gray-300 bg-white px-4 py-2.5 text-theme-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200">
+          <button className="inline-flex items-center gap-2 rounded-lg border border-[var(--token-gray-300)] bg-[var(--token-white)] px-4 py-2.5 text-theme-sm font-medium text-[var(--token-gray-700)] shadow-theme-xs hover:bg-[var(--token-gray-50)] hover:text-[var(--token-gray-800)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] dark:hover:text-[var(--token-gray-200)]">
             See all
           </button>
         </div>
       </div>
       <div className="max-w-full overflow-x-auto">
         <Table>
-          {/* Table Header */}
-          <TableHeader className="border-gray-100 dark:border-gray-800 border-y">
+
+          <TableHeader className="border-[var(--token-gray-100)] dark:border-[var(--token-gray-800)] border-y">
             <TableRow>
               <TableCell
                 isHeader
-                className="py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                className="py-3 font-medium text-[var(--token-gray-500)] text-start text-theme-xs dark:text-[var(--token-gray-400)]"
               >
                 Products
               </TableCell>
               <TableCell
                 isHeader
-                className="py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                className="py-3 font-medium text-[var(--token-gray-500)] text-start text-theme-xs dark:text-[var(--token-gray-400)]"
               >
                 Category
               </TableCell>
               <TableCell
                 isHeader
-                className="py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                className="py-3 font-medium text-[var(--token-gray-500)] text-start text-theme-xs dark:text-[var(--token-gray-400)]"
               >
                 Price
               </TableCell>
               <TableCell
                 isHeader
-                className="py-3 font-medium text-gray-500 text-start text-theme-xs dark:text-gray-400"
+                className="py-3 font-medium text-[var(--token-gray-500)] text-start text-theme-xs dark:text-[var(--token-gray-400)]"
               >
                 Status
               </TableCell>
             </TableRow>
           </TableHeader>
-
-          {/* Table Body */}
 
           <TableBody className="divide-y divide-gray-100 dark:divide-gray-800">
             {tableData.map((product) => (
@@ -172,22 +166,22 @@ export default function RecentOrders() {
                       />
                     </div>
                     <div>
-                      <p className="font-medium text-gray-800 text-theme-sm dark:text-white/90">
+                      <p className="font-medium text-[var(--token-gray-800)] text-theme-sm dark:text-[var(--token-white-90)]">
                         {product.name}
                       </p>
-                      <span className="text-gray-500 text-theme-xs dark:text-gray-400">
+                      <span className="text-[var(--token-gray-500)] text-theme-xs dark:text-[var(--token-gray-400)]">
                         {product.variants}
                       </span>
                     </div>
                   </div>
                 </TableCell>
-                <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                <TableCell className="py-3 text-[var(--token-gray-500)] text-theme-sm dark:text-[var(--token-gray-400)]">
                   {product.price}
                 </TableCell>
-                <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                <TableCell className="py-3 text-[var(--token-gray-500)] text-theme-sm dark:text-[var(--token-gray-400)]">
                   {product.category}
                 </TableCell>
-                <TableCell className="py-3 text-gray-500 text-theme-sm dark:text-gray-400">
+                <TableCell className="py-3 text-[var(--token-gray-500)] text-theme-sm dark:text-[var(--token-gray-400)]">
                   <Badge
                     size="sm"
                     color={

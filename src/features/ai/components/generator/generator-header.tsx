@@ -14,16 +14,16 @@ export default function GeneratorHeader({
   sidebarOpen: boolean;
 }) {
   return (
-    <header className="bg-white dark:bg-dark-primary border-b dark:border-gray-800 border-gray-100 sticky top-0 z-50 py-2 lg:py-4">
+    <header className="bg-[var(--token-white)] dark:bg-dark-primary border-b dark:border-[var(--token-gray-800)] border-[var(--token-gray-100)] sticky top-0 z-50 py-2 lg:py-4">
       <div className="px-4 sm:px-6 lg:px-8">
         <div className="grid grid-cols-2 items-center lg:grid-cols-[1fr_auto_1fr]">
           <div className="flex">
             <div className="flex-shrink-0 flex items-center gap-3">
-              {/* <!-- Mobile menu button --> */}
+
               <button
                 aria-label="Toggle left sidebar"
                 onClick={toggleSidebar}
-                className="rounded-md text-gray-400 lg:hidden"
+                className="rounded-md text-[var(--token-gray-400)] lg:hidden"
               >
                 {sidebarOpen ? (
                   <CloseIcon className="size-6" />
@@ -61,7 +61,7 @@ export default function GeneratorHeader({
             <button
               onClick={toggleRightSidebar}
               type="button"
-              className="inline-flex xl:hidden items-center dark:hover:bg-white/5 dark:hover:text-white/90 hover:bg-gray-100 hover:text-gray-800 text-gray-500 dark:text-gray-400 justify-center border border-gray-200 dark:border-gray-700 rounded-full size-11"
+              className="inline-flex xl:hidden items-center dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-white-90)] hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-800)] text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] justify-center border border-[var(--token-gray-200)] dark:border-[var(--token-gray-700)] rounded-full size-11"
             >
               <span className="sr-only">Open right sidebar</span>
               <svg

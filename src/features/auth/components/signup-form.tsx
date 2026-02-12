@@ -1,15 +1,17 @@
-'use client';
+"use client";
 
-import { Checkbox } from '@/components/ui/inputs/checkbox';
-import { Input, InputGroup } from '@/components/ui/inputs';
-import { Label } from '@/components/ui/label';
-import { EyeCloseIcon, EyeIcon } from '@/icons/icons';
-import { authValidation } from '@/features/auth/schemas/auth.schema';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { useState } from 'react';
-import { Controller, useForm } from 'react-hook-form';
-import { toast } from 'sonner';
-import { z } from 'zod';
+import { Checkbox } from "@/components/ui/inputs/checkbox";
+import { Input, InputGroup } from "@/components/ui/inputs";
+import { Label } from "@/components/ui/label";
+import { authValidation } from "@/features/auth/schemas/auth.schema";
+import { EyeCloseIcon, EyeIcon } from "@/icons/icons";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Controller, useForm } from "react-hook-form";
+import { signIn } from "next-auth/react";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { toast } from "sonner";
+import { z } from "zod";
 
 type Inputs = z.infer<typeof authValidation.register>;
 
@@ -17,12 +19,15 @@ export default function SignupForm() {
   const form = useForm<Inputs>({
     resolver: zodResolver(authValidation.register),
     defaultValues: {
-      firstName: '',
-      lastName: '',
-      email: '',
-      password: '',
+      firstName: "",
+      lastName: "",
+      email: "",
+      password: "",
     },
   });
+
+  const router = useRouter();
+
   const [rememberMe, setRememberMe] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -34,15 +39,44 @@ export default function SignupForm() {
   async function onSubmit(data: Inputs) {
     setIsLoading(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API call
+    try {
+      const response = await fetch("/api/auth/register", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data),
+      });
 
-    toast.success(
-      <pre>
-        <code>{JSON.stringify(data, null, 2)}</code>
-      </pre>
-    );
+      if (!response.ok) {
+        const payload = (await response.json()) as { message?: string };
+        toast.error(payload.message ?? "Pendaftaran gagal");
+        setIsLoading(false);
+        return;
+      }
 
-    setIsLoading(false);
+      const signInResult = await signIn("credentials", {
+        email: data.email,
+        password: data.password,
+        redirect: false,
+        callbackUrl: "/dashboard",
+      });
+
+      if (!signInResult || signInResult.error) {
+        toast.success("Akun berhasil dibuat. Silakan login.");
+        router.push("/login");
+        setIsLoading(false);
+        return;
+      }
+
+      toast.success("Akun berhasil dibuat");
+      router.push(signInResult.url ?? "/dashboard");
+      router.refresh();
+    } catch {
+      toast.error("Terjadi kesalahan saat mendaftar");
+    } finally {
+      setIsLoading(false);
+    }
   }
 
   return (
@@ -96,26 +130,26 @@ export default function SignupForm() {
           <Label htmlFor="password">Password</Label>
           <div className="relative">
             <Input
-              type={isShowPassword ? 'text' : 'password'}
+              type={isShowPassword ? "text" : "password"}
               placeholder="Enter your password"
               id="password"
               disabled={isLoading}
-              {...form.register('password')}
+              {...form.register("password")}
             />
 
             <button
               type="button"
-              title={isShowPassword ? 'Hide password' : 'Show password'}
-              aria-label={isShowPassword ? 'Hide password' : 'Show password'}
+              title={isShowPassword ? "Hide password" : "Show password"}
+              aria-label={isShowPassword ? "Hide password" : "Show password"}
               onClick={handleShowPassword}
-              className="absolute right-4 top-1/2 -translate-y-1/2 text-gray-400 dark:text-gray-600"
+              className="absolute right-4 top-1/2 -translate-y-1/2 text-[var(--token-gray-400)] dark:text-[var(--token-gray-600)]"
             >
               {isShowPassword ? <EyeIcon /> : <EyeCloseIcon />}
             </button>
           </div>
 
           {form.formState.errors.password && (
-            <p className="text-red-500 text-sm mt-1.5">
+            <p className="text-[var(--token-red-500)] text-sm mt-1.5">
               {form.formState.errors.password.message}
             </p>
           )}
@@ -132,9 +166,9 @@ export default function SignupForm() {
         <button
           type="submit"
           disabled={isLoading}
-          className="bg-primary-500 hover:bg-primary-600 transition py-3 px-6 w-full font-medium text-white text-sm rounded-full col-span-full disabled:opacity-75"
+          className="bg-primary-500 hover:bg-primary-600 transition py-3 px-6 w-full font-medium text-[var(--token-white)] text-sm rounded-full col-span-full disabled:opacity-75"
         >
-          {isLoading ? 'Signing up...' : 'Sign Up'}
+          {isLoading ? "Signing up..." : "Sign Up"}
         </button>
       </div>
     </form>

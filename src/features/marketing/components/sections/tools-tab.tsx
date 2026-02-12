@@ -13,21 +13,18 @@ import {
 import Image from 'next/image';
 import { cn } from '@/lib/utils';
 
-// Define the tab type
-interface Tab {
+type Tab = {
   id: string;
   label: string;
   icon: React.ReactNode;
   lightImage: string;
   darkImage: string;
   title: string;
-  description: string;
-}
+  description: string;};
 
 export default function AIToolsTabs() {
   const [activeTab, setActiveTab] = useState('text');
 
-  // Tab data
   const tabs: Tab[] = [
     {
       id: 'text',
@@ -81,17 +78,16 @@ export default function AIToolsTabs() {
     },
   ];
 
-  // Find the active tab
   const currentTab = tabs.find((tab) => tab.id === activeTab) || tabs[0];
 
   return (
     <section className="py-14 md:py-28 dark:bg-dark-primary">
       <div className="wrapper">
         <div className="max-w-2xl mx-auto mb-12 text-center">
-          <h2 className="mb-3 font-bold text-center text-gray-800 dark:text-white/90 text-3xl md:text-title-lg">
+          <h2 className="mb-3 font-bold text-center text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] text-3xl md:text-title-lg">
             All the AI tools you need, at your Fingertips.
           </h2>
-          <p className="max-w-2xl mx-auto leading-6 text-gray-500 dark:text-gray-400">
+          <p className="max-w-2xl mx-auto leading-6 text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
             Unlock the Potential of Innovation, Discover the Advanced AI Tools
             Transforming Your Ideas into Reality with Unmatched Precision and
             Intelligence.
@@ -100,17 +96,17 @@ export default function AIToolsTabs() {
 
         <div className="max-w-[1008px] mx-auto">
           <div>
-            {/* Tab Navigation */}
+
             <div className="overflow-x-auto custom-scrollbar mx-auto max-w-fit relative">
-              <div className="flex gap-2 min-w-max rounded-full bg-gray-100 dark:bg-white/5 p-1">
+              <div className="flex gap-2 min-w-max rounded-full bg-[var(--token-gray-100)] dark:bg-[var(--token-white-5)] p-1">
                 {tabs.map((tab) => (
                   <button
                     key={tab.id}
                     onClick={() => setActiveTab(tab.id)}
                     className={`flex items-center h-12 gap-2 px-4 py-3 text-sm font-medium transition-colors duration-200 rounded-full ${
                       activeTab === tab.id
-                        ? 'bg-white dark:text-white/90 dark:bg-white/10 text-gray-800'
-                        : 'text-gray-500 dark:text-gray-400 bg-transparent'
+                        ? 'bg-[var(--token-white)] dark:text-[var(--token-white-90)] dark:bg-[var(--token-white-10)] text-[var(--token-gray-800)]'
+                        : 'text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] bg-transparent'
                     }`}
                   >
                     {tab.icon}
@@ -119,8 +115,6 @@ export default function AIToolsTabs() {
                 ))}
               </div>
             </div>
-
-            {/* Tab Content */}
 
             <div className="p-6 tab-img-bg overflow-hidden rounded-4xl mt-8">
               <div className="p-3 tab-img-overlay">
@@ -156,15 +150,14 @@ export default function AIToolsTabs() {
               </div>
             </div>
 
-            {/* Bottom Section */}
             <div className="mt-6 text-center">
-              <h2 className="mb-2 text-xl font-bold text-gray-800 dark:text-white/90">
+              <h2 className="mb-2 text-xl font-bold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
                 {currentTab.title}
               </h2>
-              <p className="max-w-xl mx-auto mb-6 text-sm text-gray-500 dark:text-gray-400">
+              <p className="max-w-xl mx-auto mb-6 text-sm text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
                 {currentTab.description}
               </p>
-              <button className="px-6 py-3 text-sm font-medium text-white transition-colors rounded-full bg-primary-500 hover:bg-primary-600">
+              <button className="px-6 py-3 text-sm font-medium text-[var(--token-white)] transition-colors rounded-full bg-primary-500 hover:bg-primary-600">
                 Try it now for free
               </button>
             </div>

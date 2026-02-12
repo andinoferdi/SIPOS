@@ -6,17 +6,17 @@ import { IntroVideo } from './intro-video';
 
 export default function HeroSection() {
   return (
-    <section className="pt-16 relative overflow-hidden dark:bg-[#171F2E]">
+    <section className="pt-16 relative overflow-hidden dark:bg-[var(--color-dark-primary)]">
       <div className="max-w-[120rem] mx-auto relative">
         <div className="wrapper">
           <div className="max-w-[800px] mx-auto">
             <div className="text-center pb-16">
               <Subheading text="Most Powerful AI Tools at One Place" />
 
-              <h1 className="text-gray-700 mx-auto font-bold mb-4 text-4xl sm:text-[50px] dark:text-white/90 sm:leading-[64px] max-w-[700px]">
+              <h1 className="text-[var(--token-gray-700)] mx-auto font-bold mb-4 text-4xl sm:text-[50px] dark:text-[var(--token-white-90)] sm:leading-[64px] max-w-[700px]">
                 Transform Ideas into Reality with Intelligent AI Tools
               </h1>
-              <p className="max-w-[537px] text-center mx-auto dark:text-gray-400 text-gray-500 text-base">
+              <p className="max-w-[537px] text-center mx-auto dark:text-[var(--token-gray-400)] text-[var(--token-gray-500)] text-base">
                 Unleash the Power of Artificial Intelligence to Streamline Your
                 Workflow, Boost Productivity, and Redefine Success.
               </p>
@@ -24,7 +24,7 @@ export default function HeroSection() {
               <div className="mt-9 flex sm:flex-row flex-col gap-3 relative z-30 items-center justify-center">
                 <Link
                   href="/text-generator"
-                  className="bg-primary-500 transition h-12 inline-flex items-center justify-center hover:bg-primary-600 px-6 py-3 rounded-full text-white text-sm"
+                  className="bg-primary-500 transition h-12 inline-flex items-center justify-center hover:bg-primary-600 px-6 py-3 rounded-full text-[var(--token-white)] text-sm"
                 >
                   Explore app
                 </Link>
@@ -34,7 +34,7 @@ export default function HeroSection() {
             </div>
           </div>
           <div className="max-w-[1000px] mx-auto relative">
-            <div className="p-3 sm:p-[18px] relative z-30 rounded-[32px] border border-white/30 dark:border-white/10 bg-white/20">
+            <div className="p-3 sm:p-[18px] relative z-30 rounded-[32px] border border-[var(--token-white-30)] dark:border-[var(--token-white-10)] bg-[var(--token-white-20)]">
               <Image
                 src="/images/hero/hero-img.jpg"
                 alt=""
@@ -59,10 +59,10 @@ export default function HeroSection() {
                 xmlns="http://www.w3.org/2000/svg"
               >
                 <g opacity="0.7" filter="url(#filter0_f_9279_7148)">
-                  <circle cx="800" cy="500.03" r="300" fill="#4E6EFF" />
+                  <circle cx="800" cy="500.03" r="300" fill="var(--color-accent-blue-500)" />
                 </g>
                 <g opacity="0.3" filter="url(#filter1_f_9279_7148)">
-                  <circle cx="500" cy="500.03" r="300" fill="#FF58D5" />
+                  <circle cx="500" cy="500.03" r="300" fill="var(--color-accent-pink-500)" />
                 </g>
                 <defs>
                   <filter

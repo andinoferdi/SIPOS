@@ -5,10 +5,9 @@ import { MoreDotIcon } from "@/icons";
 import { Dropdown } from "@/components/ui/dropdown/Dropdown";
 import { DropdownItem } from "@/components/ui/dropdown/DropdownItem";
 
-interface ChatActionMenuProps {
+type ChatActionMenuProps = {
   align?: "left" | "right";
-  items?: string[];
-}
+  items?: string[];};
 
 const defaultItems = ["View Profile", "Mute Chat", "Delete Chat"];
 
@@ -29,7 +28,7 @@ export default function ChatActionMenu({
   return (
     <div className="relative inline-flex">
       <button onClick={toggleDropdown} className="dropdown-toggle">
-        <MoreDotIcon className="text-gray-400 hover:text-gray-700 dark:hover:text-gray-300" />
+        <MoreDotIcon className="text-[var(--token-gray-400)] hover:text-[var(--token-gray-700)] dark:hover:text-[var(--token-gray-300)]" />
       </button>
       <Dropdown
         isOpen={isOpen}
@@ -40,7 +39,7 @@ export default function ChatActionMenu({
           <DropdownItem
             key={item}
             onItemClick={closeDropdown}
-            className="flex w-full rounded-lg text-left font-normal text-gray-500 hover:bg-gray-100 hover:text-gray-700 dark:text-gray-400 dark:hover:bg-white/5 dark:hover:text-gray-300"
+            className="flex w-full rounded-lg text-left font-normal text-[var(--token-gray-500)] hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-gray-300)]"
           >
             {item}
           </DropdownItem>

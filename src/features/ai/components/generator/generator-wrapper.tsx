@@ -37,10 +37,9 @@ export default function GeneratorWrapper({
           toggleIsOpen={toggleRightSidebar}
         />
 
-        {/* Overlays */}
         {sidebarOpen && (
           <div
-            className="fixed inset-0 z-30 bg-gray-800/80 backdrop-blur-lg transition-opacity"
+            className="fixed inset-0 z-30 bg-[var(--token-gray-800-80)] backdrop-blur-lg transition-opacity"
             aria-hidden="true"
             onClick={toggleSidebar}
           />
@@ -48,7 +47,7 @@ export default function GeneratorWrapper({
 
         {rightSidebarOpen && (
           <div
-            className="fixed inset-0 z-40 bg-gray-800/80 backdrop-blur-lg transition-opacity xl:hidden"
+            className="fixed inset-0 z-40 bg-[var(--token-gray-800-80)] backdrop-blur-lg transition-opacity xl:hidden"
             aria-hidden="true"
             onClick={toggleRightSidebar}
           />

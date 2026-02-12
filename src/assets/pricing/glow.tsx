@@ -11,10 +11,10 @@ export default function GlowGradient(props: IconProps) {
       {...props}
     >
       <g opacity="0.2" filter="url(#filter0_f_9282_10364)">
-        <circle cx="479.835" cy="480.254" r="179.665" fill="#FF58D5" />
+        <circle cx="479.835" cy="480.254" r="179.665" fill="var(--color-accent-pink-500)" />
       </g>
       <g opacity="0.1" filter="url(#filter1_f_9282_10364)">
-        <circle cx="619.165" cy="480.254" r="179.665" fill="#4E6EFF" />
+        <circle cx="619.165" cy="480.254" r="179.665" fill="var(--color-accent-blue-500)" />
       </g>
       <defs>
         <filter

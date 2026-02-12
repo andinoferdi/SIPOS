@@ -2,21 +2,20 @@ import Link from "next/link";
 import React from "react";
 import { withDashboardBase } from "@/lib/utils/dashboard-routes";
 
-interface BreadcrumbProps {
-  pageTitle: string;
-}
+type BreadcrumbProps = {
+  pageTitle: string;};
 
 const PageBreadcrumb: React.FC<BreadcrumbProps> = ({ pageTitle }) => {
   return (
     <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
-      <h2 className="text-xl font-semibold text-gray-800 dark:text-white/90">
+      <h2 className="text-xl font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
         {pageTitle}
       </h2>
       <nav>
         <ol className="flex items-center gap-1.5">
           <li>
             <Link
-              className="inline-flex items-center gap-1.5 text-sm text-gray-500 dark:text-gray-400"
+              className="inline-flex items-center gap-1.5 text-sm text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]"
               href={withDashboardBase("/")}
             >
               Home
@@ -38,7 +37,7 @@ const PageBreadcrumb: React.FC<BreadcrumbProps> = ({ pageTitle }) => {
               </svg>
             </Link>
           </li>
-          <li className="text-sm text-gray-800 dark:text-white/90">
+          <li className="text-sm text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
             {pageTitle}
           </li>
         </ol>

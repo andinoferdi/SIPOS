@@ -4,13 +4,13 @@ import React from "react";
 
 export default function BenefitsGrid() {
   return (
-    <section className="bg-gray-900 py-14 md:py-28">
+    <section className="bg-[var(--token-gray-900)] py-14 md:py-28">
       <div className="wrapper">
         <div className="max-w-2xl mx-auto mb-12 text-center">
-          <h2 className="max-w-lg mx-auto mb-3 font-bold text-center text-white dark:text-white/90 text-3xl md:text-title-lg">
+          <h2 className="max-w-lg mx-auto mb-3 font-bold text-center text-[var(--token-white)] dark:text-[var(--token-white-90)] text-3xl md:text-title-lg">
             The key benefits of using our tools.
           </h2>
-          <p className="max-w-2xl mx-auto text-base dark: font-normal leading-6 text-white/50">
+          <p className="max-w-2xl mx-auto text-base dark: font-normal leading-6 text-[var(--token-white-50)]">
             Unlock the Potential of Innovation. Discover the Advanced AI Tools
             Transforming Your Ideas into Reality with Unmatched Precision and
             Intelligence.
@@ -21,10 +21,10 @@ export default function BenefitsGrid() {
             <div className="lg:col-span-6">
               <div className="relative flex flex-col justify-between bg-primary-500 rounded-[20px] p-9 md:p-13">
                 <div className="max-w-sm mb-32">
-                  <h3 className="font-bold text-white text-2xl md:text-3xl mb-4">
+                  <h3 className="font-bold text-[var(--token-white)] text-2xl md:text-3xl mb-4">
                     Craft Professional-Grade Content with AI
                   </h3>
-                  <p className="text-base text-white/70">
+                  <p className="text-base text-[var(--token-white-70)]">
                     Transform your ideas into groundbreaking realities with
                     advanced AI tools.
                   </p>
@@ -40,7 +40,7 @@ export default function BenefitsGrid() {
                   >
                     <path
                       d="M0 14.7917C0 7.11814 6.22067 0.897461 13.8943 0.897461H90.8943C98.5679 0.897461 104.789 7.11814 104.789 14.7917C104.789 22.4653 98.5679 28.686 90.8943 28.686H13.8943C6.22067 28.686 0 22.4653 0 14.7917Z"
-                      fill="#46B3F0"
+                      fill="var(--color-accent-sky-500)"
                     />
                     <path
                       fillRule="evenodd"
@@ -54,7 +54,7 @@ export default function BenefitsGrid() {
                     />
                     <path
                       d="M108.591 25.8477L110.358 32.4513C110.632 33.2094 109.905 33.9465 109.143 33.6842L102.425 32.0006C101.21 31.5826 101.11 29.9045 102.265 29.3443L102.98 28.9978C104.165 28.4232 105.117 27.4596 105.678 26.2676L105.934 25.7233C106.48 24.5631 108.156 24.6416 108.591 25.8477Z"
-                      fill="#46B3F0"
+                      fill="var(--color-accent-sky-500)"
                     />
                   </svg>
                   <svg
@@ -67,7 +67,7 @@ export default function BenefitsGrid() {
                   >
                     <path
                       d="M5.79028 14.7917C5.79028 7.11814 12.011 0.897461 19.6845 0.897461H103.685C111.358 0.897461 117.579 7.11814 117.579 14.7917C117.579 22.4653 111.358 28.686 103.685 28.686H19.6845C12.011 28.686 5.79028 22.4653 5.79028 14.7917Z"
-                      fill="#FF745E"
+                      fill="var(--color-accent-coral-500)"
                     />
                     <g filter="url(#filter0_i_9280_145)">
                       <path
@@ -87,7 +87,7 @@ export default function BenefitsGrid() {
                     />
                     <path
                       d="M8.6284 31.9117L2.02479 33.6795C1.26664 33.9529 0.529565 33.2264 0.791892 32.4644L2.47548 25.7455C2.89344 24.5314 4.5716 24.4306 5.13178 25.5861L5.47823 26.3007C6.05287 27.486 7.01652 28.4384 8.20846 28.9991L8.7528 29.2551C9.913 29.8009 9.83452 31.4768 8.6284 31.9117Z"
-                      fill="#FF745E"
+                      fill="var(--color-accent-coral-500)"
                     />
                     <defs>
                       <filter
@@ -143,7 +143,7 @@ export default function BenefitsGrid() {
                   >
                     <path
                       d="M6 19.7917C6 12.1181 12.2207 5.89746 19.8943 5.89746H102.894C110.568 5.89746 116.789 12.1181 116.789 19.7917C116.789 27.4653 110.568 33.686 102.894 33.686H19.8943C12.2207 33.686 6 27.4653 6 19.7917Z"
-                      fill="#FFB128"
+                      fill="var(--color-accent-amber-500)"
                     />
                     <path
                       fillRule="evenodd"
@@ -157,7 +157,7 @@ export default function BenefitsGrid() {
                     />
                     <path
                       d="M2.77405 8.73533L1.00632 2.13173C0.73293 1.37357 1.45935 0.636499 2.2214 0.898826L8.94025 2.58241C10.1544 3.00037 10.2551 4.67853 9.09967 5.23872L8.38507 5.58517C7.1998 6.1598 6.2474 7.12346 5.68673 8.31539L5.43068 8.85973C4.88494 10.0199 3.20898 9.94146 2.77405 8.73533Z"
-                      fill="#FFB128"
+                      fill="var(--color-accent-amber-500)"
                     />
                   </svg>
 
@@ -183,10 +183,10 @@ export default function BenefitsGrid() {
                   />
                 </div>
                 <div>
-                  <h3 className="font-bold max-w-xs text-white text-2xl md:text-3xl mb-4">
+                  <h3 className="font-bold max-w-xs text-[var(--token-white)] text-2xl md:text-3xl mb-4">
                     Boost your Productivity 10X with our AI agent tools.
                   </h3>
-                  <p className="text-base max-w-sm text-white/70">
+                  <p className="text-base max-w-sm text-[var(--token-white-70)]">
                     Unlock the Potential of Innovation, Discover the Advanced AI
                     Tools Intelligence.
                   </p>
@@ -194,18 +194,18 @@ export default function BenefitsGrid() {
               </div>
             </div>
             <div className="lg:col-span-12">
-              <div className="lg:px-12 p-8 bg-[#2D0B70] lg:pb-0 lg:p-12 relative rounded-[20px] h-full lg:flex lg:flex-row justify-between bg-cover flex-col gap-5">
+              <div className="lg:px-12 p-8 bg-[var(--color-accent-violet-900)] lg:pb-0 lg:p-12 relative rounded-[20px] h-full lg:flex lg:flex-row justify-between bg-cover flex-col gap-5">
                 <div className="max-w-sm relative z-10">
-                  <h3 className="font-bold text-white text-2xl md:text-3xl mb-4">
+                  <h3 className="font-bold text-[var(--token-white)] text-2xl md:text-3xl mb-4">
                     Overcome Writers Block Today
                   </h3>
-                  <p className="text-base text-white/70 mb-8">
+                  <p className="text-base text-[var(--token-white-70)] mb-8">
                     Discover the cutting-edge AI tools that bring your ideas to
                     life with exceptional accuracy.
                   </p>
                   <Link
                     href="/email-generator"
-                    className="font-medium inline-block text-sm text-white rounded-full bg-primary-500 hover:bg-primary-600 transition py-3 px-6"
+                    className="font-medium inline-block text-sm text-[var(--token-white)] rounded-full bg-primary-500 hover:bg-primary-600 transition py-3 px-6"
                   >
                     Try it now for Free
                   </Link>

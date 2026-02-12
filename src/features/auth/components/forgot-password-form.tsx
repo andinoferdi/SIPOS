@@ -30,7 +30,7 @@ export default function ForgotPasswordForm({ invalidToken }: PropsType) {
     setIsLoading(true);
 
     try {
-      await new Promise((resolve) => setTimeout(resolve, 2000)); // Simulate API call
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       toast.success(
         <pre>
@@ -55,11 +55,11 @@ export default function ForgotPasswordForm({ invalidToken }: PropsType) {
   return (
     <>
       <div className="text-center mb-8">
-        <h3 className="text-gray-800 font-bold text-3xl mb-2 dark:text-white/90">
+        <h3 className="text-[var(--token-gray-800)] font-bold text-3xl mb-2 dark:text-[var(--token-white-90)]">
           Forgot Your Password?
         </h3>
-        <p className="text-gray-500 dark:text-gray-400">
-          Enter the email address linked to your account, and we’ll send you a
+        <p className="text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
+          Enter the email address linked to your account, and weÃ¢â‚¬â„¢ll send you a
           link to reset your password.
         </p>
       </div>
@@ -83,7 +83,7 @@ export default function ForgotPasswordForm({ invalidToken }: PropsType) {
           />
 
           <button
-            className="bg-primary-500 hover:bg-primary-600 transition py-3 px-6 w-full font-medium text-white text-sm rounded-full"
+            className="bg-primary-500 hover:bg-primary-600 transition py-3 px-6 w-full font-medium text-[var(--token-white)] text-sm rounded-full"
             disabled={isLoading}
           >
             {isLoading ? 'Sending...' : 'Send Reset Link'}
@@ -91,7 +91,7 @@ export default function ForgotPasswordForm({ invalidToken }: PropsType) {
         </div>
       </form>
 
-      <p className="text-gray-700 dark:text-gray-400 font-normal text-sm mt-5">
+      <p className="text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] font-normal text-sm mt-5">
         Remembered password?{' '}
                 <Link href="/login" className="text-sm font-semibold text-primary-500">
                   Sign In

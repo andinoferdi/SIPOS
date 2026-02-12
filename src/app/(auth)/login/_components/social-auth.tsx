@@ -1,6 +1,3 @@
 "use client";
 
-export {
-  SignInWithGithub,
-  SignInWithGoogle,
-} from "@/features/auth/components/social-auth";
+export { SignInWithGithub } from "@/features/auth/components/social-auth";

@@ -1,76 +1,144 @@
-# AI SaaS Starter Template Kit for Next.js and Tailwind CSS
+# Next.js Prisma Auth Starter
 
-This is free and open source version of **AIStarterKit.dev** - A full-stack starter template kit for building AI-driven SaaS applications, crafted using **Next.js** and **Tailwind CSS**.
+Starter project full-stack berbasis Next.js App Router dan TypeScript strict. Repo ini menyiapkan fondasi untuk dashboard UI, autentikasi GitHub dengan Auth.js, dan endpoint chat AI berbasis OpenAI. README ini fokus ke langkah cepat agar Anda bisa langsung menjalankan project setelah clone.
 
-![AI Starter Kit](./ai-starter-kit.png)
+## Pratinjau
 
-**AIStarterKit** includes ready-to-use core functionalities and integrations such as authentication, Stripe payment integration, database management, dashboards, and seamless AI API integration system. Allows you effortlessly build and launch AI-powered SaaS solutions for customers. Comes with examples - like generators for text, images, code, videos, and emails.
+![Pratinjau aplikasi Next.js Prisma Auth Starter](./ai-starter-kit.png)
 
+### Cuplikan fitur
 
-### Quick Links
+<table>
+  <tr>
+    <td><img src="./public/images/chat/chat.jpg" alt="Preview fitur chat" width="100%" /></td>
+    <td><img src="./public/images/video-thumb/thumb-16.png" alt="Preview fitur video UI" width="100%" /></td>
+    <td><img src="./public/images/cards/card-01.jpg" alt="Preview komponen dashboard" width="100%" /></td>
+  </tr>
+  <tr>
+    <td align="center">Chat</td>
+    <td align="center">Video UI</td>
+    <td align="center">Dashboard Card</td>
+  </tr>
+</table>
 
-- [✨ Visit Website](https://aistarterkit.dev)
-- [📄 Documentation](https://aistarterkit.dev/docs)
-- [🚀 View Demo](https://demo.aistarterkit.dev)
-- [⚡ Get PRO Version](https://aistarterkit.dev/pricing)
+## Fitur yang sudah aktif
 
-If you are looking for AI SaaS Starter Kit, that can save you hundreds of hours and allow you to launch 100x faster, **AIStarterKit** is perfect choice for you
+- Next.js App Router dengan struktur route group.
+- Dashboard UI dan halaman marketing.
+- Auth.js dengan provider GitHub.
+- Endpoint AI chat di `POST /api/chat`.
+- Endpoint health check di `GET /api/health`.
 
-## Key Features
+## Prasyarat
 
-- **Next.js & Tailwind CSS:** Modern tech stack for fast, responsive, and scalable development with clean UI powered by Tailwind v4 and Next.js performance.
-- **AI Integration:** Plug-and-play access to GPT, Midjourney, and other APIs to build AI features like text, code, and image generation instantly.
-- **All Essential Integrations:** Come with all essential integrations like Stripe, NextAuth, and Drizzle ORM —skip setup and start shipping core AI SaaS features.
-- **Pre-built SaaS Pages:** Includes dashboard, auth, pricing, error, and blog pages—launch-ready and designed to save weeks of development time.
-- **Highly Customizable:** Modular code structure makes it easy to tweak layouts, replace logic, or add new features based on your product needs.
-- **One-click Deployment on Vercel and Others:** Deploy on Vercel, netlify and other PaaS with one-click. Simply add environment variables and hit deploy button.
-- **Lifetime Free Updates:** One-time purchase gives you ongoing updates—new features, improvements, and fixes without extra fees or monthly costs.
+- Node.js `>= 20.9.0`
+- npm
 
-| ✨ Features                         | 🎁 AIStarterKit Free                 | 🔥 AIStarterKit Pro                        |
-|----------------------------------|--------------------------------|--------------------------------------|
-| Next.js Pages                    | Static                         | Dynamic Boilerplate Template         |
-| Components                       | Limited                        | All According to Demo                |
-| AI Functionality                 | Demo Only                      | Included                             |
-| AI App Examples                  | 1 Example                      | All Examples (Same as Demo)          |
-| Integrations (DB, Auth, etc.)    | Not Included                   | Included                             |
-| Community Support                | Included                       | Included                             |
-| Premium Email Support            | Not Included                   | Included                             |
-| Lifetime Free Updates            | Included                       | Included
-  
-## Getting Started
+## Quickstart
 
-We are using npm as our package manager.
+1. Clone repo.
 
-> To use Yarn or any other package manager, delete the `package-lock.json` file and run the below commands using the package manager of your choice.
+```bash
+git clone <URL_REPO_ANDA>
+cd nextjs-prisma-auth-starter
+```
 
-1. Install dependencies
+2. Install dependency.
 
-   ```bash
-   npm install
-   ```
+```bash
+npm install
+```
 
-2. Rename `.env.example` to `.env` and set the environment variables
+3. Buat file environment.
 
-3. Development server
+```bash
+cp .env.example .env
+```
 
-   ```bash
-   npm run dev
-   ```
+Jika Anda memakai Windows Command Prompt, jalankan:
 
-   Your app template should now be running on [http://localhost:3000](http://localhost:3000).
+```bash
+copy .env.example .env
+```
 
-   Additional commands:
+4. Isi nilai minimal di `.env`.
 
-   ```bash
-   npm run build # Build the project
-   npm run start # Start the production server
-   ```
+```env
+OPENAI_API_KEY=
+AUTH_SECRET=
+AUTH_URL=http://localhost:3000
+AUTH_GITHUB_ID=
+AUTH_GITHUB_SECRET=
+```
 
-## Features
+5. Jalankan development server.
 
-- [Next.js](https://nextjs.org) App Router
-  - Advanced routing, SEO, and performance
-  - React Server Components (RSCs) and Server Actions for server-side rendering
-- [AI SDK](https://sdk.vercel.ai/docs)
-  - Unified API for generating text and tool calls with LLMs
-  - Supports OpenAI (default) and other model providers.
+```bash
+npm run dev
+```
+
+Buka `http://localhost:3000`.
+
+## Environment Variables
+
+### Wajib untuk fitur inti
+
+| Variable | Kegunaan |
+| --- | --- |
+| `OPENAI_API_KEY` | Dipakai endpoint `POST /api/chat` untuk generate respons AI. |
+| `AUTH_SECRET` | Secret untuk session dan token Auth.js. |
+| `AUTH_URL` | Base URL aplikasi untuk Auth.js, contoh `http://localhost:3000`. |
+| `AUTH_GITHUB_ID` | Client ID OAuth GitHub. |
+| `AUTH_GITHUB_SECRET` | Client Secret OAuth GitHub. |
+
+### Opsional atau fitur tertentu
+
+| Variable | Kegunaan |
+| --- | --- |
+| `DATABASE_URL` | Dibutuhkan saat Anda menjalankan command Prisma seperti `npm run db:push`. |
+| `NEXT_PUBLIC_PLUS_MONTHLY_PRICE_ID` | Dipakai oleh data pricing plan Plus bulanan. |
+| `NEXT_PUBLIC_PLUS_YEARLY_PRICE_ID` | Dipakai oleh data pricing plan Plus tahunan. |
+| `NEXT_PUBLIC_PRO_MONTHLY_PRICE_ID` | Dipakai oleh data pricing plan Pro bulanan. |
+| `NEXT_PUBLIC_PRO_YEARLY_PRICE_ID` | Dipakai oleh data pricing plan Pro tahunan. |
+
+## Scripts
+
+| Command | Fungsi |
+| --- | --- |
+| `npm run dev` | Menjalankan server development Next.js. |
+| `npm run build` | Build aplikasi untuk production. |
+| `npm run start` | Menjalankan hasil build production. |
+| `npm run lint` | Menjalankan ESLint. |
+| `npm run test:unit` | Menjalankan unit test dengan Vitest. |
+| `npm run test:unit:watch` | Menjalankan Vitest mode watch. |
+| `npm run db:generate` | Generate Prisma Client. |
+| `npm run db:push` | Push schema Prisma ke database. |
+| `npm run db:migrate` | Membuat dan menjalankan migration Prisma. |
+| `npm run stripe:listen` | Listen webhook Stripe ke `/api/webhooks/stripe`. |
+
+## Route penting
+
+| Route | Keterangan |
+| --- | --- |
+| `/` | Halaman marketing utama. |
+| `/pricing` | Halaman pricing. |
+| `/contact` | Halaman kontak. |
+| `/privacy` | Halaman kebijakan privasi. |
+| `/login` | Halaman login, termasuk tombol login GitHub. |
+| `/register` | Halaman registrasi. |
+| `/reset-password` | Halaman reset password. |
+| `/dashboard` | Halaman dashboard utama. |
+| `/dashboard/text-generator` | Halaman text generator AI. |
+| `/api/health` | Endpoint health check. |
+| `/api/chat` | Endpoint chat AI streaming. |
+| `/api/auth/[...nextauth]` | Endpoint internal Auth.js. |
+
+## Known limitations
+
+- Form email dan password di halaman login masih simulasi, bukan autentikasi backend nyata.
+- Endpoint `/api/webhooks/stripe` belum tersedia, jadi `npm run stripe:listen` belum bisa dipakai end-to-end.
+- Route root `/text-generator` belum ada. Route yang tersedia adalah `/dashboard/text-generator`.
+
+## Lisensi
+
+Project ini menggunakan lisensi MIT. Detail lisensi ada di file `LICENSE`.

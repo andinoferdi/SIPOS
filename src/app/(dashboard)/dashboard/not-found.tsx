@@ -7,7 +7,7 @@ export default function DashboardNotFound() {
     <div className="relative z-1 flex min-h-screen flex-col items-center justify-center overflow-hidden p-6">
       <GridShape />
       <div className="mx-auto w-full max-w-[242px] text-center sm:max-w-[472px]">
-        <h1 className="mb-8 text-title-md font-bold text-gray-800 dark:text-white/90 xl:text-title-2xl">
+        <h1 className="mb-8 text-title-md font-bold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] xl:text-title-2xl">
           ERROR
         </h1>
 
@@ -26,19 +26,19 @@ export default function DashboardNotFound() {
           height={152}
         />
 
-        <p className="mb-6 mt-10 text-base text-gray-700 dark:text-gray-400 sm:text-lg">
+        <p className="mb-6 mt-10 text-base text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] sm:text-lg">
           We can&apos;t seem to find the page you are looking for.
         </p>
 
         <Link
           href="/dashboard"
-          className="inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-5 py-3.5 text-sm font-medium text-gray-700 shadow-theme-xs hover:bg-gray-50 hover:text-gray-800 dark:border-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:hover:bg-white/[0.03] dark:hover:text-gray-200"
+          className="inline-flex items-center justify-center rounded-lg border border-[var(--token-gray-300)] bg-[var(--token-white)] px-5 py-3.5 text-sm font-medium text-[var(--token-gray-700)] shadow-theme-xs hover:bg-[var(--token-gray-50)] hover:text-[var(--token-gray-800)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] dark:hover:text-[var(--token-gray-200)]"
         >
           Back to Dashboard
         </Link>
       </div>
 
-      <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center text-sm text-gray-500 dark:text-gray-400">
+      <p className="absolute bottom-6 left-1/2 -translate-x-1/2 text-center text-sm text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
         &copy; {new Date().getFullYear()} - TailAdmin
       </p>
     </div>

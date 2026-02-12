@@ -47,7 +47,7 @@ export default function UserMessage({
     <div>
       <div
         className={cn(
-          'shadow-theme-xs bg-primary-100 dark:bg-white/10 rounded-3xl rounded-tr-lg py-4 px-5 max-w-md ml-auto w-fit',
+          'shadow-theme-xs bg-primary-100 dark:bg-[var(--token-white-10)] rounded-3xl rounded-tr-lg py-4 px-5 max-w-md ml-auto w-fit',
           showEditInput && 'max-w-none w-full'
         )}
       >
@@ -72,7 +72,7 @@ export default function UserMessage({
           <button
             title="Edit message"
             onClick={() => setShowEditInput(true)}
-            className="flex gap-1 items-center text-gray-400 hover:text-gray-800 dark:hover:text-white/90 dark:text-gray-400 dark:border-white/5 bg-white dark:bg-white/3 h-8 rounded-full px-3 py-1.5 border font-medium border-gray-100 text-xs"
+            className="flex gap-1 items-center text-[var(--token-gray-400)] hover:text-[var(--token-gray-800)] dark:hover:text-[var(--token-white-90)] dark:text-[var(--token-gray-400)] dark:border-[var(--token-white-5)] bg-[var(--token-white)] dark:bg-[var(--token-white-3)] h-8 rounded-full px-3 py-1.5 border font-medium border-[var(--token-gray-100)] text-xs"
           >
             <PencilIcon className="size-4.5" />
 
@@ -84,7 +84,7 @@ export default function UserMessage({
       {showEditInput && (
         <div className="flex justify-end gap-2 mt-3">
           <button
-            className="hover:opacity-90 dark:text-gray-400 dark:border-[#344054] bg-white dark:bg-[#1D2939] rounded-full px-4.5 py-2 border font-medium text-[#344054] border-[#D0D5DD] text-sm disabled:pointer-events-none disabled:opacity-80 shadow-xs"
+            className="hover:opacity-90 dark:text-[var(--token-gray-400)] dark:border-[var(--color-gray-700)] bg-[var(--token-white)] dark:bg-[var(--color-gray-800)] rounded-full px-4.5 py-2 border font-medium text-[var(--color-gray-700)] border-[var(--color-gray-300)] text-sm disabled:pointer-events-none disabled:opacity-80 shadow-xs"
             onClick={handleCancel}
             disabled={isSubmitting}
           >
@@ -93,7 +93,7 @@ export default function UserMessage({
 
           <button
             onClick={handleEdit}
-            className="bg-primary-500 rounded-full px-4.5 py-2 font-medium text-white hover:opacity-90 text-sm disabled:pointer-events-none disabled:opacity-70"
+            className="bg-primary-500 rounded-full px-4.5 py-2 font-medium text-[var(--token-white)] hover:opacity-90 text-sm disabled:pointer-events-none disabled:opacity-70"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Saving...' : 'Save'}

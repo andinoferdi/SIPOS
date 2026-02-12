@@ -6,9 +6,8 @@ import { navItems } from './nav-items';
 import { cn } from '@/lib/utils';
 import { ChevronDownIcon } from '@/icons/icons';
 
-interface MobileMenuProps {
-  isOpen: boolean;
-}
+type MobileMenuProps = {
+  isOpen: boolean;};
 
 export default function MainMobileNav({ isOpen }: MobileMenuProps) {
   const pathname = usePathname();
@@ -21,7 +20,7 @@ export default function MainMobileNav({ isOpen }: MobileMenuProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="lg:hidden h-screen absolute top-full bg-white dark:bg-dark-primary w-full border-b border-gray-200 dark:border-gray-800">
+    <div className="lg:hidden h-screen absolute top-full bg-[var(--token-white)] dark:bg-dark-primary w-full border-b border-[var(--token-gray-200)] dark:border-[var(--token-gray-800)]">
       <div className="flex flex-col justify-between">
         <div className="flex-1 overflow-y-auto">
           <div className="pt-2 pb-3 space-y-1 px-4 sm:px-6">
@@ -32,9 +31,9 @@ export default function MainMobileNav({ isOpen }: MobileMenuProps) {
                     key={item.href}
                     href={item.href}
                     className={cn(
-                      'block px-3 py-2 rounded-md text-sm font-medium text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700',
+                      'block px-3 py-2 rounded-md text-sm font-medium text-[var(--token-gray-500)] dark:text-[var(--token-gray-300)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-gray-700)]',
                       {
-                        'text-gray-800 dark:text-white': pathname === item.href,
+                        'text-[var(--token-gray-800)] dark:text-[var(--token-white)]': pathname === item.href,
                       }
                     )}
                   >
@@ -50,9 +49,9 @@ export default function MainMobileNav({ isOpen }: MobileMenuProps) {
                       onClick={() => toggleDropdown(item.label)}
                       className={cn(
                         'flex justify-between items-center w-full px-3 py-2 rounded-md text-sm font-medium' +
-                          ' text-gray-500 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700',
+                          ' text-[var(--token-gray-500)] dark:text-[var(--token-gray-300)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-gray-700)]',
                         {
-                          'text-gray-700 dark:text-gray-200': item.items.some(
+                          'text-[var(--token-gray-700)] dark:text-[var(--token-gray-200)]': item.items.some(
                             (subItem) => pathname.includes(subItem.href)
                           ),
                         }
@@ -76,11 +75,11 @@ export default function MainMobileNav({ isOpen }: MobileMenuProps) {
                             key={subItem.href}
                             href={subItem.href}
                             className={cn(
-                              'flex items-center px-3 py-2 gap-1.5 rounded-md text-sm font-medium text-gray-500' +
-                                ' dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-700',
+                              'flex items-center px-3 py-2 gap-1.5 rounded-md text-sm font-medium text-[var(--token-gray-500)]' +
+                                ' dark:text-[var(--token-gray-300)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-gray-700)]',
                               {
                                 'px-2': 'icon' in subItem,
-                                'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-200':
+                                'bg-[var(--token-gray-100)] dark:bg-[var(--token-gray-700)] text-[var(--token-gray-700)] dark:text-[var(--token-gray-200)]':
                                   pathname.includes(subItem.href),
                               }
                             )}
@@ -100,14 +99,14 @@ export default function MainMobileNav({ isOpen }: MobileMenuProps) {
         <div className="flex flex-col pt-2 pb-3 space-y-3 px-8">
           <Link
             href="/login"
-            className="text-sm block w-full border h-11 border-gray-200 px-5 py-3 rounded-full text-center font-medium text-gray-700 dark:text-gray-400 hover:text-primary-500"
+            className="text-sm block w-full border h-11 border-[var(--token-gray-200)] px-5 py-3 rounded-full text-center font-medium text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] hover:text-primary-500"
           >
             Sign In
           </Link>
 
           <Link
             href="/register"
-            className="flex items-center px-5 py-3 gradient-btn  justify-center text-sm text-white rounded-full button-bg h-11"
+            className="flex items-center px-5 py-3 gradient-btn  justify-center text-sm text-[var(--token-white)] rounded-full button-bg h-11"
           >
             Get Started Free
           </Link>
