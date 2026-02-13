@@ -13,7 +13,12 @@
     "db:push": "npx prisma db push",
     "db:generate": "npx prisma generate",
     "db:migrate": "npx prisma migrate dev",
+    "db:seed": "node prisma/seed.mjs",
+    "db:setup": "npm run db:seed",
     "stripe:listen": "stripe listen --forward-to localhost:3000/api/webhooks/stripe"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.mjs"
   },
   "dependencies": {
     "@ai-sdk/openai": "^3.0.26",

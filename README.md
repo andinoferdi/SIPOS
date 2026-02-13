@@ -49,19 +49,19 @@ cd nextjs-prisma-auth-starter
 npm install
 ```
 
-3. Buat file environment.
+3. Buat file environment `.env.local`.
 
 ```bash
-cp .env.example .env
+cp .env.example .env.local
 ```
 
 Jika Anda memakai Windows Command Prompt, jalankan:
 
 ```bash
-copy .env.example .env
+copy NUL .env.local
 ```
 
-4. Isi nilai minimal di `.env`.
+4. Isi nilai minimal di `.env.local`.
 
 ```env
 OPENAI_API_KEY=
@@ -69,9 +69,26 @@ AUTH_SECRET=
 AUTH_URL=http://localhost:3000
 AUTH_GITHUB_ID=
 AUTH_GITHUB_SECRET=
+DATABASE_URL=
+DIRECT_URL=
 ```
 
-5. Jalankan development server.
+5. Setup database (buat tabel dan seed data).
+
+```bash
+npm run db:seed
+```
+
+Perintah ini otomatis membuat semua tabel dan mengisi data awal. Setelah selesai, kredensial default ditampilkan di terminal:
+
+| Akun        | Email                      | Password   |
+| ----------- | -------------------------- | ---------- |
+| Admin       | `admin@sipos.local`        | `admin123` |
+| FnB Manager | `manager@demo.sipos.local` | `demo123`  |
+| FnB         | `fnb@demo.sipos.local`     | `demo123`  |
+| Host        | `host@demo.sipos.local`    | `demo123`  |
+
+6. Jalankan development server.
 
 ```bash
 npm run dev
@@ -83,55 +100,78 @@ Buka `http://localhost:3000`.
 
 ### Wajib untuk fitur inti
 
-| Variable | Kegunaan |
-| --- | --- |
-| `OPENAI_API_KEY` | Dipakai endpoint `POST /api/chat` untuk generate respons AI. |
-| `AUTH_SECRET` | Secret untuk session dan token Auth.js. |
-| `AUTH_URL` | Base URL aplikasi untuk Auth.js, contoh `http://localhost:3000`. |
-| `AUTH_GITHUB_ID` | Client ID OAuth GitHub. |
-| `AUTH_GITHUB_SECRET` | Client Secret OAuth GitHub. |
+| Variable         | Kegunaan                                                         |
+| ---------------- | ---------------------------------------------------------------- |
+| `OPENAI_API_KEY` | Dipakai endpoint `POST /api/chat` untuk generate respons AI.     |
+| `AUTH_SECRET`    | Secret untuk session dan token Auth.js.                          |
+| `AUTH_URL`       | Base URL aplikasi untuk Auth.js, contoh `http://localhost:3000`. |
+| `DATABASE_URL`   | URL database runtime (Supabase pooled connection).               |
+| `DIRECT_URL`     | URL database direct connection untuk operasi langsung Prisma.    |
 
 ### Opsional atau fitur tertentu
 
-| Variable | Kegunaan |
-| --- | --- |
-| `DATABASE_URL` | Dibutuhkan saat Anda menjalankan command Prisma seperti `npm run db:push`. |
-| `NEXT_PUBLIC_PLUS_MONTHLY_PRICE_ID` | Dipakai oleh data pricing plan Plus bulanan. |
-| `NEXT_PUBLIC_PLUS_YEARLY_PRICE_ID` | Dipakai oleh data pricing plan Plus tahunan. |
-| `NEXT_PUBLIC_PRO_MONTHLY_PRICE_ID` | Dipakai oleh data pricing plan Pro bulanan. |
-| `NEXT_PUBLIC_PRO_YEARLY_PRICE_ID` | Dipakai oleh data pricing plan Pro tahunan. |
+| Variable                            | Kegunaan                                                   |
+| ----------------------------------- | ---------------------------------------------------------- |
+| `AUTH_GITHUB_ID`                    | Client ID OAuth GitHub (jika provider GitHub dipakai).     |
+| `AUTH_GITHUB_SECRET`                | Client Secret OAuth GitHub (jika provider GitHub dipakai). |
+| `NEXT_PUBLIC_PLUS_MONTHLY_PRICE_ID` | Dipakai oleh data pricing plan Plus bulanan.               |
+| `NEXT_PUBLIC_PLUS_YEARLY_PRICE_ID`  | Dipakai oleh data pricing plan Plus tahunan.               |
+| `NEXT_PUBLIC_PRO_MONTHLY_PRICE_ID`  | Dipakai oleh data pricing plan Pro bulanan.                |
+| `NEXT_PUBLIC_PRO_YEARLY_PRICE_ID`   | Dipakai oleh data pricing plan Pro tahunan.                |
 
 ## Scripts
 
-| Command | Fungsi |
-| --- | --- |
-| `npm run dev` | Menjalankan server development Next.js. |
-| `npm run build` | Build aplikasi untuk production. |
-| `npm run start` | Menjalankan hasil build production. |
-| `npm run lint` | Menjalankan ESLint. |
-| `npm run test:unit` | Menjalankan unit test dengan Vitest. |
-| `npm run test:unit:watch` | Menjalankan Vitest mode watch. |
-| `npm run db:generate` | Generate Prisma Client. |
-| `npm run db:push` | Push schema Prisma ke database. |
-| `npm run db:migrate` | Membuat dan menjalankan migration Prisma. |
-| `npm run stripe:listen` | Listen webhook Stripe ke `/api/webhooks/stripe`. |
+| Command                   | Fungsi                                                                |
+| ------------------------- | --------------------------------------------------------------------- |
+| `npm run dev`             | Menjalankan server development Next.js.                               |
+| `npm run build`           | Build aplikasi untuk production.                                      |
+| `npm run start`           | Menjalankan hasil build production.                                   |
+| `npm run lint`            | Menjalankan ESLint.                                                   |
+| `npm run test:unit`       | Menjalankan unit test dengan Vitest.                                  |
+| `npm run test:unit:watch` | Menjalankan Vitest mode watch.                                        |
+| `npm run db:generate`     | Generate Prisma Client.                                               |
+| `npm run db:push`         | Push schema Prisma ke database.                                       |
+| `npm run db:migrate`      | Membuat dan menjalankan migration Prisma.                             |
+| `npm run db:seed`         | Buat tabel dan seed data RBAC (workspace, roles, permissions, users). |
+| `npm run db:setup`        | Alias ke seed bootstrap (`npm run db:seed`).                          |
+| `npm run stripe:listen`   | Listen webhook Stripe ke `/api/webhooks/stripe`.                      |
+
+## Verifikasi Seed RBAC
+
+Setelah `npm run db:seed`, jalankan query berikut di Supabase SQL Editor:
+
+```sql
+select code, name from public.workspaces order by code;
+select code, name from public.rbac_roles order by code;
+select email, full_name, is_active from public.staff_users order by email;
+
+select
+  w.code as workspace_code,
+  u.email,
+  r.code as role_code
+from public.rbac_user_roles ur
+join public.workspaces w on w.id = ur.workspace_id
+join public.staff_users u on u.id = ur.user_id
+join public.rbac_roles r on r.id = ur.role_id
+order by w.code, u.email, r.code;
+```
 
 ## Route penting
 
-| Route | Keterangan |
-| --- | --- |
-| `/` | Halaman marketing utama. |
-| `/pricing` | Halaman pricing. |
-| `/contact` | Halaman kontak. |
-| `/privacy` | Halaman kebijakan privasi. |
-| `/login` | Halaman login, termasuk tombol login GitHub. |
-| `/register` | Halaman registrasi. |
-| `/reset-password` | Halaman reset password. |
-| `/dashboard` | Halaman dashboard utama. |
-| `/dashboard/text-generator` | Halaman text generator AI. |
-| `/api/health` | Endpoint health check. |
-| `/api/chat` | Endpoint chat AI streaming. |
-| `/api/auth/[...nextauth]` | Endpoint internal Auth.js. |
+| Route                       | Keterangan                                   |
+| --------------------------- | -------------------------------------------- |
+| `/`                         | Halaman marketing utama.                     |
+| `/pricing`                  | Halaman pricing.                             |
+| `/contact`                  | Halaman kontak.                              |
+| `/privacy`                  | Halaman kebijakan privasi.                   |
+| `/login`                    | Halaman login, termasuk tombol login GitHub. |
+| `/register`                 | Halaman registrasi.                          |
+| `/reset-password`           | Halaman reset password.                      |
+| `/dashboard`                | Halaman dashboard utama.                     |
+| `/dashboard/text-generator` | Halaman text generator AI.                   |
+| `/api/health`               | Endpoint health check.                       |
+| `/api/chat`                 | Endpoint chat AI streaming.                  |
+| `/api/auth/[...nextauth]`   | Endpoint internal Auth.js.                   |
 
 ## Known limitations
 

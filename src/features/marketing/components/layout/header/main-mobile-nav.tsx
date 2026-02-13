@@ -105,10 +105,10 @@ export default function MainMobileNav({ isOpen }: MobileMenuProps) {
           </Link>
 
           <Link
-            href="/register"
+            href="/login"
             className="flex items-center px-5 py-3 gradient-btn  justify-center text-sm text-[var(--token-white)] rounded-full button-bg h-11"
           >
-            Get Started Free
+            Staff Login
           </Link>
         </div>
       </div>

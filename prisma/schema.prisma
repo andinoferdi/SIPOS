@@ -3,8 +3,8 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+  provider  = "postgresql"
+  url       = env("DATABASE_URL")
   directUrl = env("DIRECT_URL")
 }
 
@@ -29,78 +29,52 @@ enum PermissionAction {
   @@map("permission_action")
 }
 
-model Workspace {
-  id        String    @id @default(uuid()) @db.Uuid
-  code      String    @unique
-  name      String
-  isActive  Boolean   @default(true) @map("is_active")
-  createdAt DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt DateTime  @updatedAt @map("updated_at") @db.Timestamptz(6)
-  userRoles UserRole[]
+model User {
+  id           String   @id @default(uuid()) @db.Uuid
+  email        String   @unique
+  fullName     String   @map("full_name")
+  passwordHash String   @map("password_hash")
+  roleId       String   @map("role_id") @db.Uuid
+  isActive     Boolean  @default(true) @map("is_active")
+  createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
+  role         Role     @relation(fields: [roleId], references: [id], onDelete: Cascade)
 
-  @@map("workspaces")
+  @@map("users")
 }
 
-model StaffUser {
-  id           String     @id @default(uuid()) @db.Uuid
-  email        String     @unique
-  fullName     String     @map("full_name")
-  passwordHash String     @map("password_hash")
-  isActive     Boolean    @default(true) @map("is_active")
-  createdAt    DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
-  updatedAt    DateTime   @updatedAt @map("updated_at") @db.Timestamptz(6)
-  userRoles    UserRole[]
-
-  @@map("staff_users")
-}
-
-model RbacRole {
-  id              String               @id @default(uuid()) @db.Uuid
-  code            RoleCode             @unique
+model Role {
+  id              String           @id @default(uuid()) @db.Uuid
+  code            RoleCode         @unique
   name            String
   description     String?
-  createdAt       DateTime             @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdAt       DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
   rolePermissions RolePermission[]
-  userRoles       UserRole[]
+  users           User[]
 
-  @@map("rbac_roles")
+  @@map("roles")
 }
 
-model RbacPermission {
-  id              String               @id @default(uuid()) @db.Uuid
+model Permission {
+  id              String           @id @default(uuid()) @db.Uuid
   module          String
   action          PermissionAction
-  permissionKey   String               @default(dbgenerated("(module || ':'::text || action::text)")) @unique @map("permission_key")
+  permissionKey   String           @unique @map("permission_key")
   description     String?
-  createdAt       DateTime             @default(now()) @map("created_at") @db.Timestamptz(6)
+  createdAt       DateTime         @default(now()) @map("created_at") @db.Timestamptz(6)
   rolePermissions RolePermission[]
 
   @@unique([module, action])
-  @@map("rbac_permissions")
+  @@map("permissions")
 }
 
 model RolePermission {
-  roleId       String         @map("role_id") @db.Uuid
-  permissionId String         @map("permission_id") @db.Uuid
-  createdAt    DateTime       @default(now()) @map("created_at") @db.Timestamptz(6)
-  role         RbacRole       @relation(fields: [roleId], references: [id], onDelete: Cascade)
-  permission   RbacPermission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
+  roleId       String     @map("role_id") @db.Uuid
+  permissionId String     @map("permission_id") @db.Uuid
+  createdAt    DateTime   @default(now()) @map("created_at") @db.Timestamptz(6)
+  role         Role       @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  permission   Permission @relation(fields: [permissionId], references: [id], onDelete: Cascade)
 
   @@id([roleId, permissionId])
-  @@map("rbac_role_permissions")
-}
-
-model UserRole {
-  id          String    @id @default(uuid()) @db.Uuid
-  workspaceId String    @map("workspace_id") @db.Uuid
-  userId      String    @map("user_id") @db.Uuid
-  roleId      String    @map("role_id") @db.Uuid
-  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
-  workspace   Workspace @relation(fields: [workspaceId], references: [id], onDelete: Cascade)
-  user        StaffUser @relation(fields: [userId], references: [id], onDelete: Cascade)
-  role        RbacRole  @relation(fields: [roleId], references: [id], onDelete: Cascade)
-
-  @@unique([workspaceId, userId, roleId])
-  @@index([workspaceId, userId], map: "idx_rbac_user_roles_workspace_user")
-  @@map("rbac_user_roles")
+  @@map("role_permissions")
 }

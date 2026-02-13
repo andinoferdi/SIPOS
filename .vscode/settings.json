@@ -1,7 +1,6 @@
 {
   "workbench.activityBar.orientation": "vertical",
   "files.associations": {
-    "*.css": "tailwindcss"
   },
   "tailwindCSS.lint.suggestCanonicalClasses": "ignore",
   "css.lint.unknownAtRules": "ignore",

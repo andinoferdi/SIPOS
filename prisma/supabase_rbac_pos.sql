@@ -1,3 +1,14 @@
+-- ============================================================
+-- SIPOS RBAC Bootstrap SQL
+-- Purpose:
+-- 1) Build RBAC schema (DDL)
+-- 2) Seed RBAC baseline data (workspace, roles, permissions, role map)
+-- Notes:
+-- - Staff user bootstrap is handled by `npm run db:seed`
+-- - Script is idempotent and safe to run multiple times
+-- ============================================================
+
+-- === Section A: Schema bootstrap (DDL) ===
 create extension if not exists pgcrypto;
 
 do $$
@@ -67,6 +78,7 @@ create table if not exists public.rbac_user_roles (
 create index if not exists idx_rbac_user_roles_workspace_user
 on public.rbac_user_roles(workspace_id, user_id);
 
+-- === Section B: Baseline RBAC data (DML) ===
 insert into public.workspaces (code, name)
 values ('main', 'Main Workspace')
 on conflict (code) do nothing;
@@ -178,7 +190,6 @@ with role_permission_map(role_code, module, action) as (
   ('fnb','dashboard_pos','read'),
   ('fnb','sales','create'),
   ('fnb','sales','read'),
-  ('fnb','sales','update'),
   ('fnb','sales','print'),
 
   ('fnb_manager','dashboard_pos','read'),
@@ -203,9 +214,7 @@ with role_permission_map(role_code, module, action) as (
   ('fnb_manager','stock_management','delete'),
   ('fnb_manager','stock_management','export'),
   ('fnb_manager','inventory','read'),
-  ('fnb_manager','inventory','export'),
   ('fnb_manager','category','read'),
-  ('fnb_manager','category','export'),
   ('fnb_manager','reports','read'),
   ('fnb_manager','reports','print'),
   ('fnb_manager','reports','export'),
@@ -223,3 +232,14 @@ join public.rbac_permissions p
   on p.module = rpm.module
  and p.action = rpm.action::public.permission_action
 on conflict (role_id, permission_id) do nothing;
+
+-- === Section C: Cleanup stale mappings for locked RBAC policy ===
+delete from public.rbac_role_permissions rrp
+using public.rbac_roles rr, public.rbac_permissions rp
+where rrp.role_id = rr.id
+  and rrp.permission_id = rp.id
+  and (
+    (rr.code = 'fnb'::public.role_code and rp.module = 'sales' and rp.action = 'update'::public.permission_action)
+    or (rr.code = 'fnb_manager'::public.role_code and rp.module = 'inventory' and rp.action = 'export'::public.permission_action)
+    or (rr.code = 'fnb_manager'::public.role_code and rp.module = 'category' and rp.action = 'export'::public.permission_action)
+  );

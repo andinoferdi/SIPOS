@@ -4,9 +4,11 @@ import Credentials from "next-auth/providers/credentials";
 import GitHub from "next-auth/providers/github";
 import { authValidation } from "@/features/auth/schemas/auth.schema";
 import { verifyPassword } from "@/lib/auth/password";
-import { resolvePermissionsFromRoles } from "@/lib/auth/rbac";
+import { resolveUserAccessFromDb } from "@/lib/auth/rbac-db";
 import { prisma } from "@/lib/db/prisma";
 import type { PermissionKey, RoleCode } from "@/types/rbac";
+
+const ACCESS_REFRESH_INTERVAL_MS = 5 * 60 * 1000;
 
 const providers: Provider[] = [
   Credentials({
@@ -25,42 +27,57 @@ const providers: Provider[] = [
       const email = parsedCredentials.data.email.trim().toLowerCase();
       const password = parsedCredentials.data.password;
 
-      const staffUser = await prisma.staffUser.findUnique({
+      const user = await prisma.user.findUnique({
         where: { email },
-        include: {
-          userRoles: {
-            include: {
-              role: true,
-            },
-          },
+        select: {
+          id: true,
+          fullName: true,
+          email: true,
+          passwordHash: true,
+          isActive: true,
         },
       });
 
-      if (!staffUser || !staffUser.isActive) {
+      if (!user || !user.isActive) {
         return null;
       }
 
-      if (!verifyPassword(password, staffUser.passwordHash)) {
+      if (!verifyPassword(password, user.passwordHash)) {
         return null;
       }
 
-      const roleCodes = staffUser.userRoles.map(
-        (userRole) => userRole.role.code as RoleCode
-      );
-      const activeWorkspaceId = staffUser.userRoles[0]?.workspaceId ?? null;
-      const permissions = resolvePermissionsFromRoles(roleCodes);
+      const access = await resolveUserAccessFromDb(user.id);
+      if (!access.roleCode) {
+        return null;
+      }
 
       return {
-        id: staffUser.id,
-        name: staffUser.fullName,
-        email: staffUser.email,
-        roleCodes,
-        permissions,
-        activeWorkspaceId,
+        id: user.id,
+        name: user.fullName,
+        email: user.email,
+        roleCode: access.roleCode,
+        permissions: access.permissions,
+        accessSyncedAt: Date.now(),
       };
     },
   }),
 ];
+
+const shouldRefreshAccess = (
+  roleCode: unknown,
+  permissions: unknown,
+  accessSyncedAt: unknown
+) => {
+  if (typeof roleCode !== "string" || !Array.isArray(permissions)) {
+    return true;
+  }
+
+  if (typeof accessSyncedAt !== "number") {
+    return true;
+  }
+
+  return Date.now() - accessSyncedAt > ACCESS_REFRESH_INTERVAL_MS;
+};
 
 if (process.env.AUTH_GITHUB_ID && process.env.AUTH_GITHUB_SECRET) {
   providers.push(
@@ -79,24 +96,21 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
   callbacks: {
     async jwt({ token, user }) {
       if (user) {
-        token.roleCodes = user.roleCodes ?? [];
+        token.roleCode = user.roleCode ?? null;
         token.permissions = user.permissions ?? [];
-        token.activeWorkspaceId = user.activeWorkspaceId ?? null;
+        token.accessSyncedAt =
+          typeof user.accessSyncedAt === "number" ? user.accessSyncedAt : Date.now();
       }
 
-      if (!token.roleCodes && token.sub) {
-        const userRoles = await prisma.userRole.findMany({
-          where: { userId: token.sub },
-          include: { role: true },
-        });
+      if (
+        token.sub &&
+        shouldRefreshAccess(token.roleCode, token.permissions, token.accessSyncedAt)
+      ) {
+        const access = await resolveUserAccessFromDb(token.sub);
 
-        const roleCodes = userRoles.map(
-          (userRole) => userRole.role.code as RoleCode
-        );
-
-        token.roleCodes = roleCodes;
-        token.permissions = resolvePermissionsFromRoles(roleCodes);
-        token.activeWorkspaceId = userRoles[0]?.workspaceId ?? null;
+        token.roleCode = access.roleCode;
+        token.permissions = access.permissions;
+        token.accessSyncedAt = Date.now();
       }
 
       return token;
@@ -107,11 +121,9 @@ export const { handlers, auth, signIn, signOut } = NextAuth({
       }
 
       session.user.id = token.sub ?? "";
-      session.user.roleCodes = (token.roleCodes as RoleCode[] | undefined) ?? [];
+      session.user.roleCode = (token.roleCode as RoleCode | null | undefined) ?? null;
       session.user.permissions =
         (token.permissions as PermissionKey[] | undefined) ?? [];
-      session.user.activeWorkspaceId =
-        (token.activeWorkspaceId as string | null | undefined) ?? null;
 
       return session;
     },

@@ -1,5 +1,5 @@
 import { auth } from "@/auth";
-import { hasAnyRole, hasPermission } from "@/lib/auth/rbac";
+import { hasRole, hasPermission } from "@/lib/auth/rbac";
 import type { PermissionKey, RoleCode } from "@/types/rbac";
 import { NextResponse } from "next/server";
 
@@ -13,13 +13,13 @@ const buildUnauthorizedResponse = () => {
 
 const buildForbiddenResponse = (
   requiredPermission: PermissionKey | RoleCode[],
-  roleCodes: RoleCode[]
+  roleCode: RoleCode | null
 ) => {
   return NextResponse.json(
     {
       message: "Forbidden",
       required_permission: requiredPermission,
-      role: roleCodes,
+      role: roleCode,
     },
     { status: 403 }
   );
@@ -34,10 +34,16 @@ export const requirePermission = async (
     return { response: buildUnauthorizedResponse() };
   }
 
-  const roleCodes = session.user.roleCodes ?? [];
-  if (!hasPermission(roleCodes, permissionKey)) {
+  const roleCode = session.user.roleCode ?? null;
+  const permissions = session.user.permissions ?? [];
+  const canAccess =
+    permissions.length > 0
+      ? permissions.includes(permissionKey)
+      : hasPermission(roleCode, permissionKey);
+
+  if (!canAccess) {
     return {
-      response: buildForbiddenResponse(permissionKey, roleCodes),
+      response: buildForbiddenResponse(permissionKey, roleCode),
     };
   }
 
@@ -53,10 +59,10 @@ export const requireAnyRole = async (
     return { response: buildUnauthorizedResponse() };
   }
 
-  const roleCodes = session.user.roleCodes ?? [];
-  if (!hasAnyRole(roleCodes, allowedRoles)) {
+  const roleCode = session.user.roleCode ?? null;
+  if (!hasRole(roleCode, allowedRoles)) {
     return {
-      response: buildForbiddenResponse(allowedRoles, roleCodes),
+      response: buildForbiddenResponse(allowedRoles, roleCode),
     };
   }
 

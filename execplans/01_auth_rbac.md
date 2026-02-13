@@ -9,19 +9,19 @@ Legend role: `ADM` (Admin), `FNB`, `FM` (FnB Manager), `HST` (Host).
 | Menu Modul | create | read | update | delete | approve | print | export |
 |---|---|---|---|---|---|---|---|
 | POS Dashboard Operasional | - | ADM,FNB,FM,HST | - | - | - | - | - |
-| Sales POS | ADM,FNB,FM,HST | ADM,FNB,FM,HST | ADM,FNB,FM | ADM,FM | - | ADM,FNB,FM,HST | ADM,FM |
+| Sales POS | ADM,FNB,FM,HST | ADM,FNB,FM,HST | ADM,FM | ADM,FM | - | ADM,FNB,FM,HST | ADM,FM |
 | Sales Approval | - | ADM,FM | - | - | ADM,FM | - | - |
 | Purchase | ADM,FM | ADM,FM | ADM,FM | ADM,FM | ADM,FM | ADM,FM | ADM,FM |
 | Stock Management | ADM,FM | ADM,FM | ADM,FM | ADM,FM | - | - | ADM,FM |
-| Inventory Portal | ADM | ADM,FM | ADM | ADM | - | - | ADM,FM |
-| Category Portal | ADM | ADM,FM | ADM | ADM | - | - | ADM,FM |
+| Inventory Portal | ADM | ADM,FM | ADM | ADM | - | - | ADM |
+| Category Portal | ADM | ADM,FM | ADM | ADM | - | - | ADM |
 | Reports POS | - | ADM,FM | - | - | - | ADM,FM | ADM,FM |
 | User & Role Management | ADM | ADM | ADM | ADM | - | - | ADM |
 | System Settings POS | ADM | ADM | ADM | ADM | - | - | ADM |
 
 Catatan operasional:
 1. FnB tidak punya approval.
-2. FnB Manager inventory dan category hanya read plus export.
+2. FnB Manager inventory dan category hanya read.
 3. Host hanya dashboard operasional dan create/read/print sales.
 
 ## Daftar halaman dan endpoint yang diproteksi
@@ -64,6 +64,7 @@ Catatan operasional:
 17. `GET /api/portal/reports` -> `reports:read`.
 18. `GET /api/portal/reports/export` -> `reports:export`.
 19. `POST /api/portal/rbac/roles` -> `user_role:create` (`admin-only`).
+20. `POST /api/portal/rbac/users` -> `user_role:create` (`admin-only`, invite/create staff).
 
 Status endpoint saat ini:
 1. Semua endpoint di atas sudah diproteksi permission.
@@ -93,9 +94,9 @@ Seeding:
 4. Join seed role-permission sesuai matrix final.
 
 Catatan bootstrap user:
-1. Endpoint `POST /api/auth/register` membuat user staff.
-2. User pertama di workspace `main` otomatis dapat role `admin`.
-3. User berikutnya default `host`.
+1. Endpoint `POST /api/auth/register` dinonaktifkan untuk publik (`403`).
+2. Onboarding staff dilakukan admin melalui `POST /api/portal/rbac/users`.
+3. Role assignment tetap per workspace (`workspaceCode`, default `main`).
 
 ## Normalisasi env lokal
 Target env untuk SIPOS:

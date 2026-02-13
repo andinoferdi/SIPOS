@@ -23,8 +23,7 @@ export const navItems = [
     type: 'dropdown',
     label: 'Pages',
     items: [
-  { href: '/login', label: 'Sign In' },
-  { href: '/register', label: 'Sign Up' },
+      { href: '/login', label: 'Sign In' },
       { href: '/reset-password', label: 'Reset Password' },
       { href: '/not-found', label: '404 Error' },
     ],

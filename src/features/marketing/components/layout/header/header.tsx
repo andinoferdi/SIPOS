@@ -68,10 +68,10 @@ export default function Header() {
             </Link>
 
             <Link
-              href="/register"
+              href="/login"
               className="lg:inline-flex items-center px-5 py-3 gradient-btn hidden text-sm text-[var(--token-white)] rounded-full button-bg h-11"
             >
-              Get Started Free
+              Staff Login
             </Link>
           </div>
         </div>

@@ -1,6 +1,6 @@
-import { auth } from "@/auth";
-import { hasAnyRole, hasPermission } from "@/lib/auth/rbac";
 import type { PermissionKey, RoleCode } from "@/types/rbac";
+import { getToken } from "next-auth/jwt";
+import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 const DASHBOARD_RULES: Array<{ prefix: string; permission: PermissionKey }> = [
@@ -17,6 +17,12 @@ const DASHBOARD_RULES: Array<{ prefix: string; permission: PermissionKey }> = [
 
 const ADMIN_ONLY_ROLES: RoleCode[] = ["admin"];
 
+type TokenAccess = {
+  userId: string | null;
+  roleCode: RoleCode | null;
+  permissions: PermissionKey[];
+};
+
 const resolveDashboardPermission = (
   pathname: string
 ): PermissionKey | null => {
@@ -32,7 +38,7 @@ const resolveApiPermission = (
   method: string
 ): PermissionKey | null => {
   if (pathname.startsWith("/api/portal/rbac")) {
-    return "user_role:read";
+    return "user_role:create";
   }
 
   if (pathname === "/api/pos/sales/export" && method === "GET") {
@@ -120,27 +126,59 @@ const resolveApiPermission = (
   return null;
 };
 
+const normalizePermissions = (value: unknown): PermissionKey[] => {
+  if (!Array.isArray(value)) {
+    return [];
+  }
+
+  return value.filter((item): item is PermissionKey => typeof item === "string");
+};
+
+const hasRole = (roleCode: RoleCode | null, requiredRoles: RoleCode[]) => {
+  if (!roleCode) return false;
+  return requiredRoles.includes(roleCode);
+};
+
+const hasPermission = (
+  permissions: PermissionKey[],
+  requiredPermission: PermissionKey
+) => {
+  return permissions.includes(requiredPermission);
+};
+
 const buildApiForbiddenResponse = (
-  requiredPermission: PermissionKey,
-  roleCodes: RoleCode[]
+  requiredPermission: PermissionKey | "admin",
+  roleCode: RoleCode | null
 ) => {
   return NextResponse.json(
     {
       message: "Forbidden",
       required_permission: requiredPermission,
-      role: roleCodes,
+      role: roleCode,
     },
     { status: 403 }
   );
 };
 
-export const proxy = auth((request) => {
+const getTokenAccess = async (request: NextRequest): Promise<TokenAccess> => {
+  const token = await getToken({
+    req: request,
+    secret: process.env.AUTH_SECRET,
+  });
+
+  return {
+    userId: token?.sub ?? null,
+    roleCode: (typeof token?.roleCode === "string" ? token.roleCode : null) as RoleCode | null,
+    permissions: normalizePermissions(token?.permissions),
+  };
+};
+
+export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
-  const session = request.auth;
-  const roleCodes = (session?.user?.roleCodes ?? []) as RoleCode[];
+  const access = await getTokenAccess(request);
 
   if (pathname.startsWith("/dashboard")) {
-    if (!session?.user?.id) {
+    if (!access.userId) {
       const loginUrl = new URL("/login", request.url);
       loginUrl.searchParams.set("callbackUrl", pathname);
       return NextResponse.redirect(loginUrl);
@@ -151,40 +189,38 @@ export const proxy = auth((request) => {
     }
 
     const requiredPermission = resolveDashboardPermission(pathname);
-
-    if (requiredPermission && !hasPermission(roleCodes, requiredPermission)) {
+    if (
+      requiredPermission &&
+      !hasPermission(access.permissions, requiredPermission)
+    ) {
       return NextResponse.redirect(new URL("/dashboard/forbidden", request.url));
     }
 
-    if (!requiredPermission && !hasAnyRole(roleCodes, ADMIN_ONLY_ROLES)) {
+    if (!requiredPermission && !hasRole(access.roleCode, ADMIN_ONLY_ROLES)) {
       return NextResponse.redirect(new URL("/dashboard/forbidden", request.url));
     }
   }
 
   if (pathname.startsWith("/api")) {
-    if (!session?.user?.id) {
+    if (!access.userId) {
       return NextResponse.json({ message: "Unauthenticated" }, { status: 401 });
     }
 
-    if (pathname === "/api/chat" && !hasAnyRole(roleCodes, ADMIN_ONLY_ROLES)) {
-      return NextResponse.json(
-        {
-          message: "Forbidden",
-          required_permission: "admin",
-          role: roleCodes,
-        },
-        { status: 403 }
-      );
+    if (pathname === "/api/chat" && !hasRole(access.roleCode, ADMIN_ONLY_ROLES)) {
+      return buildApiForbiddenResponse("admin", access.roleCode);
     }
 
     const requiredPermission = resolveApiPermission(pathname, request.method);
-    if (requiredPermission && !hasPermission(roleCodes, requiredPermission)) {
-      return buildApiForbiddenResponse(requiredPermission, roleCodes);
+    if (
+      requiredPermission &&
+      !hasPermission(access.permissions, requiredPermission)
+    ) {
+      return buildApiForbiddenResponse(requiredPermission, access.roleCode);
     }
   }
 
   return NextResponse.next();
-});
+}
 
 export const config = {
   matcher: ["/dashboard/:path*", "/api/chat", "/api/pos/:path*", "/api/portal/:path*"],

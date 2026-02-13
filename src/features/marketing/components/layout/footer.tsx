@@ -291,10 +291,10 @@ export default function Footer() {
                       Login
                     </Link>
                     <Link
-                      href="/register"
+                      href="/dashboard"
                       className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
                     >
-                      Sign Up
+                      Dashboard
                     </Link>
                     <Link
                       href="/reset-password"

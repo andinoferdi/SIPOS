@@ -42,7 +42,7 @@ export default function ContactForm() {
             {...form.register('firstName')}
           />
           {form.formState.errors.firstName?.message && (
-            <p className="mt-1.5 text-sm text-[var(--token-red-500)]">{form.formState.errors.firstName.message}</p>
+            <p className="mt-1.5 text-sm text-(--token-red-500)">{form.formState.errors.firstName.message}</p>
           )}
         </div>
         <div>
@@ -54,7 +54,7 @@ export default function ContactForm() {
             {...form.register('lastName')}
           />
           {form.formState.errors.lastName?.message && (
-            <p className="mt-1.5 text-sm text-[var(--token-red-500)]">{form.formState.errors.lastName.message}</p>
+            <p className="mt-1.5 text-sm text-(--token-red-500)">{form.formState.errors.lastName.message}</p>
           )}
         </div>
         <div className="col-span-full">
@@ -67,7 +67,7 @@ export default function ContactForm() {
             {...form.register('email')}
           />
           {form.formState.errors.email?.message && (
-            <p className="mt-1.5 text-sm text-[var(--token-red-500)]">{form.formState.errors.email.message}</p>
+            <p className="mt-1.5 text-sm text-(--token-red-500)">{form.formState.errors.email.message}</p>
           )}
         </div>
         <div className="col-span-full">
@@ -80,14 +80,14 @@ export default function ContactForm() {
             {...form.register('message')}
           />
           {form.formState.errors.message?.message && (
-            <p className="mt-1.5 text-sm text-[var(--token-red-500)]">{form.formState.errors.message.message}</p>
+            <p className="mt-1.5 text-sm text-(--token-red-500)">{form.formState.errors.message.message}</p>
           )}
         </div>
         <div className="col-span-full">
           <button
             type="submit"
             disabled={isSubmitting}
-            className="bg-primary-500 hover:bg-primary-600 transition h-12 py-3 px-6 w-full font-medium text-[var(--token-white)] text-sm rounded-full disabled:opacity-75"
+            className="bg-primary-500 hover:bg-primary-600 transition h-12 py-3 px-6 w-full font-medium text-(--token-white) text-sm rounded-full disabled:opacity-75"
           >
             {isSubmitting ? 'Sending...' : 'Send Message'}
           </button>

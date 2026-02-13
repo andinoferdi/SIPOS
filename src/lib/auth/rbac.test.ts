@@ -20,6 +20,7 @@ describe("rbac permission resolver", () => {
 
     expect(permissions).toContain("sales:create");
     expect(permissions).toContain("sales:print");
+    expect(permissions).not.toContain("sales:update");
     expect(permissions).not.toContain("sales_approval:approve");
     expect(permissions).not.toContain("purchase:create");
   });
@@ -29,6 +30,8 @@ describe("rbac permission resolver", () => {
     expect(hasPermission(["fnb_manager"], "stock_management:update")).toBe(true);
     expect(hasPermission(["fnb_manager"], "inventory:read")).toBe(true);
     expect(hasPermission(["fnb_manager"], "inventory:update")).toBe(false);
+    expect(hasPermission(["fnb_manager"], "inventory:export")).toBe(false);
+    expect(hasPermission(["fnb_manager"], "category:export")).toBe(false);
   });
 
   it("keeps host in sales operational scope", () => {

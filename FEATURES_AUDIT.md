@@ -16,7 +16,7 @@ Repo saat ini adalah boilerplate `Next.js + dashboard + AI chat`, belum merupaka
 - Marketing pages dan layout publik.
 - Dashboard UI template dengan komponen ecommerce, chart, table, form, chat, profile.
 - Auth route internal: `/api/auth/[...nextauth]`.
-- Login/register/reset password page tersedia, login register sudah tersambung ke backend auth credentials.
+- Login/reset password page tersedia, register publik sudah dinonaktifkan.
 - Route POS dan portal RBAC scaffold sudah tersedia di `/api/pos/*` dan `/api/portal/*`.
 - Endpoint AI chat: `POST /api/chat`.
 - Endpoint health check: `GET /api/health`.
@@ -52,14 +52,17 @@ Baseline saat ini cocok sebagai fondasi UI dan pola coding, tetapi fungsi bisnis
 ### match
 - Auth.js sudah menggunakan `Credentials` untuk login staff POS.
 - Session payload sudah membawa `user.id`, `roleCodes`, `permissions`, dan `activeWorkspaceId`.
-- Guard route sudah aktif di `proxy` untuk dashboard dan API POS.
+- Source of truth permission sudah `DB-driven` dari tabel RBAC Supabase lewat Prisma.
+- Guard route sudah aktif di `proxy` untuk dashboard dan API POS, tanpa import module Node-only.
+- Public register sudah dinonaktifkan, onboarding staff melalui endpoint admin invite.
 
 ### partial
 - Halaman POS utama sudah tersedia sebagai placeholder route (`/dashboard/pos/*`, `/dashboard/portal/*`).
 - Endpoint POS dan portal sudah tersedia sebagai protected scaffold, tetapi logic bisnis masih `501 not implemented`.
-- Sidebar dashboard sudah difilter berdasarkan permission role.
+- Sidebar dashboard sudah difilter berdasarkan claim permission di session.
+- Endpoint admin RBAC user invite sudah ada, tetapi UI manajemen role-assignment belum operasional.
 
 ### missing
 - Belum ada implementasi CRUD transaksi POS nyata (`sales`, `purchase`, `stock movement`).
-- Belum ada UI manajemen role dan assignment user yang operasional.
+- Belum ada UI manajemen role dan assignment user yang operasional (baru endpoint API).
 - Belum ada test integration atau E2E untuk seluruh matrix akses per role.

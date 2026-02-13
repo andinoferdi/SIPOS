@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
 import SignInForm from '@/features/auth/components/signin-form';
@@ -12,12 +11,12 @@ export default function SignInPage() {
     <section className="py-28 relative overflow-hidden">
       <div className="wrapper">
         <div className="relative max-w-[600px] mx-auto">
-          <div className="contact-wrapper border p-8 sm:p-14 relative z-30 bg-[var(--token-white)] dark:bg-dark-primary dark:border-dark-primary border-[var(--token-gray-100)]">
+          <div className="contact-wrapper border p-8 sm:p-14 relative z-30 bg-(--token-white) dark:bg-dark-primary dark:border-dark-primary border-(--token-gray-100)">
             <div className="text-center mb-8">
-              <h3 className="text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] font-bold text-3xl mb-2">
+              <h3 className="text-(--token-gray-800) dark:text-(--token-white-90) font-bold text-3xl mb-2">
                 Sign In
               </h3>
-              <p className="text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
+              <p className="text-(--token-gray-500) dark:text-(--token-gray-400)">
                 Enter your email and password to sign in!
               </p>
             </div>
@@ -27,14 +26,8 @@ export default function SignInPage() {
             </Suspense>
 
             <div className="mt-5">
-              <p className="text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] text-sm">
-                Don't have an account?{' '}
-                <Link
-                  href="/register"
-                  className="text-sm font-semibold text-primary-500"
-                >
-                  Sign Up
-                </Link>
+              <p className="text-(--token-gray-700) dark:text-(--token-gray-400) text-sm">
+                Akun staff POS dibuat oleh admin.
               </p>
             </div>
           </div>

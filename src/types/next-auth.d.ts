@@ -5,24 +5,23 @@ declare module "next-auth" {
   interface Session {
     user: DefaultSession["user"] & {
       id: string;
-      roleCodes: RoleCode[];
+      roleCode: RoleCode | null;
       permissions: PermissionKey[];
-      activeWorkspaceId: string | null;
     };
   }
 
   interface User {
     id: string;
-    roleCodes?: RoleCode[];
+    roleCode?: RoleCode | null;
     permissions?: PermissionKey[];
-    activeWorkspaceId?: string | null;
+    accessSyncedAt?: number;
   }
 }
 
 declare module "next-auth/jwt" {
   interface JWT {
-    roleCodes?: RoleCode[];
+    roleCode?: RoleCode | null;
     permissions?: PermissionKey[];
-    activeWorkspaceId?: string | null;
+    accessSyncedAt?: number;
   }
 }

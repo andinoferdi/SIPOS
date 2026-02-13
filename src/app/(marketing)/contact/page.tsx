@@ -10,12 +10,12 @@ export default function ContactPage() {
     <section className="py-28 relative">
       <div className="wrapper">
         <div className="relative max-w-[800px] mx-auto">
-          <div className="contact-wrapper border p-14 relative z-30 bg-[var(--token-white)] border-[var(--token-gray-100)] dark:bg-dark-primary dark:border-[var(--token-gray-800)]">
+          <div className="contact-wrapper border p-14 relative z-30 bg-(--token-white) border-(--token-gray-100) dark:bg-dark-primary dark:border-(--token-gray-800)">
             <div className="text-center mb-12">
-              <h3 className="text-[var(--token-gray-800)] font-bold dark:text-[var(--token-white)] text-3xl mb-2">
+              <h3 className="text-(--token-gray-800) font-bold dark:text-(--token-white) text-3xl mb-2">
                 Need any Help? Get in touch
               </h3>
-              <p className="text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
+              <p className="text-(--token-gray-500) dark:text-(--token-gray-400)">
                 Open a ticket, we will get back to you ASAP
               </p>
             </div>

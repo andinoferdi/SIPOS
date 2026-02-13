@@ -18,7 +18,7 @@ export const POS_PERMISSION_MATRIX: PermissionMatrixRow[] = [
     actions: {
       create: ["admin", "fnb", "fnb_manager", "host"],
       read: ["admin", "fnb", "fnb_manager", "host"],
-      update: ["admin", "fnb", "fnb_manager"],
+      update: ["admin", "fnb_manager"],
       delete: ["admin", "fnb_manager"],
       print: ["admin", "fnb", "fnb_manager", "host"],
       export: ["admin", "fnb_manager"],
@@ -60,7 +60,7 @@ export const POS_PERMISSION_MATRIX: PermissionMatrixRow[] = [
       read: ["admin", "fnb_manager"],
       update: ["admin"],
       delete: ["admin"],
-      export: ["admin", "fnb_manager"],
+      export: ["admin"],
     },
   },
   {
@@ -70,7 +70,7 @@ export const POS_PERMISSION_MATRIX: PermissionMatrixRow[] = [
       read: ["admin", "fnb_manager"],
       update: ["admin"],
       delete: ["admin"],
-      export: ["admin", "fnb_manager"],
+      export: ["admin"],
     },
   },
   {
@@ -133,33 +133,21 @@ const buildRolePermissionIndex = () => {
 const rolePermissionIndex = buildRolePermissionIndex();
 
 export const getPermissionsForRole = (roleCode: RoleCode): PermissionKey[] => {
-  return Array.from(rolePermissionIndex[roleCode]).sort();
+  return Array.from(rolePermissionIndex[roleCode] ?? []).sort();
 };
 
-export const resolvePermissionsFromRoles = (
-  roleCodes: RoleCode[]
-): PermissionKey[] => {
-  const permissionSet = new Set<PermissionKey>();
-
-  for (const roleCode of roleCodes) {
-    for (const permission of rolePermissionIndex[roleCode] ?? []) {
-      permissionSet.add(permission);
-    }
-  }
-
-  return Array.from(permissionSet).sort();
-};
-
-export const hasAnyRole = (
-  roleCodes: RoleCode[],
+export const hasRole = (
+  roleCode: RoleCode | null,
   requiredRoles: RoleCode[]
 ): boolean => {
-  return requiredRoles.some((roleCode) => roleCodes.includes(roleCode));
+  if (!roleCode) return false;
+  return requiredRoles.includes(roleCode);
 };
 
 export const hasPermission = (
-  roleCodes: RoleCode[],
+  roleCode: RoleCode | null,
   permissionKey: PermissionKey
 ): boolean => {
-  return resolvePermissionsFromRoles(roleCodes).includes(permissionKey);
+  if (!roleCode) return false;
+  return getPermissionsForRole(roleCode).includes(permissionKey);
 };
