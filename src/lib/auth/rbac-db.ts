@@ -38,7 +38,7 @@ export const resolveUserAccessFromDb = async (
   }
 
   const permissions = user.role.rolePermissions
-    .map((rp) => rp.permission.permissionKey as PermissionKey)
+    .map((rp: { permission: { permissionKey: string } }) => rp.permission.permissionKey as PermissionKey)
     .sort();
 
   return {

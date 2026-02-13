@@ -1,184 +1,168 @@
-# Next.js Prisma Auth Starter
+# Next.js Prisma Auth Starter - Setup Guide
 
-Starter project full-stack berbasis Next.js App Router dan TypeScript strict. Repo ini menyiapkan fondasi untuk dashboard UI, autentikasi GitHub dengan Auth.js, dan endpoint chat AI berbasis OpenAI. README ini fokus ke langkah cepat agar Anda bisa langsung menjalankan project setelah clone.
-
-## Pratinjau
-
-![Pratinjau aplikasi Next.js Prisma Auth Starter](./ai-starter-kit.png)
-
-### Cuplikan fitur
-
-<table>
-  <tr>
-    <td><img src="./public/images/chat/chat.jpg" alt="Preview fitur chat" width="100%" /></td>
-    <td><img src="./public/images/video-thumb/thumb-16.png" alt="Preview fitur video UI" width="100%" /></td>
-    <td><img src="./public/images/cards/card-01.jpg" alt="Preview komponen dashboard" width="100%" /></td>
-  </tr>
-  <tr>
-    <td align="center">Chat</td>
-    <td align="center">Video UI</td>
-    <td align="center">Dashboard Card</td>
-  </tr>
-</table>
-
-## Fitur yang sudah aktif
-
-- Next.js App Router dengan struktur route group.
-- Dashboard UI dan halaman marketing.
-- Auth.js dengan provider GitHub.
-- Endpoint AI chat di `POST /api/chat`.
-- Endpoint health check di `GET /api/health`.
+Panduan langkah demi langkah untuk menjalankan project ini dari nol.
 
 ## Prasyarat
 
-- Node.js `>= 20.9.0`
-- npm
+- [Node.js](https://nodejs.org/) (versi 20 atau lebih baru)
+- [Git](https://git-scm.com/)
+- Akun [Supabase](https://supabase.com/) (untuk database)
+- Akun [GitHub](https://github.com/) (opsional, untuk login provider)
 
-## Quickstart
+---
 
-1. Clone repo.
+## 1. Clone Project
+
+Buka terminal atau command prompt, lalu jalankan:
 
 ```bash
 git clone <URL_REPO_ANDA>
-cd nextjs-prisma-auth-starter
+cd SIPOS
 ```
 
-2. Install dependency.
+## 2. Install Dependencies
+
+Install semua library yang dibutuhkan project:
 
 ```bash
 npm install
 ```
 
-3. Buat file environment `.env.local`.
+## 3. Setup Supabase (Database)
+
+Project ini membutuhkan database PostgreSQL. Kita akan menggunakan **Supabase**.
+
+1. Buka [database.new](https://database.new) dan buat project baru.
+2. Isi formulir **Create a new project**:
+   - **Name**: `SIPOS` (atau nama lain)
+   - **Database Password**: Buat password yang kuat (simpan ini, Anda akan butuh nanti)
+   - **Region**: Pilih yang terdekat dengan Anda (misal: Singapore)
+   - Klik **Create new project**.
+3. Tunggu beberapa saat hingga project selesai dibuat (status berubah menjadi hijau/aktif).
+
+### Mendapatkan URL Koneksi
+
+1. Di dashboard Supabase project Anda, klik icon **Settings** (roda gigi) di menu kiri bawah.
+2. Pilih menu **Database** di sidebar bagian "Project Settings".
+3. Scroll ke bagian **Connection parameters**.
+4. Anda akan melihat data host, tetapi kita butuh **Connection String** lengkap.
+5. Lihat bagian **Connection string** > **URI**.
+6. Pilih tab **Transaction** (untuk `DATABASE_URL`) dan **Session** (untuk `DIRECT_URL`).
+   - Salin URL **Transaction**, kita sebut ini `DATABASE_URL`.
+   - Salin URL **Session**, kita sebut ini `DIRECT_URL`.
+   - **PENTING**: Ganti `[YOUR-PASSWORD]` di dalam URL dengan password database yang Anda buat di langkah awal.
+
+### Mendapatkan API Keys (Opsional tapi Direkomendasikan)
+
+1. Klik icon **Settings** (roda gigi) lagi.
+2. Pilih menu **API** di sidebar bagian "Project Settings".
+3. Di bagian **Project URL**, salin URL-nya. Ini adalah `NEXT_PUBLIC_SUPABASE_URL`.
+4. Di bagian **Project API keys**, salin key yang bernama `anon` `public`. Ini adalah `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+
+---
+
+## 4. Konfigurasi Environment Variables
+
+Duplikasi file contoh `.env` menjadi `.env.local`:
 
 ```bash
 cp .env.example .env.local
 ```
 
-Jika Anda memakai Windows Command Prompt, jalankan:
+_(Jika di Windows CMD: `copy .env.example .env.local`)_
 
-```bash
-copy NUL .env.local
-```
-
-4. Isi nilai minimal di `.env.local`.
+Buka file `.env.local` di text editor (VS Code) dan isi nilai-nilainya:
 
 ```env
-OPENAI_API_KEY=
-AUTH_SECRET=
-AUTH_URL=http://localhost:3000
-AUTH_GITHUB_ID=
-AUTH_GITHUB_SECRET=
-DATABASE_URL=
-DIRECT_URL=
+# RAHASIA: Kunci untuk enkripsi session dan token
+# Generate string acak di terminal: openssl rand -base64 32
+AUTH_SECRET="ganti_dengan_string_acak_panjang"
+
+# BASE URL: Lokasi aplikasi berjalan
+AUTH_URL="http://localhost:3000"
+
+# DATABASE (DARI SUPABASE LANGKAH 3)
+# Gunakan URL Mode Transaction (Port 6543)
+DATABASE_URL="postgres://postgres.xxxx:password@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+
+# DIRECT URL (DARI SUPABASE LANGKAH 3)
+# Gunakan URL Mode Session (Port 5432)
+DIRECT_URL="postgres://postgres.xxxx:password@aws-0-ap-southeast-1.supabase.co:5432/postgres"
+
+# (OPSIONAL) Open AI Key untuk fitur Chat
+OPENAI_API_KEY=""
+
+# (OPSIONAL) Supabase Client Key
+NEXT_PUBLIC_SUPABASE_URL=""
+NEXT_PUBLIC_SUPABASE_ANON_KEY=""
+
+# (OPSIONAL) GitHub OAuth
+AUTH_GITHUB_ID=""
+AUTH_GITHUB_SECRET=""
 ```
 
-5. Setup database (buat tabel dan seed data).
+---
+
+## 5. Setup Database Schema (Prisma)
+
+Sekarang kita akan mengirim struktur tabel (schema) project ke database Supabase Anda.
+
+Jalankan perintah ini:
+
+```bash
+npx prisma db push
+```
+
+_Jika ditanya "Do you want to ignore data loss warnings?", ketik `y` lalu Enter._
+
+Selanjutnya, isi database dengan data awal (Seeding):
 
 ```bash
 npm run db:seed
 ```
 
-Perintah ini otomatis membuat semua tabel dan mengisi data awal. Setelah selesai, kredensial default ditampilkan di terminal:
+Terminal akan menampilkan **User Default** yang bisa digunakan untuk login:
 
-| Akun        | Email                      | Password   |
-| ----------- | -------------------------- | ---------- |
-| Admin       | `admin@sipos.local`        | `admin123` |
-| FnB Manager | `manager@demo.sipos.local` | `demo123`  |
-| FnB         | `fnb@demo.sipos.local`     | `demo123`  |
-| Host        | `host@demo.sipos.local`    | `demo123`  |
+| Role        | Email                      | Password   |
+| :---------- | :------------------------- | :--------- |
+| **Admin**   | `admin@sipos.local`        | `admin123` |
+| **Manager** | `manager@demo.sipos.local` | `demo123`  |
+| **Staff**   | `fnb@demo.sipos.local`     | `demo123`  |
 
-6. Jalankan development server.
+---
+
+## 6. Menjalankan Aplikasi
+
+### Mode Development (Saat Coding)
 
 ```bash
 npm run dev
 ```
 
-Buka `http://localhost:3000`.
+Buka browser dan akses [http://localhost:3000](http://localhost:3000).
 
-## Environment Variables
+### Mode Production (Cara "Real" Menjalankan App)
 
-### Wajib untuk fitur inti
+Untuk mencoba performa asli aplikasi (lebih cepat):
 
-| Variable         | Kegunaan                                                         |
-| ---------------- | ---------------------------------------------------------------- |
-| `OPENAI_API_KEY` | Dipakai endpoint `POST /api/chat` untuk generate respons AI.     |
-| `AUTH_SECRET`    | Secret untuk session dan token Auth.js.                          |
-| `AUTH_URL`       | Base URL aplikasi untuk Auth.js, contoh `http://localhost:3000`. |
-| `DATABASE_URL`   | URL database runtime (Supabase pooled connection).               |
-| `DIRECT_URL`     | URL database direct connection untuk operasi langsung Prisma.    |
+1. Build project:
+   ```bash
+   npm run build
+   ```
+2. Jalankan:
+   ```bash
+   npm start
+   ```
 
-### Opsional atau fitur tertentu
+Akses di [http://localhost:3000](http://localhost:3000).
 
-| Variable                            | Kegunaan                                                   |
-| ----------------------------------- | ---------------------------------------------------------- |
-| `AUTH_GITHUB_ID`                    | Client ID OAuth GitHub (jika provider GitHub dipakai).     |
-| `AUTH_GITHUB_SECRET`                | Client Secret OAuth GitHub (jika provider GitHub dipakai). |
-| `NEXT_PUBLIC_PLUS_MONTHLY_PRICE_ID` | Dipakai oleh data pricing plan Plus bulanan.               |
-| `NEXT_PUBLIC_PLUS_YEARLY_PRICE_ID`  | Dipakai oleh data pricing plan Plus tahunan.               |
-| `NEXT_PUBLIC_PRO_MONTHLY_PRICE_ID`  | Dipakai oleh data pricing plan Pro bulanan.                |
-| `NEXT_PUBLIC_PRO_YEARLY_PRICE_ID`   | Dipakai oleh data pricing plan Pro tahunan.                |
+---
 
-## Scripts
+## Tips Tambahan
 
-| Command                   | Fungsi                                                                |
-| ------------------------- | --------------------------------------------------------------------- |
-| `npm run dev`             | Menjalankan server development Next.js.                               |
-| `npm run build`           | Build aplikasi untuk production.                                      |
-| `npm run start`           | Menjalankan hasil build production.                                   |
-| `npm run lint`            | Menjalankan ESLint.                                                   |
-| `npm run test:unit`       | Menjalankan unit test dengan Vitest.                                  |
-| `npm run test:unit:watch` | Menjalankan Vitest mode watch.                                        |
-| `npm run db:generate`     | Generate Prisma Client.                                               |
-| `npm run db:push`         | Push schema Prisma ke database.                                       |
-| `npm run db:migrate`      | Membuat dan menjalankan migration Prisma.                             |
-| `npm run db:seed`         | Buat tabel dan seed data RBAC (workspace, roles, permissions, users). |
-| `npm run db:setup`        | Alias ke seed bootstrap (`npm run db:seed`).                          |
-| `npm run stripe:listen`   | Listen webhook Stripe ke `/api/webhooks/stripe`.                      |
-
-## Verifikasi Seed RBAC
-
-Setelah `npm run db:seed`, jalankan query berikut di Supabase SQL Editor:
-
-```sql
-select code, name from public.workspaces order by code;
-select code, name from public.rbac_roles order by code;
-select email, full_name, is_active from public.staff_users order by email;
-
-select
-  w.code as workspace_code,
-  u.email,
-  r.code as role_code
-from public.rbac_user_roles ur
-join public.workspaces w on w.id = ur.workspace_id
-join public.staff_users u on u.id = ur.user_id
-join public.rbac_roles r on r.id = ur.role_id
-order by w.code, u.email, r.code;
-```
-
-## Route penting
-
-| Route                       | Keterangan                                   |
-| --------------------------- | -------------------------------------------- |
-| `/`                         | Halaman marketing utama.                     |
-| `/pricing`                  | Halaman pricing.                             |
-| `/contact`                  | Halaman kontak.                              |
-| `/privacy`                  | Halaman kebijakan privasi.                   |
-| `/login`                    | Halaman login, termasuk tombol login GitHub. |
-| `/register`                 | Halaman registrasi.                          |
-| `/reset-password`           | Halaman reset password.                      |
-| `/dashboard`                | Halaman dashboard utama.                     |
-| `/dashboard/text-generator` | Halaman text generator AI.                   |
-| `/api/health`               | Endpoint health check.                       |
-| `/api/chat`                 | Endpoint chat AI streaming.                  |
-| `/api/auth/[...nextauth]`   | Endpoint internal Auth.js.                   |
-
-## Known limitations
-
-- Form email dan password di halaman login masih simulasi, bukan autentikasi backend nyata.
-- Endpoint `/api/webhooks/stripe` belum tersedia, jadi `npm run stripe:listen` belum bisa dipakai end-to-end.
-- Route root `/text-generator` belum ada. Route yang tersedia adalah `/dashboard/text-generator`.
-
-## Lisensi
-
-Project ini menggunakan lisensi MIT. Detail lisensi ada di file `LICENSE`.
+- **Login**: Masuk ke `/login` dan gunakan email/password dari tabel seed di atas.
+- **Mengubah Schema Database**: Jika Anda mengedit `prisma/schema.prisma`, jalankan `npx prisma db push` lagi untuk update database.
+- **Lihat Data**: Gunakan **Prisma Studio** untuk melihat dan edit data database lewat browser:
+  ```bash
+  npx prisma studio
+  ```

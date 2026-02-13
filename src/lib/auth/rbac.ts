@@ -145,9 +145,27 @@ export const hasRole = (
 };
 
 export const hasPermission = (
-  roleCode: RoleCode | null,
+  roleCode: RoleCode | RoleCode[] | null,
   permissionKey: PermissionKey
 ): boolean => {
   if (!roleCode) return false;
+
+  if (Array.isArray(roleCode)) {
+    return resolvePermissionsFromRoles(roleCode).includes(permissionKey);
+  }
+
   return getPermissionsForRole(roleCode).includes(permissionKey);
+};
+
+export const resolvePermissionsFromRoles = (
+  roleCodes: RoleCode[]
+): PermissionKey[] => {
+  const allPermissions = new Set<PermissionKey>();
+  for (const roleCode of roleCodes) {
+    const permissions = getPermissionsForRole(roleCode);
+    for (const permission of permissions) {
+      allPermissions.add(permission);
+    }
+  }
+  return Array.from(allPermissions).sort();
 };
