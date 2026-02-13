@@ -16,7 +16,7 @@ Panduan langkah demi langkah untuk menjalankan project ini dari nol.
 Buka terminal atau command prompt, lalu jalankan:
 
 ```bash
-git clone <URL_REPO_ANDA>
+git clone https://github.com/andinoferdi/SIPOS.git
 cd SIPOS
 ```
 
