@@ -64,6 +64,12 @@ const mainItems: NavItem[] = [
 
 const portalItems: NavItem[] = [
   {
+    icon: <GridIcon />,
+    name: "POS Outlets",
+    path: withDashboardBase("/portal"),
+    permissionKey: "pos_instance:read",
+  },
+  {
     icon: <PlugInIcon />,
     name: "Inventory",
     path: withDashboardBase("/portal/inventory"),

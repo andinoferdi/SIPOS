@@ -1,15 +1,15 @@
 "use client";
 
-import { useTheme } from 'next-themes';
+import { useThemeTransition } from '@/features/theme/use-theme-transition';
 
 const ThemeToggle = () => {
-  const { setTheme, resolvedTheme } = useTheme();
+  const { resolvedTheme, toggleThemeWithTransition } = useThemeTransition();
 
   const isDark = resolvedTheme === 'dark';
 
   return (
     <button
-      onClick={() => setTheme(isDark ? 'light' : 'dark')}
+      onClick={toggleThemeWithTransition}
       className="inline-flex items-center justify-center size-11 rounded-full bg-[var(--color-gray-100)] dark:bg-[var(--token-white-5)] text-[var(--color-gray-500)] dark:text-[var(--token-white-60)] hover:text-[var(--token-gray-800)] dark:hover:text-[var(--token-white-90)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-white-10)]"
     >
       <svg

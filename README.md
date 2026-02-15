@@ -63,15 +63,15 @@ Project ini membutuhkan database PostgreSQL. Kita akan menggunakan **Supabase**.
 
 ## 4. Konfigurasi Environment Variables
 
-Duplikasi file contoh `.env` menjadi `.env.local`:
+Duplikasi file contoh `.env` menjadi `.env`:
 
 ```bash
-cp .env.example .env.local
+cp .env.example .env
 ```
 
-_(Jika di Windows CMD: `copy .env.example .env.local`)_
+_(Jika di Windows CMD: `copy .env.example .env`)_
 
-Buka file `.env.local` di text editor (VS Code) dan isi nilai-nilainya:
+Buka file `.env` di text editor (VS Code) dan isi nilai-nilainya:
 
 ```env
 # RAHASIA: Kunci untuk enkripsi session dan token

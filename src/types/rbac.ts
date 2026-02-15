@@ -25,6 +25,7 @@ export const PERMISSION_MODULES = [
   "reports",
   "user_role",
   "settings",
+  "pos_instance",
 ] as const;
 
 export type PermissionModule = (typeof PERMISSION_MODULES)[number];

@@ -30,7 +30,6 @@ const loadEnvFile = (filePath) => {
 };
 
 loadEnvFile(".env");
-loadEnvFile(".env.local");
 
 import { PrismaClient } from "@prisma/client";
 
@@ -97,6 +96,10 @@ const permissionCatalog = [
   { module: "settings", action: "update", description: "Ubah setting POS" },
   { module: "settings", action: "delete", description: "Hapus setting POS" },
   { module: "settings", action: "export", description: "Export setting POS" },
+  { module: "pos_instance", action: "create", description: "Buat POS Instance" },
+  { module: "pos_instance", action: "read", description: "Lihat POS Instance" },
+  { module: "pos_instance", action: "update", description: "Ubah POS Instance" },
+  { module: "pos_instance", action: "delete", description: "Hapus POS Instance" },
 ];
 
 // ─── Role Seed ───
@@ -126,8 +129,9 @@ const rolePermissionMap = {
     "reports:read", "reports:print", "reports:export",
     "user_role:create", "user_role:read", "user_role:update", "user_role:delete",
     "settings:create", "settings:read", "settings:update", "settings:delete", "settings:export",
+    "pos_instance:create", "pos_instance:read", "pos_instance:update", "pos_instance:delete",
   ],
-  fnb: ["dashboard_pos:read", "sales:create", "sales:read", "sales:print"],
+  fnb: ["dashboard_pos:read", "sales:create", "sales:read", "sales:print", "pos_instance:read"],
   fnb_manager: [
     "dashboard_pos:read",
     "sales:create", "sales:read", "sales:update", "sales:delete", "sales:print", "sales:export",
@@ -138,8 +142,9 @@ const rolePermissionMap = {
     "stock_management:delete", "stock_management:export",
     "inventory:read", "category:read",
     "reports:read", "reports:print", "reports:export",
+    "pos_instance:read",
   ],
-  host: ["dashboard_pos:read", "sales:create", "sales:read", "sales:print"],
+  host: ["dashboard_pos:read", "sales:create", "sales:read", "sales:print", "pos_instance:read"],
 };
 
 // ─── Seed Users ───

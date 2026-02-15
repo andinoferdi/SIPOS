@@ -8,9 +8,11 @@ const DASHBOARD_RULES: Array<{ prefix: string; permission: PermissionKey }> = [
   { prefix: "/dashboard/pos/approval", permission: "sales_approval:read" },
   { prefix: "/dashboard/pos/purchase", permission: "purchase:read" },
   { prefix: "/dashboard/pos/stock", permission: "stock_management:read" },
+  { prefix: "/dashboard/portal/pos-instances", permission: "pos_instance:read" },
   { prefix: "/dashboard/portal/inventory", permission: "inventory:read" },
   { prefix: "/dashboard/portal/categories", permission: "category:read" },
   { prefix: "/dashboard/portal/reports", permission: "reports:read" },
+  { prefix: "/dashboard/portal", permission: "pos_instance:read" },
   { prefix: "/dashboard/admin/rbac", permission: "user_role:read" },
   { prefix: "/dashboard", permission: "dashboard_pos:read" },
 ];
@@ -121,6 +123,39 @@ const resolveApiPermission = (
 
   if (pathname === "/api/portal/reports" && method === "GET") {
     return "reports:read";
+  }
+
+  // POS Instance routes
+  if (
+    /^\/api\/portal\/pos-instances\/[^/]+\/tables\/[^/]+$/.test(pathname) &&
+    method === "PUT"
+  ) {
+    return "pos_instance:update";
+  }
+
+  if (
+    /^\/api\/portal\/pos-instances\/[^/]+\/tables$/.test(pathname) &&
+    method === "GET"
+  ) {
+    return "pos_instance:read";
+  }
+
+  if (
+    /^\/api\/portal\/pos-instances\/[^/]+\/restore$/.test(pathname) &&
+    method === "PATCH"
+  ) {
+    return "pos_instance:update";
+  }
+
+  if (/^\/api\/portal\/pos-instances\/[^/]+$/.test(pathname)) {
+    if (method === "GET") return "pos_instance:read";
+    if (method === "PUT") return "pos_instance:update";
+    if (method === "DELETE") return "pos_instance:delete";
+  }
+
+  if (pathname === "/api/portal/pos-instances") {
+    if (method === "GET") return "pos_instance:read";
+    if (method === "POST") return "pos_instance:create";
   }
 
   return null;

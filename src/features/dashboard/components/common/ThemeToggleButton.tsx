@@ -1,12 +1,12 @@
 import React from "react";
-import { useTheme } from "next-themes";
+import { useThemeTransition } from "@/features/theme/use-theme-transition";
 
 export const ThemeToggleButton: React.FC = () => {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { toggleThemeWithTransition } = useThemeTransition();
 
   return (
     <button
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      onClick={toggleThemeWithTransition}
       className="relative flex items-center justify-center text-[var(--token-gray-500)] transition-colors bg-[var(--token-white)] border border-[var(--token-gray-200)] rounded-full hover:text-dark-900 h-11 w-11 hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:border-[var(--token-gray-800)] dark:bg-[var(--token-gray-900)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-gray-800)] dark:hover:text-[var(--token-white)]"
     >
       <svg

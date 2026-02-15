@@ -1,12 +1,12 @@
 "use client";
 import React from "react";
-import { useTheme } from "next-themes";
+import { useThemeTransition } from "@/features/theme/use-theme-transition";
 
 export default function ThemeTogglerTwo() {
-  const { resolvedTheme, setTheme } = useTheme();
+  const { toggleThemeWithTransition } = useThemeTransition();
   return (
     <button
-      onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
+      onClick={toggleThemeWithTransition}
       className="inline-flex size-14 items-center justify-center rounded-full bg-brand-500 text-[var(--token-white)] transition-colors hover:bg-brand-600"
     >
       <svg

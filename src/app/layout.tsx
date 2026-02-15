@@ -30,7 +30,7 @@ export default function RootLayout({
         className={`bg-[var(--token-gray-50)] dark:bg-dark-secondary min-h-screen flex flex-col ${onest.className}`}
       >
         <AuthSessionProvider>
-          <ThemeProvider disableTransitionOnChange>
+          <ThemeProvider>
             <QueryProvider>
               <ToasterProvider />
               <div className="isolate flex flex-col flex-1">{children}</div>

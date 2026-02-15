@@ -59,6 +59,20 @@
 
 @custom-variant dark (&:where([data-theme=dark], [data-theme=dark] *));
 
+html[data-theme-switching="true"],
+html[data-theme-switching="true"] * {
+  transition-property: background-color, color, border-color, fill, stroke;
+  transition-duration: 250ms;
+  transition-timing-function: ease-in-out;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html[data-theme-switching="true"],
+  html[data-theme-switching="true"] * {
+    transition-duration: 0ms !important;
+  }
+}
+
 @layer base {
   button:not(:disabled),
   [role="button"]:not(:disabled) {
