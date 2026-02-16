@@ -24,14 +24,46 @@ cd SIPOS
 npm install
 ```
 
-## 3. Setup Supabase
+## 3. Konfigurasi Environment Variables
+
+Gunakan hanya file `.env`.
+
+Isi `.env` dengan format berikut dulu:
+
+```env
+AUTH_SECRET="ganti_dengan_string_acak_panjang"
+AUTH_URL="http://localhost:3000"
+
+# Runtime app untuk serverless (transaction pooler)
+DATABASE_URL=""
+
+# Direct/session connection untuk CLI dan seed
+DIRECT_URL=""
+
+OPENAI_API_KEY=""
+NEXT_PUBLIC_SUPABASE_URL=""
+NEXT_PUBLIC_SUPABASE_ANON_KEY=""
+AUTH_GITHUB_ID=""
+AUTH_GITHUB_SECRET=""
+```
+
+Catatan penting:
+
+1. Password wajib URL-encoded jika ada karakter khusus seperti `#`, `@`, `!`.
+2. Standar tim deploy serverless: `DATABASE_URL` = port `6543`, `DIRECT_URL` = port `5432`.
+
+---
+
+## 4. Setup Supabase
 
 1. Buka [database.new](https://database.new), lalu buat project baru.
 2. Simpan password database Anda karena akan dipakai di connection string.
 3. Di dashboard project, klik tombol `Connect` di header.
 4. Pilih tab `ORMs`, lalu pilih tool `Prisma`.
 5. Salin `DATABASE_URL` dan `DIRECT_URL`.
-6. Ganti placeholder `[YOUR-PASSWORD]` dengan password database Anda.
+6. Tempel nilainya ke file `.env`:
+   1. `DATABASE_URL` pakai transaction pooler `6543` dan `pgbouncer=true`.
+   2. `DIRECT_URL` pakai session/direct `5432`.
 
 Jika lupa password database:
 
@@ -53,37 +85,6 @@ Referensi:
 2. https://supabase.com/docs/guides/troubleshooting/how-do-i-reset-my-supabase-database-password-oTs5sB
 3. https://supabase.com/docs/guides/database/prisma
 4. https://supabase.com/docs/reference/postgres/connection-strings
-
----
-
-## 4. Konfigurasi Environment Variables
-
-Gunakan hanya file `.env`.
-
-Isi `.env` dengan format berikut:
-
-```env
-AUTH_SECRET="ganti_dengan_string_acak_panjang"
-AUTH_URL="http://localhost:3000"
-
-# Runtime app untuk serverless (transaction pooler)
-DATABASE_URL="postgresql://postgres.<project-ref>:<password-url-encoded>@aws-<region>.pooler.supabase.com:6543/postgres?pgbouncer=true&connection_limit=1"
-
-# Direct/session connection untuk CLI dan seed
-DIRECT_URL="postgresql://postgres.<project-ref>:<password-url-encoded>@aws-<region>.pooler.supabase.com:5432/postgres"
-
-OPENAI_API_KEY=""
-NEXT_PUBLIC_SUPABASE_URL=""
-NEXT_PUBLIC_SUPABASE_ANON_KEY=""
-AUTH_GITHUB_ID=""
-AUTH_GITHUB_SECRET=""
-```
-
-Catatan penting:
-
-1. Password wajib URL-encoded jika ada karakter khusus seperti `#`, `@`, `!`.
-2. `DATABASE_URL` standar tim memakai port `6543`.
-3. `DIRECT_URL` standar tim memakai port `5432`.
 
 ---
 
