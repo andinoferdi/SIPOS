@@ -10,7 +10,10 @@ import { usePathname } from 'next/navigation';
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [hasScrolled, setHasScrolled] = useState(false);
   const pathname = usePathname();
+  const SCROLL_ON_THRESHOLD = 16;
+  const SCROLL_OFF_THRESHOLD = 4;
 
   useEffect(() => {
     setMobileMenuOpen(false);
@@ -27,8 +30,32 @@ export default function Header() {
     };
   }, []);
 
+  useEffect(() => {
+    const onScroll = () => {
+      setHasScrolled((prev) => {
+        if (prev) {
+          return window.scrollY > SCROLL_OFF_THRESHOLD;
+        }
+
+        return window.scrollY > SCROLL_ON_THRESHOLD;
+      });
+    };
+
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => {
+      window.removeEventListener('scroll', onScroll);
+    };
+  }, []);
+
   return (
-    <header className="bg-[var(--color-marketing-light-canvas)] dark:bg-[var(--color-marketing-dark-canvas)] sticky top-0 z-50 py-2 lg:py-4 backdrop-blur-sm">
+    <header
+      className={`sticky top-0 z-50 py-2 lg:py-4 bg-[var(--color-marketing-light-canvas)] dark:bg-[var(--color-marketing-dark-canvas)] ${
+        hasScrolled
+          ? 'supports-[backdrop-filter:blur(0px)]:bg-[color-mix(in_oklab,var(--color-marketing-light-canvas)_86%,transparent)] dark:supports-[backdrop-filter:blur(0px)]:bg-[color-mix(in_oklab,var(--color-marketing-dark-canvas)_78%,transparent)] backdrop-blur-md shadow-[0_8px_24px_-20px_rgba(17,24,39,0.38)] dark:shadow-[0_10px_30px_-20px_rgba(0,0,0,0.72)]'
+          : ''
+      } transition-[background-color,box-shadow,backdrop-filter] duration-300 ease-out`}
+    >
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-7">
         <div className="grid grid-cols-2 items-center lg:grid-cols-[1fr_auto_1fr]">
           <div className="flex items-center">

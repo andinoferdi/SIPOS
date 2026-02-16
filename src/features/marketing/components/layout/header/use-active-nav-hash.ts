@@ -7,6 +7,8 @@ import type { MarketingNavHash } from './nav-items';
 const OBSERVER_THRESHOLDS = [0, 0.15, 0.35, 0.6, 0.85];
 const OBSERVER_ROOT_MARGIN = '-96px 0px -45% 0px';
 const HEADER_OFFSET = 96;
+const URL_SYNC_DEBOUNCE_MS = 140;
+const NAVIGATION_LOCK_MS = 1000;
 
 const SECTION_CONFIG = [
   { id: 'features', hash: '#features' },
@@ -78,6 +80,7 @@ export function useActiveNavHash() {
   const navigationLockRef = useRef(false);
   const lockedHashRef = useRef<MarketingNavHash>('');
   const navigationUnlockTimerRef = useRef<number | null>(null);
+  const urlSyncTimerRef = useRef<number | null>(null);
 
   const clearNavigationLock = useCallback(() => {
     navigationLockRef.current = false;
@@ -89,6 +92,33 @@ export function useActiveNavHash() {
     }
   }, []);
 
+  const clearUrlSyncTimer = useCallback(() => {
+    if (urlSyncTimerRef.current !== null) {
+      window.clearTimeout(urlSyncTimerRef.current);
+      urlSyncTimerRef.current = null;
+    }
+  }, []);
+
+  const syncUrl = useCallback((nextHash: MarketingNavHash) => {
+    if (pathname !== '/') return;
+
+    const target = nextHash ? `/${nextHash}` : '/';
+    const current = `${window.location.pathname}${window.location.hash}`;
+
+    if (current !== target) {
+      window.history.replaceState(window.history.state, '', target);
+    }
+  }, [pathname]);
+
+  const scheduleUrlSync = useCallback((nextHash: MarketingNavHash) => {
+    clearUrlSyncTimer();
+
+    urlSyncTimerRef.current = window.setTimeout(() => {
+      syncUrl(nextHash);
+      urlSyncTimerRef.current = null;
+    }, URL_SYNC_DEBOUNCE_MS);
+  }, [clearUrlSyncTimer, syncUrl]);
+
   const setHashState = useCallback(
     (nextHash: MarketingNavHash, syncUrl: boolean) => {
       if (activeHashRef.current !== nextHash) {
@@ -96,15 +126,10 @@ export function useActiveNavHash() {
         setActiveHash(nextHash);
       }
 
-      if (!syncUrl || pathname !== '/') return;
-
-      const target = nextHash ? `/${nextHash}` : '/';
-      const current = `${window.location.pathname}${window.location.hash}`;
-      if (current !== target) {
-        window.history.replaceState(window.history.state, '', target);
-      }
+      if (!syncUrl) return;
+      scheduleUrlSync(nextHash);
     },
-    [pathname]
+    [scheduleUrlSync]
   );
 
   const recomputeActiveSection = useCallback(
@@ -213,7 +238,7 @@ export function useActiveNavHash() {
       navigationUnlockTimerRef.current = window.setTimeout(() => {
         clearNavigationLock();
         queueRecompute(true);
-      }, 700);
+      }, NAVIGATION_LOCK_MS);
 
       return true;
     },
@@ -270,6 +295,7 @@ export function useActiveNavHash() {
       window.removeEventListener('resize', onResize);
       window.removeEventListener('hashchange', onHashChange);
       clearNavigationLock();
+      clearUrlSyncTimer();
 
       if (rafRef.current !== null) {
         window.cancelAnimationFrame(rafRef.current);
@@ -278,6 +304,7 @@ export function useActiveNavHash() {
     };
   }, [
     clearNavigationLock,
+    clearUrlSyncTimer,
     pathname,
     queueRecompute,
     recomputeActiveSection,
