@@ -1,19 +1,17 @@
-# Next.js Prisma Auth Starter - Setup Guide
+﻿# Next.js Prisma Auth Starter - Setup Guide
 
 Panduan langkah demi langkah untuk menjalankan project ini dari nol.
 
 ## Prasyarat
 
-- [Node.js](https://nodejs.org/) (versi 20 atau lebih baru)
+- [Node.js](https://nodejs.org/) versi 20 atau lebih baru
 - [Git](https://git-scm.com/)
-- Akun [Supabase](https://supabase.com/) (untuk database)
-- Akun [GitHub](https://github.com/) (opsional, untuk login provider)
+- Akun [Supabase](https://supabase.com/) untuk database
+- Akun [GitHub](https://github.com/) opsional untuk login provider
 
 ---
 
 ## 1. Clone Project
-
-Buka terminal atau command prompt, lalu jalankan:
 
 ```bash
 git clone https://github.com/andinoferdi/SIPOS.git
@@ -22,147 +20,156 @@ cd SIPOS
 
 ## 2. Install Dependencies
 
-Install semua library yang dibutuhkan project:
-
 ```bash
 npm install
 ```
 
-## 3. Setup Supabase (Database)
+## 3. Setup Supabase
 
-Project ini membutuhkan database PostgreSQL. Kita akan menggunakan **Supabase**.
+1. Buka [database.new](https://database.new), lalu buat project baru.
+2. Simpan password database Anda karena akan dipakai di connection string.
+3. Di dashboard project, klik tombol `Connect` di header.
+4. Pilih tab `ORMs`, lalu pilih tool `Prisma`.
+5. Salin `DATABASE_URL` dan `DIRECT_URL`.
+6. Ganti placeholder `[YOUR-PASSWORD]` dengan password database Anda.
 
-1. Buka [database.new](https://database.new) dan buat project baru.
-2. Isi formulir **Create a new project**:
-   - **Name**: `SIPOS` (atau nama lain)
-   - **Database Password**: Buat password yang kuat (simpan ini, Anda akan butuh nanti)
-   - **Region**: Pilih yang terdekat dengan Anda (misal: Singapore)
-   - Klik **Create new project**.
-3. Tunggu beberapa saat hingga project selesai dibuat (status berubah menjadi hijau/aktif).
+Jika lupa password database:
 
-### Mendapatkan URL Koneksi
+1. Buka menu `Database` di sidebar kiri.
+2. Masuk ke `Settings`.
+3. Klik `Reset database password`.
+4. Update password baru di `DATABASE_URL` dan `DIRECT_URL`.
 
-1. Di dashboard Supabase project Anda, klik icon **Settings** (roda gigi) di menu kiri bawah.
-2. Pilih menu **Database** di sidebar bagian "Project Settings".
-3. Scroll ke bagian **Connection parameters**.
-4. Anda akan melihat data host, tetapi kita butuh **Connection String** lengkap.
-5. Lihat bagian **Connection string** > **URI**.
-6. Pilih tab **Transaction** (untuk `DATABASE_URL`) dan **Session** (untuk `DIRECT_URL`).
-   - Salin URL **Transaction**, kita sebut ini `DATABASE_URL`.
-   - Salin URL **Session**, kita sebut ini `DIRECT_URL`.
-   - **PENTING**: Ganti `[YOUR-PASSWORD]` di dalam URL dengan password database yang Anda buat di langkah awal.
+Untuk key Supabase client:
 
-### Mendapatkan API Keys (Opsional tapi Direkomendasikan)
+1. Buka `Project Settings`.
+2. Pilih `API Keys`.
+3. Di tab `Publishable and secret API keys`, ambil URL project dan publishable key.
+4. Jika tetap butuh anon key legacy, ambil dari tab `Legacy anon, service_role API keys`.
 
-1. Klik icon **Settings** (roda gigi) lagi.
-2. Pilih menu **API** di sidebar bagian "Project Settings".
-3. Di bagian **Project URL**, salin URL-nya. Ini adalah `NEXT_PUBLIC_SUPABASE_URL`.
-4. Di bagian **Project API keys**, salin key yang bernama `anon` `public`. Ini adalah `NEXT_PUBLIC_SUPABASE_ANON_KEY`.
+Referensi:
+
+1. https://supastarter.dev/docs/nextjs/recipes/supabase-setup
+2. https://supabase.com/docs/guides/troubleshooting/how-do-i-reset-my-supabase-database-password-oTs5sB
+3. https://supabase.com/docs/guides/database/prisma
+4. https://supabase.com/docs/reference/postgres/connection-strings
 
 ---
 
 ## 4. Konfigurasi Environment Variables
 
-Duplikasi file contoh `.env` menjadi `.env`:
+Gunakan hanya file `.env`.
 
-```bash
-cp .env.example .env
-```
-
-_(Jika di Windows CMD: `copy .env.example .env`)_
-
-Buka file `.env` di text editor (VS Code) dan isi nilai-nilainya:
+Isi `.env` dengan format berikut:
 
 ```env
-# RAHASIA: Kunci untuk enkripsi session dan token
-# Generate string acak di terminal: openssl rand -base64 32
 AUTH_SECRET="ganti_dengan_string_acak_panjang"
-
-# BASE URL: Lokasi aplikasi berjalan
 AUTH_URL="http://localhost:3000"
 
-# DATABASE (DARI SUPABASE LANGKAH 3)
-# Gunakan URL Mode Transaction (Port 6543)
-DATABASE_URL="postgres://postgres.xxxx:password@aws-0-ap-southeast-1.pooler.supabase.com:6543/postgres?pgbouncer=true"
+# Runtime app untuk serverless (transaction pooler)
+DATABASE_URL="postgresql://postgres.<project-ref>:<password-url-encoded>@aws-<region>.pooler.supabase.com:6543/postgres?pgbouncer=true&connection_limit=1"
 
-# DIRECT URL (DARI SUPABASE LANGKAH 3)
-# Gunakan URL Mode Session (Port 5432)
-DIRECT_URL="postgres://postgres.xxxx:password@aws-0-ap-southeast-1.supabase.co:5432/postgres"
+# Direct/session connection untuk CLI dan seed
+DIRECT_URL="postgresql://postgres.<project-ref>:<password-url-encoded>@aws-<region>.pooler.supabase.com:5432/postgres"
 
-# (OPSIONAL) Open AI Key untuk fitur Chat
 OPENAI_API_KEY=""
-
-# (OPSIONAL) Supabase Client Key
 NEXT_PUBLIC_SUPABASE_URL=""
 NEXT_PUBLIC_SUPABASE_ANON_KEY=""
-
-# (OPSIONAL) GitHub OAuth
 AUTH_GITHUB_ID=""
 AUTH_GITHUB_SECRET=""
 ```
 
+Catatan penting:
+
+1. Password wajib URL-encoded jika ada karakter khusus seperti `#`, `@`, `!`.
+2. `DATABASE_URL` standar tim memakai port `6543`.
+3. `DIRECT_URL` standar tim memakai port `5432`.
+
 ---
 
-## 5. Setup Database Schema (Prisma)
+## 5. Setup Database
 
-Sekarang kita akan mengirim struktur tabel (schema) project ke database Supabase Anda.
-
-Jalankan perintah ini:
+Jalankan sinkronisasi schema:
 
 ```bash
 npx prisma db push
 ```
 
-_Jika ditanya "Do you want to ignore data loss warnings?", ketik `y` lalu Enter._
-
-Selanjutnya, isi database dengan data awal (Seeding):
+Lanjut seed data awal:
 
 ```bash
 npm run db:seed
 ```
 
-Terminal akan menampilkan **User Default** yang bisa digunakan untuk login:
+Aturan koneksi command:
 
-| Role        | Email                      | Password   |
-| :---------- | :------------------------- | :--------- |
-| **Admin**   | `admin@sipos.local`        | `admin123` |
-| **Manager** | `manager@demo.sipos.local` | `demo123`  |
-| **Staff**   | `fnb@demo.sipos.local`     | `demo123`  |
+1. `npx prisma db push` dan operasi schema Prisma berjalan lewat jalur direct/session.
+2. `npm run db:seed` memakai `DIRECT_URL` lebih dulu, lalu fallback ke `DATABASE_URL` jika `DIRECT_URL` kosong.
+3. Runtime app di Vercel/serverless tetap memakai `DATABASE_URL` port `6543`.
+
+Catatan:
+
+1. `db push` bisa menampilkan target `:5432`. Itu normal karena memakai jalur direct/session.
+2. `db:seed` memakai script SQL berbasis driver `pg` agar stabil lintas versi Node.
+
+Default credentials hasil seed:
+
+| Role | Email | Password |
+| :--- | :--- | :--- |
+| Admin | `admin@sipos.local` | `admin123` |
+| Manager | `manager@demo.sipos.local` | `demo123` |
+| FnB | `fnb@demo.sipos.local` | `demo123` |
+| Host | `host@demo.sipos.local` | `demo123` |
 
 ---
 
 ## 6. Menjalankan Aplikasi
 
-### Mode Development (Saat Coding)
+Development:
 
 ```bash
 npm run dev
 ```
 
-Buka browser dan akses [http://localhost:3000](http://localhost:3000).
+Production:
 
-### Mode Production (Cara "Real" Menjalankan App)
+```bash
+npm run build
+npm start
+```
 
-Untuk mencoba performa asli aplikasi (lebih cepat):
+Buka di `http://localhost:3000`.
 
-1. Build project:
-   ```bash
-   npm run build
-   ```
-2. Jalankan:
-   ```bash
-   npm start
-   ```
+---
 
-Akses di [http://localhost:3000](http://localhost:3000).
+## Troubleshooting Port Supabase
+
+Jika local bermasalah saat `DATABASE_URL` memakai `6543`:
+
+1. Cek dulu apakah password di URL sudah encoded.
+2. Jalankan `npx prisma db push` untuk memastikan koneksi direct/session sehat.
+3. Tes reachability pooler `6543`:
+
+```powershell
+Test-NetConnection aws-1-ap-southeast-2.pooler.supabase.com -Port 6543
+```
+
+4. Cek status pooler di Supabase Dashboard.
+
+Fallback local-only:
+
+1. Untuk unblock sementara, Anda boleh set `DATABASE_URL` ke `5432`.
+2. Sebelum deploy, kembalikan lagi ke split resmi:
+   1. `DATABASE_URL` = `6543` + `pgbouncer=true`
+   2. `DIRECT_URL` = `5432`
 
 ---
 
 ## Tips Tambahan
 
-- **Login**: Masuk ke `/login` dan gunakan email/password dari tabel seed di atas.
-- **Mengubah Schema Database**: Jika Anda mengedit `prisma/schema.prisma`, jalankan `npx prisma db push` lagi untuk update database.
-- **Lihat Data**: Gunakan **Prisma Studio** untuk melihat dan edit data database lewat browser:
-  ```bash
-  npx prisma studio
-  ```
+- Jika Anda mengubah `prisma/schema.prisma`, jalankan `npx prisma db push` lagi.
+- Untuk lihat data DB di browser, jalankan:
+
+```bash
+npx prisma studio
+```
