@@ -1,5 +1,7 @@
 import type { Metadata } from 'next';
 import { Suspense } from 'react';
+import Link from 'next/link';
+import { Home } from 'lucide-react';
 import SignInForm from '@/features/auth/components/signin-form';
 
 export const metadata: Metadata = {
@@ -8,10 +10,10 @@ export const metadata: Metadata = {
 
 export default function SignInPage() {
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section className="bg-[var(--color-marketing-light-canvas)] dark:bg-[var(--color-marketing-dark-canvas)] py-18 md:py-24">
       <div className="wrapper">
-        <div className="relative max-w-[600px] mx-auto">
-          <div className="contact-wrapper border p-8 sm:p-14 relative z-30 bg-(--token-white) dark:bg-dark-primary dark:border-dark-primary border-(--token-gray-100)">
+        <div className="mx-auto max-w-[600px]">
+          <div className="rounded-3xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-8 shadow-theme-sm dark:border-[var(--color-marketing-dark-border)] dark:bg-[var(--token-white-1)] sm:p-14">
             <div className="text-center mb-8">
               <h3 className="text-(--token-gray-800) dark:text-(--token-white-90) font-bold text-3xl mb-2">
                 Sign In
@@ -25,74 +27,25 @@ export default function SignInPage() {
               <SignInForm />
             </Suspense>
 
-            <div className="mt-5">
-              <p className="text-(--token-gray-700) dark:text-(--token-gray-400) text-sm">
-                Akun staff POS dibuat oleh admin.
-              </p>
+            <div className="mt-6 border-t border-[var(--token-gray-200)] pt-5 dark:border-[var(--color-marketing-dark-border)]">
+              <div className="flex flex-col gap-3 sm:flex-row">
+                <Link
+                  href="/register"
+                  className="inline-flex h-11 flex-1 items-center justify-center rounded-full border border-[var(--token-gray-300)] bg-[var(--token-white)] px-5 text-sm font-semibold text-[var(--token-gray-700)] transition-colors hover:bg-[var(--token-gray-100)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-white-3)] dark:text-[var(--token-gray-300)] dark:hover:bg-[var(--token-white-5)]"
+                >
+                  Go to Register
+                </Link>
+                <Link
+                  href="/"
+                  className="inline-flex h-11 flex-1 items-center justify-center gap-2 rounded-full bg-primary-500 px-5 text-sm font-semibold text-[var(--token-white)] transition-colors hover:bg-primary-600"
+                >
+                  <Home size={16} aria-hidden />
+                  Back to Home
+                </Link>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="absolute -bottom-32 left-1/2 -translate-x-1/2 z-0">
-        <svg
-          width="930"
-          height="760"
-          viewBox="0 0 930 760"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g opacity="0.3" filter="url(#filter0_f_9248_10254)">
-            <circle cx="380.335" cy="380.335" r="179.665" fill="var(--color-accent-pink-500)" />
-          </g>
-          <g opacity="0.7" filter="url(#filter1_f_9248_10254)">
-            <circle cx="549.665" cy="380.335" r="179.665" fill="var(--color-accent-blue-500)" />
-          </g>
-          <defs>
-            <filter
-              id="filter0_f_9248_10254"
-              x="0.669922"
-              y="0.6698"
-              width="759.33"
-              height="759.33"
-              filterUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
-            >
-              <feFlood floodOpacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feGaussianBlur
-                stdDeviation="100"
-                result="effect1_foregroundBlur_9248_10254"
-              />
-            </filter>
-            <filter
-              id="filter1_f_9248_10254"
-              x="170"
-              y="0.6698"
-              width="759.33"
-              height="759.33"
-              filterUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
-            >
-              <feFlood floodOpacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feGaussianBlur
-                stdDeviation="100"
-                result="effect1_foregroundBlur_9248_10254"
-              />
-            </filter>
-          </defs>
-        </svg>
       </div>
     </section>
   );

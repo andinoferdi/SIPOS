@@ -106,7 +106,7 @@ export default function TableLabelEditor({ posInstanceId }: TableLabelEditorProp
                     className="w-32 rounded border border-(--token-brand-400) bg-(--token-white) px-2 py-1 text-sm focus:ring-2 focus:ring-(--token-brand-500)/20 dark:bg-(--token-gray-800) dark:text-(--token-white)"
                   />
                 ) : (
-                  <span className="font-mono text-(--token-gray-900) dark:text-(--token-white)">
+                  <span className="font-medium text-(--token-gray-900) dark:text-(--token-white)">
                     {table.label}
                   </span>
                 )}

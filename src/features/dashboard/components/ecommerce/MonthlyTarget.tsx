@@ -15,7 +15,7 @@ export default function MonthlyTarget() {
   const options: ApexOptions = {
     colors: ["var(--color-brand-500)"],
     chart: {
-      fontFamily: "Outfit, sans-serif",
+      fontFamily: "Poppins, sans-serif",
       type: "radialBar",
       height: 330,
       sparkline: {

@@ -1,21 +1,19 @@
 'use client';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { useState } from 'react';
+import type { MouseEvent } from 'react';
 import { navItems } from './nav-items';
 import { cn } from '@/lib/utils';
-import { ChevronDownIcon } from '@/icons/icons';
+import { useActiveNavHash } from './use-active-nav-hash';
 
 type MobileMenuProps = {
-  isOpen: boolean;};
+  isOpen: boolean;
+  onNavigate?: () => void;
+};
 
-export default function MainMobileNav({ isOpen }: MobileMenuProps) {
+export default function MainMobileNav({ isOpen, onNavigate }: MobileMenuProps) {
   const pathname = usePathname();
-  const [activeDropdown, setActiveDropdown] = useState('');
-
-  const toggleDropdown = (key: string) => {
-    setActiveDropdown(activeDropdown === key ? '' : key);
-  };
+  const { activeHash, setActiveHashFromHref, navigateToHref } = useActiveNavHash();
 
   if (!isOpen) return null;
 
@@ -25,73 +23,36 @@ export default function MainMobileNav({ isOpen }: MobileMenuProps) {
         <div className="flex-1 overflow-y-auto">
           <div className="pt-2 pb-3 space-y-1 px-4 sm:px-6">
             {navItems.map((item) => {
-              if (item.type === 'link') {
-                return (
-                  <Link
-                    key={item.href}
-                    href={item.href}
-                    className={cn(
-                      'block px-3 py-2 rounded-md text-sm font-medium text-[var(--token-gray-500)] dark:text-[var(--token-gray-300)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-gray-700)]',
-                      {
-                        'text-[var(--token-gray-800)] dark:text-[var(--token-white)]': pathname === item.href,
-                      }
-                    )}
-                  >
-                    {item.label}
-                  </Link>
-                );
-              }
+              const isActive =
+                item.href === '/'
+                  ? pathname === '/' && activeHash === ''
+                  : pathname === '/' && activeHash === item.hash;
 
-              if (item.type === 'dropdown') {
-                return (
-                  <div key={item.label}>
-                    <button
-                      onClick={() => toggleDropdown(item.label)}
-                      className={cn(
-                        'flex justify-between items-center w-full px-3 py-2 rounded-md text-sm font-medium' +
-                          ' text-[var(--token-gray-500)] dark:text-[var(--token-gray-300)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-gray-700)]',
-                        {
-                          'text-[var(--token-gray-700)] dark:text-[var(--token-gray-200)]': item.items.some(
-                            (subItem) => pathname.includes(subItem.href)
-                          ),
-                        }
-                      )}
-                    >
-                      <span>{item.label}</span>
-                      <span
-                        className={cn(
-                          'size-4 transition-transform duration-200',
-                          activeDropdown === item.label && 'rotate-180'
-                        )}
-                      >
-                        <ChevronDownIcon />
-                      </span>
-                    </button>
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  aria-current={isActive ? 'page' : undefined}
+                  onClick={(event: MouseEvent<HTMLAnchorElement>) => {
+                    if (navigateToHref(item.href)) {
+                      event.preventDefault();
+                    } else {
+                      setActiveHashFromHref(item.href);
+                    }
 
-                    {activeDropdown === item.label && (
-                      <div className="mt-2 space-y-1 pl-4">
-                        {item.items.map((subItem) => (
-                          <Link
-                            key={subItem.href}
-                            href={subItem.href}
-                            className={cn(
-                              'flex items-center px-3 py-2 gap-1.5 rounded-md text-sm font-medium text-[var(--token-gray-500)]' +
-                                ' dark:text-[var(--token-gray-300)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-gray-700)]',
-                              {
-                                'px-2': 'icon' in subItem,
-                                'bg-[var(--token-gray-100)] dark:bg-[var(--token-gray-700)] text-[var(--token-gray-700)] dark:text-[var(--token-gray-200)]':
-                                  pathname.includes(subItem.href),
-                              }
-                            )}
-                          >
-                            <span>{subItem.label}</span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </div>
-                );
-              }
+                    onNavigate?.();
+                  }}
+                  className={cn(
+                    'block px-3 py-2 rounded-md text-sm font-medium text-[var(--token-gray-500)] dark:text-[var(--token-gray-300)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-gray-700)]',
+                    {
+                      'bg-[var(--token-gray-100)] dark:bg-[var(--token-gray-700)] text-[var(--token-gray-800)] dark:text-[var(--token-white)]':
+                        isActive,
+                    }
+                  )}
+                >
+                  {item.label}
+                </Link>
+              );
             })}
           </div>
         </div>
@@ -101,14 +62,14 @@ export default function MainMobileNav({ isOpen }: MobileMenuProps) {
             href="/login"
             className="text-sm block w-full border h-11 border-[var(--token-gray-200)] px-5 py-3 rounded-full text-center font-medium text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] hover:text-primary-500"
           >
-            Sign In
+            Login
           </Link>
 
           <Link
-            href="/login"
+            href="/register"
             className="flex items-center px-5 py-3 gradient-btn  justify-center text-sm text-[var(--token-white)] rounded-full button-bg h-11"
           >
-            Staff Login
+            Register
           </Link>
         </div>
       </div>

@@ -13,7 +13,7 @@ type CountryMapProps = {
 type MarkerStyle = {
   initial: {
     fill: string;
-    r: number; // Radius for markers
+    r: number;
   };
 };
 
@@ -86,7 +86,7 @@ const CountryMap: React.FC<CountryMapProps> = ({ mapColor }) => {
         initial: {
           fill: mapColor || "var(--color-gray-300)",
           fillOpacity: 1,
-          fontFamily: "Outfit",
+          fontFamily: "Poppins, sans-serif",
           stroke: "none",
           strokeWidth: 0,
           strokeOpacity: 0,

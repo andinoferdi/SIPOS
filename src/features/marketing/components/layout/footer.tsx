@@ -5,57 +5,29 @@ import Link from "next/link";
 
 export default function Footer() {
   return (
-    <footer className="relative overflow-hidden bg-[var(--token-gray-900)]">
-      <span className="absolute top-0 -translate-x-1/2 left-1/2">
-        <svg
-          width="1260"
-          height="457"
-          viewBox="0 0 1260 457"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-        >
-          <g filter="url(#filter0_f_11105_867)">
-            <circle cx="630" cy="-173.299" r="230" fill="var(--color-accent-indigo-600)" />
-          </g>
-          <defs>
-            <filter
-              id="filter0_f_11105_867"
-              x="0"
-              y="-803.299"
-              width="1260"
-              height="1260"
-              filterUnits="userSpaceOnUse"
-              colorInterpolationFilters="sRGB"
-            >
-              <feFlood floodOpacity="0" result="BackgroundImageFix" />
-              <feBlend
-                mode="normal"
-                in="SourceGraphic"
-                in2="BackgroundImageFix"
-                result="shape"
-              />
-              <feGaussianBlur
-                stdDeviation="200"
-                result="effect1_foregroundBlur_11105_867"
-              />
-            </filter>
-          </defs>
-        </svg>
-      </span>
+    <footer className="relative overflow-hidden border-t border-[var(--token-gray-200)] bg-[var(--color-marketing-light-canvas)] dark:border-[var(--color-marketing-dark-border)] dark:bg-[var(--color-marketing-dark-canvas)]">
       <div className="relative z-10 py-16 xl:py-24">
-        <div className="container px-5 mx-auto sm:px-7">
+        <div className="mx-auto w-full max-w-7xl px-5 sm:px-7">
           <div className="grid gap-y-8 gap-x-6 lg:grid-cols-12">
             <div className="lg:col-span-3 xl:col-span-4">
               <div>
                 <Link href="/" className="block mb-6">
                   <Image
+                    className="block dark:hidden"
+                    src="/images/logo-black.svg"
+                    alt="logo"
+                    width={128}
+                    height={32}
+                  />
+                  <Image
+                    className="hidden dark:block"
                     src="/images/logo-white.svg"
                     alt="logo"
                     width={128}
                     height={32}
                   />
                 </Link>
-                <p className="block text-sm text-[var(--token-gray-400)] mb-9">
+                <p className="block text-sm text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] mb-9">
                   A self-hosted AI starter kit built with Next.js, Tailwind CSS,
                   and OpenAI integrations. Perfect for developers and startups
                   to quickly build, deploy, and scale AI-powered SaaS products.
@@ -64,7 +36,7 @@ export default function Footer() {
                   <a
                     href="https://www.linkedin.com/company/pimjo/posts/?feedView=all"
                     target="_blank"
-                    className="text-[var(--token-gray-400)] hover:text-[var(--token-white-80)] size-10"
+                    className="text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white-90)] size-10"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -95,7 +67,7 @@ export default function Footer() {
                   <a
                     href="https://x.com/PimjoHQ"
                     target="_blank"
-                    className="text-[var(--token-gray-400)] hover:text-[var(--token-white-80)] size-10"
+                    className="text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white-90)] size-10"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -113,7 +85,7 @@ export default function Footer() {
                   <a
                     href="https://github.com/PIMJO"
                     target="_blank"
-                    className="text-[var(--token-gray-400)] hover:text-[var(--token-white-80)] size-10"
+                    className="text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white-90)] size-10"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -173,7 +145,7 @@ export default function Footer() {
                   <a
                     href="https://www.facebook.com/PimjoHQ"
                     target="_blank"
-                    className="text-[var(--token-gray-400)] hover:text-[var(--token-white-80)] size-10"
+                    className="text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white-90)] size-10"
                   >
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
@@ -206,105 +178,105 @@ export default function Footer() {
             <div className="lg:col-span-6 xl:col-span-5">
               <div className="grid sm:grid-cols-3 gap-7">
                 <div>
-                  <span className="block mb-6 text-sm text-[var(--token-gray-400)]">
+                  <span className="block mb-6 text-sm text-[var(--token-gray-700)] dark:text-[var(--token-gray-300)]">
                     Services
                   </span>
                   <nav className="flex flex-col space-y-3">
                     <Link
-                      href="/"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      href="/#features"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
-                      Status
+                      Features
                     </Link>
                     <Link
-                      href="/pricing"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      href="/#pricing"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
                       Pricing
                     </Link>
                     <Link
-                      href="/pricing#faq"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      href="/#help"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
                       FAQ
                     </Link>
                     <Link
-                      href="/contact"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      href="/#help"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
                       Help Docs
                     </Link>
                     <Link
-                      href="/privacy"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      href="/#help"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
-                      Privacy Policy
+                      Support
                     </Link>
                   </nav>
                 </div>
                 <div>
-                  <span className="block mb-6 text-sm text-[var(--token-gray-400)]">
+                  <span className="block mb-6 text-sm text-[var(--token-gray-700)] dark:text-[var(--token-gray-300)]">
                     Features
                   </span>
                   <nav className="flex flex-col space-y-3">
                     <Link
-                      href="/"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      href="/#features"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
-                      HTML File Upload
+                      Inventory
                     </Link>
                     <Link
-                      href="/"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      href="/#features"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
-                      HTML website hosting
+                      Sales Tracking
                     </Link>
                     <Link
-                      href="/"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      href="/#features"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
-                      Free Image Hosting
+                      Multi Device
                     </Link>
                     <Link
-                      href="/"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      href="/#pricing"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
-                      Upload PDF Online
+                      Plans
                     </Link>
                     <Link
-                      href="/"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      href="/#help"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
-                      Free Zip file hosting
+                      FAQ
                     </Link>
                   </nav>
                 </div>
                 <div>
-                  <span className="relative block mb-6 text-sm text-[var(--token-gray-400)]">
+                  <span className="relative block mb-6 text-sm text-[var(--token-gray-700)] dark:text-[var(--token-gray-300)]">
                     Account
                   </span>
                   <nav className="flex flex-col space-y-3">
                     <Link
                       href="/login"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
                       Login
                     </Link>
                     <Link
                       href="/dashboard"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
                       Dashboard
                     </Link>
                     <Link
                       href="/reset-password"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
                       Reset Password
                     </Link>
                     <Link
-                      href="/contact"
-                      className="text-sm font-normal text-[var(--token-gray-400)] transition hover:text-[var(--token-white)]"
+                      href="/#help"
+                      className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
                       Support
                     </Link>
@@ -314,10 +286,10 @@ export default function Footer() {
             </div>
             <div className="lg:col-span-3">
               <div>
-                <span className="block mb-6 text-sm text-[var(--token-gray-400)]">
+                <span className="block mb-6 text-sm text-[var(--token-gray-700)] dark:text-[var(--token-gray-300)]">
                   Stay In Touch
                 </span>
-                <p className="block mb-5 text-sm text-[var(--token-gray-400)]">
+                <p className="block mb-5 text-sm text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)]">
                   Subscribe now for exclusive insights and offers!
                 </p>
                 <FooterSubscribeForm />
@@ -326,10 +298,10 @@ export default function Footer() {
           </div>
         </div>
       </div>
-      <div className="border-t border-[var(--token-gray-800)]">
-        <div className="container relative z-10 px-5 mx-auto sm:px-7">
+      <div className="border-t border-[var(--token-gray-200)] dark:border-[var(--color-marketing-dark-border)]">
+        <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-7">
           <div className="py-5 text-center">
-            <p className="text-sm text-[var(--token-gray-500)]">
+            <p className="text-sm text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
               &copy; {getCurrentYear()} AiStarterKit - All Rights Reserved.
             </p>
           </div>

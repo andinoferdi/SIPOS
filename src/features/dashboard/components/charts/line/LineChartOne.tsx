@@ -17,7 +17,7 @@ export default function LineChartOne() {
     },
     colors: ["var(--color-brand-500)", "var(--color-brand-300)"], // Define line colors
     chart: {
-      fontFamily: "Outfit, sans-serif",
+      fontFamily: "Poppins, sans-serif",
       height: 310,
       type: "line", // Set the chart type to 'line'
       toolbar: {

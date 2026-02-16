@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Winkel POS - Grow Your Business</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons+Round" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,typography"></script>
+<script>
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        primary: "#7c3aed", // Vibrant purple
+                        "primary-hover": "#6d28d9",
+                        "background-light": "#f9fafb", // Very light gray/white
+                        "background-dark": "#0f172a", // Deep blue-gray/black
+                        "surface-light": "#ffffff",
+                        "surface-dark": "#1e293b",
+                        "text-light": "#1f2937",
+                        "text-dark": "#f1f5f9",
+                        "muted-light": "#6b7280",
+                        "muted-dark": "#94a3b8",
+                        "border-light": "#e5e7eb",
+                        "border-dark": "#334155"
+                    },
+                    fontFamily: {
+                        display: ["Poppins", "sans-serif"],
+                        body: ["Poppins", "sans-serif"],
+                    },
+                    borderRadius: {
+                        DEFAULT: "0.5rem",
+                    },
+                },
+            },
+        };
+    </script>
+<style>.toggle-checkbox:checked {
+            right: 0;
+            border-color: #7c3aed;
+        }
+        .toggle-checkbox:checked + .toggle-label {
+            background-color: #7c3aed;
+        }.fade-in-up {
+            animation: fadeInUp 0.8s ease-out forwards;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="font-body text-text-light dark:text-text-dark bg-background-light dark:bg-background-dark antialiased transition-colors duration-300">
+<nav class="fixed w-full z-50 bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-border-light dark:border-border-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex justify-between items-center h-20">
+<div class="flex-shrink-0 flex items-center gap-2 cursor-pointer">
+<span class="material-icons-round text-primary text-3xl">token</span>
+<span class="font-bold text-2xl tracking-tight">Winkel</span>
+</div>
+<div class="hidden md:flex space-x-8 items-center">
+<a class="text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary transition-colors font-medium" href="#">Home</a>
+<a class="text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary transition-colors font-medium" href="#features">Features</a>
+<a class="text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary transition-colors font-medium" href="#pricing">Pricing</a>
+<a class="text-muted-light dark:text-muted-dark hover:text-primary dark:hover:text-primary transition-colors font-medium" href="#help">Help</a>
+</div>
+<div class="flex items-center space-x-4">
+<button class="p-2 rounded-full text-muted-light dark:text-muted-dark hover:bg-gray-200 dark:hover:bg-gray-800 transition-colors" id="theme-toggle">
+<span class="material-icons-round dark:hidden">dark_mode</span>
+<span class="material-icons-round hidden dark:block">light_mode</span>
+</button>
+<a class="hidden md:inline-flex items-center justify-center px-6 py-2 border border-border-light dark:border-border-dark text-sm font-medium rounded-full text-text-light dark:text-text-dark bg-transparent hover:bg-gray-100 dark:hover:bg-gray-800 transition-all" href="#">
+                        Login
+                    </a>
+<a class="inline-flex items-center justify-center px-6 py-2 border border-transparent text-sm font-medium rounded-full text-white bg-primary hover:bg-primary-hover shadow-lg shadow-primary/30 transition-all" href="#">
+                        Sign Up
+                    </a>
+</div>
+</div>
+</div>
+</nav>
+<section class="pt-32 pb-20 lg:pt-40 lg:pb-28 overflow-hidden">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+<h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tight mb-6 fade-in-up" style="animation-delay: 0.1s;">
+                The best way to <span class="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">grow your business</span>
+</h1>
+<p class="mt-4 max-w-2xl mx-auto text-lg md:text-xl text-muted-light dark:text-muted-dark fade-in-up" style="animation-delay: 0.2s;">
+                With Winkel can help you to be able to grow your business quickly and precisely with premium features tailored for modern retail.
+            </p>
+<div class="mt-10 flex justify-center gap-4 fade-in-up" style="animation-delay: 0.3s;">
+<button class="bg-primary hover:bg-primary-hover text-white px-8 py-3 rounded-full font-medium transition-all shadow-lg shadow-primary/25">
+                    Get Started
+                </button>
+<button class="bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 text-text-light dark:text-text-dark px-8 py-3 rounded-full font-medium transition-all">
+                    Watch Demo
+                </button>
+</div>
+<div class="mt-20 relative fade-in-up" style="animation-delay: 0.5s;">
+<div class="absolute inset-0 bg-gradient-to-b from-transparent to-background-light dark:to-background-dark z-10 h-full w-full pointer-events-none bottom-0 top-auto h-1/3"></div>
+<div class="relative bg-surface-light dark:bg-surface-dark rounded-2xl shadow-2xl overflow-hidden border border-border-light dark:border-border-dark max-w-5xl mx-auto transform hover:scale-[1.01] transition-transform duration-500">
+<div class="flex items-center p-4 border-b border-border-light dark:border-border-dark bg-gray-50 dark:bg-gray-900/50">
+<div class="flex space-x-2">
+<div class="w-3 h-3 rounded-full bg-red-500"></div>
+<div class="w-3 h-3 rounded-full bg-yellow-500"></div>
+<div class="w-3 h-3 rounded-full bg-green-500"></div>
+</div>
+<div class="mx-auto text-xs text-muted-light dark:text-muted-dark font-mono">dashboard.winkel.com</div>
+</div>
+<div class="p-1">
+<div class="flex flex-col md:flex-row h-[500px]">
+<div class="w-20 hidden md:flex flex-col items-center py-6 border-r border-border-light dark:border-border-dark bg-gray-50 dark:bg-gray-800/30">
+<span class="material-icons-round text-primary mb-8 text-2xl">token</span>
+<div class="space-y-6 text-muted-light dark:text-muted-dark">
+<span class="material-icons-round cursor-pointer hover:text-primary text-xl">grid_view</span>
+<span class="material-icons-round cursor-pointer hover:text-primary text-xl">shopping_bag</span>
+<span class="material-icons-round cursor-pointer hover:text-primary text-xl">leaderboard</span>
+<span class="material-icons-round cursor-pointer hover:text-primary text-xl">settings</span>
+</div>
+</div>
+<div class="flex-1 p-6 md:p-8 overflow-y-auto bg-surface-light dark:bg-surface-dark">
+<div class="flex justify-between items-center mb-8">
+<div>
+<h3 class="text-xl font-bold">Welcome, Gorry</h3>
+<p class="text-sm text-muted-light dark:text-muted-dark">Discover whatever you need easily</p>
+</div>
+<div class="relative">
+<span class="material-icons-round absolute left-3 top-2.5 text-muted-light text-sm">search</span>
+<input class="pl-10 pr-4 py-2 rounded-lg bg-gray-100 dark:bg-gray-800 border-none text-sm w-64 focus:ring-2 focus:ring-primary" placeholder="Search product..." type="text"/>
+</div>
+</div>
+<div class="flex gap-4 mb-8 overflow-x-auto pb-2">
+<button class="flex items-center space-x-2 px-4 py-2 bg-primary text-white rounded-lg text-sm whitespace-nowrap">
+<span class="material-icons-round text-sm">lunch_dining</span>
+<span>Signature</span>
+</button>
+<button class="flex items-center space-x-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-muted-light dark:text-muted-dark rounded-lg text-sm hover:bg-gray-200 dark:hover:bg-gray-700 whitespace-nowrap">
+<span class="material-icons-round text-sm">bakery_dining</span>
+<span>Croissant</span>
+</button>
+<button class="flex items-center space-x-2 px-4 py-2 bg-gray-100 dark:bg-gray-800 text-muted-light dark:text-muted-dark rounded-lg text-sm hover:bg-gray-200 dark:hover:bg-gray-700 whitespace-nowrap">
+<span class="material-icons-round text-sm">icecream</span>
+<span>Ice Cream</span>
+</button>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl border border-border-light dark:border-border-dark group cursor-pointer hover:border-primary transition-colors">
+<div class="h-32 bg-gray-200 dark:bg-gray-700 rounded-lg mb-4 flex items-center justify-center">
+<span class="material-icons-round text-gray-400 text-4xl">image</span>
+</div>
+<h4 class="font-medium text-sm">Almond Brown Sugar Croissant</h4>
+<p class="text-xs text-muted-light dark:text-muted-dark mt-1">$12.98 / 3 pcs</p>
+</div>
+<div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl border border-border-light dark:border-border-dark group cursor-pointer hover:border-primary transition-colors">
+<div class="h-32 bg-gray-200 dark:bg-gray-700 rounded-lg mb-4 flex items-center justify-center">
+<span class="material-icons-round text-gray-400 text-4xl">image</span>
+</div>
+<h4 class="font-medium text-sm">Smoke Tenderloin Slice Croissant</h4>
+<p class="text-xs text-muted-light dark:text-muted-dark mt-1">$10.01 / 2 pcs</p>
+</div>
+<div class="bg-gray-50 dark:bg-gray-800/50 p-4 rounded-xl border border-border-light dark:border-border-dark group cursor-pointer hover:border-primary transition-colors">
+<div class="h-32 bg-gray-200 dark:bg-gray-700 rounded-lg mb-4 flex items-center justify-center">
+<span class="material-icons-round text-gray-400 text-4xl">image</span>
+</div>
+<h4 class="font-medium text-sm">Sweet Granulated Sugar Croissant</h4>
+<p class="text-xs text-muted-light dark:text-muted-dark mt-1">$8.55 / 1 pcs</p>
+</div>
+</div>
+</div>
+<div class="w-80 bg-gray-50 dark:bg-gray-800/30 border-l border-border-light dark:border-border-dark p-6 hidden lg:flex flex-col">
+<div class="flex justify-between items-center mb-6">
+<h3 class="font-bold">Current Order</h3>
+<span class="material-icons-round text-muted-light dark:text-muted-dark text-sm cursor-pointer">settings</span>
+</div>
+<div class="flex-1 space-y-4">
+<div class="flex items-start space-x-3 bg-surface-light dark:bg-surface-dark p-3 rounded-lg border border-border-light dark:border-border-dark">
+<div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-md flex-shrink-0"></div>
+<div class="flex-1">
+<p class="text-xs font-medium line-clamp-1">Smoke Tenderloin Slice</p>
+<div class="flex justify-between items-center mt-1">
+<span class="text-xs font-bold">$10.01</span>
+<div class="flex items-center space-x-2">
+<button class="w-4 h-4 rounded bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs">-</button>
+<span class="text-xs">1</span>
+<button class="w-4 h-4 rounded bg-primary text-white flex items-center justify-center text-xs">+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="flex items-start space-x-3 bg-surface-light dark:bg-surface-dark p-3 rounded-lg border border-border-light dark:border-border-dark">
+<div class="w-10 h-10 bg-gray-200 dark:bg-gray-700 rounded-md flex-shrink-0"></div>
+<div class="flex-1">
+<p class="text-xs font-medium line-clamp-1">Sweet Chocolate Choco</p>
+<div class="flex justify-between items-center mt-1">
+<span class="text-xs font-bold">$22.02</span>
+<div class="flex items-center space-x-2">
+<button class="w-4 h-4 rounded bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-xs">-</button>
+<span class="text-xs">1</span>
+<button class="w-4 h-4 rounded bg-primary text-white flex items-center justify-center text-xs">+</button>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="mt-6 border-t border-border-light dark:border-border-dark pt-4 space-y-2">
+<div class="flex justify-between text-xs text-muted-light dark:text-muted-dark">
+<span>Subtotal</span>
+<span>$37.61</span>
+</div>
+<div class="flex justify-between text-xs text-muted-light dark:text-muted-dark">
+<span>Discount</span>
+<span>-$5.00</span>
+</div>
+<div class="flex justify-between text-sm font-bold mt-4 pt-2 border-t border-dashed border-border-light dark:border-border-dark">
+<span>Total</span>
+<span>$34.86</span>
+</div>
+<button class="w-full bg-primary hover:bg-primary-hover text-white py-3 rounded-xl mt-4 text-sm font-medium shadow-lg shadow-primary/20">
+                                        Continue to Payment
+                                    </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-12 bg-surface-light dark:bg-surface-dark border-y border-border-light dark:border-border-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-center divide-y md:divide-y-0 md:divide-x divide-border-light dark:divide-border-dark">
+<div class="py-4">
+<div class="text-4xl lg:text-5xl font-bold text-text-light dark:text-text-dark mb-2">+20K</div>
+<div class="text-muted-light dark:text-muted-dark font-medium">Trusted Retails</div>
+</div>
+<div class="py-4">
+<div class="text-4xl lg:text-5xl font-bold text-text-light dark:text-text-dark mb-2">+50K</div>
+<div class="text-muted-light dark:text-muted-dark font-medium">Customers</div>
+</div>
+<div class="py-4">
+<div class="text-4xl lg:text-5xl font-bold text-text-light dark:text-text-dark mb-2">+400K</div>
+<div class="text-muted-light dark:text-muted-dark font-medium">Reviews</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-background-light dark:bg-background-dark" id="features">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col lg:flex-row items-center gap-16">
+<div class="lg:w-1/2">
+<div class="bg-surface-light dark:bg-surface-dark p-8 rounded-3xl shadow-xl border border-border-light dark:border-border-dark h-[400px] flex items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-tr from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<span class="material-icons-round text-9xl text-gray-200 dark:text-gray-700 group-hover:scale-110 transition-transform duration-500">dashboard</span>
+</div>
+</div>
+<div class="lg:w-1/2">
+<h2 class="text-3xl md:text-4xl font-bold mb-6">
+                        One place for <br/>everything you need
+                    </h2>
+<p class="text-muted-light dark:text-muted-dark text-lg leading-relaxed mb-8">
+                        Winkel provides a variety of your business needs, from menu management with various platforms, easily and quickly accessible from a single dashboard.
+                    </p>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-muted-light dark:text-muted-dark">
+<span class="material-icons-round text-primary">check_circle</span>
+<span>Centralized inventory management</span>
+</li>
+<li class="flex items-center gap-3 text-muted-light dark:text-muted-dark">
+<span class="material-icons-round text-primary">check_circle</span>
+<span>Real-time sales tracking</span>
+</li>
+<li class="flex items-center gap-3 text-muted-light dark:text-muted-dark">
+<span class="material-icons-round text-primary">check_circle</span>
+<span>Multi-platform integration</span>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-surface-light dark:bg-surface-dark">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col-reverse lg:flex-row items-center gap-16">
+<div class="lg:w-1/2">
+<h2 class="text-3xl md:text-4xl font-bold mb-6">
+                        You can settings <br/>anywhere and anytime
+                    </h2>
+<p class="text-muted-light dark:text-muted-dark text-lg leading-relaxed">
+                        Winkel is very easy to use, because winkel can be accessed anywhere, anytime on various devices in one account. Cloud-based technology ensures your data is always safe and accessible.
+                    </p>
+<div class="mt-8 flex gap-4">
+<div class="flex flex-col items-center p-4 bg-background-light dark:bg-background-dark rounded-xl border border-border-light dark:border-border-dark w-24">
+<span class="material-icons-round text-primary text-3xl mb-2">smartphone</span>
+<span class="text-xs font-medium">Mobile</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-background-light dark:bg-background-dark rounded-xl border border-border-light dark:border-border-dark w-24">
+<span class="material-icons-round text-primary text-3xl mb-2">tablet_mac</span>
+<span class="text-xs font-medium">Tablet</span>
+</div>
+<div class="flex flex-col items-center p-4 bg-background-light dark:bg-background-dark rounded-xl border border-border-light dark:border-border-dark w-24">
+<span class="material-icons-round text-primary text-3xl mb-2">laptop</span>
+<span class="text-xs font-medium">Desktop</span>
+</div>
+</div>
+</div>
+<div class="lg:w-1/2">
+<div class="bg-background-light dark:bg-background-dark p-8 rounded-3xl shadow-xl border border-border-light dark:border-border-dark h-[400px] flex items-center justify-center relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-bl from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+<span class="material-icons-round text-9xl text-gray-200 dark:text-gray-700 group-hover:scale-110 transition-transform duration-500">settings_suggest</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-background-light dark:bg-background-dark">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="bg-surface-light dark:bg-surface-dark rounded-[2.5rem] p-8 md:p-16 text-center shadow-2xl border border-border-light dark:border-border-dark relative overflow-hidden">
+<div class="absolute top-0 left-0 w-full h-full bg-[url('https://www.transparenttextures.com/patterns/cubes.png')] opacity-5 dark:opacity-10 pointer-events-none"></div>
+<h2 class="text-3xl md:text-4xl font-bold mb-6 relative z-10">
+                    Offline access anywhere, anytime<br/>and automatic synchronization
+                </h2>
+<p class="text-muted-light dark:text-muted-dark text-lg max-w-2xl mx-auto mb-10 relative z-10">
+                    Winkel can be used both offline and online, you can easily sync your menu based on dashboard updates when gets online.
+                </p>
+<button class="bg-gray-300 dark:bg-gray-600 hover:bg-gray-400 dark:hover:bg-gray-500 text-text-light dark:text-text-dark px-8 py-3 rounded-full font-medium transition-all mb-12 relative z-10">
+                    Learn More
+                </button>
+<div class="mt-8 relative z-10 mx-auto max-w-3xl transform translate-y-16 hover:-translate-y-2 transition-transform duration-500">
+<div class="bg-gray-900 rounded-t-3xl border-[8px] border-gray-800 shadow-2xl overflow-hidden aspect-video">
+<div class="bg-surface-light dark:bg-surface-dark h-full w-full flex items-center justify-center p-8">
+<div class="text-center">
+<span class="material-icons-round text-primary text-6xl mb-4">wifi_off</span>
+<h4 class="text-xl font-bold">Offline Mode Active</h4>
+<p class="text-sm text-muted-light dark:text-muted-dark mt-2">Changes are saved locally</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section class="py-24 bg-background-light dark:bg-background-dark" id="pricing">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">The best choice for you</h2>
+<p class="text-muted-light dark:text-muted-dark mb-8">Free trial period of 14 days, unlocking all features</p>
+<div class="flex items-center justify-center gap-4">
+<span class="font-medium text-text-light dark:text-text-dark">Monthly</span>
+<div class="relative inline-block w-12 mr-2 align-middle select-none transition duration-200 ease-in">
+<input class="toggle-checkbox absolute block w-6 h-6 rounded-full bg-white border-4 appearance-none cursor-pointer border-gray-300 dark:border-gray-600" id="toggle" name="toggle" type="checkbox"/>
+<label class="toggle-label block overflow-hidden h-6 rounded-full bg-gray-300 dark:bg-gray-700 cursor-pointer" for="toggle"></label>
+</div>
+<span class="font-medium text-muted-light dark:text-muted-dark">Yearly</span>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+<div class="bg-surface-light dark:bg-surface-dark p-8 rounded-3xl border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl transition-shadow relative overflow-hidden">
+<h3 class="text-2xl font-bold mb-4">Basic</h3>
+<p class="text-sm text-muted-light dark:text-muted-dark mb-6 h-10">Limited use, has minimal features and can be used on one platform</p>
+<div class="flex items-baseline mb-8">
+<span class="text-4xl font-bold">$ 20</span>
+<span class="text-muted-light dark:text-muted-dark ml-2">/ mo</span>
+</div>
+<button class="w-full py-3 border border-gray-300 dark:border-gray-600 rounded-xl font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Try for Free</button>
+</div>
+<div class="bg-gray-900 dark:bg-gray-800 p-8 rounded-3xl shadow-2xl transform scale-105 border-2 border-primary relative">
+<div class="absolute top-0 right-0 left-0 bg-primary/10 h-32 blur-3xl rounded-full -translate-y-16"></div>
+<div class="absolute top-6 right-6">
+<span class="bg-gray-200 dark:bg-gray-200 text-gray-900 text-xs font-bold px-3 py-1 rounded-full uppercase tracking-wide">Most Popular</span>
+</div>
+<h3 class="text-2xl font-bold text-white mb-4 relative z-10">Premium</h3>
+<p class="text-sm text-gray-300 mb-6 h-10 relative z-10">Unlimited usage and extra features not in basic class</p>
+<div class="flex items-baseline mb-8 relative z-10">
+<span class="text-5xl font-bold text-white">$ 60</span>
+<span class="text-gray-400 ml-2">/ mo</span>
+</div>
+<button class="w-full py-3 bg-white text-gray-900 rounded-xl font-bold hover:bg-gray-100 transition-colors relative z-10 shadow-lg">Try for Free</button>
+</div>
+<div class="bg-surface-light dark:bg-surface-dark p-8 rounded-3xl border border-border-light dark:border-border-dark shadow-sm hover:shadow-xl transition-shadow relative overflow-hidden">
+<h3 class="text-2xl font-bold mb-4">Deluxe</h3>
+<p class="text-sm text-muted-light dark:text-muted-dark mb-6 h-10">Everything is in your hands, you can adjust it to your needs</p>
+<div class="flex items-baseline mb-8">
+<span class="text-4xl font-bold">$ 80</span>
+<span class="text-muted-light dark:text-muted-dark ml-2">/ mo</span>
+</div>
+<button class="w-full py-3 border border-gray-300 dark:border-gray-600 rounded-xl font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors">Contact Us</button>
+</div>
+</div>
+<div class="mt-20 overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-border-light dark:border-border-dark bg-gray-100 dark:bg-gray-800/50">
+<th class="p-6 text-sm font-bold uppercase tracking-wider text-muted-light dark:text-muted-dark rounded-tl-2xl">Test Management</th>
+<th class="p-6 text-sm font-bold uppercase tracking-wider text-muted-light dark:text-muted-dark">Basic</th>
+<th class="p-6 text-sm font-bold uppercase tracking-wider text-muted-light dark:text-muted-dark">Premium</th>
+<th class="p-6 text-sm font-bold uppercase tracking-wider text-muted-light dark:text-muted-dark rounded-tr-2xl">Deluxe</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border-light dark:divide-border-dark">
+<tr class="bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="p-6 text-sm font-medium">14 Days Free</td>
+<td class="p-6"><span class="material-icons-round text-gray-400 text-sm">check</span></td>
+<td class="p-6"><span class="material-icons-round text-gray-400 text-sm">check</span></td>
+<td class="p-6"><span class="material-icons-round text-gray-400 text-sm">check</span></td>
+</tr>
+<tr class="bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="p-6 text-sm font-medium">Accept Online Feedback</td>
+<td class="p-6"><span class="material-icons-round text-gray-400 text-sm">check</span></td>
+<td class="p-6"><span class="material-icons-round text-gray-400 text-sm">check</span></td>
+<td class="p-6"><span class="material-icons-round text-gray-400 text-sm">check</span></td>
+</tr>
+<tr class="bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="p-6 text-sm font-medium">Unlimited Items</td>
+<td class="p-6"><span class="material-icons-round text-gray-300 dark:text-gray-600 text-sm">close</span></td>
+<td class="p-6"><span class="material-icons-round text-gray-400 text-sm">check</span></td>
+<td class="p-6"><span class="material-icons-round text-gray-400 text-sm">check</span></td>
+</tr>
+<tr class="bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="p-6 text-sm font-medium">Unlimited Tablets</td>
+<td class="p-6"><span class="material-icons-round text-gray-300 dark:text-gray-600 text-sm">close</span></td>
+<td class="p-6"><span class="material-icons-round text-gray-400 text-sm">check</span></td>
+<td class="p-6"><span class="material-icons-round text-gray-400 text-sm">check</span></td>
+</tr>
+<tr class="bg-surface-light dark:bg-surface-dark hover:bg-gray-50 dark:hover:bg-gray-800/30 transition-colors">
+<td class="p-6 text-sm font-medium rounded-bl-2xl">Tablet App Menu</td>
+<td class="p-6"><span class="material-icons-round text-gray-300 dark:text-gray-600 text-sm">close</span></td>
+<td class="p-6"><span class="material-icons-round text-gray-400 text-sm">check</span></td>
+<td class="p-6 rounded-br-2xl"><span class="material-icons-round text-gray-400 text-sm">check</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</section>
+<section class="py-24 bg-surface-light dark:bg-surface-dark border-t border-border-light dark:border-border-dark" id="help">
+<div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center mb-16">
+<h2 class="text-3xl md:text-4xl font-bold mb-4">Frequently Asked Questions</h2>
+<p class="text-muted-light dark:text-muted-dark">We have some answers to your questions</p>
+</div>
+<div class="space-y-4">
+<div class="border-b border-border-light dark:border-border-dark pb-6">
+<button class="flex justify-between items-center w-full text-left focus:outline-none group">
+<span class="text-lg font-medium group-hover:text-primary transition-colors">what is winkel ?</span>
+<span class="material-icons-round transform group-hover:rotate-180 transition-transform text-muted-light dark:text-muted-dark">expand_more</span>
+</button>
+<div class="mt-4 text-muted-light dark:text-muted-dark leading-relaxed">
+                        winkel is a point of sell application that helps you manage the menu in your business and helps develop your business more advanced through insightful analytics and easy management tools.
+                    </div>
+</div>
+<div class="border-b border-border-light dark:border-border-dark pb-6 pt-4">
+<button class="flex justify-between items-center w-full text-left focus:outline-none group">
+<span class="text-lg font-medium group-hover:text-primary transition-colors">what devices does winkel support ?</span>
+<span class="material-icons-round text-muted-light dark:text-muted-dark">expand_more</span>
+</button>
+</div>
+<div class="border-b border-border-light dark:border-border-dark pb-6 pt-4">
+<button class="flex justify-between items-center w-full text-left focus:outline-none group">
+<span class="text-lg font-medium group-hover:text-primary transition-colors">how can i use winkel ?</span>
+<span class="material-icons-round text-muted-light dark:text-muted-dark">expand_more</span>
+</button>
+</div>
+</div>
+</div>
+</section>
+<footer class="bg-gray-900 text-white pt-20 pb-10 border-t border-gray-800">
+<div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+<div class="grid grid-cols-1 md:grid-cols-4 gap-12 md:gap-8">
+<div class="col-span-1 md:col-span-1">
+<div class="flex items-center gap-2 mb-6">
+<span class="material-icons-round text-primary text-3xl">token</span>
+<span class="font-bold text-2xl tracking-tight">Winkel</span>
+</div>
+<p class="text-gray-400 text-sm leading-relaxed mb-6">
+                        With winkel can help you to be able to grow your business quickly and precisely with premium features.
+                    </p>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-6">Menu</h4>
+<ul class="space-y-4 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">Home</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Best Choice</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Best Location</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Best Price</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-6">Service</h4>
+<ul class="space-y-4 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">FAQ</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">How we work</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Security</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-lg mb-6">About us</h4>
+<ul class="space-y-4 text-sm text-gray-400">
+<li><a class="hover:text-primary transition-colors" href="#">Career</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">Features</a></li>
+<li><a class="hover:text-primary transition-colors" href="#">News &amp; Blog</a></li>
+</ul>
+</div>
+</div>
+<div class="mt-16 pt-8 border-t border-gray-800 text-center text-sm text-gray-500">
+<p>© 2022 Cloud Menu, Inc. All rights reserved</p>
+</div>
+</div>
+</footer>
+<script>
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const darkIcon = themeToggleBtn.querySelector('.material-icons-round:last-child');
+        const lightIcon = themeToggleBtn.querySelector('.material-icons-round:first-child');
+        // Check for saved user preference, if any, on load of the website
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+        } else {
+            document.documentElement.classList.remove('dark');
+        }
+        themeToggleBtn.addEventListener('click', function() {
+            // if set via local storage previously
+            if (localStorage.theme === 'dark') {
+                document.documentElement.classList.remove('dark');
+                localStorage.theme = 'light';
+            } else {
+                document.documentElement.classList.add('dark');
+                localStorage.theme = 'dark';
+            }
+        });
+    </script>
+
+</body></html>

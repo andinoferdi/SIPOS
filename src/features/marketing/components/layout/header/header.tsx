@@ -16,9 +16,20 @@ export default function Header() {
     setMobileMenuOpen(false);
   }, [pathname]);
 
+  useEffect(() => {
+    const closeOnHashChange = () => {
+      setMobileMenuOpen(false);
+    };
+
+    window.addEventListener('hashchange', closeOnHashChange);
+    return () => {
+      window.removeEventListener('hashchange', closeOnHashChange);
+    };
+  }, []);
+
   return (
-    <header className="bg-[var(--token-white)] dark:bg-dark-primary border-b dark:border-[var(--token-gray-800)] border-[var(--token-gray-100)] sticky top-0 z-50 py-2 lg:py-4">
-      <div className="px-4 sm:px-6 lg:px-7">
+    <header className="bg-[var(--color-marketing-light-canvas)] dark:bg-[var(--color-marketing-dark-canvas)] sticky top-0 z-50 py-2 lg:py-4 backdrop-blur-sm">
+      <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-7">
         <div className="grid grid-cols-2 items-center lg:grid-cols-[1fr_auto_1fr]">
           <div className="flex items-center">
             <Link href="/" className="flex items-end gap-2">
@@ -64,20 +75,23 @@ export default function Header() {
               href="/login"
               className="text-sm hidden lg:block font-medium text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] hover:text-primary-500"
             >
-              Sign In
+              Login
             </Link>
 
             <Link
-              href="/login"
+              href="/register"
               className="lg:inline-flex items-center px-5 py-3 gradient-btn hidden text-sm text-[var(--token-white)] rounded-full button-bg h-11"
             >
-              Staff Login
+              Register
             </Link>
           </div>
         </div>
       </div>
 
-      <MainMobileNav isOpen={mobileMenuOpen} />
+      <MainMobileNav
+        isOpen={mobileMenuOpen}
+        onNavigate={() => setMobileMenuOpen(false)}
+      />
     </header>
   );
 }

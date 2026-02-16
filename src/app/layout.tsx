@@ -1,13 +1,15 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
-import { Onest } from 'next/font/google';
+import { Poppins } from 'next/font/google';
 import './globals.css';
 import { QueryProvider } from './_shared/providers/query-provider';
 import { AuthSessionProvider } from './_shared/providers/session-provider';
 import { ToasterProvider } from './_shared/providers/toaster';
 
-const onest = Onest({
+const poppins = Poppins({
   subsets: ['latin'],
+  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
+  display: 'swap',
 });
 
 export const metadata: Metadata = {
@@ -25,12 +27,17 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`bg-[var(--token-gray-50)] dark:bg-dark-secondary min-h-screen flex flex-col ${onest.className}`}
+        className={`bg-[var(--token-gray-50)] dark:bg-dark-secondary min-h-screen flex flex-col ${poppins.className}`}
       >
         <AuthSessionProvider>
-          <ThemeProvider>
+          <ThemeProvider
+            attribute="data-theme"
+            defaultTheme="system"
+            enableSystem
+            disableTransitionOnChange
+          >
             <QueryProvider>
               <ToasterProvider />
               <div className="isolate flex flex-col flex-1">{children}</div>

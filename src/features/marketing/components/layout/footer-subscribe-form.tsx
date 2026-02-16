@@ -30,7 +30,7 @@ export default function FooterSubscribeForm() {
         <input
           type="email"
           placeholder="Enter your email"
-          className="w-full h-12 p-4 text-sm text-[var(--token-white)] border border-[var(--token-gray-700)] rounded-full placeholder:text-center placeholder:text-[var(--token-gray-400)] placeholder:text-sm text-center placeholder:font-normal focus:outline-0"
+          className="w-full h-12 p-4 text-sm text-[var(--token-gray-700)] dark:text-[var(--token-gray-300)] bg-[var(--token-gray-50)] dark:bg-[var(--token-white-5)] border border-[var(--token-gray-300)] dark:border-[var(--token-gray-700)] rounded-full placeholder:text-center placeholder:text-[var(--token-gray-400)] placeholder:text-sm text-center placeholder:font-normal focus:outline-0"
           disabled={isSubmitting}
           {...form.register('email')}
         />
