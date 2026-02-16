@@ -8,7 +8,6 @@ import { EyeCloseIcon, EyeIcon } from "@/icons/icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
 import { signIn } from "next-auth/react";
-import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -101,17 +100,13 @@ export default function SignInForm() {
           </div>
         </div>
 
-        <div className="flex items-center justify-between flex-wrap gap-3">
+        <div className="flex items-center gap-3">
           <Checkbox
             label="Keep me logged in"
             checked={rememberMe}
             onChange={(e) => setRememberMe(e.target.checked)}
             name="remember_me"
           />
-
-          <Link href="/reset-password" className="text-primary-500 text-sm">
-            Forgot password?
-          </Link>
         </div>
 
         <button

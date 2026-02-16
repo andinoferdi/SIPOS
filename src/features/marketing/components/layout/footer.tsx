@@ -269,10 +269,10 @@ export default function Footer() {
                       Dashboard
                     </Link>
                     <Link
-                      href="/reset-password"
+                      href="/login"
                       className="text-sm font-normal text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] transition hover:text-[var(--token-gray-900)] dark:hover:text-[var(--token-white)]"
                     >
-                      Reset Password
+                      Account Access
                     </Link>
                     <Link
                       href="/#help"
