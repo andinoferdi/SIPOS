@@ -217,6 +217,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
       >
         {/* Trigger Button */}
         <button
+          type="button"
           id={id}
           ref={triggerRef}
           onClick={() => !isDisabled && setIsOpen(!isOpen)}
@@ -343,6 +344,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
               ) : (
                 filteredOptions.map((option, index) => (
                   <button
+                    type="button"
                     key={option.value}
                     onClick={() => handleSelect(option.value)}
                     className={`
