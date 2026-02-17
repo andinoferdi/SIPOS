@@ -4,6 +4,7 @@ import { Checkbox } from "@/components/ui/inputs/checkbox";
 import { Input, InputGroup } from "@/components/ui/inputs";
 import { Label } from "@/components/ui/label";
 import { authValidation } from "@/features/auth/schemas/auth.schema";
+import { authService } from "@/features/auth/services/auth-service";
 import { EyeCloseIcon, EyeIcon } from "@/icons/icons";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Controller, useForm } from "react-hook-form";
@@ -40,26 +41,13 @@ export default function SignupForm() {
     setIsLoading(true);
 
     try {
-      const response = await fetch("/api/auth/register", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data),
-      });
-
-      if (!response.ok) {
-        const payload = (await response.json()) as { message?: string };
-        toast.error(payload.message ?? "Pendaftaran gagal");
-        setIsLoading(false);
-        return;
-      }
+      await authService.register(data);
 
       const signInResult = await signIn("credentials", {
         email: data.email,
         password: data.password,
         redirect: false,
-        callbackUrl: "/dashboard",
+        callbackUrl: "/portal",
       });
 
       if (!signInResult || signInResult.error) {
@@ -70,10 +58,11 @@ export default function SignupForm() {
       }
 
       toast.success("Akun berhasil dibuat");
-      router.push(signInResult.url ?? "/dashboard");
+      router.push(signInResult.url ?? "/portal");
       router.refresh();
-    } catch {
-      toast.error("Terjadi kesalahan saat mendaftar");
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "Terjadi kesalahan saat mendaftar";
+      toast.error(message);
     } finally {
       setIsLoading(false);
     }

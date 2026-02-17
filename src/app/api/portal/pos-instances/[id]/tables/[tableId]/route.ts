@@ -28,7 +28,6 @@ export async function PUT(request: Request, { params }: RouteParams) {
     );
   }
 
-  // Verify table belongs to this POS Instance
   const table = await prisma.tableLabel.findFirst({
     where: { id: tableId, posInstanceId: id },
   });
@@ -40,7 +39,6 @@ export async function PUT(request: Request, { params }: RouteParams) {
     );
   }
 
-  // Check unique label within POS Instance (exclude self)
   const dup = await prisma.tableLabel.findFirst({
     where: {
       posInstanceId: id,

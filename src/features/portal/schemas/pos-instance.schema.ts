@@ -41,6 +41,7 @@ export const updatePOSInstanceSchema = z.object({
     .min(1, "Minimal 1 meja")
     .max(200, "Maksimal 200 meja")
     .optional(),
+  isActive: z.boolean().optional(),
 });
 
 export const updateTableLabelSchema = z.object({

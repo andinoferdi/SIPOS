@@ -1,9 +1,15 @@
 import type { PermissionKey, RoleCode } from "@/types/rbac";
+import { normalizeContextualDashboardPath } from "@/lib/utils/dashboard-routes";
 import { getToken } from "next-auth/jwt";
 import type { NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 
 const DASHBOARD_RULES: Array<{ prefix: string; permission: PermissionKey }> = [
+  { prefix: "/portal/pos-instances", permission: "pos_instance:read" },
+  { prefix: "/portal/inventory", permission: "inventory:read" },
+  { prefix: "/portal/categories", permission: "category:read" },
+  { prefix: "/portal/reports", permission: "reports:read" },
+  { prefix: "/portal", permission: "pos_instance:read" },
   { prefix: "/dashboard/pos/sales", permission: "sales:read" },
   { prefix: "/dashboard/pos/approval", permission: "sales_approval:read" },
   { prefix: "/dashboard/pos/purchase", permission: "purchase:read" },
@@ -28,11 +34,16 @@ type TokenAccess = {
 const resolveDashboardPermission = (
   pathname: string
 ): PermissionKey | null => {
+  const normalizedPathname = normalizeContextualDashboardPath(pathname);
   const match = DASHBOARD_RULES.find((rule) =>
-    pathname.startsWith(rule.prefix)
+    normalizedPathname.startsWith(rule.prefix)
   );
 
   return match?.permission ?? null;
+};
+
+const isContextualDashboardPath = (pathname: string) => {
+  return /^\/[^/]+\/dashboard(?:\/|$)/.test(pathname);
 };
 
 const resolveApiPermission = (
@@ -125,7 +136,6 @@ const resolveApiPermission = (
     return "reports:read";
   }
 
-  // POS Instance routes
   if (
     /^\/api\/portal\/pos-instances\/[^/]+\/tables\/[^/]+$/.test(pathname) &&
     method === "PUT"
@@ -212,7 +222,16 @@ export async function proxy(request: NextRequest) {
   const pathname = request.nextUrl.pathname;
   const access = await getTokenAccess(request);
 
-  if (pathname.startsWith("/dashboard")) {
+  if (pathname === "/dashboard") {
+    return NextResponse.redirect(new URL("/portal", request.url));
+  }
+
+  const requiresDashboardGuard =
+    pathname.startsWith("/dashboard") ||
+    pathname.startsWith("/portal") ||
+    isContextualDashboardPath(pathname);
+
+  if (requiresDashboardGuard) {
     if (!access.userId) {
       const loginUrl = new URL("/login", request.url);
       loginUrl.searchParams.set("callbackUrl", pathname);
@@ -258,5 +277,12 @@ export async function proxy(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/dashboard/:path*", "/api/chat", "/api/pos/:path*", "/api/portal/:path*"],
+  matcher: [
+    "/dashboard/:path*",
+    "/portal/:path*",
+    "/:posInstanceId/dashboard/:path*",
+    "/api/chat",
+    "/api/pos/:path*",
+    "/api/portal/:path*",
+  ],
 };

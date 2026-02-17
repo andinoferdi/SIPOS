@@ -2,16 +2,27 @@
 import { ThemeToggleButton } from "@/features/dashboard/components/common/ThemeToggleButton";
 import NotificationDropdown from "@/features/dashboard/components/header/NotificationDropdown";
 import UserDropdown from "@/features/dashboard/components/header/UserDropdown";
+import POSContextSwitcher from "@/features/portal/components/pos-context-switcher";
 import { useSidebar } from "@/app/(dashboard)/dashboard/_hooks/use-sidebar";
-import { withDashboardBase } from "@/lib/utils/dashboard-routes";
+import {
+  extractPosInstanceIdFromPath,
+  withDashboardBase,
+  withPosDashboardBase,
+} from "@/lib/utils/dashboard-routes";
 import Image from "next/image";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import React, { useState ,useEffect,useRef} from "react";
 
 const AppHeader: React.FC = () => {
   const [isApplicationMenuOpen, setApplicationMenuOpen] = useState(false);
+  const pathname = usePathname();
 
   const { isMobileOpen, toggleSidebar, toggleMobileSidebar } = useSidebar();
+  const currentPosInstanceId = extractPosInstanceIdFromPath(pathname);
+  const dashboardHomePath = currentPosInstanceId
+    ? withPosDashboardBase(currentPosInstanceId, "/")
+    : withDashboardBase("/");
 
   const handleToggle = () => {
     if (window.innerWidth >= 1024) {
@@ -84,7 +95,7 @@ const AppHeader: React.FC = () => {
 
           </button>
 
-          <Link href={withDashboardBase("/")} className="lg:hidden">
+          <Link href={dashboardHomePath} className="lg:hidden">
             <Image
               width={154}
               height={32}
@@ -161,6 +172,9 @@ const AppHeader: React.FC = () => {
             isApplicationMenuOpen ? "flex" : "hidden"
           } items-center justify-between w-full gap-4 px-5 py-4 lg:flex shadow-theme-md lg:justify-end lg:px-0 lg:shadow-none`}
         >
+          {currentPosInstanceId && (
+            <POSContextSwitcher currentPosInstanceId={currentPosInstanceId} />
+          )}
           <div className="flex items-center gap-2 2xsm:gap-3">
 
             <ThemeToggleButton />

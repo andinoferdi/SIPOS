@@ -12,7 +12,11 @@ import {
   UserCircleIcon,
 } from "@/icons";
 import { hasRole } from "@/lib/auth/rbac";
-import { withDashboardBase } from "@/lib/utils/dashboard-routes";
+import {
+  extractPosInstanceIdFromPath,
+  withDashboardBase,
+  withPosDashboardBase,
+} from "@/lib/utils/dashboard-routes";
 import type { PermissionKey, RoleCode } from "@/types/rbac";
 import { useSession } from "next-auth/react";
 import Image from "next/image";
@@ -66,25 +70,25 @@ const portalItems: NavItem[] = [
   {
     icon: <GridIcon />,
     name: "POS Outlets",
-    path: withDashboardBase("/portal"),
+    path: "/portal",
     permissionKey: "pos_instance:read",
   },
   {
     icon: <PlugInIcon />,
     name: "Inventory",
-    path: withDashboardBase("/portal/inventory"),
+    path: "/portal/inventory",
     permissionKey: "inventory:read",
   },
   {
     icon: <PlugInIcon />,
     name: "Category",
-    path: withDashboardBase("/portal/categories"),
+    path: "/portal/categories",
     permissionKey: "category:read",
   },
   {
     icon: <DocsIcon />,
     name: "Reports POS",
-    path: withDashboardBase("/portal/reports"),
+    path: "/portal/reports",
     permissionKey: "reports:read",
   },
   {
@@ -99,6 +103,7 @@ const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
   const pathname = usePathname();
   const { data: session } = useSession();
+  const currentPosInstanceId = extractPosInstanceIdFromPath(pathname);
 
   const roleCode = session?.user?.roleCode ?? null;
   const permissions = useMemo(
@@ -106,7 +111,10 @@ const AppSidebar: React.FC = () => {
     [session?.user?.permissions]
   );
 
-  const isActive = useCallback((path: string) => path === pathname, [pathname]);
+  const isActive = useCallback(
+    (path: string) => pathname === path || pathname.startsWith(`${path}/`),
+    [pathname]
+  );
 
   const canAccessItem = useCallback(
     (item: NavItem) => {
@@ -126,19 +134,38 @@ const AppSidebar: React.FC = () => {
   const visibleMainItems = mainItems.filter(canAccessItem);
   const visiblePortalItems = portalItems.filter(canAccessItem);
 
+  const resolvePath = useCallback(
+    (itemPath: string) => {
+      if (!currentPosInstanceId) return itemPath;
+      if (itemPath.startsWith("/dashboard/portal")) {
+        return itemPath.replace("/dashboard/portal", "/portal");
+      }
+      if (!itemPath.startsWith("/dashboard/pos") && itemPath !== "/dashboard") {
+        return itemPath;
+      }
+
+      const posPath = itemPath === "/dashboard" ? "/" : itemPath.replace("/dashboard", "");
+      return withPosDashboardBase(currentPosInstanceId, posPath);
+    },
+    [currentPosInstanceId]
+  );
+
   const renderMenuItems = (items: NavItem[]) => (
     <ul className="flex flex-col gap-4">
-      {items.map((item) => (
-        <li key={item.name}>
+      {items.map((item) => {
+        const resolvedPath = resolvePath(item.path);
+
+        return (
+          <li key={item.name}>
           <Link
-            href={item.path}
+            href={resolvedPath}
             className={`menu-item group ${
-              isActive(item.path) ? "menu-item-active" : "menu-item-inactive"
+              isActive(resolvedPath) ? "menu-item-active" : "menu-item-inactive"
             }`}
           >
             <span
               className={`${
-                isActive(item.path)
+                isActive(resolvedPath)
                   ? "menu-item-icon-active"
                   : "menu-item-icon-inactive"
               }`}
@@ -149,8 +176,9 @@ const AppSidebar: React.FC = () => {
               <span className="menu-item-text">{item.name}</span>
             )}
           </Link>
-        </li>
-      ))}
+          </li>
+        );
+      })}
     </ul>
   );
 
@@ -174,7 +202,7 @@ const AppSidebar: React.FC = () => {
           !isExpanded && !isHovered ? "lg:justify-center" : "justify-start"
         }`}
       >
-        <Link href={withDashboardBase("/")}>
+        <Link href={currentPosInstanceId ? withPosDashboardBase(currentPosInstanceId, "/") : withDashboardBase("/")}>
           {isExpanded || isHovered || isMobileOpen ? (
             <>
               <Image

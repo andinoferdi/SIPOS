@@ -36,7 +36,6 @@ export async function PUT(request: Request, { params }: RouteParams) {
   const { id } = await params;
   const body = await request.json();
 
-  // Prevent type mutation
   if ("type" in body) {
     return NextResponse.json(
       { message: "Type tidak bisa diubah" },
@@ -58,7 +57,6 @@ export async function PUT(request: Request, { params }: RouteParams) {
 
   const updateData: Record<string, unknown> = {};
 
-  // Validate name
   if (body.name !== undefined) {
     if (typeof body.name !== "string" || body.name.trim().length === 0) {
       return NextResponse.json(
@@ -73,7 +71,6 @@ export async function PUT(request: Request, { params }: RouteParams) {
       );
     }
 
-    // Check unique (exclude self)
     const dup = await prisma.pOSInstance.findFirst({
       where: {
         name: { equals: body.name.trim(), mode: "insensitive" },
@@ -89,7 +86,6 @@ export async function PUT(request: Request, { params }: RouteParams) {
     updateData.name = body.name.trim();
   }
 
-  // Validate totalTable (TABLE_SERVICE only)
   if (body.totalTable !== undefined) {
     if (existing.type !== "TABLE_SERVICE") {
       return NextResponse.json(
@@ -109,7 +105,6 @@ export async function PUT(request: Request, { params }: RouteParams) {
     const currentTotal = existing.totalTable;
 
     if (newTotal > currentTotal) {
-      // Add new tables
       const newLabels = Array.from(
         { length: newTotal - currentTotal },
         (_, i) => ({
@@ -120,8 +115,6 @@ export async function PUT(request: Request, { params }: RouteParams) {
       );
       await prisma.tableLabel.createMany({ data: newLabels });
     } else if (newTotal < currentTotal) {
-      // Remove tables from highest position
-      // TODO: check for active transactions on removed tables
       await prisma.tableLabel.deleteMany({
         where: {
           posInstanceId: id,
@@ -131,6 +124,17 @@ export async function PUT(request: Request, { params }: RouteParams) {
     }
 
     updateData.totalTable = newTotal;
+  }
+
+  if (body.isActive !== undefined) {
+    if (typeof body.isActive !== "boolean") {
+      return NextResponse.json(
+        { message: "isActive harus boolean" },
+        { status: 400 }
+      );
+    }
+
+    updateData.isActive = body.isActive;
   }
 
   const updated = await prisma.pOSInstance.update({
@@ -158,10 +162,7 @@ export async function DELETE(_request: Request, { params }: RouteParams) {
     );
   }
 
-  await prisma.pOSInstance.update({
-    where: { id },
-    data: { isActive: false },
-  });
+  await prisma.pOSInstance.delete({ where: { id } });
 
-  return NextResponse.json({ message: "POS Instance deactivated" });
+  return NextResponse.json({ message: "POS Instance deleted" });
 }

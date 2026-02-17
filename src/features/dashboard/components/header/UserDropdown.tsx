@@ -1,8 +1,13 @@
 "use client";
 
-import { withDashboardBase } from "@/lib/utils/dashboard-routes";
+import {
+  extractPosInstanceIdFromPath,
+  withDashboardBase,
+  withPosDashboardBase,
+} from "@/lib/utils/dashboard-routes";
 import { signOut, useSession } from "next-auth/react";
 import Image from "next/image";
+import { usePathname } from "next/navigation";
 import React, { useState } from "react";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
@@ -10,9 +15,14 @@ import { DropdownItem } from "../ui/dropdown/DropdownItem";
 export default function UserDropdown() {
   const [isOpen, setIsOpen] = useState(false);
   const { data: session } = useSession();
+  const pathname = usePathname();
+  const currentPosInstanceId = extractPosInstanceIdFromPath(pathname);
 
   const displayName = session?.user?.name ?? "Staff";
   const displayEmail = session?.user?.email ?? "unknown@local";
+  const profilePath = currentPosInstanceId
+    ? withPosDashboardBase(currentPosInstanceId, "/profile")
+    : withDashboardBase("/profile");
 
   function toggleDropdown(e: React.MouseEvent<HTMLButtonElement>) {
     e.stopPropagation();
@@ -78,7 +88,7 @@ export default function UserDropdown() {
             <DropdownItem
               onItemClick={closeDropdown}
               tag="a"
-              href={withDashboardBase("/profile")}
+              href={profilePath}
               className="flex items-center gap-3 px-3 py-2 font-medium text-[var(--token-gray-700)] rounded-lg group text-theme-sm hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-gray-300)]"
             >
               Profile

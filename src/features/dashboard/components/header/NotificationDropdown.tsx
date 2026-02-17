@@ -2,11 +2,21 @@
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
+import { usePathname } from "next/navigation";
 import { Dropdown } from "../ui/dropdown/Dropdown";
 import { DropdownItem } from "../ui/dropdown/DropdownItem";
-import { withDashboardBase } from "@/lib/utils/dashboard-routes";
+import {
+  extractPosInstanceIdFromPath,
+  withDashboardBase,
+  withPosDashboardBase,
+} from "@/lib/utils/dashboard-routes";
 
 export default function NotificationDropdown() {
+  const pathname = usePathname();
+  const currentPosInstanceId = extractPosInstanceIdFromPath(pathname);
+  const dashboardHomePath = currentPosInstanceId
+    ? withPosDashboardBase(currentPosInstanceId, "/")
+    : withDashboardBase("/");
   const [isOpen, setIsOpen] = useState(false);
   const [notifying, setNotifying] = useState(true);
 
@@ -374,7 +384,7 @@ export default function NotificationDropdown() {
 
         </ul>
         <Link
-          href={withDashboardBase("/")}
+          href={dashboardHomePath}
           className="block px-4 py-2 mt-3 text-sm font-medium text-center text-[var(--token-gray-700)] bg-[var(--token-white)] border border-[var(--token-gray-300)] rounded-lg hover:bg-[var(--token-gray-100)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-gray-700)]"
         >
           View All Notifications
@@ -383,3 +393,4 @@ export default function NotificationDropdown() {
     </div>
   );
 }
+

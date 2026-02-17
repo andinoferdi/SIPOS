@@ -1,4 +1,5 @@
 import { isGuardBlocked, requirePermission } from "@/lib/auth/route-guards";
+import { auth } from "@/auth";
 import { prisma } from "@/lib/db/prisma";
 import { NextResponse } from "next/server";
 
@@ -8,7 +9,11 @@ export async function GET() {
     return guard.response;
   }
 
+  const session = await auth();
+  const roleCode = session?.user?.roleCode ?? null;
+
   const instances = await prisma.pOSInstance.findMany({
+    where: roleCode === "admin" ? undefined : { isActive: true },
     orderBy: { createdAt: "desc" },
   });
 
@@ -45,7 +50,6 @@ export async function POST(request: Request) {
     );
   }
 
-  // Check duplicate name (case-insensitive)
   const existing = await prisma.pOSInstance.findFirst({
     where: { name: { equals: name.trim(), mode: "insensitive" } },
   });

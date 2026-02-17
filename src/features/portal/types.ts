@@ -29,6 +29,7 @@ export type CreatePOSInstancePayload = {
 export type UpdatePOSInstancePayload = {
   name?: string;
   totalTable?: number;
+  isActive?: boolean;
 };
 
 export type UpdateTableLabelPayload = {

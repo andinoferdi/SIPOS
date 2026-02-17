@@ -26,7 +26,7 @@ export default function SignInForm() {
 
   const router = useRouter();
   const searchParams = useSearchParams();
-  const callbackUrl = searchParams.get("callbackUrl") ?? "/dashboard";
+  const callbackUrl = searchParams.get("callbackUrl") ?? "/portal";
 
   const [rememberMe, setRememberMe] = useState(false);
   const [isShowPassword, setIsShowPassword] = useState(false);
