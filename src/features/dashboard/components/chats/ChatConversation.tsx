@@ -31,13 +31,13 @@ export default function ChatConversation({
   }, [contact.id, messages]);
 
   return (
-    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)]">
-      <div className="sticky flex items-center justify-between border-b border-[var(--token-gray-200)] px-5 py-4 dark:border-[var(--token-gray-800)] xl:px-6">
+    <div className="flex h-full flex-col overflow-hidden rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)]">
+      <div className="sticky flex items-center justify-between border-b border-[var(--token-gray-200)] px-5 py-4 dark:border-[var(--color-border-dark-soft)] xl:px-6">
         <div className="flex items-center gap-3">
           <button
             type="button"
             onClick={onOpenMobileSidebar}
-            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--token-gray-300)] text-[var(--token-gray-700)] transition hover:bg-[var(--token-gray-100)] dark:border-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] xl:hidden"
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-[var(--token-gray-300)] text-[var(--token-gray-700)] transition hover:bg-[var(--token-gray-100)] dark:border-[var(--color-border-dark-strong)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] xl:hidden"
             aria-label="Open contact list"
           >
             <HamburgerIcon />
@@ -142,7 +142,7 @@ export default function ChatConversation({
         <div ref={messagesEndRef} />
       </div>
 
-      <div className="sticky bottom-0 border-t border-[var(--token-gray-200)] p-3 dark:border-[var(--token-gray-800)]">
+      <div className="sticky bottom-0 border-t border-[var(--token-gray-200)] p-3 dark:border-[var(--color-border-dark-soft)]">
         <div className="flex items-center justify-between gap-3">
           <div className="relative w-full">
             <button

@@ -33,7 +33,7 @@ export default function AiTextGeneratorHistorySidebar({
       : yesterdaySessions.slice(0, 4);
 
   return (
-    <aside className="flex h-full w-[280px] flex-col border-l border-[var(--token-gray-200)] bg-[var(--token-white)] p-6 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-gray-900)]">
+    <aside className="flex h-full w-[280px] flex-col border-l border-[var(--token-gray-200)] bg-[var(--token-white)] p-6 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)]">
       <button
         type="button"
         onClick={onNewChat}
@@ -57,7 +57,7 @@ export default function AiTextGeneratorHistorySidebar({
             placeholder="Search..."
             value={searchTerm}
             onChange={(event) => onSearchTermChange(event.target.value)}
-            className="dark:bg-dark-900 shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-[var(--token-gray-300)] bg-transparent py-2.5 pl-[42px] pr-3.5 text-sm text-[var(--token-gray-800)] placeholder:text-[var(--token-gray-400)] focus:outline-hidden focus:ring-3 dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-900)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)]"
+            className="dark:bg-[var(--color-surface-dark-elevated)] shadow-theme-xs focus:border-brand-300 focus:ring-brand-500/10 dark:focus:border-brand-800 h-11 w-full rounded-lg border border-[var(--token-gray-300)] bg-transparent py-2.5 pl-[42px] pr-3.5 text-sm text-[var(--token-gray-800)] placeholder:text-[var(--token-gray-400)] focus:outline-hidden focus:ring-3 dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-elevated)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)]"
           />
         </div>
       </div>
@@ -134,7 +134,7 @@ function HistoryGroup({
                 </button>
                 <button
                   type="button"
-                  className="invisible ml-2 rounded-full p-1 text-[var(--token-gray-700)] hover:bg-[var(--token-gray-200)] group-hover:visible dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)]"
+                  className="invisible ml-2 rounded-full p-1 text-[var(--token-gray-700)] hover:bg-[var(--token-gray-200)] group-hover:visible dark:bg-[var(--color-surface-dark-subtle)] dark:text-[var(--token-gray-400)]"
                   aria-label="History options"
                 >
                   <MoreDotsIcon />

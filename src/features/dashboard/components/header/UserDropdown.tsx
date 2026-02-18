@@ -72,7 +72,7 @@ export default function UserDropdown() {
       <Dropdown
         isOpen={isOpen}
         onClose={closeDropdown}
-        className="absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-3 shadow-theme-lg dark:border-[var(--token-gray-800)] dark:bg-[var(--token-gray-dark)]"
+        className="absolute right-0 mt-[17px] flex w-[260px] flex-col rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-3 shadow-theme-lg dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)]"
       >
         <div>
           <span className="block font-medium text-[var(--token-gray-700)] text-theme-sm dark:text-[var(--token-gray-400)]">
@@ -83,13 +83,13 @@ export default function UserDropdown() {
           </span>
         </div>
 
-        <ul className="flex flex-col gap-1 pt-4 pb-3 border-b border-[var(--token-gray-200)] dark:border-[var(--token-gray-800)]">
+        <ul className="flex flex-col gap-1 pt-4 pb-3 border-b border-[var(--token-gray-200)] dark:border-[var(--color-border-dark-soft)]">
           <li>
             <DropdownItem
               onItemClick={closeDropdown}
               tag="a"
               href={profilePath}
-              className="flex items-center gap-3 px-3 py-2 font-medium text-[var(--token-gray-700)] rounded-lg group text-theme-sm hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-gray-300)]"
+              className="flex items-center gap-3 px-3 py-2 font-medium text-[var(--token-gray-700)] rounded-lg group text-theme-sm hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--color-surface-dark-subtle)] dark:hover:text-[var(--token-gray-300)]"
             >
               Profile
             </DropdownItem>
@@ -98,7 +98,7 @@ export default function UserDropdown() {
         <button
           type="button"
           onClick={handleSignOut}
-          className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-[var(--token-gray-700)] rounded-lg group text-theme-sm hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-gray-300)]"
+          className="flex items-center gap-3 px-3 py-2 mt-3 font-medium text-[var(--token-gray-700)] rounded-lg group text-theme-sm hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--color-surface-dark-subtle)] dark:hover:text-[var(--token-gray-300)]"
         >
           Sign out
         </button>

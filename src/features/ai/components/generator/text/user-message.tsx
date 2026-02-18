@@ -72,7 +72,7 @@ export default function UserMessage({
           <button
             title="Edit message"
             onClick={() => setShowEditInput(true)}
-            className="flex gap-1 items-center text-[var(--token-gray-400)] hover:text-[var(--token-gray-800)] dark:hover:text-[var(--token-white-90)] dark:text-[var(--token-gray-400)] dark:border-[var(--token-white-5)] bg-[var(--token-white)] dark:bg-[var(--token-white-3)] h-8 rounded-full px-3 py-1.5 border font-medium border-[var(--token-gray-100)] text-xs"
+            className="flex gap-1 items-center text-[var(--token-gray-400)] hover:text-[var(--token-gray-800)] dark:hover:text-[var(--token-white-90)] dark:text-[var(--token-gray-400)] dark:border-[var(--token-white-5)] bg-[var(--token-white)] dark:bg-[var(--color-surface-dark-elevated)] h-8 rounded-full px-3 py-1.5 border font-medium border-[var(--token-gray-100)] text-xs"
           >
             <PencilIcon className="size-4.5" />
 

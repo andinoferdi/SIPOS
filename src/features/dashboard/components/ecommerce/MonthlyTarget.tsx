@@ -1,4 +1,4 @@
-"use client";
+﻿"use client";
 import { ApexOptions } from "apexcharts";
 
 import dynamic from "next/dynamic";
@@ -42,7 +42,7 @@ export default function MonthlyTarget() {
             fontSize: "36px",
             fontWeight: "600",
             offsetY: -40,
-            color: "var(--color-gray-800)",
+            color: "var(--token-white)",
             formatter: function (val) {
               return val + "%";
             },
@@ -71,15 +71,15 @@ export default function MonthlyTarget() {
   }
 
   return (
-    <div className="rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-gray-100)] dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)]">
-      <div className="px-5 pt-5 bg-[var(--token-white)] shadow-default rounded-2xl pb-11 dark:bg-[var(--token-gray-900)] sm:px-6 sm:pt-6">
+    <div className="rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-gray-100)] dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)]">
+      <div className="px-5 pt-5 bg-[var(--token-white)] shadow-default rounded-2xl pb-11 dark:bg-[var(--color-surface-dark-elevated)] sm:px-6 sm:pt-6">
         <div className="flex justify-between">
           <div>
             <h3 className="text-lg font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
               Monthly Target
             </h3>
             <p className="mt-1 font-normal text-[var(--token-gray-500)] text-theme-sm dark:text-[var(--token-gray-400)]">
-              Target youÃ¢â‚¬â„¢ve set for each month
+              Target you've set for each month
             </p>
           </div>
           <div className="relative inline-block">
@@ -94,14 +94,14 @@ export default function MonthlyTarget() {
               <DropdownItem
                 tag="a"
                 onItemClick={closeDropdown}
-                className="flex w-full font-normal text-left text-[var(--token-gray-500)] rounded-lg hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-gray-300)]"
+                className="flex w-full font-normal text-left text-[var(--token-gray-500)] rounded-lg hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--color-surface-dark-subtle)] dark:hover:text-[var(--token-gray-300)]"
               >
                 View More
               </DropdownItem>
               <DropdownItem
                 tag="a"
                 onItemClick={closeDropdown}
-                className="flex w-full font-normal text-left text-[var(--token-gray-500)] rounded-lg hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-gray-300)]"
+                className="flex w-full font-normal text-left text-[var(--token-gray-500)] rounded-lg hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--color-surface-dark-subtle)] dark:hover:text-[var(--token-gray-300)]"
               >
                 Delete
               </DropdownItem>
@@ -109,7 +109,7 @@ export default function MonthlyTarget() {
           </div>
         </div>
         <div className="relative ">
-          <div className="max-h-[330px]">
+          <div className="max-h-[330px] ">
             <ReactApexChart
               options={options}
               series={series}
@@ -152,7 +152,7 @@ export default function MonthlyTarget() {
           </p>
         </div>
 
-        <div className="w-px bg-[var(--token-gray-200)] h-7 dark:bg-[var(--token-gray-800)]"></div>
+        <div className="w-px bg-[var(--token-gray-200)] h-7 dark:bg-[var(--color-surface-dark-subtle)]"></div>
 
         <div>
           <p className="mb-1 text-center text-[var(--token-gray-500)] text-theme-xs dark:text-[var(--token-gray-400)] sm:text-sm">
@@ -177,7 +177,7 @@ export default function MonthlyTarget() {
           </p>
         </div>
 
-        <div className="w-px bg-[var(--token-gray-200)] h-7 dark:bg-[var(--token-gray-800)]"></div>
+        <div className="w-px bg-[var(--token-gray-200)] h-7 dark:bg-[var(--color-surface-dark-subtle)]"></div>
 
         <div>
           <p className="mb-1 text-center text-[var(--token-gray-500)] text-theme-xs dark:text-[var(--token-gray-400)] sm:text-sm">

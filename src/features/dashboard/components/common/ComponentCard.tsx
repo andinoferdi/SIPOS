@@ -14,7 +14,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({
 }) => {
   return (
     <div
-      className={`rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)] ${className}`}
+      className={`rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)] ${className}`}
     >
 
       <div className="px-6 py-5">
@@ -28,7 +28,7 @@ const ComponentCard: React.FC<ComponentCardProps> = ({
         )}
       </div>
 
-      <div className="p-4 border-t border-[var(--token-gray-100)] dark:border-[var(--token-gray-800)] sm:p-6">
+      <div className="p-4 border-t border-[var(--token-gray-100)] dark:border-[var(--color-border-dark-soft)] sm:p-6">
         <div className="space-y-6">{children}</div>
       </div>
     </div>

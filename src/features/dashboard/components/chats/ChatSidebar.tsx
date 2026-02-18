@@ -27,7 +27,7 @@ export default function ChatSidebar({
   onCloseMobileSidebar,
 }: ChatSidebarProps) {
   return (
-    <div className="flex h-full flex-col rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)]">
+    <div className="flex h-full flex-col rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)]">
       <div className="sticky px-4 pb-4 pt-4 sm:px-5 sm:pt-5 xl:pb-0">
         <div className="flex items-start justify-between">
           <h3 className="text-theme-xl font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] sm:text-2xl">
@@ -37,7 +37,7 @@ export default function ChatSidebar({
             <button
               type="button"
               onClick={onCloseMobileSidebar}
-              className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--token-gray-300)] text-[var(--token-gray-700)] transition hover:bg-[var(--token-gray-100)] dark:border-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] xl:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full border border-[var(--token-gray-300)] text-[var(--token-gray-700)] transition hover:bg-[var(--token-gray-100)] dark:border-[var(--color-border-dark-strong)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] xl:hidden"
               aria-label="Close contact list"
             >
               <CloseIcon />
@@ -57,7 +57,7 @@ export default function ChatSidebar({
             placeholder="Search..."
             value={searchTerm}
             onChange={(event) => onSearchTermChange(event.target.value)}
-            className="dark:bg-dark-900 h-11 w-full rounded-lg border border-[var(--token-gray-300)] bg-transparent py-2.5 pl-[42px] pr-3.5 text-sm text-[var(--token-gray-800)] shadow-theme-xs placeholder:text-[var(--token-gray-400)] focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-900)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)] dark:focus:border-brand-800"
+            className="dark:bg-[var(--color-surface-dark-elevated)] h-11 w-full rounded-lg border border-[var(--token-gray-300)] bg-transparent py-2.5 pl-[42px] pr-3.5 text-sm text-[var(--token-gray-800)] shadow-theme-xs placeholder:text-[var(--token-gray-400)] focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-elevated)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)] dark:focus:border-brand-800"
           />
         </div>
       </div>
@@ -77,7 +77,7 @@ export default function ChatSidebar({
                 type="button"
                 onClick={() => onSelectContact(contact.id)}
                 className={`flex w-full cursor-pointer items-center gap-3 rounded-lg p-3 text-left transition hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-white-3)] ${
-                  isActive ? "bg-[var(--token-gray-100)] dark:bg-[var(--token-white-3)]" : ""
+                  isActive ? "bg-[var(--token-gray-100)] dark:bg-[var(--color-surface-dark-elevated)]" : ""
                 }`}
               >
                 <div className="relative h-12 w-full max-w-[48px] rounded-full">

@@ -56,13 +56,13 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
       <div className="relative z-20 inline-block w-full">
         <div className="relative flex flex-col items-center">
           <div onClick={toggleDropdown}  className="w-full">
-            <div className="mb-2 flex h-11 rounded-lg border border-[var(--token-gray-300)] py-1.5 pl-3 pr-3 shadow-theme-xs outline-hidden transition focus:border-brand-300 focus:shadow-focus-ring dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-900)] dark:focus:border-brand-300">
+            <div className="mb-2 flex h-11 rounded-lg border border-[var(--token-gray-300)] py-1.5 pl-3 pr-3 shadow-theme-xs outline-hidden transition focus:border-brand-300 focus:shadow-focus-ring dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-elevated)] dark:focus:border-brand-300">
               <div className="flex flex-wrap flex-auto gap-2">
                 {selectedValuesText.length > 0 ? (
                   selectedValuesText.map((text, index) => (
                     <div
                       key={index}
-                      className="group flex items-center justify-center rounded-full border-[0.7px] border-transparent bg-[var(--token-gray-100)] py-1 pl-2.5 pr-2 text-sm text-[var(--token-gray-800)] hover:border-[var(--token-gray-200)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-white-90)] dark:hover:border-[var(--token-gray-800)]"
+                      className="group flex items-center justify-center rounded-full border-[0.7px] border-transparent bg-[var(--token-gray-100)] py-1 pl-2.5 pr-2 text-sm text-[var(--token-gray-800)] hover:border-[var(--token-gray-200)] dark:bg-[var(--color-surface-dark-subtle)] dark:text-[var(--token-white-90)] dark:hover:border-[var(--token-gray-800)]"
                     >
                       <span className="flex-initial max-w-full">{text}</span>
                       <div className="flex flex-row-reverse flex-auto">
@@ -128,14 +128,14 @@ const MultiSelect: React.FC<MultiSelectProps> = ({
 
           {isOpen && (
             <div
-              className="absolute left-0 z-40 w-full overflow-y-auto bg-[var(--token-white)] rounded-lg shadow-sm top-full max-h-select dark:bg-[var(--token-gray-900)]"
+              className="absolute left-0 z-40 w-full overflow-y-auto bg-[var(--token-white)] rounded-lg shadow-sm top-full max-h-select dark:bg-[var(--color-surface-dark-elevated)]"
               onClick={(e) => e.stopPropagation()}
             >
               <div className="flex flex-col">
                 {options.map((option, index) => (
                   <div key={index}>
                     <div
-                      className={`hover:bg-primary/5 w-full cursor-pointer rounded-t border-b border-[var(--token-gray-200)] dark:border-[var(--token-gray-800)]`}
+                      className={`hover:bg-primary/5 w-full cursor-pointer rounded-t border-b border-[var(--token-gray-200)] dark:border-[var(--color-border-dark-soft)]`}
                       onClick={() => handleSelect(option.value)}
                     >
                       <div

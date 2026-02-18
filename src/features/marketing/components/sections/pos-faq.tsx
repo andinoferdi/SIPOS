@@ -56,7 +56,7 @@ export default function PosFaq() {
               return (
                 <div
                   key={item.id}
-                  className="rounded-2xl border border-[var(--token-gray-200)] dark:border-[var(--token-gray-800)] bg-[var(--token-white)] dark:bg-[var(--token-white-1)] px-5"
+                  className="rounded-2xl border border-[var(--token-gray-200)] dark:border-[var(--color-border-dark-soft)] bg-[var(--token-white)] dark:bg-[var(--color-surface-dark-subtle)] px-5"
                 >
                   <button
                     type="button"

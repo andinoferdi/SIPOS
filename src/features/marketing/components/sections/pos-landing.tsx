@@ -111,7 +111,7 @@ export default function PosLanding() {
               </Link>
               <Link
                 href="#pricing"
-                className="inline-flex h-11 min-w-[150px] items-center justify-center rounded-full border border-[var(--token-gray-300)] bg-[var(--token-gray-100)] px-6 text-sm font-semibold text-[var(--token-gray-700)] transition-colors hover:bg-[var(--token-gray-200)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-white-5)] dark:text-[var(--token-gray-300)] dark:hover:bg-[var(--token-white-10)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                className="inline-flex h-11 min-w-[150px] items-center justify-center rounded-full border border-[var(--token-gray-300)] bg-[var(--token-gray-100)] px-6 text-sm font-semibold text-[var(--token-gray-700)] transition-colors hover:bg-[var(--token-gray-200)] dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--token-white-5)] dark:text-[var(--token-gray-300)] dark:hover:bg-[var(--token-white-10)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
               >
                 Watch Demo
               </Link>
@@ -120,8 +120,8 @@ export default function PosLanding() {
 
           <div className="relative mx-auto mt-14 max-w-6xl">
             <div className="absolute inset-x-8 bottom-0 h-20 rounded-full bg-primary-500/20 blur-3xl pointer-events-none" />
-            <div className="relative overflow-hidden rounded-3xl border border-[var(--token-gray-200)] bg-[var(--token-white)] shadow-theme-lg dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-1)]">
-              <div className="flex items-center border-b border-[var(--token-gray-200)] bg-[var(--token-gray-50)] px-5 py-3 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)]">
+            <div className="relative overflow-hidden rounded-3xl border border-[var(--token-gray-200)] bg-[var(--token-white)] shadow-theme-lg dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-subtle)]">
+              <div className="flex items-center border-b border-[var(--token-gray-200)] bg-[var(--token-gray-50)] px-5 py-3 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)]">
                 <div className="flex items-center gap-2">
                   <span className="size-3 rounded-full bg-[var(--token-red-500)]" />
                   <span className="size-3 rounded-full bg-[var(--token-orange-400)]" />
@@ -133,7 +133,7 @@ export default function PosLanding() {
               </div>
 
               <div className="flex min-h-[520px] flex-col lg:flex-row">
-                <aside className="hidden w-20 shrink-0 flex-col items-center gap-6 border-r border-[var(--token-gray-200)] bg-[var(--token-gray-50)] py-6 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)] md:flex">
+                <aside className="hidden w-20 shrink-0 flex-col items-center gap-6 border-r border-[var(--token-gray-200)] bg-[var(--token-gray-50)] py-6 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)] md:flex">
                   <span className="inline-flex size-10 items-center justify-center rounded-2xl bg-primary-500/12 text-primary-500">
                     <Store size={20} aria-hidden />
                   </span>
@@ -167,7 +167,7 @@ export default function PosLanding() {
                         placeholder="Search product..."
                         readOnly
                         aria-label="Search product"
-                        className="h-11 w-full rounded-xl border border-[var(--token-gray-200)] bg-[var(--token-gray-50)] pl-9 pr-3 text-sm text-[var(--token-gray-700)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-white-5)] dark:text-[var(--token-gray-300)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+                        className="h-11 w-full rounded-xl border border-[var(--token-gray-200)] bg-[var(--token-gray-50)] pl-9 pr-3 text-sm text-[var(--token-gray-700)] dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--token-white-5)] dark:text-[var(--token-gray-300)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
                       />
                     </div>
                   </div>
@@ -179,7 +179,7 @@ export default function PosLanding() {
                         className={
                           index === 0
                             ? 'inline-flex h-10 shrink-0 items-center rounded-xl bg-primary-500 px-4 text-sm font-medium text-[var(--token-white)]'
-                            : 'inline-flex h-10 shrink-0 items-center rounded-xl border border-[var(--token-gray-200)] bg-[var(--token-gray-100)] px-4 text-sm font-medium text-[var(--token-gray-600)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-white-5)] dark:text-[var(--token-gray-300)]'
+                            : 'inline-flex h-10 shrink-0 items-center rounded-xl border border-[var(--token-gray-200)] bg-[var(--token-gray-100)] px-4 text-sm font-medium text-[var(--token-gray-600)] dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--token-white-5)] dark:text-[var(--token-gray-300)]'
                         }
                       >
                         {category}
@@ -191,9 +191,9 @@ export default function PosLanding() {
                     {PRODUCT_ITEMS.map((product) => (
                       <article
                         key={product.name}
-                        className="rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-gray-50)] p-4 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)]"
+                        className="rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-gray-50)] p-4 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)]"
                       >
-                        <div className="mb-4 flex h-32 items-center justify-center rounded-xl bg-[var(--token-gray-200)] text-[var(--token-gray-400)] dark:bg-[var(--token-gray-800)]">
+                        <div className="mb-4 flex h-32 items-center justify-center rounded-xl bg-[var(--token-gray-200)] text-[var(--token-gray-400)] dark:bg-[var(--color-surface-dark-subtle)]">
                           <ImageIcon size={34} aria-hidden />
                         </div>
                         <h3 className="text-sm font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
@@ -207,7 +207,7 @@ export default function PosLanding() {
                   </div>
                 </div>
 
-                <aside className="border-t border-[var(--token-gray-200)] bg-[var(--token-gray-50)] p-5 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)] lg:w-[285px] lg:border-t-0 lg:border-l lg:p-6">
+                <aside className="border-t border-[var(--token-gray-200)] bg-[var(--token-gray-50)] p-5 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)] lg:w-[285px] lg:border-t-0 lg:border-l lg:p-6">
                   <div className="flex items-center justify-between">
                     <h3 className="text-base font-bold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
                       Current Order
@@ -223,7 +223,7 @@ export default function PosLanding() {
                     {ORDER_ITEMS.map((item) => (
                       <div
                         key={item.name}
-                        className="rounded-xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-3 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-1)]"
+                        className="rounded-xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-3 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-subtle)]"
                       >
                         <div className="flex gap-3">
                           <span className="mt-0.5 size-10 rounded-lg bg-[var(--token-gray-200)] dark:bg-[var(--token-gray-700)]" />
@@ -253,7 +253,7 @@ export default function PosLanding() {
                     ))}
                   </div>
 
-                  <div className="mt-5 border-t border-[var(--token-gray-200)] pt-4 dark:border-[var(--token-gray-800)]">
+                  <div className="mt-5 border-t border-[var(--token-gray-200)] pt-4 dark:border-[var(--color-border-dark-soft)]">
                     <div className="space-y-2 text-xs text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
                       <div className="flex items-center justify-between">
                         <span>Subtotal</span>
@@ -265,7 +265,7 @@ export default function PosLanding() {
                       </div>
                     </div>
 
-                    <div className="mt-4 flex items-center justify-between border-t border-dashed border-[var(--token-gray-200)] pt-3 text-sm font-semibold text-[var(--token-gray-800)] dark:border-[var(--token-gray-700)] dark:text-[var(--token-white-90)]">
+                    <div className="mt-4 flex items-center justify-between border-t border-dashed border-[var(--token-gray-200)] pt-3 text-sm font-semibold text-[var(--token-gray-800)] dark:border-[var(--color-border-dark-strong)] dark:text-[var(--token-white-90)]">
                       <span>Total</span>
                       <span>$34.86</span>
                     </div>
@@ -281,7 +281,7 @@ export default function PosLanding() {
         </div>
       </section>
 
-      <section className="border-y border-[var(--token-gray-200)] bg-[var(--color-marketing-light-canvas)] py-10 dark:border-[var(--token-gray-800)] dark:bg-[var(--color-marketing-dark-canvas)]">
+      <section className="border-y border-[var(--token-gray-200)] bg-[var(--color-marketing-light-canvas)] py-10 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-marketing-dark-canvas)]">
         <div className="wrapper">
           <div className="grid grid-cols-1 divide-y divide-[var(--token-gray-200)] text-center dark:divide-[var(--token-gray-800)] md:grid-cols-3 md:divide-y-0 md:divide-x">
             {STATS.map((stat) => (
@@ -304,8 +304,8 @@ export default function PosLanding() {
       >
         <div className="wrapper">
           <div className="grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-            <div className="rounded-3xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-8 shadow-theme-sm dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)]">
-              <div className="flex h-[300px] items-center justify-center rounded-2xl border border-dashed border-[var(--token-gray-300)] bg-[var(--token-gray-50)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-white-3)]">
+            <div className="rounded-3xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-8 shadow-theme-sm dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)]">
+              <div className="flex h-[300px] items-center justify-center rounded-2xl border border-dashed border-[var(--token-gray-300)] bg-[var(--token-gray-50)] dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-elevated)]">
                 <LayoutDashboard
                   size={74}
                   aria-hidden
@@ -362,7 +362,7 @@ export default function PosLanding() {
                 {DEVICE_ITEMS.map((device) => (
                   <div
                     key={device.label}
-                    className="w-24 rounded-xl border border-[var(--token-gray-200)] bg-[var(--token-gray-50)] p-3 text-center dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)]"
+                    className="w-24 rounded-xl border border-[var(--token-gray-200)] bg-[var(--token-gray-50)] p-3 text-center dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)]"
                   >
                     <device.icon
                       size={22}
@@ -377,8 +377,8 @@ export default function PosLanding() {
               </div>
             </div>
 
-            <div className="rounded-3xl border border-[var(--token-gray-200)] bg-[var(--token-gray-50)] p-8 shadow-theme-sm dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)]">
-              <div className="flex h-[300px] items-center justify-center rounded-2xl border border-dashed border-[var(--token-gray-300)] bg-[var(--token-white)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-white-1)]">
+            <div className="rounded-3xl border border-[var(--token-gray-200)] bg-[var(--token-gray-50)] p-8 shadow-theme-sm dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)]">
+              <div className="flex h-[300px] items-center justify-center rounded-2xl border border-dashed border-[var(--token-gray-300)] bg-[var(--token-white)] dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-subtle)]">
                 <Settings
                   size={74}
                   aria-hidden
@@ -392,7 +392,7 @@ export default function PosLanding() {
 
       <section className="bg-[var(--token-gray-50)] dark:bg-[var(--color-marketing-dark-canvas)] py-18 md:py-24">
         <div className="wrapper">
-          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-[var(--token-gray-200)] bg-[var(--token-white)] px-6 py-12 text-center shadow-theme-lg dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)] md:px-12 md:py-14">
+          <div className="relative mx-auto max-w-5xl overflow-hidden rounded-[2rem] border border-[var(--token-gray-200)] bg-[var(--token-white)] px-6 py-12 text-center shadow-theme-lg dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)] md:px-12 md:py-14">
             <div className="pointer-events-none absolute inset-x-10 top-0 h-24 bg-primary-500/8 blur-2xl" />
             <h2 className="relative text-3xl md:text-title-sm font-bold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
               Offline access anywhere, anytime and automatic synchronization
@@ -404,13 +404,13 @@ export default function PosLanding() {
 
             <Link
               href="/#help"
-              className="relative mt-8 inline-flex h-11 items-center justify-center rounded-full border border-[var(--token-gray-300)] bg-[var(--token-gray-100)] px-6 text-sm font-semibold text-[var(--token-gray-700)] transition-colors hover:bg-[var(--token-gray-200)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-white-5)] dark:text-[var(--token-gray-300)] dark:hover:bg-[var(--token-white-10)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
+              className="relative mt-8 inline-flex h-11 items-center justify-center rounded-full border border-[var(--token-gray-300)] bg-[var(--token-gray-100)] px-6 text-sm font-semibold text-[var(--token-gray-700)] transition-colors hover:bg-[var(--token-gray-200)] dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--token-white-5)] dark:text-[var(--token-gray-300)] dark:hover:bg-[var(--token-white-10)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500"
             >
               Learn More
             </Link>
 
             <div className="relative mx-auto mt-10 max-w-2xl rounded-t-[2rem] border-[8px] border-[var(--token-gray-700)] bg-[var(--token-gray-900)] p-3">
-              <div className="aspect-video rounded-2xl bg-[var(--token-white)] dark:bg-[var(--token-white-1)] flex items-center justify-center">
+              <div className="aspect-video rounded-2xl bg-[var(--token-white)] dark:bg-[var(--color-surface-dark-subtle)] flex items-center justify-center">
                 <div className="text-center">
                   <WifiOff
                     size={40}

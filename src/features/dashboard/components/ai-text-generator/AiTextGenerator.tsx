@@ -55,7 +55,7 @@ export default function AiTextGenerator() {
         Text Generator
       </h2>
 
-      <div className="space-y-4 rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-4 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-gray-900)]">
+      <div className="space-y-4 rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-4 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)]">
         <div className="max-h-[50vh] space-y-3 overflow-y-auto pr-1">
           {messages.length === 0 && (
             <p className="text-sm text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
@@ -105,7 +105,7 @@ export default function AiTextGenerator() {
         <form onSubmit={form.handleSubmit(onPromptSubmit)}>
           <textarea
             placeholder="Type your prompt here..."
-            className="h-24 w-full resize-none rounded-xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-3 text-sm text-[var(--token-gray-800)] outline-none focus:border-brand-300 dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-white)]"
+            className="h-24 w-full resize-none rounded-xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-3 text-sm text-[var(--token-gray-800)] outline-none focus:border-brand-300 dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-subtle)] dark:text-[var(--token-white)]"
             disabled={status === 'submitted' || status === 'streaming'}
             {...form.register('prompt')}
           />

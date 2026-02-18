@@ -114,7 +114,7 @@ export default function POSInstanceForm({
           type="text"
           {...register("name")}
           placeholder="Contoh: Outlet Lantai 1"
-          className="block w-full rounded-lg border border-(--token-gray-300) bg-(--token-white) px-4 py-2.5 text-sm text-(--token-gray-900) placeholder:text-(--token-gray-400) focus:border-(--token-brand-500) focus:ring-2 focus:ring-(--token-brand-500)/20 dark:border-(--token-gray-600) dark:bg-(--token-gray-800) dark:text-(--token-white)"
+          className="surface-elevated block w-full rounded-lg border border-strong px-4 py-2.5 text-sm text-(--token-gray-900) placeholder:text-(--token-gray-400) focus:border-(--token-brand-500) focus:ring-2 focus:ring-(--token-brand-500)/20 dark:text-(--token-white)"
         />
         {errors.name && (
           <p className="mt-1 text-sm text-[var(--token-red-500)] dark:text-[var(--token-red-400)]">
@@ -166,7 +166,7 @@ export default function POSInstanceForm({
           <label className="mb-1.5 block text-sm font-medium text-(--token-gray-700) dark:text-(--token-gray-300)">
             Tipe Layanan
           </label>
-          <p className="rounded-lg border border-(--token-gray-200) bg-(--token-gray-50) px-4 py-2.5 text-sm text-(--token-gray-600) dark:border-(--token-gray-700) dark:bg-(--token-gray-800) dark:text-(--token-gray-400)">
+          <p className="surface-subtle rounded-lg border border-soft px-4 py-2.5 text-sm text-(--token-gray-600) dark:text-(--token-gray-400)">
             {instance.type === "TABLE_SERVICE" ? "Table Service" : "Tab Service"}
           </p>
         </div>
@@ -218,7 +218,7 @@ export default function POSInstanceForm({
             min={1}
             max={200}
             {...register("totalTable", { valueAsNumber: true })}
-            className="block w-full rounded-lg border border-(--token-gray-300) bg-(--token-white) px-4 py-2.5 text-sm text-(--token-gray-900) focus:border-(--token-brand-500) focus:ring-2 focus:ring-(--token-brand-500)/20 dark:border-(--token-gray-600) dark:bg-(--token-gray-800) dark:text-(--token-white)"
+            className="surface-elevated block w-full rounded-lg border border-strong px-4 py-2.5 text-sm text-(--token-gray-900) focus:border-(--token-brand-500) focus:ring-2 focus:ring-(--token-brand-500)/20 dark:text-(--token-white)"
           />
           {errors.totalTable && (
             <p className="mt-1 text-sm text-[var(--token-red-500)] dark:text-[var(--token-red-400)]">
@@ -250,7 +250,7 @@ export default function POSInstanceForm({
 
             router.back();
           }}
-          className="inline-flex items-center rounded-lg border border-(--token-gray-300) bg-(--token-white) px-5 py-2.5 text-sm font-medium text-(--token-gray-700) transition-colors hover:bg-(--token-gray-50) dark:border-(--token-gray-600) dark:bg-(--token-gray-800) dark:text-(--token-gray-300) dark:hover:bg-(--token-gray-700)"
+          className="surface-elevated surface-interactive inline-flex items-center rounded-lg border border-strong px-5 py-2.5 text-sm font-medium text-(--token-gray-700) dark:text-(--token-gray-300)"
         >
           Batal
         </button>

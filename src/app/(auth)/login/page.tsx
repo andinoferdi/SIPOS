@@ -13,7 +13,7 @@ export default function SignInPage() {
     <section className="bg-[var(--color-marketing-light-canvas)] dark:bg-[var(--color-marketing-dark-canvas)] py-18 md:py-24">
       <div className="wrapper">
         <div className="mx-auto max-w-[600px]">
-          <div className="rounded-3xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-8 shadow-theme-sm dark:border-[var(--color-marketing-dark-border)] dark:bg-[var(--token-white-1)] sm:p-14">
+          <div className="rounded-3xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-8 shadow-theme-sm dark:border-[var(--color-marketing-dark-border)] dark:bg-[var(--color-surface-dark-subtle)] sm:p-14">
             <div className="text-center mb-8">
               <h3 className="text-(--token-gray-800) dark:text-(--token-white-90) font-bold text-3xl mb-2">
                 Sign In
@@ -31,7 +31,7 @@ export default function SignInPage() {
               <div className="flex flex-col gap-3 sm:flex-row">
                 <Link
                   href="/register"
-                  className="inline-flex h-11 flex-1 items-center justify-center rounded-full border border-[var(--token-gray-300)] bg-[var(--token-white)] px-5 text-sm font-semibold text-[var(--token-gray-700)] transition-colors hover:bg-[var(--token-gray-100)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-white-3)] dark:text-[var(--token-gray-300)] dark:hover:bg-[var(--token-white-5)]"
+                  className="inline-flex h-11 flex-1 items-center justify-center rounded-full border border-[var(--token-gray-300)] bg-[var(--token-white)] px-5 text-sm font-semibold text-[var(--token-gray-700)] transition-colors hover:bg-[var(--token-gray-100)] dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-elevated)] dark:text-[var(--token-gray-300)] dark:hover:bg-[var(--color-surface-dark-subtle)]"
                 >
                   Go to Register
                 </Link>

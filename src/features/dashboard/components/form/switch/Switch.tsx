@@ -56,7 +56,7 @@ const Switch: React.FC<SwitchProps> = ({
         <div
           className={`block transition duration-150 ease-linear h-6 w-11 rounded-full ${
             disabled
-              ? "bg-[var(--token-gray-100)] pointer-events-none dark:bg-[var(--token-gray-800)]"
+              ? "bg-[var(--token-gray-100)] pointer-events-none dark:bg-[var(--color-surface-dark-subtle)]"
               : switchColors.background
           }`}
         ></div>

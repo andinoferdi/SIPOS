@@ -29,7 +29,7 @@ const Button: React.FC<ButtonProps> = ({
     primary:
       "bg-brand-500 text-[var(--token-white)] shadow-theme-xs hover:bg-brand-600 disabled:bg-brand-300",
     outline:
-      "bg-[var(--token-white)] text-[var(--token-gray-700)] ring-1 ring-inset ring-gray-300 hover:bg-[var(--token-gray-50)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:ring-gray-700 dark:hover:bg-[var(--token-white-3)] dark:hover:text-[var(--token-gray-300)]",
+      "bg-[var(--token-white)] text-[var(--token-gray-700)] ring-1 ring-inset ring-gray-300 hover:bg-[var(--token-gray-50)] dark:bg-[var(--color-surface-dark-subtle)] dark:text-[var(--token-gray-400)] dark:ring-gray-700 dark:hover:bg-[var(--token-white-3)] dark:hover:text-[var(--token-gray-300)]",
   };
 
   return (

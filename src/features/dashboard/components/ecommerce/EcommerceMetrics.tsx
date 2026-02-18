@@ -7,8 +7,8 @@ export const EcommerceMetrics = () => {
   return (
     <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:gap-6">
 
-      <div className="rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-5 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)] md:p-6">
-        <div className="flex items-center justify-center w-12 h-12 bg-[var(--token-gray-100)] rounded-xl dark:bg-[var(--token-gray-800)]">
+      <div className="rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-5 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)] md:p-6">
+        <div className="flex items-center justify-center w-12 h-12 bg-[var(--token-gray-100)] rounded-xl dark:bg-[var(--color-surface-dark-subtle)]">
           <GroupIcon className="text-[var(--token-gray-800)] size-6 dark:text-[var(--token-white-90)]" />
         </div>
 
@@ -28,8 +28,8 @@ export const EcommerceMetrics = () => {
         </div>
       </div>
 
-      <div className="rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-5 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)] md:p-6">
-        <div className="flex items-center justify-center w-12 h-12 bg-[var(--token-gray-100)] rounded-xl dark:bg-[var(--token-gray-800)]">
+      <div className="rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-5 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)] md:p-6">
+        <div className="flex items-center justify-center w-12 h-12 bg-[var(--token-gray-100)] rounded-xl dark:bg-[var(--color-surface-dark-subtle)]">
           <BoxIconLine className="text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]" />
         </div>
         <div className="flex items-end justify-between mt-5">

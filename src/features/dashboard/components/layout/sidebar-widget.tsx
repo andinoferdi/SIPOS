@@ -4,7 +4,7 @@ export default function SidebarWidget() {
   return (
     <div
       className={`
-        mx-auto mb-10 w-full max-w-60 rounded-2xl bg-[var(--token-gray-50)] px-4 py-5 text-center dark:bg-[var(--token-white-3)]`}
+        mx-auto mb-10 w-full max-w-60 rounded-2xl bg-[var(--token-gray-50)] px-4 py-5 text-center dark:bg-[var(--color-surface-dark-elevated)]`}
     >
       <h3 className="mb-2 font-semibold text-[var(--token-gray-900)] dark:text-[var(--token-white)]">
         #1 Tailwind CSS Dashboard

@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`bg-[var(--token-gray-50)] dark:bg-dark-secondary min-h-screen flex flex-col ${poppins.className}`}
+        className={`surface-base min-h-screen flex flex-col ${poppins.className}`}
       >
         <AuthSessionProvider>
           <ThemeProvider

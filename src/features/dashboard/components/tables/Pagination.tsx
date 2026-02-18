@@ -19,7 +19,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <button
         onClick={() => onPageChange(currentPage - 1)}
         disabled={currentPage === 1}
-        className="mr-2.5 flex items-center h-10 justify-center rounded-lg border border-[var(--token-gray-300)] bg-[var(--token-white)] px-3.5 py-2.5 text-[var(--token-gray-700)] shadow-theme-xs hover:bg-[var(--token-gray-50)] disabled:opacity-50 dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] text-sm"
+        className="surface-elevated surface-interactive mr-2.5 flex h-10 items-center justify-center rounded-lg border border-strong px-3.5 py-2.5 text-sm text-[var(--token-gray-700)] shadow-theme-xs disabled:opacity-50 dark:text-[var(--token-gray-400)]"
       >
         Previous
       </button>
@@ -33,7 +33,7 @@ const Pagination: React.FC<PaginationProps> = ({
               currentPage === page
                 ? "bg-brand-500 text-[var(--token-white)]"
                 : "text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)]"
-            } flex w-10 items-center justify-center h-10 rounded-lg text-sm font-medium hover:bg-[var(--token-blue-500-8)] hover:text-brand-500 dark:hover:text-brand-500`}
+            } flex h-10 w-10 items-center justify-center rounded-lg text-sm font-medium transition-colors hover:bg-brand-50 hover:text-brand-600 dark:hover:bg-brand-500/12 dark:hover:text-brand-400`}
           >
             {page}
           </button>
@@ -43,7 +43,7 @@ const Pagination: React.FC<PaginationProps> = ({
       <button
         onClick={() => onPageChange(currentPage + 1)}
         disabled={currentPage === totalPages}
-        className="ml-2.5 flex items-center justify-center rounded-lg border border-[var(--token-gray-300)] bg-[var(--token-white)] px-3.5 py-2.5 text-[var(--token-gray-700)] shadow-theme-xs text-sm hover:bg-[var(--token-gray-50)] h-10 disabled:opacity-50 dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)]"
+        className="surface-elevated surface-interactive ml-2.5 flex h-10 items-center justify-center rounded-lg border border-strong px-3.5 py-2.5 text-sm text-[var(--token-gray-700)] shadow-theme-xs disabled:opacity-50 dark:text-[var(--token-gray-400)]"
       >
         Next
       </button>

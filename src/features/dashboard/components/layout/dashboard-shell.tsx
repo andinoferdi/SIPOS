@@ -31,7 +31,7 @@ function DashboardContent({ children }: { children: ReactNode }) {
       : "lg:ml-[90px]";
 
   return (
-    <div className="min-h-screen xl:flex">
+    <div className="dashboard-theme-scope surface-base min-h-screen xl:flex">
       <AppSidebar />
       <Backdrop />
       <div className={`flex-1 transition-all duration-300 ease-in-out ${mainContentMargin}`}>

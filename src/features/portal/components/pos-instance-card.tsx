@@ -71,8 +71,8 @@ export default function POSInstanceCard({
         className={`group relative w-full rounded-2xl border p-6 text-left transition-all duration-200
           ${
             instance.isActive
-              ? "border-[var(--color-brand-500)] bg-(--token-white) shadow-[0_0_0_1px_var(--color-brand-500),0_0_16px_var(--token-blue-light-500-30)] hover:shadow-[0_0_0_1px_var(--color-brand-500),0_0_24px_var(--token-blue-light-500-30)] dark:bg-(--token-gray-800)"
-              : "border-dashed border-[var(--color-brand-500)] bg-(--token-gray-50) opacity-60 shadow-[0_0_0_1px_var(--color-brand-500),0_0_12px_var(--token-blue-light-500-15)] dark:bg-(--token-gray-900)"
+              ? "border-[var(--color-brand-500)] surface-elevated shadow-[0_0_0_1px_var(--color-brand-500),0_8px_26px_-20px_var(--color-brand-500)] hover:shadow-[0_0_0_1px_var(--color-brand-500),0_16px_32px_-20px_var(--color-brand-500)]"
+              : "border-dashed border-[var(--color-brand-500)] surface-subtle opacity-60 shadow-[0_0_0_1px_var(--color-brand-500),0_6px_20px_-18px_var(--color-brand-500)]"
           }
           ${!instance.isActive ? "cursor-not-allowed" : "cursor-pointer"}`}
       >
@@ -87,8 +87,8 @@ export default function POSInstanceCard({
                   className={`inline-flex items-center rounded-full px-2.5 py-0.5 text-xs font-medium
                   ${
                     instance.type === "TABLE_SERVICE"
-                      ? "bg-blue-100 text-blue-800 dark:bg-blue-900/30 dark:text-blue-300"
-                      : "bg-purple-100 text-purple-800 dark:bg-purple-900/30 dark:text-purple-300"
+                      ? "bg-brand-50 text-brand-700 dark:bg-brand-500/20 dark:text-brand-200"
+                      : "bg-primary-100 text-primary-700 dark:bg-primary-500/20 dark:text-primary-200"
                   }`}
                 >
                   {typeLabel}
@@ -116,7 +116,7 @@ export default function POSInstanceCard({
                     event.stopPropagation();
                     setIsEditOpen(true);
                   }}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-(--token-gray-300) text-(--token-gray-700) transition-colors hover:bg-(--token-gray-50) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--token-brand-500) dark:border-(--token-gray-600) dark:text-(--token-gray-300) dark:hover:bg-(--token-gray-700)"
+                  className="surface-elevated surface-interactive inline-flex h-11 w-11 items-center justify-center rounded-lg border border-strong text-(--token-gray-700) focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-brand-500 dark:text-(--token-gray-300)"
                 >
                   <Pencil className="h-4 w-4" />
                 </button>
@@ -129,7 +129,7 @@ export default function POSInstanceCard({
                     event.stopPropagation();
                     setIsDeleteOpen(true);
                   }}
-                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-[var(--token-red-400)] text-[var(--token-red-500)] transition-all duration-200 ease-out hover:-translate-y-px hover:bg-[var(--token-error-50)] hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--token-red-500) active:translate-y-0 dark:border-[var(--token-red-500)] dark:text-[var(--token-red-400)] dark:hover:bg-[var(--token-red-500)]/20"
+                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-[var(--token-red-400)] text-[var(--token-red-500)] transition-all duration-200 ease-out hover:-translate-y-px hover:bg-[var(--token-error-50)] hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--token-red-500)] active:translate-y-0 dark:border-[var(--token-red-500)] dark:text-[var(--token-red-400)] dark:hover:bg-[var(--token-red-500)]/20"
                 >
                   <Trash2 className="h-4 w-4" />
                 </button>
@@ -149,7 +149,7 @@ export default function POSInstanceCard({
       </Card>
 
       <Dialog open={isEditOpen} onOpenChange={setIsEditOpen}>
-        <DialogContent className="border-(--token-gray-200) bg-(--token-white) dark:border-(--token-gray-700) dark:bg-(--token-gray-800)">
+        <DialogContent className="surface-elevated border border-soft">
           <DialogHeader>
             <DialogTitle className="text-(--token-gray-900) dark:text-(--token-white)">
               Edit POS Instance
@@ -168,7 +168,7 @@ export default function POSInstanceCard({
       </Dialog>
 
       <Dialog open={isDeleteOpen} onOpenChange={setIsDeleteOpen}>
-        <DialogContent className="border-(--token-gray-200) bg-(--token-white) dark:border-(--token-gray-700) dark:bg-(--token-gray-800)">
+        <DialogContent className="surface-elevated border border-soft">
           <DialogHeader>
             <DialogTitle className="text-(--token-gray-900) dark:text-(--token-white)">
               Hapus POS Instance
@@ -185,7 +185,7 @@ export default function POSInstanceCard({
             <button
               type="button"
               onClick={() => setIsDeleteOpen(false)}
-              className="inline-flex items-center justify-center rounded-lg border border-(--token-gray-300) bg-(--token-white) px-4 py-2 text-sm font-medium text-(--token-gray-700) transition-colors hover:bg-(--token-gray-50) dark:border-(--token-gray-600) dark:bg-(--token-gray-800) dark:text-(--token-gray-300) dark:hover:bg-(--token-gray-700)"
+              className="surface-elevated surface-interactive inline-flex items-center justify-center rounded-lg border border-strong px-4 py-2 text-sm font-medium text-(--token-gray-700) dark:text-(--token-gray-300)"
             >
               Batal
             </button>
@@ -193,7 +193,7 @@ export default function POSInstanceCard({
               type="button"
               disabled={deleteMutation.isPending}
               onClick={handleDelete}
-              className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-[var(--token-red-400)] bg-[var(--token-white)] px-4 py-2 text-sm font-medium text-[var(--token-red-500)] transition-all duration-200 ease-out hover:-translate-y-px hover:bg-[var(--token-error-50)] hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--token-red-500) active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none dark:border-[var(--token-red-500)] dark:bg-[var(--token-red-500)]/20 dark:text-[var(--token-red-400)] dark:hover:bg-[var(--token-red-500)]/40"
+              className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-[var(--token-red-400)] bg-[var(--token-white)] px-4 py-2 text-sm font-medium text-[var(--token-red-500)] transition-all duration-200 ease-out hover:-translate-y-px hover:bg-[var(--token-error-50)] hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[var(--token-red-500)] active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none dark:border-[var(--token-red-500)] dark:bg-[var(--token-red-500)]/20 dark:text-[var(--token-red-400)] dark:hover:bg-[var(--token-red-500)]/40"
             >
               {deleteMutation.isPending ? "Memproses..." : "Hapus"}
             </button>

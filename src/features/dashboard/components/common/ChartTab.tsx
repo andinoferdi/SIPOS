@@ -7,11 +7,11 @@ const ChartTab: React.FC = () => {
 
   const getButtonClass = (option: "optionOne" | "optionTwo" | "optionThree") =>
     selected === option
-      ? "shadow-theme-xs text-[var(--token-gray-900)] dark:text-[var(--token-white)] bg-[var(--token-white)] dark:bg-[var(--token-gray-800)]"
+      ? "shadow-theme-xs text-[var(--token-gray-900)] dark:text-[var(--token-white)] bg-[var(--token-white)] dark:bg-[var(--color-surface-dark-subtle)]"
       : "text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]";
 
   return (
-    <div className="flex items-center gap-0.5 rounded-lg bg-[var(--token-gray-100)] p-0.5 dark:bg-[var(--token-gray-900)]">
+    <div className="flex items-center gap-0.5 rounded-lg bg-[var(--token-gray-100)] p-0.5 dark:bg-[var(--color-surface-dark-elevated)]">
       <button
         onClick={() => setSelected("optionOne")}
         className={`px-3 py-2 font-medium w-full rounded-md text-theme-sm hover:text-[var(--token-gray-900)]   dark:hover:text-[var(--token-white)] ${getButtonClass(

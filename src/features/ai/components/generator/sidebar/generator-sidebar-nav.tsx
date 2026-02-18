@@ -33,7 +33,7 @@ export default function GeneratorSidebarNav() {
                 'relative flex gap-1.5 items-center h-11 px-2 py-3 text-sm font-medium rounded-full transition',
                 isActive
                   ? 'bg-[var(--token-gray-100)] dark:bg-[var(--token-white-5)] dark:text-[var(--token-white-90)] text-[var(--token-gray-800)]'
-                  : 'dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-white-90)] text-[var(--token-gray-500)] hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-800)]'
+                  : 'dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--color-surface-dark-subtle)] dark:hover:text-[var(--token-white-90)] text-[var(--token-gray-500)] hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-800)]'
               )}
             >
               {item.icon}

@@ -12,7 +12,7 @@ export const metadata: Metadata = {
 export default function Profile() {
   return (
     <div>
-      <div className="rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-5 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)] lg:p-6">
+      <div className="rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-5 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)] lg:p-6">
         <h3 className="mb-5 text-lg font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] lg:mb-7">
           Profile
         </h3>

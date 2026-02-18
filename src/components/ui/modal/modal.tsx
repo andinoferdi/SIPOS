@@ -55,7 +55,7 @@ export function Modal({
 
         <div
           className={cn(
-            'bg-[var(--token-white)] dark:bg-[var(--token-gray-900)] rounded-3xl text-left overflow-hidden sm:w-[590px] transform transition-all p-5 sm:p-12 relative',
+            'bg-[var(--token-white)] dark:bg-[var(--color-surface-dark-elevated)] rounded-3xl text-left overflow-hidden sm:w-[590px] transform transition-all p-5 sm:p-12 relative',
             className?.modal
           )}
         >

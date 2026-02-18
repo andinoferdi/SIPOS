@@ -1,16 +1,38 @@
 "use client";
 
-import { useCallback } from "react";
+import { useCallback, useEffect, useRef } from "react";
 import { useTheme } from "next-themes";
 
 type ThemeMode = "light" | "dark";
 
 export function useThemeTransition() {
   const { resolvedTheme, setTheme } = useTheme();
+  const restoreTimerRef = useRef<number | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (restoreTimerRef.current !== null) {
+        window.clearTimeout(restoreTimerRef.current);
+      }
+      document.documentElement.classList.remove("theme-switching");
+    };
+  }, []);
 
   const setThemeWithTransition = useCallback(
     (nextTheme: ThemeMode) => {
+      const root = document.documentElement;
+      root.classList.add("theme-switching");
+
+      if (restoreTimerRef.current !== null) {
+        window.clearTimeout(restoreTimerRef.current);
+      }
+
       setTheme(nextTheme);
+
+      restoreTimerRef.current = window.setTimeout(() => {
+        root.classList.remove("theme-switching");
+        restoreTimerRef.current = null;
+      }, 180);
     },
     [setTheme]
   );

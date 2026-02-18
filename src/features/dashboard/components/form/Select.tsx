@@ -181,11 +181,11 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
 
     const variantClasses = {
       default:
-        'border border-[var(--token-gray-300)] bg-[var(--token-white)] dark:border-[var(--token-gray-600)] dark:bg-[var(--token-gray-800)]',
+        'surface-elevated border border-strong',
       minimal:
-        'border-b-2 border-[var(--token-gray-300)] bg-transparent dark:border-[var(--token-gray-700)]',
+        'border-b-2 border-[var(--token-gray-300)] bg-transparent dark:border-[var(--color-border-dark-strong)]',
       elevated:
-        'border border-[var(--token-gray-200)] bg-[var(--token-white)] shadow-md dark:border-[var(--token-gray-600)] dark:bg-[var(--token-gray-800)]',
+        'surface-elevated border border-soft shadow-md',
     };
 
     const selectedOptions = isMulti
@@ -227,9 +227,9 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
             transition-all duration-200 ease-out
             ${sizeClasses[size]}
             ${variantClasses[variant]}
-            ${isDisabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer border-[var(--token-gray-300)] hover:-translate-y-[1px] hover:border-[var(--brand-400)] hover:shadow-[0_8px_24px_-12px_var(--brand-500)] dark:border-[var(--token-gray-600)] dark:hover:border-[var(--brand-400)]'}
-            ${isOpen ? 'border-[var(--brand-500)] ring-2 ring-[var(--brand-500)]/20 shadow-[0_12px_30px_-16px_var(--brand-500)] dark:border-[var(--brand-400)]' : ''}
-            focus:outline-none focus:ring-2 focus:ring-[var(--brand-500)]/20 focus:border-[var(--brand-500)] dark:focus:border-[var(--brand-400)]
+            ${isDisabled ? 'cursor-not-allowed opacity-50' : 'cursor-pointer hover:-translate-y-[1px] hover:border-brand-400 hover:shadow-theme-sm dark:hover:border-brand-400'}
+            ${isOpen ? 'border-brand-500 ring-2 ring-brand-500/20 shadow-theme-sm dark:border-brand-400' : ''}
+            focus:outline-none focus:ring-2 focus:ring-brand-500/20 focus:border-brand-500 dark:focus:border-brand-400
           `}
         >
           <div className="flex flex-1 items-center gap-2 overflow-hidden">
@@ -240,14 +240,14 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                   return (
                     <span
                       key={val}
-                      className="inline-flex items-center gap-1 rounded-md bg-[var(--brand-500)]/10 px-2 py-1 text-xs font-medium text-[var(--brand-700)] dark:bg-[var(--brand-500)]/20 dark:text-[var(--brand-200)]"
+                      className="inline-flex items-center gap-1 rounded-md bg-brand-500/10 px-2 py-1 text-xs font-medium text-brand-700 dark:bg-brand-500/20 dark:text-brand-200"
                     >
                       {opt?.label}
                       {isClearable && (
                         <button
                           type="button"
                           onClick={(e) => handleRemoveTag(val, e)}
-                          className="hover:text-[var(--brand-900)] dark:hover:text-white"
+                          className="hover:text-brand-900 dark:hover:text-white"
                           aria-label={`Remove ${opt?.label}`}
                         >
                           <X size={14} />
@@ -291,7 +291,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
               size={16}
               className={`transition-transform duration-200 ${
                 isOpen ? 'rotate-180' : ''
-              } text-[var(--token-gray-500)] group-hover:text-[var(--brand-500)]`}
+              } text-[var(--token-gray-500)] group-hover:text-brand-500`}
             />
           </div>
         </button>
@@ -302,8 +302,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
             ref={menuRef}
             className={`
               absolute top-full z-50 mt-2 w-full overflow-hidden rounded-xl
-              border border-[var(--token-gray-200)]/80 bg-[var(--token-white)] shadow-[0_20px_45px_-24px_rgba(15,23,42,0.45)] backdrop-blur-md
-              dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)]
+              surface-elevated border border-soft shadow-[0_20px_45px_-24px_rgba(15,23,42,0.45)] backdrop-blur-md
               data-[state=open]:animate-in data-[state=open]:fade-in-0 data-[state=open]:zoom-in-95
               ${menuClassName}
             `}
@@ -311,7 +310,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
           >
             {/* Search Input */}
             {isSearchable && (
-              <div className="border-b border-[var(--token-gray-200)] p-2 dark:border-[var(--token-gray-700)]">
+              <div className="border-b border-soft p-2">
                 <div className="relative">
                   <Search
                     size={16}
@@ -326,7 +325,7 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                       setSearchQuery(e.target.value);
                       setHighlightedIndex(0);
                     }}
-                    className="w-full rounded-lg border border-[var(--token-gray-300)] bg-[var(--token-white)] py-2 pl-8 pr-3 text-sm outline-none transition-colors focus:border-[var(--brand-500)] focus:ring-2 focus:ring-[var(--brand-500)]/15 dark:border-[var(--token-gray-600)] dark:bg-[var(--token-gray-700)] dark:text-white"
+                    className="surface-elevated w-full rounded-lg border border-strong py-2 pl-8 pr-3 text-sm outline-none transition-colors focus:border-brand-500 focus:ring-2 focus:ring-brand-500/15 dark:text-white"
                   />
                 </div>
               </div>
@@ -351,10 +350,10 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                       w-full px-4 py-2.5 text-left text-sm transition-colors duration-150
                       ${
                         index === highlightedIndex
-                          ? 'bg-[var(--brand-50)] text-[var(--brand-700)] dark:bg-[var(--brand-900)]/30 dark:text-[var(--brand-200)]'
-                          : 'text-[var(--token-gray-700)] hover:bg-[var(--token-gray-50)] dark:text-[var(--token-gray-200)] dark:hover:bg-[var(--token-gray-700)]'
+                          ? 'bg-brand-50 text-brand-700 dark:bg-brand-900/30 dark:text-brand-200'
+                          : 'text-[var(--token-gray-700)] hover:bg-[var(--token-gray-50)] dark:text-[var(--token-gray-200)] dark:hover:bg-[var(--color-surface-dark-subtle)]'
                       }
-                      ${isSelected(option.value) ? 'bg-[var(--brand-500)]/10 font-medium text-[var(--brand-700)] dark:bg-[var(--brand-500)]/20 dark:text-[var(--brand-200)]' : ''}
+                      ${isSelected(option.value) ? 'bg-brand-500/10 font-medium text-brand-700 dark:bg-brand-500/20 dark:text-brand-200' : ''}
                     `}
                   >
                     <div className="flex items-center gap-2">
@@ -362,8 +361,8 @@ const Select = React.forwardRef<HTMLDivElement, SelectProps>(
                         <div
                           className={`h-4 w-4 rounded border transition-all ${
                             isSelected(option.value)
-                              ? 'border-[var(--brand-500)] bg-[var(--brand-500)]'
-                              : 'border-[var(--token-gray-300)] bg-white dark:border-[var(--token-gray-600)] dark:bg-[var(--token-gray-700)]'
+                              ? 'border-brand-500 bg-brand-500'
+                              : 'border-[var(--token-gray-300)] bg-white dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-subtle)]'
                           }`}
                         >
                           {isSelected(option.value) && (

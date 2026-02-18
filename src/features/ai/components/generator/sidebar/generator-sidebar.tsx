@@ -9,7 +9,7 @@ export default function GeneratorSidebar({
 }) {
   return (
     <aside
-      className={`max-lg:absolute inset-y-0 left-0 z-40 w-[288px] bg-[var(--token-white)] dark:bg-dark-primary border-r border-[var(--token-gray-100)] dark:border-[var(--token-gray-800)] transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
+      className={`max-lg:absolute inset-y-0 left-0 z-40 w-[288px] bg-[var(--token-white)] dark:bg-[var(--color-surface-dark-base)] border-r border-[var(--token-gray-100)] dark:border-[var(--color-border-dark-soft)] transform transition-transform duration-300 ease-in-out lg:translate-x-0 ${
         sidebarOpen ? 'translate-x-0' : '-translate-x-full'
       }`}
     >
@@ -25,7 +25,7 @@ export default function GeneratorSidebar({
               <nav className="mt-5 space-y-1">
                 <Link
                   href="#"
-                  className="flex items-center gap-2 px-3 py-2 hover:text-[var(--token-gray-800)] dark:hover:text-[var(--token-white-90)] text-sm font-medium rounded-full text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-white-5)] transition"
+                  className="flex items-center gap-2 px-3 py-2 hover:text-[var(--token-gray-800)] dark:hover:text-[var(--token-white-90)] text-sm font-medium rounded-full text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--color-surface-dark-subtle)] transition"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
@@ -45,7 +45,7 @@ export default function GeneratorSidebar({
                 </Link>
                 <Link
                   href="#"
-                  className="flex items-center gap-2 px-3 py-2 hover:text-[var(--token-gray-800)] dark:hover:text-[var(--token-white-90)] text-sm font-medium rounded-full text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--token-white-5)] transition"
+                  className="flex items-center gap-2 px-3 py-2 hover:text-[var(--token-gray-800)] dark:hover:text-[var(--token-white-90)] text-sm font-medium rounded-full text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)] hover:bg-[var(--token-gray-100)] dark:hover:bg-[var(--color-surface-dark-subtle)] transition"
                 >
                   <svg
                     xmlns="http://www.w3.org/2000/svg"

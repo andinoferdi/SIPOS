@@ -117,7 +117,7 @@ const Calendar: React.FC = () => {
   };
 
   return (
-    <div className="rounded-2xl border  border-[var(--token-gray-200)] bg-[var(--token-white)] dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)]">
+    <div className="rounded-2xl border  border-[var(--token-gray-200)] bg-[var(--token-white)] dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)]">
       <div className="custom-calendar">
         <FullCalendar
           ref={calendarRef}
@@ -167,7 +167,7 @@ const Calendar: React.FC = () => {
                   type="text"
                   value={eventTitle}
                   onChange={(e) => setEventTitle(e.target.value)}
-                  className="dark:bg-dark-900 h-11 w-full rounded-lg border border-[var(--token-gray-300)] bg-transparent px-4 py-2.5 text-sm text-[var(--token-gray-800)] shadow-theme-xs placeholder:text-[var(--token-gray-400)] focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-900)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)] dark:focus:border-brand-800"
+                  className="dark:bg-[var(--color-surface-dark-elevated)] h-11 w-full rounded-lg border border-[var(--token-gray-300)] bg-transparent px-4 py-2.5 text-sm text-[var(--token-gray-800)] shadow-theme-xs placeholder:text-[var(--token-gray-400)] focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-elevated)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)] dark:focus:border-brand-800"
                 />
               </div>
             </div>
@@ -195,7 +195,7 @@ const Calendar: React.FC = () => {
                             checked={eventLevel === key}
                             onChange={() => setEventLevel(key)}
                           />
-                          <span className="flex items-center justify-center w-5 h-5 mr-2 border border-[var(--token-gray-300)] rounded-full box dark:border-[var(--token-gray-700)]">
+                          <span className="flex items-center justify-center w-5 h-5 mr-2 border border-[var(--token-gray-300)] rounded-full box dark:border-[var(--color-border-dark-strong)]">
                             <span
                               className={`h-2 w-2 rounded-full bg-[var(--token-white)] ${
                                 eventLevel === key ? "block" : "hidden"
@@ -221,7 +221,7 @@ const Calendar: React.FC = () => {
                   type="date"
                   value={eventStartDate}
                   onChange={(e) => setEventStartDate(e.target.value)}
-                  className="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-[var(--token-gray-300)] bg-transparent bg-none px-4 py-2.5 pl-4 pr-11 text-sm text-[var(--token-gray-800)] shadow-theme-xs placeholder:text-[var(--token-gray-400)] focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-900)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)] dark:focus:border-brand-800"
+                  className="dark:bg-[var(--color-surface-dark-elevated)] h-11 w-full appearance-none rounded-lg border border-[var(--token-gray-300)] bg-transparent bg-none px-4 py-2.5 pl-4 pr-11 text-sm text-[var(--token-gray-800)] shadow-theme-xs placeholder:text-[var(--token-gray-400)] focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-elevated)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)] dark:focus:border-brand-800"
                 />
               </div>
             </div>
@@ -236,7 +236,7 @@ const Calendar: React.FC = () => {
                   type="date"
                   value={eventEndDate}
                   onChange={(e) => setEventEndDate(e.target.value)}
-                  className="dark:bg-dark-900 h-11 w-full appearance-none rounded-lg border border-[var(--token-gray-300)] bg-transparent bg-none px-4 py-2.5 pl-4 pr-11 text-sm text-[var(--token-gray-800)] shadow-theme-xs placeholder:text-[var(--token-gray-400)] focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-900)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)] dark:focus:border-brand-800"
+                  className="dark:bg-[var(--color-surface-dark-elevated)] h-11 w-full appearance-none rounded-lg border border-[var(--token-gray-300)] bg-transparent bg-none px-4 py-2.5 pl-4 pr-11 text-sm text-[var(--token-gray-800)] shadow-theme-xs placeholder:text-[var(--token-gray-400)] focus:border-brand-300 focus:outline-hidden focus:ring-3 focus:ring-brand-500/10 dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-elevated)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)] dark:focus:border-brand-800"
                 />
               </div>
             </div>
@@ -245,7 +245,7 @@ const Calendar: React.FC = () => {
             <button
               onClick={closeModal}
               type="button"
-              className="flex w-full justify-center rounded-lg border border-[var(--token-gray-300)] bg-[var(--token-white)] px-4 py-2.5 text-sm font-medium text-[var(--token-gray-700)] hover:bg-[var(--token-gray-50)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] sm:w-auto"
+              className="flex w-full justify-center rounded-lg border border-[var(--token-gray-300)] bg-[var(--token-white)] px-4 py-2.5 text-sm font-medium text-[var(--token-gray-700)] hover:bg-[var(--token-gray-50)] dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-subtle)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] sm:w-auto"
             >
               Close
             </button>

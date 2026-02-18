@@ -107,7 +107,7 @@ export default function MonthlySalesChart() {
   }
 
   return (
-    <div className="overflow-hidden rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] px-5 pt-5 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)] sm:px-6 sm:pt-6">
+    <div className="overflow-hidden rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] px-5 pt-5 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)] sm:px-6 sm:pt-6">
       <div className="flex items-center justify-between">
         <h3 className="text-lg font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
           Monthly Sales
@@ -124,13 +124,13 @@ export default function MonthlySalesChart() {
           >
             <DropdownItem
               onItemClick={closeDropdown}
-              className="flex w-full font-normal text-left text-[var(--token-gray-500)] rounded-lg hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-gray-300)]"
+              className="flex w-full font-normal text-left text-[var(--token-gray-500)] rounded-lg hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--color-surface-dark-subtle)] dark:hover:text-[var(--token-gray-300)]"
             >
               View More
             </DropdownItem>
             <DropdownItem
               onItemClick={closeDropdown}
-              className="flex w-full font-normal text-left text-[var(--token-gray-500)] rounded-lg hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-gray-300)]"
+              className="flex w-full font-normal text-left text-[var(--token-gray-500)] rounded-lg hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--color-surface-dark-subtle)] dark:hover:text-[var(--token-gray-300)]"
             >
               Delete
             </DropdownItem>

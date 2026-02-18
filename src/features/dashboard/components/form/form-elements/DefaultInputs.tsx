@@ -35,7 +35,7 @@ export default function DefaultInputs() {
             options={options}
             placeholder="Select an option"
             onChange={handleSelectChange}
-            className="dark:bg-dark-900"
+            className="dark:bg-[var(--color-surface-dark-elevated)]"
           />
              <span className="absolute text-[var(--token-gray-500)] -translate-y-1/2 pointer-events-none right-3 top-1/2 dark:text-[var(--token-gray-400)]">
               <ChevronDownIcon/>
@@ -95,7 +95,7 @@ export default function DefaultInputs() {
               placeholder="Card number"
               className="pl-[62px]"
             />
-            <span className="absolute left-0 top-1/2 flex h-11 w-[46px] -translate-y-1/2 items-center justify-center border-r border-[var(--token-gray-200)] dark:border-[var(--token-gray-800)]">
+            <span className="absolute left-0 top-1/2 flex h-11 w-[46px] -translate-y-1/2 items-center justify-center border-r border-[var(--token-gray-200)] dark:border-[var(--color-border-dark-soft)]">
               <svg
                 width="20"
                 height="20"

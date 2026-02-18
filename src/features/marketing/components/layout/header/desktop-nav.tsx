@@ -10,7 +10,7 @@ export default function DesktopNav() {
   const { activeHash, setActiveHashFromHref, navigateToHref } = useActiveNavHash();
 
   return (
-    <nav className="hidden lg:flex lg:items-center bg-[var(--color-gray-50)] dark:bg-[var(--token-white-3)] rounded-full p-1 max-h-fit">
+    <nav className="hidden lg:flex lg:items-center bg-[var(--color-gray-50)] dark:bg-[var(--color-surface-dark-elevated)] rounded-full p-1 max-h-fit">
       {navItems.map((item) => {
         const isActive =
           item.href === '/'

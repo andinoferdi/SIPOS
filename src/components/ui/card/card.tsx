@@ -24,12 +24,16 @@ const sizeMap = {
 };
 
 const variantStyles = {
-  default: 'bg-card text-card-foreground border border-border shadow-sm',
-  elevated: 'bg-card text-card-foreground shadow-lg border border-border/30',
-  minimal: 'bg-transparent text-foreground border border-border/50',
+  default:
+    'surface-elevated border border-soft text-(--token-gray-900) dark:text-(--token-white) shadow-sm',
+  elevated:
+    'surface-elevated border border-strong text-(--token-gray-900) dark:text-(--token-white) shadow-lg',
+  minimal:
+    'surface-subtle border border-soft text-(--token-gray-900) dark:text-(--token-white)',
   gradient:
-    'bg-gradient-to-br from-card to-secondary text-card-foreground shadow-md border border-border/40',
-  dark: 'bg-primary text-primary-foreground shadow-lg',
+    'bg-gradient-to-br from-primary-500/15 to-brand-300/20 text-(--token-gray-900) dark:text-(--token-white) shadow-md border border-soft',
+  dark:
+    'dark-black-surface border border-soft text-(--token-white) shadow-lg',
 };
 
 export const Card = forwardRef<HTMLDivElement, CardProps>(
@@ -84,7 +88,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         {header && (
           <div
             className={`
-              border-b border-border/30
+              border-b border-soft
               ${sizeClasses.headerPadding}
               ${headerBackground ? '' : 'bg-opacity-50'}
               transition-colors
@@ -105,7 +109,7 @@ export const Card = forwardRef<HTMLDivElement, CardProps>(
         {footer && (
           <div
             className={`
-              border-t border-border/30
+              border-t border-soft
               ${sizeClasses.footerPadding}
               flex
               ${orientation === 'horizontal' ? 'flex-row' : 'flex-col'}

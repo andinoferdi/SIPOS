@@ -32,16 +32,16 @@ const Input: FC<InputProps> = ({
   error = false,
   hint,
 }) => {
-  let inputClasses = `h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-[var(--token-gray-400)] focus:outline-hidden focus:ring-3 dark:bg-[var(--token-gray-900)] dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)] dark:focus:border-brand-800 ${className}`;
+  let inputClasses = `h-11 w-full rounded-lg border appearance-none px-4 py-2.5 text-sm shadow-theme-xs placeholder:text-[var(--token-gray-400)] focus:outline-hidden focus:ring-3 dark:text-[var(--token-white-90)] dark:placeholder:text-[var(--token-white-30)] dark:focus:border-brand-800 ${className}`;
 
   if (disabled) {
-    inputClasses += ` text-[var(--token-gray-500)] border-[var(--token-gray-300)] cursor-not-allowed dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:border-[var(--token-gray-700)]`;
+    inputClasses += ` surface-subtle text-[var(--token-gray-500)] border-strong cursor-not-allowed dark:text-[var(--token-gray-400)]`;
   } else if (error) {
     inputClasses += ` text-error-800 border-error-500 focus:ring-3 focus:ring-error-500/10  dark:text-error-400 dark:border-error-500`;
   } else if (success) {
     inputClasses += ` text-success-500 border-success-400 focus:ring-success-500/10 focus:border-success-300  dark:text-success-400 dark:border-success-500`;
   } else {
-    inputClasses += ` bg-transparent text-[var(--token-gray-800)] border-[var(--token-gray-300)] focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-900)] dark:text-[var(--token-white-90)] dark:focus:border-brand-800`;
+    inputClasses += ` surface-elevated text-[var(--token-gray-800)] border-soft focus:border-brand-300 focus:ring-3 focus:ring-brand-500/10 dark:text-[var(--token-white-90)] dark:focus:border-brand-800`;
   }
 
   return (

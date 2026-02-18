@@ -11,7 +11,7 @@ type PropsType = {
 export default function RightSidebar({ isOpen, toggleIsOpen }: PropsType) {
   return (
     <aside
-      className={`max-xl:absolute inset-y-0 right-0 z-50 min-w-[288px] max-w-[288px] bg-[var(--token-white)] dark:bg-dark-primary border-l border-[var(--token-gray-100)] dark:border-[var(--token-gray-800)] transform transition-transform duration-300 ease-in-out xl:translate-x-0 ${
+      className={`max-xl:absolute inset-y-0 right-0 z-50 min-w-[288px] max-w-[288px] bg-[var(--token-white)] dark:bg-[var(--color-surface-dark-base)] border-l border-[var(--token-gray-100)] dark:border-[var(--color-border-dark-soft)] transform transition-transform duration-300 ease-in-out xl:translate-x-0 ${
         isOpen ? 'translate-x-0' : 'translate-x-full'
       }`}
     >
@@ -23,7 +23,7 @@ export default function RightSidebar({ isOpen, toggleIsOpen }: PropsType) {
             <input
               type="search"
               placeholder="Search"
-              className="w-full py-2.5 px-4 pr-12 dark:text-[var(--token-white)] dark:focus:border-[var(--token-gray-600)] border border-[var(--token-gray-200)] rounded-full dark:bg-dark-primary bg-[var(--token-white)] focus:outline-none focus:border focus:border-[var(--token-gray-300)] text-sm placeholder:text-sm placeholder:text-[var(--token-gray-500)] dark:border-[var(--token-gray-700)] dark:placeholder:text-[var(--token-white-30)] shadow-xs"
+              className="w-full py-2.5 px-4 pr-12 dark:text-[var(--token-white)] dark:focus:border-[var(--token-gray-600)] border border-[var(--token-gray-200)] rounded-full dark:bg-[var(--color-surface-dark-base)] bg-[var(--token-white)] focus:outline-none focus:border focus:border-[var(--token-gray-300)] text-sm placeholder:text-sm placeholder:text-[var(--token-gray-500)] dark:border-[var(--color-border-dark-strong)] dark:placeholder:text-[var(--token-white-30)] shadow-xs"
             />
 
             <SearchIcon className="absolute right-3.5 top-1/2 transform -translate-y-1/2 pointer-events-none" />

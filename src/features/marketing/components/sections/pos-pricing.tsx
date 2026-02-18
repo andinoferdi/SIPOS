@@ -104,7 +104,7 @@ export default function PosPricing() {
             Free trial period of 14 days, unlocking all features.
           </p>
 
-          <div className="mt-8 inline-flex items-center rounded-full border border-[var(--token-gray-200)] dark:border-[var(--token-gray-800)] bg-[var(--token-white)] dark:bg-[var(--token-white-3)] p-1">
+          <div className="mt-8 inline-flex items-center rounded-full border border-[var(--token-gray-200)] dark:border-[var(--color-border-dark-soft)] bg-[var(--token-white)] dark:bg-[var(--color-surface-dark-elevated)] p-1">
             <button
               type="button"
               aria-pressed={billingPeriod === 'monthly'}
@@ -146,8 +146,8 @@ export default function PosPricing() {
                 className={cn(
                   'rounded-3xl border p-8 transition-colors',
                   plan.featured
-                    ? 'border-primary-500 bg-[var(--token-gray-900)] dark:bg-[var(--token-gray-800)] shadow-theme-lg md:scale-[1.03]'
-                    : 'border-[var(--token-gray-200)] dark:border-[var(--token-gray-800)] bg-[var(--token-white)] dark:bg-[var(--token-white-3)]'
+                    ? 'border-primary-500 bg-[var(--token-gray-900)] dark:bg-[var(--color-surface-dark-subtle)] shadow-theme-lg md:scale-[1.03]'
+                    : 'border-[var(--token-gray-200)] dark:border-[var(--color-border-dark-soft)] bg-[var(--token-white)] dark:bg-[var(--color-surface-dark-elevated)]'
                 )}
               >
                 {plan.featured ? (
@@ -207,7 +207,7 @@ export default function PosPricing() {
                     'mt-8 inline-flex h-11 w-full items-center justify-center rounded-xl px-4 text-sm font-semibold transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary-500',
                     plan.featured
                       ? 'bg-[var(--token-white)] text-[var(--token-gray-900)] hover:bg-[var(--token-gray-100)]'
-                      : 'border border-[var(--token-gray-300)] dark:border-[var(--token-gray-700)] text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] hover:bg-[var(--token-gray-50)] dark:hover:bg-[var(--token-white-5)]'
+                      : 'border border-[var(--token-gray-300)] dark:border-[var(--color-border-dark-strong)] text-[var(--token-gray-800)] dark:text-[var(--token-white-90)] hover:bg-[var(--token-gray-50)] dark:hover:bg-[var(--color-surface-dark-subtle)]'
                   )}
                 >
                   {plan.ctaLabel}
@@ -217,10 +217,10 @@ export default function PosPricing() {
           })}
         </div>
 
-        <div className="mt-14 overflow-x-auto rounded-2xl border border-[var(--token-gray-200)] dark:border-[var(--token-gray-800)]">
+        <div className="mt-14 overflow-x-auto rounded-2xl border border-[var(--token-gray-200)] dark:border-[var(--color-border-dark-soft)]">
           <table className="min-w-[760px] w-full border-collapse">
             <thead>
-              <tr className="bg-[var(--token-gray-100)] dark:bg-[var(--token-white-3)] border-b border-[var(--token-gray-200)] dark:border-[var(--token-gray-800)]">
+              <tr className="bg-[var(--token-gray-100)] dark:bg-[var(--color-surface-dark-elevated)] border-b border-[var(--token-gray-200)] dark:border-[var(--color-border-dark-soft)]">
                 <th className="px-6 py-5 text-left text-xs font-semibold tracking-wide uppercase text-[var(--token-gray-500)]">
                   Plan Features
                 </th>
@@ -239,7 +239,7 @@ export default function PosPricing() {
               {COMPARISON_ROWS.map((row) => (
                 <tr
                   key={row.feature}
-                  className="bg-[var(--token-white)] dark:bg-[var(--token-white-1)]"
+                  className="bg-[var(--token-white)] dark:bg-[var(--color-surface-dark-subtle)]"
                 >
                   <td className="px-6 py-4 text-sm font-medium text-[var(--token-gray-700)] dark:text-[var(--token-gray-300)]">
                     {row.feature}

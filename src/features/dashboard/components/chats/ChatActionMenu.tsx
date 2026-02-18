@@ -39,7 +39,7 @@ export default function ChatActionMenu({
           <DropdownItem
             key={item}
             onItemClick={closeDropdown}
-            className="flex w-full rounded-lg text-left font-normal text-[var(--token-gray-500)] hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-gray-300)]"
+            className="flex w-full rounded-lg text-left font-normal text-[var(--token-gray-500)] hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--color-surface-dark-subtle)] dark:hover:text-[var(--token-gray-300)]"
           >
             {item}
           </DropdownItem>

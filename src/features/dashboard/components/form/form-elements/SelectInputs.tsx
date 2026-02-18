@@ -37,7 +37,7 @@ export default function SelectInputs() {
             options={options}
             placeholder="Select Option"
             onChange={handleSelectChange}
-            className="dark:bg-dark-900"
+            className="dark:bg-[var(--color-surface-dark-elevated)]"
           />
           <span className="absolute text-[var(--token-gray-500)] -translate-y-1/2 pointer-events-none right-3 top-1/2 dark:text-[var(--token-gray-400)]">
               <ChevronDownIcon/>

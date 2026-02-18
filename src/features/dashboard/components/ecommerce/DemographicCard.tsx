@@ -19,7 +19,7 @@ export default function DemographicCard() {
   }
 
   return (
-    <div className="rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-5 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)] sm:p-6">
+    <div className="rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] p-5 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)] sm:p-6">
       <div className="flex justify-between">
         <div>
           <h3 className="text-lg font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
@@ -41,20 +41,20 @@ export default function DemographicCard() {
           >
             <DropdownItem
               onItemClick={closeDropdown}
-              className="flex w-full font-normal text-left text-[var(--token-gray-500)] rounded-lg hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-gray-300)]"
+              className="flex w-full font-normal text-left text-[var(--token-gray-500)] rounded-lg hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--color-surface-dark-subtle)] dark:hover:text-[var(--token-gray-300)]"
             >
               View More
             </DropdownItem>
             <DropdownItem
               onItemClick={closeDropdown}
-              className="flex w-full font-normal text-left text-[var(--token-gray-500)] rounded-lg hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-5)] dark:hover:text-[var(--token-gray-300)]"
+              className="flex w-full font-normal text-left text-[var(--token-gray-500)] rounded-lg hover:bg-[var(--token-gray-100)] hover:text-[var(--token-gray-700)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--color-surface-dark-subtle)] dark:hover:text-[var(--token-gray-300)]"
             >
               Delete
             </DropdownItem>
           </Dropdown>
         </div>
       </div>
-      <div className="px-4 py-6 my-6 overflow-hidden border border-gary-200 rounded-2xl bg-[var(--token-gray-50)] dark:border-[var(--token-gray-800)] dark:bg-[var(--token-gray-900)] sm:px-6">
+      <div className="px-4 py-6 my-6 overflow-hidden border border-gary-200 rounded-2xl bg-[var(--token-gray-50)] dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)] sm:px-6">
         <div
           id="mapOne"
           className="mapOne map-btn -mx-4 -my-6 h-[212px] w-[252px] 2xsm:w-[307px] xsm:w-[358px] sm:-mx-6 md:w-[668px] lg:w-[634px] xl:w-[393px] 2xl:w-[554px]"
@@ -86,7 +86,7 @@ export default function DemographicCard() {
           </div>
 
           <div className="flex w-full max-w-[140px] items-center gap-3">
-            <div className="relative block h-2 w-full max-w-[100px] rounded-sm bg-[var(--token-gray-200)] dark:bg-[var(--token-gray-800)]">
+            <div className="relative block h-2 w-full max-w-[100px] rounded-sm bg-[var(--token-gray-200)] dark:bg-[var(--color-surface-dark-subtle)]">
               <div className="absolute left-0 top-0 flex h-full w-[79%] items-center justify-center rounded-sm bg-brand-500 text-xs font-medium text-[var(--token-white)]"></div>
             </div>
             <p className="font-medium text-[var(--token-gray-800)] text-theme-sm dark:text-[var(--token-white-90)]">
@@ -117,7 +117,7 @@ export default function DemographicCard() {
           </div>
 
           <div className="flex w-full max-w-[140px] items-center gap-3">
-            <div className="relative block h-2 w-full max-w-[100px] rounded-sm bg-[var(--token-gray-200)] dark:bg-[var(--token-gray-800)]">
+            <div className="relative block h-2 w-full max-w-[100px] rounded-sm bg-[var(--token-gray-200)] dark:bg-[var(--color-surface-dark-subtle)]">
               <div className="absolute left-0 top-0 flex h-full w-[23%] items-center justify-center rounded-sm bg-brand-500 text-xs font-medium text-[var(--token-white)]"></div>
             </div>
             <p className="font-medium text-[var(--token-gray-800)] text-theme-sm dark:text-[var(--token-white-90)]">

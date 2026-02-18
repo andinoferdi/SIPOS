@@ -67,7 +67,7 @@ const tableData: Product[] = [
 
 export default function RecentOrders() {
   return (
-    <div className="overflow-hidden rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] px-4 pb-3 pt-4 dark:border-[var(--token-gray-800)] dark:bg-[var(--token-white-3)] sm:px-6">
+    <div className="overflow-hidden rounded-2xl border border-[var(--token-gray-200)] bg-[var(--token-white)] px-4 pb-3 pt-4 dark:border-[var(--color-border-dark-soft)] dark:bg-[var(--color-surface-dark-elevated)] sm:px-6">
       <div className="flex flex-col gap-2 mb-4 sm:flex-row sm:items-center sm:justify-between">
         <div>
           <h3 className="text-lg font-semibold text-[var(--token-gray-800)] dark:text-[var(--token-white-90)]">
@@ -76,7 +76,7 @@ export default function RecentOrders() {
         </div>
 
         <div className="flex items-center gap-3">
-          <button className="inline-flex items-center gap-2 rounded-lg border border-[var(--token-gray-300)] bg-[var(--token-white)] px-4 py-2.5 text-theme-sm font-medium text-[var(--token-gray-700)] shadow-theme-xs hover:bg-[var(--token-gray-50)] hover:text-[var(--token-gray-800)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] dark:hover:text-[var(--token-gray-200)]">
+          <button className="inline-flex items-center gap-2 rounded-lg border border-[var(--token-gray-300)] bg-[var(--token-white)] px-4 py-2.5 text-theme-sm font-medium text-[var(--token-gray-700)] shadow-theme-xs hover:bg-[var(--token-gray-50)] hover:text-[var(--token-gray-800)] dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-subtle)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] dark:hover:text-[var(--token-gray-200)]">
             <svg
               className="stroke-current fill-[var(--token-white)] dark:fill-[var(--token-gray-800)]"
               width="20"
@@ -114,7 +114,7 @@ export default function RecentOrders() {
             </svg>
             Filter
           </button>
-          <button className="inline-flex items-center gap-2 rounded-lg border border-[var(--token-gray-300)] bg-[var(--token-white)] px-4 py-2.5 text-theme-sm font-medium text-[var(--token-gray-700)] shadow-theme-xs hover:bg-[var(--token-gray-50)] hover:text-[var(--token-gray-800)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] dark:hover:text-[var(--token-gray-200)]">
+          <button className="inline-flex items-center gap-2 rounded-lg border border-[var(--token-gray-300)] bg-[var(--token-white)] px-4 py-2.5 text-theme-sm font-medium text-[var(--token-gray-700)] shadow-theme-xs hover:bg-[var(--token-gray-50)] hover:text-[var(--token-gray-800)] dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-subtle)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-white-3)] dark:hover:text-[var(--token-gray-200)]">
             See all
           </button>
         </div>
@@ -122,7 +122,7 @@ export default function RecentOrders() {
       <div className="max-w-full overflow-x-auto">
         <Table>
 
-          <TableHeader className="border-[var(--token-gray-100)] dark:border-[var(--token-gray-800)] border-y">
+          <TableHeader className="border-[var(--token-gray-100)] dark:border-[var(--color-border-dark-soft)] border-y">
             <TableRow>
               <TableCell
                 isHeader

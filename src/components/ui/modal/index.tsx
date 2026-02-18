@@ -51,7 +51,7 @@ export const Modal: React.FC<ModalProps> = ({
 
   const contentClasses = isFullscreen
     ? "w-full h-full"
-    : "relative w-full rounded-3xl bg-[var(--token-white)]  dark:bg-[var(--token-gray-900)]";
+    : "relative w-full rounded-3xl bg-[var(--token-white)]  dark:bg-[var(--color-surface-dark-elevated)]";
 
   return (
     <div className="fixed inset-0 flex items-center justify-center overflow-y-auto modal z-99999">
@@ -69,7 +69,7 @@ export const Modal: React.FC<ModalProps> = ({
         {showCloseButton && (
           <button
             onClick={onClose}
-            className="absolute right-3 top-3 z-999 flex h-9.5 w-9.5 items-center justify-center rounded-full bg-[var(--token-gray-100)] text-[var(--token-gray-400)] transition-colors hover:bg-[var(--token-gray-200)] hover:text-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-gray-700)] dark:hover:text-[var(--token-white)] sm:right-6 sm:top-6 sm:h-11 sm:w-11"
+            className="absolute right-3 top-3 z-999 flex h-9.5 w-9.5 items-center justify-center rounded-full bg-[var(--token-gray-100)] text-[var(--token-gray-400)] transition-colors hover:bg-[var(--token-gray-200)] hover:text-[var(--token-gray-700)] dark:bg-[var(--color-surface-dark-subtle)] dark:text-[var(--token-gray-400)] dark:hover:bg-[var(--token-gray-700)] dark:hover:text-[var(--token-white)] sm:right-6 sm:top-6 sm:h-11 sm:w-11"
           >
             <svg
               width="24"

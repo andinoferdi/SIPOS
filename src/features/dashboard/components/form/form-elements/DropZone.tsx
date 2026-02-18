@@ -19,14 +19,14 @@ const DropzoneComponent: React.FC = () => {
   });
   return (
     <ComponentCard title="Dropzone">
-      <div className="transition border border-[var(--token-gray-300)] border-dashed cursor-pointer dark:hover:border-brand-500 dark:border-[var(--token-gray-700)] rounded-xl hover:border-brand-500">
+      <div className="transition border border-[var(--token-gray-300)] border-dashed cursor-pointer dark:hover:border-brand-500 dark:border-[var(--color-border-dark-strong)] rounded-xl hover:border-brand-500">
         <div
           {...getRootProps()}
           className={`dropzone rounded-xl   border-dashed border-[var(--token-gray-300)] p-7 lg:p-10
         ${
           isDragActive
-            ? "border-brand-500 bg-[var(--token-gray-100)] dark:bg-[var(--token-gray-800)]"
-            : "border-[var(--token-gray-300)] bg-[var(--token-gray-50)] dark:border-[var(--token-gray-700)] dark:bg-[var(--token-gray-900)]"
+            ? "border-brand-500 bg-[var(--token-gray-100)] dark:bg-[var(--color-surface-dark-subtle)]"
+            : "border-[var(--token-gray-300)] bg-[var(--token-gray-50)] dark:border-[var(--color-border-dark-strong)] dark:bg-[var(--color-surface-dark-elevated)]"
         }
       `}
           id="demo-upload"
@@ -37,7 +37,7 @@ const DropzoneComponent: React.FC = () => {
           <div className="dz-message flex flex-col items-center m-0!">
 
             <div className="mb-[22px] flex justify-center">
-              <div className="flex h-[68px] w-[68px]  items-center justify-center rounded-full bg-[var(--token-gray-200)] text-[var(--token-gray-700)] dark:bg-[var(--token-gray-800)] dark:text-[var(--token-gray-400)]">
+              <div className="flex h-[68px] w-[68px]  items-center justify-center rounded-full bg-[var(--token-gray-200)] text-[var(--token-gray-700)] dark:bg-[var(--color-surface-dark-subtle)] dark:text-[var(--token-gray-400)]">
                 <svg
                   className="fill-current"
                   width="29"
