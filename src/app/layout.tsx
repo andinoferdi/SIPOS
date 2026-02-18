@@ -14,11 +14,16 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    default: 'Demo AIStarterKit OSS - Next.js AI Starter Kit Demo',
-    template: '%s | AIStarterKit OSS Demo',
+    default: 'SIPOS',
+    template: '%s | SIPOS',
   },
   description:
-    'Demo website of AIStarterKit OSS boilerplate. Built using Next.js, Tailwind CSS, Drizzle ORM, and PostgreSQL.',
+    'SIPOS platform for operational POS management, sales flow, and outlet administration.',
+  icons: {
+    icon: '/images/favicon.ico',
+    shortcut: '/images/favicon.ico',
+    apple: '/images/favicon.ico',
+  },
 };
 
 export default function RootLayout({

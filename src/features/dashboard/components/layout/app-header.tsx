@@ -9,7 +9,7 @@ import {
   withDashboardBase,
   withPosDashboardBase,
 } from "@/lib/utils/dashboard-routes";
-import Image from "next/image";
+import BrandLogo from "@/components/ui/brand-logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useState ,useEffect,useRef} from "react";
@@ -96,20 +96,7 @@ const AppHeader: React.FC = () => {
           </button>
 
           <Link href={dashboardHomePath} className="lg:hidden">
-            <Image
-              width={154}
-              height={32}
-              className="dark:hidden"
-              src="/images/logo/logo.svg"
-              alt="Logo"
-            />
-            <Image
-              width={154}
-              height={32}
-              className="hidden dark:block"
-              src="/images/logo/logo-dark.svg"
-              alt="Logo"
-            />
+            <BrandLogo size="md" />
           </Link>
 
           <button

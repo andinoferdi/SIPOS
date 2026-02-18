@@ -20,7 +20,6 @@ export default async function ContextualDashboardLayout({
     redirect(`/login?callbackUrl=/${posInstanceId}/dashboard`);
   }
 
-  const roleCode = session.user.roleCode ?? null;
   const { posInstanceId } = await params;
 
   const posInstance = await prisma.pOSInstance.findUnique({
@@ -32,7 +31,7 @@ export default async function ContextualDashboardLayout({
     redirect("/portal");
   }
 
-  if (!posInstance.isActive && roleCode !== "admin") {
+  if (!posInstance.isActive) {
     redirect("/portal");
   }
 

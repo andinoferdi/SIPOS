@@ -1,6 +1,6 @@
 'use client';
 import { CloseIcon, MenuIcon } from '@/icons/icons';
-import Image from 'next/image';
+import BrandLogo from '@/components/ui/brand-logo';
 import Link from 'next/link';
 import { useEffect, useState } from 'react';
 import DesktopNav from './desktop-nav';
@@ -59,26 +59,8 @@ export default function Header() {
       <div className="mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-7">
         <div className="grid grid-cols-2 items-center lg:grid-cols-[1fr_auto_1fr]">
           <div className="flex items-center">
-            <Link href="/" className="flex items-end gap-2">
-              <Image
-                src="/images/logo-black.svg"
-                className="block dark:hidden"
-                alt="AiStarterKit Logo"
-                width={180}
-                height={30}
-              />
-
-              <Image
-                src="/images/logo-white.svg"
-                className="hidden dark:block"
-                alt="AiStarterKit Logo"
-                width={180}
-                height={30}
-              />
-
-              <span className="inline-block px-1.5 py-0.5 rounded-lg rounded-bl-none bg-primary-500/90 text-[var(--token-white)] text-xs font-medium mb-0.5">
-                Demo
-              </span>
+            <Link href="/" className="inline-flex items-center">
+              <BrandLogo size="md" priority />
             </Link>
           </div>
 

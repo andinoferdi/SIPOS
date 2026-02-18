@@ -1,6 +1,6 @@
 import { getCurrentYear } from "@/lib/utils";
 import FooterSubscribeForm from "@/features/marketing/components/layout/footer-subscribe-form";
-import Image from "next/image";
+import BrandLogo from "@/components/ui/brand-logo";
 import Link from "next/link";
 
 export default function Footer() {
@@ -11,21 +11,8 @@ export default function Footer() {
           <div className="grid gap-y-8 gap-x-6 lg:grid-cols-12">
             <div className="lg:col-span-3 xl:col-span-4">
               <div>
-                <Link href="/" className="block mb-6">
-                  <Image
-                    className="block dark:hidden"
-                    src="/images/logo-black.svg"
-                    alt="logo"
-                    width={128}
-                    height={32}
-                  />
-                  <Image
-                    className="hidden dark:block"
-                    src="/images/logo-white.svg"
-                    alt="logo"
-                    width={128}
-                    height={32}
-                  />
+                <Link href="/" className="mb-6 inline-flex items-center">
+                  <BrandLogo size="md" />
                 </Link>
                 <p className="block text-sm text-[var(--token-gray-600)] dark:text-[var(--token-gray-400)] mb-9">
                   A self-hosted AI starter kit built with Next.js, Tailwind CSS,
@@ -302,7 +289,7 @@ export default function Footer() {
         <div className="relative z-10 mx-auto w-full max-w-7xl px-5 sm:px-7">
           <div className="py-5 text-center">
             <p className="text-sm text-[var(--token-gray-500)] dark:text-[var(--token-gray-400)]">
-              &copy; {getCurrentYear()} AiStarterKit - All Rights Reserved.
+              &copy; {getCurrentYear()} SIPOS - All Rights Reserved.
             </p>
           </div>
         </div>

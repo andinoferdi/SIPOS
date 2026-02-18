@@ -100,9 +100,6 @@ export default function PortalPage() {
 
               <div className="mt-8 flex flex-wrap items-center justify-center gap-2">
                 <span className="rounded-full border border-(--token-gray-200) bg-(--token-gray-50) px-3 py-1 text-xs font-medium text-(--token-gray-600) dark:border-(--token-gray-700) dark:bg-(--token-gray-800) dark:text-(--token-gray-300)">
-                  Multi Outlet
-                </span>
-                <span className="rounded-full border border-(--token-gray-200) bg-(--token-gray-50) px-3 py-1 text-xs font-medium text-(--token-gray-600) dark:border-(--token-gray-700) dark:bg-(--token-gray-800) dark:text-(--token-gray-300)">
                   Table Service
                 </span>
                 <span className="rounded-full border border-(--token-gray-200) bg-(--token-gray-50) px-3 py-1 text-xs font-medium text-(--token-gray-600) dark:border-(--token-gray-700) dark:bg-(--token-gray-800) dark:text-(--token-gray-300)">

@@ -34,7 +34,7 @@ export default function POSInstanceCard({
   const deleteMutation = useDeletePOSInstance();
 
   const handleClick = () => {
-    if (!instance.isActive && roleCode !== "admin") return;
+    if (!instance.isActive) return;
     router.push(getPosEntryRoute(roleCode, instance.id));
   };
 
@@ -64,17 +64,17 @@ export default function POSInstanceCard({
             handleClick();
           }
         }}
-        aria-disabled={!instance.isActive && roleCode !== "admin"}
+        aria-disabled={!instance.isActive}
         variant="default"
         size="lg"
-        interactive={instance.isActive || roleCode === "admin"}
+        interactive={instance.isActive}
         className={`group relative w-full rounded-2xl border p-6 text-left transition-all duration-200
           ${
             instance.isActive
               ? "border-[var(--color-brand-500)] bg-(--token-white) shadow-[0_0_0_1px_var(--color-brand-500),0_0_16px_var(--token-blue-light-500-30)] hover:shadow-[0_0_0_1px_var(--color-brand-500),0_0_24px_var(--token-blue-light-500-30)] dark:bg-(--token-gray-800)"
               : "border-dashed border-[var(--color-brand-500)] bg-(--token-gray-50) opacity-60 shadow-[0_0_0_1px_var(--color-brand-500),0_0_12px_var(--token-blue-light-500-15)] dark:bg-(--token-gray-900)"
           }
-          ${!instance.isActive && roleCode !== "admin" ? "cursor-not-allowed" : "cursor-pointer"}`}
+          ${!instance.isActive ? "cursor-not-allowed" : "cursor-pointer"}`}
       >
         <CardContent className="p-0">
           <div className="flex items-start justify-between gap-3">
@@ -129,7 +129,7 @@ export default function POSInstanceCard({
                     event.stopPropagation();
                     setIsDeleteOpen(true);
                   }}
-                  className="inline-flex h-11 w-11 items-center justify-center rounded-lg border border-[var(--token-red-400)] text-[var(--token-red-500)] transition-colors hover:bg-[var(--token-error-50)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--token-red-500) dark:border-[var(--token-red-500)] dark:text-[var(--token-red-400)] dark:hover:bg-[var(--token-red-500)]/20"
+                  className="inline-flex h-11 w-11 cursor-pointer items-center justify-center rounded-lg border border-[var(--token-red-400)] text-[var(--token-red-500)] transition-all duration-200 ease-out hover:-translate-y-px hover:bg-[var(--token-error-50)] hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--token-red-500) active:translate-y-0 dark:border-[var(--token-red-500)] dark:text-[var(--token-red-400)] dark:hover:bg-[var(--token-red-500)]/20"
                 >
                   <Trash2 className="h-4 w-4" />
                 </button>
@@ -193,7 +193,7 @@ export default function POSInstanceCard({
               type="button"
               disabled={deleteMutation.isPending}
               onClick={handleDelete}
-              className="inline-flex items-center justify-center rounded-lg border border-[var(--token-red-400)] bg-[var(--token-white)] px-4 py-2 text-sm font-medium text-[var(--token-red-500)] transition-colors hover:bg-[var(--token-error-50)] disabled:opacity-50 dark:border-[var(--token-red-500)] dark:bg-[var(--token-red-500)]/20 dark:text-[var(--token-red-400)] dark:hover:bg-[var(--token-red-500)]/40"
+              className="inline-flex cursor-pointer items-center justify-center rounded-lg border border-[var(--token-red-400)] bg-[var(--token-white)] px-4 py-2 text-sm font-medium text-[var(--token-red-500)] transition-all duration-200 ease-out hover:-translate-y-px hover:bg-[var(--token-error-50)] hover:shadow-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--token-red-500) active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none dark:border-[var(--token-red-500)] dark:bg-[var(--token-red-500)]/20 dark:text-[var(--token-red-400)] dark:hover:bg-[var(--token-red-500)]/40"
             >
               {deleteMutation.isPending ? "Memproses..." : "Hapus"}
             </button>

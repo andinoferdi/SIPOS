@@ -191,10 +191,10 @@ export default function POSInstanceForm({
               type="button"
               onClick={handleToggleActive}
               disabled={updateMutation.isPending || isSubmitting}
-              className={`inline-flex items-center rounded-lg border px-4 py-2 text-sm font-medium transition-colors disabled:opacity-50 ${
+              className={`inline-flex cursor-pointer items-center rounded-lg border px-4 py-2 text-sm font-medium transition-all duration-200 ease-out hover:-translate-y-px hover:shadow-sm active:translate-y-0 disabled:cursor-not-allowed disabled:opacity-50 disabled:hover:translate-y-0 disabled:hover:shadow-none ${
                 instance.isActive
-                  ? "border-[var(--token-red-400)] text-[var(--token-red-500)] hover:bg-[var(--token-error-50)] dark:border-[var(--token-red-500)] dark:text-[var(--token-red-400)] dark:hover:bg-[var(--token-red-500)]/20"
-                  : "border-[var(--token-green-600)] text-[var(--token-green-600)] hover:bg-[var(--token-success-50)] dark:border-[var(--token-green-600)] dark:text-[var(--token-green-100)] dark:hover:bg-[var(--token-green-600)]/20"
+                  ? "border-[var(--token-red-400)] text-[var(--token-red-500)] hover:bg-[var(--token-error-50)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--token-red-500) dark:border-[var(--token-red-500)] dark:text-[var(--token-red-400)] dark:hover:bg-[var(--token-red-500)]/20"
+                  : "border-[var(--token-green-600)] text-[var(--token-green-600)] hover:bg-[var(--token-success-50)] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-(--token-green-600) dark:border-[var(--token-green-600)] dark:text-[var(--token-green-100)] dark:hover:bg-[var(--token-green-600)]/20"
               }`}
             >
               {instance.isActive ? "Nonaktifkan" : "Aktifkan"}

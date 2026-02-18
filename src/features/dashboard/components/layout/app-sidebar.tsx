@@ -8,8 +8,6 @@ import {
   GridIcon,
   HorizontaLDots,
   ListIcon,
-  PlugInIcon,
-  UserCircleIcon,
 } from "@/icons";
 import { hasRole } from "@/lib/auth/rbac";
 import {
@@ -19,7 +17,7 @@ import {
 } from "@/lib/utils/dashboard-routes";
 import type { PermissionKey, RoleCode } from "@/types/rbac";
 import { useSession } from "next-auth/react";
-import Image from "next/image";
+import BrandLogo from "@/components/ui/brand-logo";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useCallback, useMemo } from "react";
@@ -66,38 +64,12 @@ const mainItems: NavItem[] = [
   },
 ];
 
-const portalItems: NavItem[] = [
-  {
-    icon: <GridIcon />,
-    name: "POS Outlets",
-    path: "/portal",
-    permissionKey: "pos_instance:read",
-  },
-  {
-    icon: <PlugInIcon />,
-    name: "Inventory",
-    path: "/portal/inventory",
-    permissionKey: "inventory:read",
-  },
-  {
-    icon: <PlugInIcon />,
-    name: "Category",
-    path: "/portal/categories",
-    permissionKey: "category:read",
-  },
-  {
-    icon: <DocsIcon />,
-    name: "Reports POS",
-    path: "/portal/reports",
-    permissionKey: "reports:read",
-  },
-  {
-    icon: <UserCircleIcon />,
-    name: "User & Role",
-    path: withDashboardBase("/admin/rbac"),
-    allowedRoles: ["admin"],
-  },
-];
+const backToPortalItem: NavItem = {
+  icon: <GridIcon />,
+  name: "Kembali ke Portal",
+  path: "/portal",
+  permissionKey: "pos_instance:read",
+};
 
 const AppSidebar: React.FC = () => {
   const { isExpanded, isMobileOpen, isHovered, setIsHovered } = useSidebar();
@@ -132,7 +104,9 @@ const AppSidebar: React.FC = () => {
   );
 
   const visibleMainItems = mainItems.filter(canAccessItem);
-  const visiblePortalItems = portalItems.filter(canAccessItem);
+  const visibleBackToPortalItem = canAccessItem(backToPortalItem)
+    ? [backToPortalItem]
+    : [];
 
   const resolvePath = useCallback(
     (itemPath: string) => {
@@ -204,35 +178,18 @@ const AppSidebar: React.FC = () => {
       >
         <Link href={currentPosInstanceId ? withPosDashboardBase(currentPosInstanceId, "/") : withDashboardBase("/")}>
           {isExpanded || isHovered || isMobileOpen ? (
-            <>
-              <Image
-                className="dark:hidden"
-                src="/images/logo/logo.svg"
-                alt="Logo"
-                width={150}
-                height={40}
-              />
-              <Image
-                className="hidden dark:block"
-                src="/images/logo/logo-dark.svg"
-                alt="Logo"
-                width={150}
-                height={40}
-              />
-            </>
+            <BrandLogo size="md" />
           ) : (
-            <Image
-              src="/images/logo/logo-icon.svg"
-              alt="Logo"
-              width={32}
-              height={32}
-            />
+            <BrandLogo size="sm" showText={false} />
           )}
         </Link>
       </div>
       <div className="flex flex-col overflow-y-auto duration-300 ease-linear no-scrollbar">
         <nav className="mb-6">
           <div className="flex flex-col gap-4">
+            {visibleBackToPortalItem.length > 0 && (
+              <div>{renderMenuItems(visibleBackToPortalItem)}</div>
+            )}
             <div>
               <h2
                 className={`mb-4 text-xs uppercase flex leading-[20px] text-(--token-gray-400) ${
@@ -244,19 +201,6 @@ const AppSidebar: React.FC = () => {
                 {isExpanded || isHovered || isMobileOpen ? "POS Menu" : <HorizontaLDots />}
               </h2>
               {renderMenuItems(visibleMainItems)}
-            </div>
-
-            <div>
-              <h2
-                className={`mb-4 text-xs uppercase flex leading-[20px] text-(--token-gray-400) ${
-                  !isExpanded && !isHovered
-                    ? "lg:justify-center"
-                    : "justify-start"
-                }`}
-              >
-                {isExpanded || isHovered || isMobileOpen ? "Portal" : <HorizontaLDots />}
-              </h2>
-              {renderMenuItems(visiblePortalItems)}
             </div>
           </div>
         </nav>

@@ -1,5 +1,5 @@
 import { CloseIcon, MenuIcon } from '@/icons/icons';
-import Image from 'next/image';
+import BrandLogo from '@/components/ui/brand-logo';
 import Link from 'next/link';
 import DesktopNav from '@/features/marketing/components/layout/header/desktop-nav';
 import ThemeToggle from '@/features/marketing/components/layout/header/theme-toggle';
@@ -34,20 +34,7 @@ export default function GeneratorHeader({
 
               <div className="flex items-center">
                 <Link href="/">
-                  <Image
-                    src="/images/logo-black.svg"
-                    className="block dark:hidden"
-                    width={180}
-                    height={30}
-                    alt="AiStarterKit Logo"
-                  />
-                  <Image
-                    src="/images/logo-white.svg"
-                    className="hidden dark:block"
-                    width={180}
-                    height={30}
-                    alt="AiStarterKit Logo"
-                  />
+                  <BrandLogo size="md" />
                 </Link>
               </div>
             </div>
