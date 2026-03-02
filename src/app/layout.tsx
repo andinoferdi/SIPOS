@@ -2,9 +2,9 @@ import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
 import { Poppins } from 'next/font/google';
 import './globals.css';
-import { QueryProvider } from './_shared/providers/query-provider';
-import { AuthSessionProvider } from './_shared/providers/session-provider';
-import { ToasterProvider } from './_shared/providers/toaster';
+import { QueryProvider } from '../providers/query-provider';
+import { ToasterProvider } from '../providers/toaster';
+import { AuthProvider } from '../providers/auth-provider';
 
 const poppins = Poppins({
   subsets: ['latin'],
@@ -14,15 +14,15 @@ const poppins = Poppins({
 
 export const metadata: Metadata = {
   title: {
-    default: 'SIPOS',
-    template: '%s | SIPOS',
+    default: "SIPOS",
+    template: "%s | SIPOS",
   },
   description:
-    'SIPOS platform for operational POS management, sales flow, and outlet administration.',
+    "SIPOS portal untuk multi outlet POS dalam satu workspace.",
   icons: {
-    icon: '/images/favicon.ico',
-    shortcut: '/images/favicon.ico',
-    apple: '/images/favicon.ico',
+    icon: "/images/favicon.ico",
+    shortcut: "/images/favicon.ico",
+    apple: "/images/favicon.ico",
   },
 };
 
@@ -32,23 +32,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="scroll-smooth">
+    <html lang="id" suppressHydrationWarning className="scroll-smooth">
       <body
         className={`surface-base min-h-screen flex flex-col ${poppins.className}`}
       >
-        <AuthSessionProvider>
-          <ThemeProvider
-            attribute="data-theme"
-            defaultTheme="system"
-            enableSystem
-            disableTransitionOnChange
-          >
+        <ThemeProvider
+          attribute="data-theme"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <AuthProvider>
             <QueryProvider>
               <ToasterProvider />
               <div className="isolate flex flex-col flex-1">{children}</div>
             </QueryProvider>
-          </ThemeProvider>
-        </AuthSessionProvider>
+          </AuthProvider>
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -3,9 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
-  url       = env("DATABASE_URL")
-  directUrl = env("DIRECT_URL")
+  provider = "postgresql"
 }
 
 enum RoleCode {
@@ -29,6 +27,46 @@ enum PermissionAction {
   @@map("permission_action")
 }
 
+enum ChargeMode {
+  INCLUDE
+  EXCLUDE
+
+  @@map("charge_mode")
+}
+
+enum StockMovementType {
+  PURCHASE_IN
+  SALE_OUT
+  ADJUSTMENT_IN
+  ADJUSTMENT_OUT
+  RETURN_IN
+  VOID_OUT
+
+  @@map("stock_movement_type")
+}
+
+enum StockReferenceType {
+  PURCHASE
+  SALE
+  ADJUSTMENT
+  MANUAL
+
+  @@map("stock_reference_type")
+}
+
+model Workspace {
+  id           String        @id @default(uuid()) @db.Uuid
+  code         String        @unique @db.VarChar(40)
+  name         String        @db.VarChar(120)
+  isActive     Boolean       @default(true) @map("is_active")
+  createdAt    DateTime      @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt    DateTime      @updatedAt @map("updated_at") @db.Timestamptz(6)
+  posInstances POSInstance[]
+
+  @@index([isActive])
+  @@map("workspaces")
+}
+
 model User {
   id           String   @id @default(uuid()) @db.Uuid
   email        String   @unique
@@ -39,6 +77,7 @@ model User {
   createdAt    DateTime @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt    DateTime @updatedAt @map("updated_at") @db.Timestamptz(6)
   role         Role     @relation(fields: [roleId], references: [id], onDelete: Cascade)
+  stockMovements StockMovement[]
 
   @@map("users")
 }
@@ -88,15 +127,19 @@ enum POSInstanceType {
 
 model POSInstance {
   id          String          @id @default(uuid()) @db.Uuid
+  workspaceId String          @map("workspace_id") @db.Uuid
   name        String
   type        POSInstanceType
   totalTable  Int             @default(0) @map("total_table")
   isActive    Boolean         @default(true) @map("is_active")
   createdAt   DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
   updatedAt   DateTime        @updatedAt @map("updated_at") @db.Timestamptz(6)
+  workspace   Workspace       @relation(fields: [workspaceId], references: [id], onDelete: Restrict)
   tableLabels TableLabel[]
+  stockMovements StockMovement[]
 
-  @@unique([name])
+  @@unique([workspaceId, name])
+  @@index([workspaceId, isActive])
   @@map("pos_instances")
 }
 
@@ -112,4 +155,71 @@ model TableLabel {
   @@unique([posInstanceId, position])
   @@unique([posInstanceId, label])
   @@map("table_labels")
+}
+
+model InventoryCategory {
+  id          String          @id @default(uuid()) @db.Uuid
+  name        String          @db.VarChar(160)
+  description String?
+  isActive    Boolean         @default(true) @map("is_active")
+  createdAt   DateTime        @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime        @updatedAt @map("updated_at") @db.Timestamptz(6)
+  items       InventoryItem[]
+
+  @@unique([name])
+  @@index([isActive])
+  @@map("inventory_categories")
+}
+
+model InventoryItem {
+  id                   String            @id @default(uuid()) @db.Uuid
+  categoryId           String            @map("category_id") @db.Uuid
+  sku                  String?           @db.VarChar(80)
+  name                 String            @db.VarChar(160)
+  unit                 String            @db.VarChar(40)
+  initialPrice         Decimal           @map("initial_price") @db.Decimal(14, 2)
+  price                Decimal           @db.Decimal(14, 2)
+  serviceChargePercent Decimal           @default(10) @map("service_charge_percent") @db.Decimal(5, 2)
+  serviceChargeMode    ChargeMode        @default(EXCLUDE) @map("service_charge_mode")
+  taxPercent           Decimal           @default(11) @map("tax_percent") @db.Decimal(5, 2)
+  taxMode              ChargeMode        @default(EXCLUDE) @map("tax_mode")
+  stock                Int               @default(0)
+  unlimitedStock       Boolean           @default(false) @map("unlimited_stock")
+  isActive             Boolean           @default(true) @map("is_active")
+  createdAt            DateTime          @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt            DateTime          @updatedAt @map("updated_at") @db.Timestamptz(6)
+  category             InventoryCategory @relation(fields: [categoryId], references: [id], onDelete: Restrict)
+  stockMovements       StockMovement[]
+
+  @@unique([sku])
+  @@index([categoryId, isActive])
+  @@index([name])
+  @@index([unlimitedStock])
+  @@map("inventory_items")
+}
+
+model StockMovement {
+  id              String             @id @default(uuid()) @db.Uuid
+  inventoryItemId String             @map("inventory_item_id") @db.Uuid
+  movementType    StockMovementType  @map("movement_type")
+  requestedQty    Int                @map("requested_qty")
+  deltaQty        Int                @map("delta_qty")
+  beforeStock     Int                @map("before_stock")
+  afterStock      Int                @map("after_stock")
+  userId          String             @map("user_id") @db.Uuid
+  posInstanceId   String?            @map("pos_instance_id") @db.Uuid
+  referenceType   StockReferenceType? @map("reference_type")
+  referenceId     String?            @map("reference_id") @db.VarChar(120)
+  notes           String?            @db.VarChar(500)
+  movedAt         DateTime           @default(now()) @map("moved_at") @db.Timestamptz(6)
+  inventoryItem   InventoryItem      @relation(fields: [inventoryItemId], references: [id], onDelete: Restrict)
+  user            User               @relation(fields: [userId], references: [id], onDelete: Restrict)
+  posInstance     POSInstance?       @relation(fields: [posInstanceId], references: [id], onDelete: SetNull)
+
+  @@index([inventoryItemId, movedAt])
+  @@index([movedAt])
+  @@index([userId, movedAt])
+  @@index([posInstanceId, movedAt])
+  @@index([referenceType, referenceId])
+  @@map("stock_movements")
 }

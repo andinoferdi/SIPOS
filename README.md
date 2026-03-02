@@ -1,4 +1,4 @@
-﻿# Next.js Prisma Auth Starter - Setup Guide
+﻿# SIPOS - Setup Guide
 
 Panduan langkah demi langkah untuk menjalankan project ini dari nol.
 
@@ -35,16 +35,13 @@ AUTH_SECRET="ganti_dengan_string_acak_panjang"
 AUTH_URL="http://localhost:3000"
 
 # Runtime app untuk serverless (transaction pooler)
-DATABASE_URL=""
+DATABASE_URL="postgresql://postgres.[project-ref]:[PASSWORD]@aws-1-[region].pooler.supabase.com:6543/postgres?pgbouncer=true"
 
-# Direct/session connection untuk CLI dan seed
-DIRECT_URL=""
+# Direct/session connection untuk CLI, migration, dan seed
+DIRECT_URL="postgresql://postgres.[project-ref]:[PASSWORD]@aws-1-[region].pooler.supabase.com:5432/postgres"
 
-OPENAI_API_KEY=""
-NEXT_PUBLIC_SUPABASE_URL=""
+NEXT_PUBLIC_SUPABASE_URL="https://[project-ref].supabase.co"
 NEXT_PUBLIC_SUPABASE_ANON_KEY=""
-AUTH_GITHUB_ID=""
-AUTH_GITHUB_SECRET=""
 ```
 
 Catatan penting:
@@ -90,37 +87,57 @@ Referensi:
 
 ## 5. Setup Database
 
-Jalankan sinkronisasi schema:
+Generate Prisma Client:
 
 ```bash
-npx prisma db push
+npm run prisma:generate
 ```
 
-Lanjut seed data awal:
+Jalankan migration untuk membuat tabel:
 
 ```bash
-npm run db:seed
+npx prisma migrate deploy
 ```
 
-Aturan koneksi command:
+Seed data awal:
 
-1. `npx prisma db push` dan operasi schema Prisma berjalan lewat jalur direct/session.
-2. `npm run db:seed` memakai `DIRECT_URL` lebih dulu, lalu fallback ke `DATABASE_URL` jika `DIRECT_URL` kosong.
-3. Runtime app di Vercel/serverless tetap memakai `DATABASE_URL` port `6543`.
+```bash
+npm run prisma:seed
+```
 
-Catatan:
+Command ala Laravel untuk reset lokal:
 
-1. `db push` bisa menampilkan target `:5432`. Itu normal karena memakai jalur direct/session.
-2. `db:seed` memakai script SQL berbasis driver `pg` agar stabil lintas versi Node.
+```bash
+npm run migrate:fresh -- --confirm
+```
+
+Command ala Laravel untuk reset + seed:
+
+```bash
+npm run migrate:fresh:seed -- --confirm
+```
+
+Catatan command fresh:
+
+1. Command ini destruktif dan menghapus seluruh data database target.
+2. Command fresh wajib flag `--confirm`.
+3. Command fresh wajib memakai `DIRECT_URL`.
+4. Untuk alur deploy normal non-destruktif, tetap gunakan `npx prisma migrate deploy`.
+
+Catatan koneksi:
+
+1. Migration dan seed berjalan lewat `DIRECT_URL` (port `5432`).
+2. Runtime app di Vercel/serverless memakai `DATABASE_URL` (port `6543`).
+3. Seed memakai Prisma Client, bukan raw SQL.
 
 Default credentials hasil seed:
 
-| Role | Email | Password |
-| :--- | :--- | :--- |
-| Admin | `admin@sipos.local` | `admin123` |
-| Manager | `manager@demo.sipos.local` | `demo123` |
-| FnB | `fnb@demo.sipos.local` | `demo123` |
-| Host | `host@demo.sipos.local` | `demo123` |
+| Role    | Email                      | Password   |
+| :------ | :------------------------- | :--------- |
+| Admin   | `admin@sipos.local`        | `admin123` |
+| Manager | `manager@demo.sipos.local` | `demo123`  |
+| FnB     | `fnb@demo.sipos.local`     | `demo123`  |
+| Host    | `host@demo.sipos.local`    | `demo123`  |
 
 ---
 
@@ -143,34 +160,70 @@ Buka di `http://localhost:3000`.
 
 ---
 
-## Troubleshooting Port Supabase
+## Troubleshooting
 
-Jika local bermasalah saat `DATABASE_URL` memakai `6543`:
+Jika koneksi database bermasalah:
 
-1. Cek dulu apakah password di URL sudah encoded.
-2. Jalankan `npx prisma db push` untuk memastikan koneksi direct/session sehat.
-3. Tes reachability pooler `6543`:
+1. Pastikan password di URL sudah URL-encoded jika ada karakter khusus.
+2. Pastikan project Supabase tidak dalam keadaan paused.
+3. Tes koneksi direct:
 
 ```powershell
-Test-NetConnection aws-1-ap-southeast-2.pooler.supabase.com -Port 6543
+Test-NetConnection aws-1-ap-southeast-2.pooler.supabase.com -Port 5432
 ```
 
-4. Cek status pooler di Supabase Dashboard.
+4. Jika migration gagal dengan "drift detected", reset database lalu deploy ulang:
 
-Fallback local-only:
-
-1. Untuk unblock sementara, Anda boleh set `DATABASE_URL` ke `5432`.
-2. Sebelum deploy, kembalikan lagi ke split resmi:
-   1. `DATABASE_URL` = `6543` + `pgbouncer=true`
-   2. `DIRECT_URL` = `5432`
+```bash
+npm run migrate:fresh:seed -- --confirm
+npm run prisma:generate
+```
 
 ---
 
 ## Tips Tambahan
 
-- Jika Anda mengubah `prisma/schema.prisma`, jalankan `npx prisma db push` lagi.
-- Untuk lihat data DB di browser, jalankan:
+- Jika mengubah `prisma/schema.prisma`, buat migration baru:
+
+```bash
+npm run prisma:migrate -- --name nama_perubahan
+```
+
+- Untuk lihat data DB di browser:
 
 ```bash
 npx prisma studio
 ```
+
+## Validasi
+
+```bash
+npm run typecheck
+npm run lint
+npm run test:unit
+npm run build
+```
+
+## Audit Keamanan Dependency
+
+Jalankan audit lengkap:
+
+```bash
+npm run audit
+```
+
+Jalankan gate audit untuk runtime aplikasi:
+
+```bash
+npm run audit:prod
+```
+
+Catatan:
+
+1. Moderate vulnerability saat ini berasal dari dependency tooling internal Prisma.
+2. Jangan pakai `npm audit fix --force` karena akan menurunkan Prisma ke `6.19.2` dan melanggar baseline `7.4.2`.
+
+## Catatan Kepatuhan API
+
+1. Endpoint domain internal di `src/app/api/portal/*` memakai format respons `{ ok: true, data }` dan `{ ok: false, error }`.
+2. Endpoint `src/app/api/auth/[...nextauth]/route.ts` adalah integrasi framework NextAuth dan diperlakukan non-applicable untuk format respons internal.
