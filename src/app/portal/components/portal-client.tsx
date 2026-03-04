@@ -10,16 +10,12 @@ import {
   Plus,
   RefreshCcw,
   Trash2,
-  X,
-  ChevronDown,
-  ChevronUp,
   Monitor,
   Users,
   TableProperties,
 } from "lucide-react";
 import { toast } from "sonner";
 import type { AuthUser } from "@/types/auth";
-import { Pagination } from "@/components/ui/pagination";
 import {
   Dialog,
   DialogContent,
@@ -112,11 +108,13 @@ function InstanceCard({
   instance,
   isAdmin,
   onEdit,
+  onEditLabels,
   onDelete,
 }: {
   instance: POSInstance;
   isAdmin: boolean;
   onEdit: (instance: POSInstance) => void;
+  onEditLabels: (instanceId: string) => void;
   onDelete: (id: string) => void;
 }) {
   return (
@@ -183,6 +181,16 @@ function InstanceCard({
 
           {isAdmin && (
             <div className="flex gap-1.5">
+              {instance.type === "TABLE_SERVICE" ? (
+                <button
+                  type="button"
+                  onClick={() => onEditLabels(instance.id)}
+                  className="inline-flex h-9 items-center justify-center rounded-lg border border-soft px-3 text-xs font-medium text-(--token-gray-700) transition-colors hover:bg-(--token-gray-100) dark:text-(--token-gray-300) dark:hover:bg-(--token-white-5)"
+                  aria-label="Edit label meja"
+                >
+                  Label Meja
+                </button>
+              ) : null}
               <button
                 type="button"
                 onClick={() => onEdit(instance)}
@@ -290,8 +298,6 @@ function TableLabelRow({
   );
 }
 
-const ITEMS_PER_PAGE = 6;
-
 export default function PortalClient({ session }: PortalClientProps) {
   const [portalData, setPortalData] = useState<PortalData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
@@ -300,10 +306,7 @@ export default function PortalClient({ session }: PortalClientProps) {
   const [showCreateModal, setShowCreateModal] = useState(false);
 
   const [editingId, setEditingId] = useState<string | null>(null);
-
-  const [adminOpen, setAdminOpen] = useState(false);
   const [tableEditorId, setTableEditorId] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
 
   const createForm = useForm<
     CreatePortalInstanceFormInput,
@@ -334,17 +337,16 @@ export default function PortalClient({ session }: PortalClientProps) {
 
   const isAdmin = session.role === "admin";
   const activeInstances = useMemo(() => portalData?.items ?? [], [portalData]);
-  const totalPages = useMemo(
-    () => Math.max(1, Math.ceil(activeInstances.length / ITEMS_PER_PAGE)),
-    [activeInstances.length],
-  );
-  const paginatedInstances = useMemo(() => {
-    const start = (currentPage - 1) * ITEMS_PER_PAGE;
-    return activeInstances.slice(start, start + ITEMS_PER_PAGE);
-  }, [activeInstances, currentPage]);
   const editingTarget = useMemo(
     () => activeInstances.find((item) => item.id === editingId) ?? null,
     [activeInstances, editingId],
+  );
+  const tableEditorTarget = useMemo(
+    () =>
+      activeInstances.find(
+        (item) => item.id === tableEditorId && item.type === "TABLE_SERVICE",
+      ) ?? null,
+    [activeInstances, tableEditorId],
   );
 
   const loadInstances = useCallback(async () => {
@@ -363,10 +365,6 @@ export default function PortalClient({ session }: PortalClientProps) {
   useEffect(() => {
     void loadInstances();
   }, [loadInstances]);
-
-  useEffect(() => {
-    setCurrentPage((prev) => Math.min(Math.max(prev, 1), totalPages));
-  }, [totalPages]);
 
   useEffect(() => {
     if (!showCreateModal) {
@@ -530,169 +528,18 @@ export default function PortalClient({ session }: PortalClientProps) {
         ) : (
           <>
             <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
-              {paginatedInstances.map((instance) => (
+              {activeInstances.map((instance) => (
                 <InstanceCard
                   key={instance.id}
                   instance={instance}
                   isAdmin={isAdmin}
                   onEdit={startEdit}
+                  onEditLabels={setTableEditorId}
                   onDelete={(id) => void handleDeleteInstance(id)}
                 />
               ))}
             </div>
-            <div className="mt-6 flex justify-center">
-              <Pagination
-                currentPage={currentPage}
-                totalPages={totalPages}
-                onPageChange={setCurrentPage}
-              />
-            </div>
           </>
-        )}
-
-        {isAdmin && (
-          <div className="mt-10 overflow-hidden rounded-2xl border border-soft surface-elevated">
-            <button
-              type="button"
-              onClick={() => setAdminOpen((prev) => !prev)}
-              className="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-(--token-gray-100) dark:hover:bg-(--token-white-5)"
-            >
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-(--color-primary-600) dark:text-(--color-primary-400)">
-                  Admin
-                </p>
-                <p className="mt-0.5 text-sm font-bold text-(--token-gray-900) dark:text-(--token-white)">
-                  Kelola POS Instance
-                </p>
-              </div>
-              {adminOpen ? (
-                <ChevronUp size={18} className="shrink-0 text-(--token-gray-400)" />
-              ) : (
-                <ChevronDown size={18} className="shrink-0 text-(--token-gray-400)" />
-              )}
-            </button>
-
-            {adminOpen && (
-              <div className="space-y-5 border-t border-soft px-6 py-5">
-                <div className="overflow-x-auto rounded-xl border border-soft">
-                  <table className="w-full min-w-[640px] text-left text-sm">
-                    <thead className="bg-(--token-gray-100) text-xs text-(--token-gray-600) dark:bg-(--token-white-5) dark:text-(--token-gray-300)">
-                      <tr>
-                        <th className="px-4 py-3 font-semibold">Nama</th>
-                        <th className="px-4 py-3 font-semibold">Tipe</th>
-                        <th className="px-4 py-3 font-semibold">Total Meja</th>
-                        <th className="px-4 py-3 font-semibold">Diperbarui</th>
-                        <th className="px-4 py-3 font-semibold">Aksi</th>
-                      </tr>
-                    </thead>
-                    <tbody className="divide-y divide-soft">
-                      {activeInstances.length === 0 ? (
-                        <tr>
-                          <td colSpan={5} className="px-4 py-6 text-center text-(--token-gray-400)">
-                            Belum ada instance.
-                          </td>
-                        </tr>
-                      ) : (
-                        paginatedInstances.map((instance) => (
-                          <tr key={instance.id}>
-                            <td className="px-4 py-3 font-medium text-(--token-gray-900) dark:text-(--token-white)">
-                              {instance.name}
-                            </td>
-                            <td className="px-4 py-3 text-(--token-gray-600) dark:text-(--token-gray-300)">
-                              {TYPE_LABEL[instance.type]}
-                            </td>
-                            <td className="px-4 py-3 text-(--token-gray-600) dark:text-(--token-gray-300)">
-                              {instance.type === "TABLE_SERVICE" ? instance.total_table : "-"}
-                            </td>
-                            <td className="px-4 py-3 text-(--token-gray-600) dark:text-(--token-gray-300)">
-                              {new Date(instance.updated_at).toLocaleString("id-ID")}
-                            </td>
-                            <td className="px-4 py-3">
-                              <div className="flex flex-wrap gap-1.5">
-                                <button
-                                  type="button"
-                                  onClick={() => startEdit(instance)}
-                                  className="inline-flex items-center gap-1 rounded-md border border-soft px-2.5 py-1 text-xs font-medium text-(--token-gray-700) transition-colors hover:bg-(--token-gray-100) dark:text-(--token-gray-300) dark:hover:bg-(--token-white-5)"
-                                >
-                                  <Pencil size={11} />
-                                  Edit
-                                </button>
-                                {instance.type === "TABLE_SERVICE" && (
-                                  <button
-                                    type="button"
-                                    onClick={() =>
-                                      setTableEditorId((prev) =>
-                                        prev === instance.id ? null : instance.id,
-                                      )
-                                    }
-                                    className="inline-flex items-center rounded-md border border-soft px-2.5 py-1 text-xs font-medium text-(--token-gray-700) transition-colors hover:bg-(--token-gray-100) dark:text-(--token-gray-300) dark:hover:bg-(--token-white-5)"
-                                  >
-                                    Label Meja
-                                  </button>
-                                )}
-                                <button
-                                  type="button"
-                                  onClick={() => void handleDeleteInstance(instance.id)}
-                                  className="button-danger-soft inline-flex items-center gap-1 rounded-md border px-2.5 py-1 text-xs font-medium"
-                                >
-                                  <Trash2 size={11} />
-                                  Hapus
-                                </button>
-                              </div>
-                            </td>
-                          </tr>
-                        ))
-                      )}
-                    </tbody>
-                  </table>
-                </div>
-
-                {tableEditorId && (
-                  <div className="space-y-3 rounded-xl border border-soft p-4">
-                    <div className="flex items-center justify-between">
-                      <p className="text-xs font-semibold uppercase tracking-widest text-(--token-gray-500) dark:text-(--token-gray-400)">
-                        Edit Label Meja -{" "}
-                        {activeInstances.find((item) => item.id === tableEditorId)?.name}
-                      </p>
-                      <button
-                        type="button"
-                        onClick={() => setTableEditorId(null)}
-                        className="inline-flex h-6 w-6 items-center justify-center rounded-md text-(--token-gray-400) hover:bg-(--token-gray-100) dark:hover:bg-(--token-white-5)"
-                      >
-                        <X size={13} />
-                      </button>
-                    </div>
-
-                    {(() => {
-                      const instance = activeInstances.find((item) => item.id === tableEditorId);
-                      if (!instance || instance.type !== "TABLE_SERVICE") return null;
-                      const byPosition = new Map(
-                        instance.table_labels.map((l) => [l.position, l.label]),
-                      );
-                      return (
-                        <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
-                          {Array.from({ length: instance.total_table }, (_, idx) => {
-                            const position = idx + 1;
-                            const fallback = byPosition.get(position) ?? `${position}`;
-                            return (
-                              <TableLabelRow
-                                key={`${instance.id}:${position}`}
-                                instanceId={instance.id}
-                                position={position}
-                                fallbackLabel={fallback}
-                                disabled={isMutating}
-                                onSave={handleSaveLabel}
-                              />
-                            );
-                          })}
-                        </div>
-                      );
-                    })()}
-                  </div>
-                )}
-              </div>
-            )}
-          </div>
         )}
       </main>
 
@@ -856,6 +703,45 @@ export default function PortalClient({ session }: PortalClientProps) {
             </DialogFooter>
             </form>
           )}
+        </DialogContent>
+      </Dialog>
+
+      <Dialog
+        open={Boolean(tableEditorTarget)}
+        onOpenChange={(open) => {
+          if (!open) setTableEditorId(null);
+        }}
+      >
+        <DialogContent size="xl">
+          <DialogHeader>
+            <DialogTitle>
+              Edit Label Meja{tableEditorTarget ? ` - ${tableEditorTarget.name}` : ""}
+            </DialogTitle>
+          </DialogHeader>
+          {tableEditorTarget ? (
+            <div className="grid gap-2 sm:grid-cols-2 xl:grid-cols-3">
+              {(() => {
+                const byPosition = new Map(
+                  tableEditorTarget.table_labels.map((item) => [item.position, item.label]),
+                );
+
+                return Array.from({ length: tableEditorTarget.total_table }, (_, idx) => {
+                  const position = idx + 1;
+                  const fallback = byPosition.get(position) ?? `${position}`;
+                  return (
+                    <TableLabelRow
+                      key={`${tableEditorTarget.id}:${position}`}
+                      instanceId={tableEditorTarget.id}
+                      position={position}
+                      fallbackLabel={fallback}
+                      disabled={isMutating}
+                      onSave={handleSaveLabel}
+                    />
+                  );
+                });
+              })()}
+            </div>
+          ) : null}
         </DialogContent>
       </Dialog>
     </div>
