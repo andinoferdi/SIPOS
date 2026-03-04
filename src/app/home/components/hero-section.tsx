@@ -12,20 +12,17 @@ export default function HeroSection() {
     <section className="pt-24 pb-12 md:pt-28 md:pb-16">
       <div className="wrapper">
         <div className="grid items-center gap-12 lg:grid-cols-2 lg:gap-16">
-          {/* Left: copy */}
           <div>
             <div className="inline-flex items-center gap-2 rounded-full border border-soft bg-(--token-gray-100) px-3 py-1.5 dark:bg-(--token-white-5)">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-400" />
-              <p className="text-xs font-semibold text-primary-600 dark:text-primary-400">
-                SIPOS — Point of Sale Modern
+              <span className="marketing-live-dot h-1.5 w-1.5 animate-pulse rounded-full" />
+              <p className="marketing-accent-text text-xs font-semibold">
+                SIPOS - Point of Sale Modern
               </p>
             </div>
 
             <h1 className="mt-5 text-[clamp(2.6rem,6vw,4.2rem)] font-bold leading-[1.06] tracking-tight text-(--token-gray-900) dark:text-(--token-white)">
               Satu Sistem untuk{" "}
-              <span className="text-primary-600 dark:text-primary-400">
-                Kasir, Stok, dan Laporan
-              </span>
+              <span className="marketing-accent-text">Kasir, Stok, dan Laporan</span>
             </h1>
 
             <p className="mt-5 max-w-lg text-base leading-7 text-(--token-gray-500) dark:text-(--token-gray-400) md:text-lg md:leading-8">
@@ -40,7 +37,7 @@ export default function HeroSection() {
                   key={tag}
                   className="flex items-center gap-1.5 rounded-lg border border-soft bg-transparent px-3 py-1.5 text-xs font-medium text-(--token-gray-600) dark:text-(--token-gray-300)"
                 >
-                  <span className="h-1 w-1 shrink-0 rounded-full bg-primary-500" />
+                  <span className="marketing-accent-text h-1 w-1 shrink-0 rounded-full bg-current" />
                   {tag}
                 </span>
               ))}
@@ -49,7 +46,7 @@ export default function HeroSection() {
             <div className="mt-8 flex flex-wrap items-center gap-3">
               <Link
                 href="/login"
-                className="inline-flex items-center gap-2.5 rounded-xl bg-primary-600 px-6 py-3 text-sm font-semibold text-white transition-opacity hover:opacity-80 dark:hover:opacity-90"
+                className="marketing-primary-button inline-flex items-center gap-2.5 rounded-xl px-6 py-3 text-sm font-semibold transition-opacity"
               >
                 Mulai Gratis 14 Hari
                 <svg
@@ -81,9 +78,8 @@ export default function HeroSection() {
             </p>
           </div>
 
-          {/* Right: POS mockup */}
           <div className="relative">
-            <div className="absolute -inset-4 rounded-3xl bg-primary-500/5 blur-2xl dark:bg-primary-500/10" />
+            <div className="marketing-primary-glow absolute -inset-4 rounded-3xl blur-2xl" />
             <div className="relative">
               <PosMockup />
             </div>

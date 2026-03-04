@@ -3,25 +3,24 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Eye, EyeOff } from "lucide-react";
 import { useRouter } from "next/navigation";
-import { signIn } from "next-auth/react";
+import { getSession, signIn } from "next-auth/react";
 import { forwardRef, useState, type InputHTMLAttributes } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { getDashboardPathByRole } from "@/lib/auth/paths";
 import { loginSchema, type LoginSchema } from "@/schemas/login.schema";
+import type { AuthRole } from "@/types/auth";
 
 type FieldProps = InputHTMLAttributes<HTMLInputElement> & {
   label: string;
   error?: string;
 };
 
-const INPUT_BASE =
-  "h-11 w-full rounded-lg border bg-(--token-white) px-3 text-sm text-(--token-gray-900) outline-none transition-colors placeholder:text-(--token-gray-400) focus:border-primary-500 dark:bg-(--color-surface-dark-subtle) dark:text-(--token-white-90) dark:placeholder:text-(--token-gray-500)";
+const INPUT_BASE = "login-input-base h-11 w-full rounded-lg border px-3 text-sm";
 
-const INPUT_NORMAL =
-  "border-(--token-gray-300) dark:border-(--color-marketing-dark-border)";
+const INPUT_NORMAL = "login-input-normal";
 
-const INPUT_ERROR =
-  "border-red-500 focus:border-red-500 dark:border-red-500";
+const INPUT_ERROR = "login-input-error";
 
 const InputGroup = forwardRef<HTMLInputElement, FieldProps>(
   ({ label, error, id, className, ...props }, ref) => {
@@ -44,7 +43,7 @@ const InputGroup = forwardRef<HTMLInputElement, FieldProps>(
           aria-invalid={Boolean(error)}
         />
         {error ? (
-          <p className="text-xs text-red-500 dark:text-red-400">{error}</p>
+          <p className="login-input-error-text text-xs">{error}</p>
         ) : null}
       </div>
     );
@@ -86,13 +85,13 @@ const PasswordInput = forwardRef<HTMLInputElement, FieldProps>(
             type="button"
             aria-label={visible ? "Sembunyikan password" : "Tampilkan password"}
             onClick={() => setVisible((prev) => !prev)}
-            className="absolute right-2 top-1/2 -translate-y-1/2 rounded-md p-1.5 text-(--token-gray-400) hover:bg-(--token-gray-100) hover:text-(--token-gray-700) dark:text-(--token-gray-500) dark:hover:bg-(--token-white-5) dark:hover:text-(--token-gray-300) transition-colors"
+            className="login-input-toggle absolute right-2 top-1/2 -translate-y-1/2 rounded-md p-1.5 transition-colors"
           >
             {visible ? <EyeOff size={15} /> : <Eye size={15} />}
           </button>
         </div>
         {error ? (
-          <p className="text-xs text-red-500 dark:text-red-400">{error}</p>
+          <p className="login-input-error-text text-xs">{error}</p>
         ) : null}
       </div>
     );
@@ -126,7 +125,9 @@ export default function LoginForm() {
     }
 
     toast.success("Login berhasil");
-    router.replace("/portal");
+    const session = await getSession();
+    const role = session?.user?.role as AuthRole | undefined;
+    router.replace(getDashboardPathByRole(role ?? "admin"));
     router.refresh();
   }
 
@@ -155,7 +156,7 @@ export default function LoginForm() {
         <button
           type="submit"
           disabled={isSubmitting}
-          className="mt-1 w-full rounded-lg bg-primary-600 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80 active:opacity-70 disabled:opacity-50 dark:hover:opacity-90"
+          className="login-submit-button mt-1 w-full rounded-lg py-2.5 text-sm font-semibold transition-opacity active:opacity-70 disabled:opacity-50"
         >
           {isSubmitting ? "Memproses..." : "Masuk"}
         </button>

@@ -75,7 +75,7 @@ const TIERS: PricingTier[] = [
 function CheckIcon() {
   return (
     <svg
-      className="h-4 w-4 shrink-0 text-primary-600 dark:text-primary-400"
+      className="marketing-accent-text h-4 w-4 shrink-0"
       viewBox="0 0 16 16"
       fill="none"
       aria-hidden="true"
@@ -96,7 +96,7 @@ export default function PricingSection() {
     <section id="harga" className="scroll-mt-28 py-14 md:py-20">
       <div className="wrapper">
         <div className="mb-12 text-center">
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">
+          <p className="marketing-accent-text text-xs font-semibold uppercase tracking-widest">
             Harga
           </p>
           <h2 className="mt-3 text-2xl font-bold text-(--token-gray-900) dark:text-(--token-white) md:text-3xl">
@@ -112,14 +112,12 @@ export default function PricingSection() {
             <article
               key={tier.id}
               className={`relative flex flex-col overflow-hidden rounded-2xl border ${
-                tier.highlighted
-                  ? "border-primary-400 dark:border-primary-500"
-                  : "border-soft"
+                tier.highlighted ? "marketing-highlight-border" : "border-soft"
               } surface-elevated p-6`}
             >
               {tier.badge && (
                 <div className="absolute right-5 top-5">
-                  <span className="rounded-full bg-primary-600 px-2.5 py-1 text-[10px] font-bold text-white">
+                  <span className="marketing-primary-badge rounded-full px-2.5 py-1 text-[10px] font-bold">
                     {tier.badge}
                   </span>
                 </div>
@@ -158,7 +156,7 @@ export default function PricingSection() {
                 href={tier.ctaHref}
                 className={`block rounded-xl px-4 py-2.5 text-center text-sm font-semibold transition-opacity ${
                   tier.highlighted
-                    ? "bg-primary-600 text-white hover:opacity-80"
+                    ? "marketing-primary-button hover:opacity-80"
                     : "border border-soft text-(--token-gray-700) hover:bg-(--token-gray-100) dark:text-(--token-gray-300) dark:hover:bg-(--token-white-5)"
                 }`}
               >

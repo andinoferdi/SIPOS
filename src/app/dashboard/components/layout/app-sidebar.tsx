@@ -89,7 +89,7 @@ export default function AppSidebar() {
                 className={[
                   "flex h-7 w-7 shrink-0 items-center justify-center rounded-md transition-colors",
                   active
-                    ? "bg-primary-600 text-white dark:text-white"
+                    ? "dashboard-active-icon"
                     : "bg-(--token-gray-100) text-(--token-gray-500) dark:bg-(--token-white-5) dark:text-(--token-gray-400)",
                 ].join(" ")}
               >

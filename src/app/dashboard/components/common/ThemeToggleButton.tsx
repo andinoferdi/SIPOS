@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { useThemeTransition } from "@/hooks/use-theme-transition";
 

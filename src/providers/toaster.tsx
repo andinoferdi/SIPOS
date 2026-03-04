@@ -1,9 +1,15 @@
-'use client';
+"use client";
 
-import { Toaster, type ToasterProps } from 'sonner';
-import { useTheme } from 'next-themes';
+import { Toaster } from "sonner";
+import { useTheme } from "next-themes";
 
 export function ToasterProvider() {
-  const { theme } = useTheme();
-  return <Toaster theme={theme as ToasterProps['theme']}  />;
+  const { resolvedTheme } = useTheme();
+
+  const theme =
+    resolvedTheme === "light" || resolvedTheme === "dark"
+      ? resolvedTheme
+      : "system";
+
+  return <Toaster theme={theme} />;
 }

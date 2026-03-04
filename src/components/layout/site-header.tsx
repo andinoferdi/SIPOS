@@ -1,11 +1,10 @@
-'use client';
+"use client";
 
-import BrandLogo from '@/components/ui/brand-logo';
-import Link from 'next/link';
-import { useEffect, useState } from 'react';
-import ThemeToggle from './theme-toggle';
-import { usePathname } from 'next/navigation';
-import { navItems } from './nav-items';
+import BrandLogo from "@/components/ui/brand-logo";
+import Link from "next/link";
+import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import ThemeToggle from "@/components/layout/theme-toggle";
 import {
   MobileNav,
   MobileNavHeader,
@@ -14,9 +13,15 @@ import {
   NavBody,
   NavItems,
   Navbar,
-} from '@/components/ui/resizable-navbar';
+} from "@/components/ui/resizable-navbar";
 
-export default function Header() {
+const navItems = [
+  { href: "/#fitur", label: "Fitur" },
+  { href: "/#alur", label: "Alur SIPOS" },
+  { href: "/#faq", label: "FAQ" },
+] as const;
+
+export default function SiteHeader() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const pathname = usePathname();
 
@@ -31,8 +36,8 @@ export default function Header() {
 
   useEffect(() => {
     const closeMenu = () => setMobileMenuOpen(false);
-    window.addEventListener('hashchange', closeMenu);
-    return () => window.removeEventListener('hashchange', closeMenu);
+    window.addEventListener("hashchange", closeMenu);
+    return () => window.removeEventListener("hashchange", closeMenu);
   }, []);
 
   return (
@@ -98,4 +103,3 @@ export default function Header() {
     </Navbar>
   );
 }
-

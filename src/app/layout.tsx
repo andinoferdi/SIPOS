@@ -1,16 +1,9 @@
 import type { Metadata } from 'next';
 import { ThemeProvider } from 'next-themes';
-import { Poppins } from 'next/font/google';
 import './globals.css';
 import { QueryProvider } from '../providers/query-provider';
 import { ToasterProvider } from '../providers/toaster';
 import { AuthProvider } from '../providers/auth-provider';
-
-const poppins = Poppins({
-  subsets: ['latin'],
-  weight: ['100', '200', '300', '400', '500', '600', '700', '800', '900'],
-  display: 'swap',
-});
 
 export const metadata: Metadata = {
   title: {
@@ -34,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="id" suppressHydrationWarning className="scroll-smooth">
       <body
-        className={`surface-base min-h-screen flex flex-col ${poppins.className}`}
+        className="surface-base min-h-screen flex flex-col"
       >
         <ThemeProvider
           attribute="data-theme"

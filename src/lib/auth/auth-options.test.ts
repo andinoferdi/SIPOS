@@ -1,9 +1,11 @@
-﻿import { hashSync } from "bcryptjs";
+import { hashSync } from "bcryptjs";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
 const { findUniqueUserMock } = vi.hoisted(() => ({
   findUniqueUserMock: vi.fn(),
 }));
+
+vi.mock("server-only", () => ({}));
 
 vi.mock("@/lib/db/prisma", () => ({
   prisma: {
@@ -164,3 +166,23 @@ describe("auth-options callbacks", () => {
     });
   });
 });
+
+describe("auth-options secret policy", () => {
+  it("uses NEXTAUTH_SECRET and ignores AUTH_SECRET fallback", async () => {
+    const previousNextAuthSecret = process.env.NEXTAUTH_SECRET;
+    const previousAuthSecret = process.env.AUTH_SECRET;
+
+    process.env.NEXTAUTH_SECRET = "nextauth-secret";
+    process.env.AUTH_SECRET = "legacy-auth-secret";
+
+    vi.resetModules();
+    const authModule = await import("@/lib/auth/auth-options");
+
+    expect(authModule.authOptions.secret).toBe("nextauth-secret");
+
+    process.env.NEXTAUTH_SECRET = previousNextAuthSecret;
+    process.env.AUTH_SECRET = previousAuthSecret;
+  });
+});
+
+

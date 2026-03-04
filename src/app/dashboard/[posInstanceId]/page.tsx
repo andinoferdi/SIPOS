@@ -1,10 +1,15 @@
 import Link from "next/link";
 import { redirect } from "next/navigation";
+import type { Metadata } from "next";
 import { requireServerAuthUser } from "@/lib/auth/server";
 import { getPortalInstanceById, PortalServiceError } from "@/lib/portal/service";
 
 type DashboardInstancePageProps = {
   params: Promise<{ posInstanceId: string }>;
+};
+
+export const metadata: Metadata = {
+  title: "Dashboard Instance",
 };
 
 export default async function DashboardInstancePage({ params }: DashboardInstancePageProps) {
@@ -30,7 +35,7 @@ export default async function DashboardInstancePage({ params }: DashboardInstanc
   return (
     <section className="space-y-6">
       <div className="rounded-2xl border border-soft surface-elevated p-6">
-        <p className="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">
+        <p className="dashboard-accent-text text-xs font-semibold uppercase tracking-widest">
           Dashboard Instance
         </p>
         <h1 className="mt-2 text-2xl font-bold text-(--token-gray-900) dark:text-(--token-white)">

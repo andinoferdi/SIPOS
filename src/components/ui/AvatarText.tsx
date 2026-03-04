@@ -18,14 +18,14 @@ const sizeMap: Record<AvatarTextSize, string> = {
 };
 
 const colorPalette = [
-  "bg-violet-100  text-violet-700  dark:bg-violet-500/20  dark:text-violet-300",
-  "bg-sky-100     text-sky-700     dark:bg-sky-500/20     dark:text-sky-300",
-  "bg-rose-100    text-rose-700    dark:bg-rose-500/20    dark:text-rose-300",
-  "bg-amber-100   text-amber-700   dark:bg-amber-500/20   dark:text-amber-300",
-  "bg-emerald-100 text-emerald-700 dark:bg-emerald-500/20 dark:text-emerald-300",
-  "bg-pink-100    text-pink-700    dark:bg-pink-500/20    dark:text-pink-300",
-  "bg-cyan-100    text-cyan-700    dark:bg-cyan-500/20    dark:text-cyan-300",
-  "bg-orange-100  text-orange-700  dark:bg-orange-500/20  dark:text-orange-300",
+  "bg-(--color-module-accent-purple-soft) text-(--color-module-accent-purple-strong) dark:bg-(--color-module-accent-purple-soft-2) dark:text-(--color-module-accent-purple)",
+  "bg-(--color-module-accent-blue-soft) text-(--color-module-accent-blue-strong) dark:bg-(--color-module-accent-blue-soft-2) dark:text-(--color-module-accent-blue)",
+  "bg-(--color-module-accent-green-soft) text-(--color-module-accent-green-strong) dark:bg-(--color-module-accent-green-soft-2) dark:text-(--color-module-accent-green)",
+  "bg-(--color-intent-warning-bg) text-(--color-intent-warning-text) dark:bg-(--color-intent-warning-ring) dark:text-(--color-warning-400)",
+  "bg-(--color-intent-error-bg) text-(--color-intent-error-text) dark:bg-(--color-intent-error-ring) dark:text-(--color-error-400)",
+  "bg-(--color-intent-info-bg) text-(--color-intent-info-text) dark:bg-(--color-intent-info-ring) dark:text-(--token-gray-300)",
+  "bg-(--color-accent-soft-light) text-(--color-primary-700) dark:bg-(--color-accent-soft-dark) dark:text-(--color-primary-400)",
+  "bg-(--color-module-accent-purple-soft-2) text-(--color-module-accent-purple) dark:bg-(--color-module-accent-blue-soft-2) dark:text-(--color-module-accent-blue)",
 ];
 
 function getColorClass(name: string): string {

@@ -1,3 +1,5 @@
+import "server-only";
+
 import { getServerSession } from "next-auth";
 import { redirect } from "next/navigation";
 import { authOptions } from "@/lib/auth/auth-options";
@@ -16,3 +18,4 @@ export async function requireServerAuthUser() {
   }
   return user;
 }
+

@@ -1,5 +1,5 @@
-import Footer from '@/app/home/components/layout/footer';
-import Header from '@/app/home/components/layout/navbar/navbar';
+import SiteFooter from "@/components/layout/site-footer";
+import SiteHeader from "@/components/layout/site-header";
 import type { ReactNode } from 'react';
 
 type SiteShellProps = {
@@ -9,10 +9,10 @@ type SiteShellProps = {
 export default function SiteShell({ children }: SiteShellProps) {
   return (
     <div className="marketing-dark-canvas flex flex-1 flex-col">
-      <Header />
+      <SiteHeader />
       <div className="relative z-10 isolate flex flex-1 flex-col">{children}</div>
       <div className="relative z-10">
-        <Footer />
+        <SiteFooter />
       </div>
     </div>
   );

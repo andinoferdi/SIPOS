@@ -1,6 +1,6 @@
 "use client";
 
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 import { useStore } from "zustand";
 import {
   createSidebarStore,
@@ -63,7 +63,7 @@ export function useSidebar(): SidebarContextType {
   };
 }
 
-export function SidebarProvider({ children }: { children: React.ReactNode }) {
+export function SidebarProvider({ children }: { children: ReactNode }) {
   const [sidebarStore] = useState<SidebarStoreApi>(() => createSidebarStore());
 
   useEffect(() => {

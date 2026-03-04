@@ -1,14 +1,27 @@
-﻿import { Prisma } from "@prisma/client";
+import "server-only";
+
+import { Prisma } from "@prisma/client";
 import { prisma } from "@/lib/db/prisma";
 import { requirePermission } from "@/lib/auth/permissions";
 import type { AuthUser } from "@/types/auth";
 
 const DEFAULT_WORKSPACE_CODE = "main";
 
-export class PortalServiceError extends Error {
-  code: string;
+export type PortalServiceErrorCode =
+  | "forbidden"
+  | "workspace_not_found"
+  | "instance_not_found"
+  | "instance_not_table_service"
+  | "duplicate_name"
+  | "duplicate_table_label"
+  | "conflict"
+  | "invalid_payload"
+  | "internal_error";
 
-  constructor(code: string) {
+export class PortalServiceError extends Error {
+  code: PortalServiceErrorCode;
+
+  constructor(code: PortalServiceErrorCode) {
     super(code);
     this.code = code;
   }
@@ -420,5 +433,6 @@ export async function updateTableLabel(
     mapPrismaError(error);
   }
 }
+
 
 

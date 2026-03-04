@@ -204,7 +204,7 @@ export default function FlowSection() {
     <section id="fitur" className="scroll-mt-28 py-14 md:py-20">
       <div className="wrapper">
         <div className="mb-12">
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">
+          <p className="text-xs font-semibold uppercase tracking-widest marketing-accent-text">
             Fitur SIPOS
           </p>
           <h2 className="mt-3 max-w-xl text-2xl font-bold text-(--token-gray-900) dark:text-(--token-white) md:text-3xl">

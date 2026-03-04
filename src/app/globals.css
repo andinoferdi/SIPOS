@@ -346,6 +346,213 @@ html.theme-switching *::after {
   background-color: var(--color-accent-soft-dark);
 }
 
+.marketing-accent-text {
+  color: var(--color-primary-600);
+}
+
+[data-theme="dark"] .marketing-accent-text {
+  color: var(--color-primary-400);
+}
+
+.marketing-primary-button {
+  background-color: var(--color-primary-600);
+  color: var(--token-white);
+}
+
+.marketing-primary-button:hover {
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .marketing-primary-button:hover {
+  opacity: 0.9;
+}
+
+.marketing-highlight-border {
+  border-color: var(--color-primary-400);
+}
+
+[data-theme="dark"] .marketing-highlight-border {
+  border-color: var(--color-primary-500);
+}
+
+.marketing-primary-badge {
+  background-color: var(--color-primary-600);
+  color: var(--token-white);
+}
+
+.marketing-live-dot {
+  background-color: var(--color-success-400);
+}
+
+.marketing-primary-glow {
+  background-color: color-mix(
+    in oklab,
+    var(--color-primary-500) 9%,
+    transparent
+  );
+}
+
+[data-theme="dark"] .marketing-primary-glow {
+  background-color: color-mix(
+    in oklab,
+    var(--color-primary-500) 16%,
+    transparent
+  );
+}
+
+.status-dot-success {
+  background-color: var(--color-success-400);
+}
+
+.status-dot-warning {
+  background-color: var(--color-warning-400);
+}
+
+.status-dot-error {
+  background-color: var(--color-error-400);
+}
+
+.login-primary-glow {
+  background-color: color-mix(
+    in oklab,
+    var(--color-primary-500) 9%,
+    transparent
+  );
+}
+
+[data-theme="dark"] .login-primary-glow {
+  background-color: color-mix(
+    in oklab,
+    var(--color-primary-500) 12%,
+    transparent
+  );
+}
+
+.login-input-base {
+  background-color: var(--token-white);
+  color: var(--token-gray-900);
+  outline: none;
+  transition: border-color 0.2s ease-out;
+}
+
+.login-input-base::placeholder {
+  color: var(--token-gray-400);
+}
+
+[data-theme="dark"] .login-input-base {
+  background-color: var(--color-surface-dark-subtle);
+  color: var(--token-white-90);
+}
+
+[data-theme="dark"] .login-input-base::placeholder {
+  color: var(--token-gray-500);
+}
+
+.login-input-base:focus {
+  border-color: var(--color-primary-500);
+}
+
+.login-input-normal {
+  border-color: var(--token-gray-300);
+}
+
+[data-theme="dark"] .login-input-normal {
+  border-color: var(--color-marketing-dark-border);
+}
+
+.login-input-error {
+  border-color: var(--color-error-500);
+}
+
+.login-input-error:focus {
+  border-color: var(--color-error-500);
+}
+
+.login-input-error-text {
+  color: var(--color-error-500);
+}
+
+[data-theme="dark"] .login-input-error-text {
+  color: var(--color-error-400);
+}
+
+.login-input-toggle {
+  color: var(--token-gray-400);
+}
+
+.login-input-toggle:hover {
+  background-color: var(--token-gray-100);
+  color: var(--token-gray-700);
+}
+
+[data-theme="dark"] .login-input-toggle {
+  color: var(--token-gray-500);
+}
+
+[data-theme="dark"] .login-input-toggle:hover {
+  background-color: var(--token-white-5);
+  color: var(--token-gray-300);
+}
+
+.login-submit-button {
+  background-color: var(--color-primary-600);
+  color: var(--token-white);
+}
+
+.login-submit-button:hover {
+  opacity: 0.8;
+}
+
+[data-theme="dark"] .login-submit-button:hover {
+  opacity: 0.9;
+}
+
+.dashboard-accent-text {
+  color: var(--color-primary-600);
+}
+
+[data-theme="dark"] .dashboard-accent-text {
+  color: var(--color-primary-400);
+}
+
+.dashboard-active-icon {
+  background-color: var(--color-primary-600);
+  color: var(--token-white);
+}
+
+.button-pay-processing {
+  background-color: var(--color-primary-500);
+  color: var(--token-white);
+}
+
+.button-pay-success {
+  background-color: var(--color-success-500);
+  color: var(--token-white);
+}
+
+.button-pay-default {
+  background-color: var(--color-primary-600);
+  color: var(--token-white);
+}
+
+.marketing-nav-glass {
+  box-shadow: 0 8px 30px -22px color-mix(in oklab, var(--color-black) 45%, transparent);
+  backdrop-filter: blur(24px);
+  background-color: color-mix(
+    in oklab,
+    var(--color-marketing-light-canvas) 86%,
+    transparent
+  );
+}
+
+[data-theme="dark"] .marketing-nav-glass {
+  background-color: color-mix(
+    in oklab,
+    var(--color-marketing-dark-canvas) 82%,
+    transparent
+  );
+}
+
 [data-theme="dark"] {
   --color-gray-900: var(--color-surface-dark-base);
   --color-gray-800: var(--color-surface-dark-elevated);
@@ -629,6 +836,10 @@ html.theme-switching *::after {
   color: var(--color-module-accent-purple-strong);
 }
 
+.module-accent-purple-connector {
+  background-color: var(--color-module-accent-purple-soft-border);
+}
+
 .module-accent-blue-number {
   background-color: var(--color-module-accent-blue-soft);
   border-color: var(--color-module-accent-blue-soft-border);
@@ -649,6 +860,10 @@ html.theme-switching *::after {
   color: var(--color-module-accent-blue-strong);
 }
 
+.module-accent-blue-connector {
+  background-color: var(--color-module-accent-blue-soft-border);
+}
+
 .module-accent-green-number {
   background-color: var(--color-module-accent-green-soft);
   border-color: var(--color-module-accent-green-soft-border);
@@ -667,6 +882,10 @@ html.theme-switching *::after {
   background-color: var(--color-module-accent-green-soft-2);
   border-color: var(--color-module-accent-green-soft-2-border);
   color: var(--color-module-accent-green-strong);
+}
+
+.module-accent-green-connector {
+  background-color: var(--color-module-accent-green-soft-border);
 }
 
 @layer base {

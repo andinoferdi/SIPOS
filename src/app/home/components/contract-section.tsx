@@ -59,19 +59,19 @@ const FLOW_ACCENT: Record<
   purple: {
     label: "module-accent-purple-label",
     panel: "module-accent-purple-endpoint",
-    connector: "bg-purple-200 dark:bg-purple-900",
+    connector: "module-accent-purple-connector",
     dot: "module-accent-purple-dot",
   },
   blue: {
     label: "module-accent-blue-label",
     panel: "module-accent-blue-endpoint",
-    connector: "bg-blue-200 dark:bg-blue-900",
+    connector: "module-accent-blue-connector",
     dot: "module-accent-blue-dot",
   },
   green: {
     label: "module-accent-green-label",
     panel: "module-accent-green-endpoint",
-    connector: "bg-green-200 dark:bg-green-900",
+    connector: "module-accent-green-connector",
     dot: "module-accent-green-dot",
   },
 };
@@ -115,7 +115,7 @@ export default function ContractSection() {
       <div className="wrapper">
         {/* Header */}
         <div className="mb-12">
-          <p className="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">
+          <p className="text-xs font-semibold uppercase tracking-widest marketing-accent-text">
             Alur SIPOS
           </p>
           <h2 className="mt-3 max-w-xl text-2xl font-bold text-(--token-gray-900) dark:text-(--token-white) md:text-3xl">
@@ -213,7 +213,7 @@ export default function ContractSection() {
           className="mt-14 scroll-mt-28 rounded-2xl border border-soft surface-elevated p-6 md:p-8"
         >
           <div className="mb-6">
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">
+            <p className="text-xs font-semibold uppercase tracking-widest marketing-accent-text">
               FAQ
             </p>
             <h3 className="mt-2 text-xl font-bold text-(--token-gray-900) dark:text-(--token-white)">

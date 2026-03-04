@@ -72,8 +72,8 @@ export function PortalHeader({ session, workspace }: PortalHeaderProps) {
 
         <div className="relative z-10 flex items-center gap-2">
           <div className="hidden items-center gap-2 rounded-lg border border-soft px-3 py-1.5 sm:flex">
-            <div className="flex h-5 w-5 items-center justify-center rounded-full bg-primary-100 dark:bg-primary-900/30">
-              <span className="text-[9px] font-bold text-primary-600 dark:text-primary-400">
+            <div className="accent-soft flex h-5 w-5 items-center justify-center rounded-full">
+              <span className="text-[9px] font-bold text-(--color-primary-600) dark:text-(--color-primary-400)">
                 {session.name?.charAt(0).toUpperCase() ?? "U"}
               </span>
             </div>

@@ -1,4 +1,4 @@
-﻿# SIPOS - Setup Guide
+# SIPOS - Setup Guide
 
 Panduan langkah demi langkah untuk menjalankan project ini dari nol.
 
@@ -26,13 +26,13 @@ npm install
 
 ## 3. Konfigurasi Environment Variables
 
-Gunakan hanya file `.env`.
+Gunakan file `.env` untuk runtime lokal.`r`n`r`nCommit hanya `.env.example`, jangan commit `.env`.
 
 Isi `.env` dengan format berikut dulu:
 
 ```env
-AUTH_SECRET="ganti_dengan_string_acak_panjang"
-AUTH_URL="http://localhost:3000"
+NEXTAUTH_SECRET="ganti_dengan_string_acak_panjang"
+NEXTAUTH_URL="http://localhost:3000"
 
 # Runtime app untuk serverless (transaction pooler)
 DATABASE_URL="postgresql://postgres.[project-ref]:[PASSWORD]@aws-1-[region].pooler.supabase.com:6543/postgres?pgbouncer=true"
@@ -227,3 +227,4 @@ Catatan:
 
 1. Endpoint domain internal di `src/app/api/portal/*` memakai format respons `{ ok: true, data }` dan `{ ok: false, error }`.
 2. Endpoint `src/app/api/auth/[...nextauth]/route.ts` adalah integrasi framework NextAuth dan diperlakukan non-applicable untuk format respons internal.
+

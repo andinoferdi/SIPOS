@@ -10,12 +10,12 @@ type CartItem = {
 };
 
 const MENU_ITEMS = [
-  { id: "p1", name: "Es Kopi Susu", price: 22000, emoji: "☕" },
-  { id: "p2", name: "Americano", price: 18000, emoji: "🫖" },
-  { id: "p3", name: "Matcha Latte", price: 25000, emoji: "🍃" },
-  { id: "p4", name: "Croissant", price: 30000, emoji: "🥐" },
-  { id: "p5", name: "Roti Bakar", price: 20000, emoji: "🍞" },
-  { id: "p6", name: "Nasi Ayam", price: 28000, emoji: "🍱" },
+  { id: "p1", name: "Es Kopi Susu", price: 22000, emoji: "\u2615" },
+  { id: "p2", name: "Americano", price: 18000, emoji: "\u{1FAE1}" },
+  { id: "p3", name: "Matcha Latte", price: 25000, emoji: "\u{1F343}" },
+  { id: "p4", name: "Croissant", price: 30000, emoji: "\u{1F950}" },
+  { id: "p5", name: "Roti Bakar", price: 20000, emoji: "\u{1F35E}" },
+  { id: "p6", name: "Nasi Ayam", price: 28000, emoji: "\u{1F371}" },
 ] as const;
 
 const SEQUENCE = ["p1", "p3", "p4"] as const;
@@ -61,9 +61,10 @@ export default function PosMockup() {
           const existing = prev.find((c) => c.id === itemId);
           if (existing) {
             return prev.map((c) =>
-              c.id === itemId ? { ...c, qty: c.qty + 1 } : c
+              c.id === itemId ? { ...c, qty: c.qty + 1 } : c,
             );
           }
+
           return [
             ...prev,
             { id: menuItem.id, name: menuItem.name, price: menuItem.price, qty: 1 },
@@ -98,24 +99,22 @@ export default function PosMockup() {
 
   return (
     <div className="relative w-full overflow-hidden rounded-2xl border border-soft surface-elevated shadow-2xl">
-      {/* Window chrome */}
       <div className="flex items-center justify-between border-b border-soft bg-(--token-gray-50) px-4 py-2.5 dark:bg-(--token-white-5)">
         <div className="flex items-center gap-1.5">
-          <span className="h-2.5 w-2.5 rounded-full bg-red-400" />
-          <span className="h-2.5 w-2.5 rounded-full bg-yellow-400" />
-          <span className="h-2.5 w-2.5 rounded-full bg-green-400" />
+          <span className="status-dot-error h-2.5 w-2.5 rounded-full" />
+          <span className="status-dot-warning h-2.5 w-2.5 rounded-full" />
+          <span className="status-dot-success h-2.5 w-2.5 rounded-full" />
         </div>
         <div className="flex items-center gap-2">
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-400" />
+          <span className="marketing-live-dot h-1.5 w-1.5 animate-pulse rounded-full" />
           <p className="text-[10px] font-semibold text-(--token-gray-500) dark:text-(--token-gray-400)">
-            SIPOS — Kasir Utama
+            SIPOS - Kasir Utama
           </p>
         </div>
-        <p className="text-[10px] text-(--token-gray-400)">Shift 08.00–16.00</p>
+        <p className="text-[10px] text-(--token-gray-400)">Shift 08.00-16.00</p>
       </div>
 
       <div className="grid grid-cols-[1fr_176px] divide-x divide-soft">
-        {/* Product grid */}
         <div className="p-3">
           <p className="mb-2.5 text-[9px] font-semibold uppercase tracking-widest text-(--token-gray-400)">
             Pilih Produk
@@ -126,7 +125,7 @@ export default function PosMockup() {
                 key={item.id}
                 className={`flex flex-col items-center rounded-xl border px-1.5 py-2 text-center transition-all duration-300 ${
                   activeItem === item.id
-                    ? "scale-95 border-primary-400 bg-primary-50 dark:bg-(--token-white-5)"
+                    ? "scale-95 marketing-highlight-border bg-(--color-primary-50) dark:bg-(--token-white-5)"
                     : "border-soft"
                 }`}
               >
@@ -134,7 +133,7 @@ export default function PosMockup() {
                 <p className="mt-1 text-[9px] font-semibold leading-tight text-(--token-gray-700) dark:text-(--token-gray-300)">
                   {item.name}
                 </p>
-                <p className="mt-0.5 text-[8px] font-medium text-primary-600 dark:text-primary-400">
+                <p className="marketing-accent-text mt-0.5 text-[8px] font-medium">
                   {FMT.format(item.price)}
                 </p>
               </div>
@@ -142,7 +141,6 @@ export default function PosMockup() {
           </div>
         </div>
 
-        {/* Order panel */}
         <div className="flex flex-col">
           <div className="border-b border-soft px-3 py-2">
             <p className="text-[9px] font-semibold uppercase tracking-widest text-(--token-gray-400)">
@@ -157,17 +155,12 @@ export default function PosMockup() {
               </p>
             ) : (
               cart.map((item) => (
-                <div
-                  key={item.id}
-                  className="flex items-start justify-between gap-1"
-                >
+                <div key={item.id} className="flex items-start justify-between gap-1">
                   <div>
                     <p className="text-[9px] font-semibold leading-tight text-(--token-gray-800) dark:text-(--token-gray-200)">
                       {item.name}
                     </p>
-                    <p className="text-[8px] text-(--token-gray-400)">
-                      x{item.qty}
-                    </p>
+                    <p className="text-[8px] text-(--token-gray-400)">x{item.qty}</p>
                   </div>
                   <p className="shrink-0 text-[9px] font-semibold text-(--token-gray-700) dark:text-(--token-gray-300)">
                     {FMT.format(item.price * item.qty)}
@@ -177,7 +170,6 @@ export default function PosMockup() {
             )}
           </div>
 
-          {/* Summary & Pay */}
           <div className="space-y-1.5 border-t border-soft p-3">
             <div className="flex justify-between text-[9px] text-(--token-gray-500)">
               <span>Subtotal</span>
@@ -195,16 +187,16 @@ export default function PosMockup() {
 
             <button
               type="button"
-              className={`mt-1.5 w-full rounded-lg py-2 text-[10px] font-bold text-white transition-all duration-300 ${
+              className={`mt-1.5 w-full rounded-lg py-2 text-[10px] font-bold transition-all duration-300 ${
                 phase === "receipt"
-                  ? "bg-green-500"
+                  ? "button-pay-success"
                   : phase === "paying"
-                    ? "animate-pulse bg-primary-500"
-                    : "bg-primary-600"
+                    ? "button-pay-processing animate-pulse"
+                    : "button-pay-default"
               }`}
             >
               {phase === "receipt"
-                ? "✓ Lunas"
+                ? "Lunas"
                 : phase === "paying"
                   ? "Memproses..."
                   : "Bayar Sekarang"}
@@ -213,13 +205,12 @@ export default function PosMockup() {
         </div>
       </div>
 
-      {/* Receipt overlay */}
       {phase === "receipt" && (
         <div className="absolute inset-0 flex items-center justify-center bg-(--token-gray-900)/70 backdrop-blur-sm">
           <div className="w-44 rounded-2xl border border-soft surface-elevated p-5 text-center shadow-2xl">
-            <div className="mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full bg-green-500">
+            <div className="button-pay-success mx-auto mb-3 flex h-10 w-10 items-center justify-center rounded-full">
               <svg
-                className="h-5 w-5 text-white"
+                className="h-5 w-5 text-(--token-white)"
                 viewBox="0 0 20 20"
                 fill="currentColor"
                 aria-hidden="true"
@@ -234,16 +225,14 @@ export default function PosMockup() {
             <p className="text-sm font-bold text-(--token-gray-900) dark:text-(--token-white)">
               Pembayaran Berhasil
             </p>
-            <p className="mt-1 text-[11px] font-semibold text-primary-600 dark:text-primary-400">
+            <p className="marketing-accent-text mt-1 text-[11px] font-semibold">
               {FMT.format(grandTotal)}
             </p>
             <div className="mt-3 space-y-1 rounded-lg bg-(--token-gray-100) p-2 dark:bg-(--token-white-5)">
               <p className="text-[9px] text-(--token-gray-500)">
                 Transaksi #TRX-{Math.floor(Math.random() * 9000) + 1000}
               </p>
-              <p className="text-[9px] text-(--token-gray-400)">
-                Struk siap dikirim
-              </p>
+              <p className="text-[9px] text-(--token-gray-400)">Struk siap dikirim</p>
             </div>
           </div>
         </div>

@@ -4,48 +4,48 @@ import { Menu, X } from "lucide-react";
 import Image from "next/image";
 import React, { useState } from "react";
 
-interface NavbarProps {
+type NavbarProps = {
   children: React.ReactNode;
   className?: string;
   scrollThreshold?: number;
   mode?: "fixed" | "sticky";
   glassOnScroll?: boolean;
-}
+};
 
-interface NavBodyProps {
+type NavBodyProps = {
   children: React.ReactNode;
   className?: string;
   isScrolled?: boolean;
   visible?: boolean;
-}
+};
 
-interface NavItemsProps {
+type NavItemsProps = {
   items: {
     name: string;
     link: string;
   }[];
   className?: string;
   onItemClick?: () => void;
-}
+};
 
-interface MobileNavProps {
+type MobileNavProps = {
   children: React.ReactNode;
   className?: string;
   isScrolled?: boolean;
   visible?: boolean;
-}
+};
 
-interface MobileNavHeaderProps {
+type MobileNavHeaderProps = {
   children: React.ReactNode;
   className?: string;
-}
+};
 
-interface MobileNavMenuProps {
+type MobileNavMenuProps = {
   children: React.ReactNode;
   className?: string;
   isOpen: boolean;
   onClose: () => void;
-}
+};
 
 export const Navbar = ({
   children,
@@ -77,7 +77,7 @@ export const Navbar = ({
         !glassOnScroll
           ? "border-transparent bg-transparent backdrop-blur-0 shadow-none"
           : isScrolled
-            ? "border-soft shadow-[0_8px_30px_-22px_rgba(0,0,0,0.45)] backdrop-blur-xl supports-[backdrop-filter:blur(0px)]:bg-[color-mix(in_oklab,var(--color-marketing-light-canvas)_86%,transparent)] dark:supports-[backdrop-filter:blur(0px)]:bg-[color-mix(in_oklab,var(--color-marketing-dark-canvas)_82%,transparent)]"
+            ? "border-soft marketing-nav-glass"
             : "border-transparent bg-transparent backdrop-blur-0 shadow-none",
         className
       )}
@@ -139,7 +139,7 @@ export const NavItems = ({ items, className, onItemClick }: NavItemsProps) => {
         >
           {item.name}
           {hovered === idx && (
-            <div className="absolute bottom-0 left-0 h-0.5 w-full bg-primary transition-all duration-200" />
+            <div className="absolute bottom-0 left-0 h-0.5 w-full bg-(--color-primary-600) transition-all duration-200" />
           )}
         </a>
       ))}
@@ -217,9 +217,9 @@ export const MobileNavToggle = ({
   onClick: () => void;
 }) => {
   return isOpen ? (
-    <X className="text-black dark:text-white cursor-pointer" onClick={onClick} />
+    <X className="text-(--token-gray-900) dark:text-(--token-white-90) cursor-pointer" onClick={onClick} />
   ) : (
-    <Menu className="text-black dark:text-white cursor-pointer" onClick={onClick} />
+    <Menu className="text-(--token-gray-900) dark:text-(--token-white-90) cursor-pointer" onClick={onClick} />
   );
 };
 
@@ -227,10 +227,10 @@ export const NavbarLogo = () => {
   return (
     <a
       href="#"
-      className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-black"
+      className="relative z-20 mr-4 flex items-center space-x-2 px-2 py-1 text-sm font-normal text-(--token-gray-900) dark:text-(--token-white-90)"
     >
       <Image src="/images/Logo.png" alt="SIPOS" width={30} height={30} />
-      <span className="font-medium text-black dark:text-white">Startup</span>
+      <span className="font-medium text-(--token-gray-900) dark:text-(--token-white-90)">Startup</span>
     </a>
   );
 };
@@ -262,11 +262,11 @@ export const NavbarButton = ({
     string
   > = {
     primary:
-      "bg-primary text-primary-foreground hover:opacity-90 active:scale-95",
+      "bg-(--color-primary-600) text-(--token-white) hover:opacity-90 active:scale-95",
     secondary: "text-foreground hover:bg-muted",
-    dark: "bg-black text-white hover:bg-black/90 active:scale-95 dark:bg-white dark:text-black dark:hover:bg-white/90",
+    dark: "bg-(--token-gray-900) text-(--token-white) hover:bg-(--token-gray-700) active:scale-95 dark:bg-(--token-white) dark:text-(--token-gray-900) dark:hover:bg-(--token-gray-200)",
     gradient:
-      "bg-gradient-to-r from-primary via-primary/90 to-primary/75 text-primary-foreground hover:brightness-105 active:scale-95",
+      "bg-[linear-gradient(90deg,var(--color-primary-700),var(--color-primary-600),var(--color-primary-500))] text-(--token-white) hover:brightness-105 active:scale-95",
   };
 
   return (
@@ -279,3 +279,4 @@ export const NavbarButton = ({
     </Tag>
   );
 };
+

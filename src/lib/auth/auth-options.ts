@@ -1,4 +1,6 @@
-﻿import type { NextAuthOptions } from "next-auth";
+import "server-only";
+
+import type { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { z } from "zod";
 import { prisma } from "@/lib/db/prisma";
@@ -101,6 +103,7 @@ export const authOptions: NextAuthOptions = {
       return session;
     },
   },
-  secret: process.env.NEXTAUTH_SECRET ?? process.env.AUTH_SECRET,
+  secret: process.env.NEXTAUTH_SECRET,
 };
+
 

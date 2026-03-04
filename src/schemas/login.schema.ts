@@ -4,7 +4,7 @@ export const loginSchema = z.object({
   identifier: z
     .string()
     .trim()
-    .min(3, "Email wajib diisi")
+    .min(1, "Email wajib diisi")
     .email("Format email tidak valid"),
   password: z.string().min(8, "Password minimal 8 karakter"),
 });

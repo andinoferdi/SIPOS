@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState, useCallback } from "react";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { useForm } from "react-hook-form";
 import {
   Loader2,
   Pencil,
@@ -26,52 +28,49 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { PortalHeader } from "@/app/portal/components/portal-header";
-
-
-
-type POSInstance = {
-  id: string;
-  name: string;
-  type: "TABLE_SERVICE" | "TAB_SERVICE";
-  total_table: number;
-  is_active: boolean;
-  created_at: string;
-  updated_at: string;
-  table_labels: Array<{
-    position: number;
-    label: string;
-  }>;
-};
-
-type PortalData = {
-  workspace: {
-    id: string;
-    code: string;
-    name: string;
-  };
-  items: POSInstance[];
-};
+import {
+  createPortalInstanceSchema,
+  tableLabelSchema,
+  updatePortalInstanceSchema,
+  type CreatePortalInstanceFormInput,
+  type CreatePortalInstanceInput,
+  type TableLabelFormInput,
+  type TableLabelInput,
+  type UpdatePortalInstanceFormInput,
+  type UpdatePortalInstanceInput,
+} from "@/schemas/portal.schema";
+import {
+  createPortalInstance as createPortalInstanceRequest,
+  deletePortalInstance as deletePortalInstanceRequest,
+  fetchPortalInstances,
+  type PortalData,
+  type PortalInstance,
+  updatePortalInstance as updatePortalInstanceRequest,
+  updatePortalTableLabel as updatePortalTableLabelRequest,
+} from "@/services/portal";
+import { ServiceHttpError } from "@/services/http/errors";
 
 type PortalClientProps = {
   session: AuthUser;
 };
 
-type APIResponse<T> =
-  | { ok: true; data: T }
-  | { ok: false; error: string };
-
-// ---------------------------------------------------------------------------
-// Constants
-// ---------------------------------------------------------------------------
+type POSInstance = PortalInstance;
 
 const TYPE_LABEL: Record<POSInstance["type"], string> = {
   TABLE_SERVICE: "Table Service",
   TAB_SERVICE: "Tab Service",
 };
 
-// ---------------------------------------------------------------------------
-// Helpers
-// ---------------------------------------------------------------------------
+const PRIMARY_BUTTON_CLS =
+  "inline-flex items-center justify-center gap-2 rounded-xl bg-(--color-primary-600) px-4 py-2.5 text-sm font-semibold text-(--token-white) transition-opacity hover:opacity-80";
+const ICON_ACTION_CLS =
+  "inline-flex h-9 w-9 items-center justify-center rounded-lg border border-soft text-(--token-gray-500) transition-colors hover:bg-(--token-gray-100) hover:text-(--token-gray-800) dark:text-(--token-gray-400) dark:hover:bg-(--token-white-5) dark:hover:text-(--token-white)";
+const INPUT_CLS =
+  "h-10 w-full rounded-lg border border-soft bg-(--token-white) px-3 text-sm text-(--token-gray-900) outline-none transition-colors focus:border-(--color-primary-500) disabled:opacity-50 dark:bg-(--color-surface-dark-subtle) dark:text-(--token-white-90)";
+const SELECT_CLS = INPUT_CLS;
+const LABEL_CLS =
+  "mb-1.5 block text-xs font-semibold uppercase tracking-[0.06em] text-(--token-gray-400) dark:text-(--token-gray-500)";
+const FORM_ERROR_CLS = "intent-error-text mt-1 text-xs";
 
 function getErrorLabel(code: string) {
   const map: Record<string, string> = {
@@ -89,16 +88,17 @@ function getErrorLabel(code: string) {
   return map[code] ?? `Terjadi error: ${code}`;
 }
 
-async function parseApiResponse<T>(response: Response) {
-  const data = (await response.json().catch(() => null)) as APIResponse<T> | null;
-  if (!data) throw new Error("internal_error");
-  if (!data.ok) throw new Error(data.error);
-  return data.data;
-}
+function getErrorCode(error: unknown) {
+  if (error instanceof ServiceHttpError) {
+    return error.code;
+  }
 
-// ---------------------------------------------------------------------------
-// Sub-components
-// ---------------------------------------------------------------------------
+  if (error instanceof Error) {
+    return error.message;
+  }
+
+  return "internal_error";
+}
 
 function InstanceTypeBadge({ type }: { type: POSInstance["type"] }) {
   return (
@@ -121,7 +121,6 @@ function InstanceCard({
 }) {
   return (
     <article className="group flex flex-col overflow-hidden rounded-2xl border border-soft surface-elevated transition-shadow hover:shadow-md">
-      {/* Card header */}
       <div className="flex items-start justify-between gap-3 border-b border-soft p-5">
         <div className="min-w-0 flex-1">
           <h2 className="truncate text-base font-bold text-(--token-gray-900) dark:text-(--token-white)">
@@ -139,9 +138,7 @@ function InstanceCard({
         <InstanceTypeBadge type={instance.type} />
       </div>
 
-      {/* Card body */}
       <div className="flex flex-1 flex-col gap-4 p-5">
-        {/* Meta */}
         <div className="flex flex-wrap gap-3">
           <div className="flex items-center gap-1.5 text-xs text-(--token-gray-500) dark:text-(--token-gray-400)">
             {instance.type === "TABLE_SERVICE" ? (
@@ -162,11 +159,10 @@ function InstanceCard({
           </div>
         </div>
 
-        {/* Status */}
         <div className="flex items-center gap-1.5">
           <span
             className={`h-1.5 w-1.5 shrink-0 rounded-full ${
-              instance.is_active ? "bg-green-400" : "bg-(--token-gray-300)"
+              instance.is_active ? "intent-success-dot" : "intent-info-dot"
             }`}
           />
           <span className="text-xs font-medium text-(--token-gray-500) dark:text-(--token-gray-400)">
@@ -174,11 +170,10 @@ function InstanceCard({
           </span>
         </div>
 
-        {/* Actions */}
         <div className="mt-auto flex flex-wrap items-center gap-2">
           <Link
             href={`/dashboard/${instance.id}`}
-            className="inline-flex flex-1 items-center justify-center gap-2 rounded-xl bg-primary-600 px-4 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
+            className={`${PRIMARY_BUTTON_CLS} flex-1`}
           >
             Masuk POS
             <svg width="12" height="12" viewBox="0 0 14 14" fill="none" aria-hidden="true">
@@ -191,7 +186,7 @@ function InstanceCard({
               <button
                 type="button"
                 onClick={() => onEdit(instance)}
-                className="inline-flex h-9 w-9 items-center justify-center rounded-lg border border-soft text-(--token-gray-500) transition-colors hover:bg-(--token-gray-100) hover:text-(--token-gray-800) dark:text-(--token-gray-400) dark:hover:bg-(--token-white-5) dark:hover:text-(--token-white)"
+                className={ICON_ACTION_CLS}
                 aria-label="Edit instance"
               >
                 <Pencil size={14} />
@@ -229,7 +224,7 @@ function EmptyState({ isAdmin, onAdd }: { isAdmin: boolean; onAdd: () => void })
         <button
           type="button"
           onClick={onAdd}
-          className="mt-6 inline-flex items-center gap-2 rounded-xl bg-primary-600 px-5 py-2.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
+          className={`${PRIMARY_BUTTON_CLS} mt-6 px-5`}
         >
           <Plus size={15} />
           Tambah Instance Pertama
@@ -239,42 +234,103 @@ function EmptyState({ isAdmin, onAdd }: { isAdmin: boolean; onAdd: () => void })
   );
 }
 
-const INPUT_CLS =
-  "h-10 w-full rounded-lg border border-soft bg-(--token-white) px-3 text-sm text-(--token-gray-900) outline-none transition-colors focus:border-primary-500 disabled:opacity-50 dark:bg-(--color-surface-dark-subtle) dark:text-(--token-white-90)";
+function TableLabelRow({
+  instanceId,
+  position,
+  fallbackLabel,
+  disabled,
+  onSave,
+}: {
+  instanceId: string;
+  position: number;
+  fallbackLabel: string;
+  disabled: boolean;
+  onSave: (instanceId: string, position: number, label: string) => Promise<void>;
+}) {
+  const labelForm = useForm<TableLabelFormInput, unknown, TableLabelInput>({
+    resolver: zodResolver(tableLabelSchema),
+    defaultValues: { label: fallbackLabel },
+  });
 
-const SELECT_CLS =
-  "h-10 w-full rounded-lg border border-soft bg-(--token-white) px-3 text-sm text-(--token-gray-900) outline-none transition-colors focus:border-primary-500 disabled:opacity-50 dark:bg-(--color-surface-dark-subtle) dark:text-(--token-white-90)";
+  useEffect(() => {
+    labelForm.reset({ label: fallbackLabel });
+  }, [fallbackLabel, labelForm]);
 
-const LABEL_CLS =
-  "block text-xs font-semibold uppercase tracking-[0.06em] text-(--token-gray-400) dark:text-(--token-gray-500) mb-1.5";
+  const isSubmitting = disabled || labelForm.formState.isSubmitting;
+
+  return (
+    <form
+      onSubmit={labelForm.handleSubmit(async (values) => {
+        await onSave(instanceId, position, values.label);
+      })}
+      className="flex items-center gap-2 rounded-lg border border-soft px-3 py-2"
+    >
+      <span className="w-14 shrink-0 text-xs font-semibold text-(--token-gray-500) dark:text-(--token-gray-400)">
+        Meja {position}
+      </span>
+      <div className="flex-1">
+        <input
+          {...labelForm.register("label")}
+          className="h-8 w-full rounded-md border border-soft bg-transparent px-2 text-xs text-(--token-gray-900) outline-none transition-colors focus:border-(--color-primary-500) dark:text-(--token-white-90)"
+          maxLength={10}
+          disabled={isSubmitting}
+        />
+        {labelForm.formState.errors.label?.message ? (
+          <p className={FORM_ERROR_CLS}>{labelForm.formState.errors.label.message}</p>
+        ) : null}
+      </div>
+      <button
+        type="submit"
+        className="inline-flex h-8 shrink-0 items-center rounded-md bg-(--color-primary-600) px-2 text-xs font-semibold text-(--token-white) transition-opacity hover:opacity-80 disabled:opacity-50"
+        disabled={isSubmitting}
+      >
+        Simpan
+      </button>
+    </form>
+  );
+}
 
 const ITEMS_PER_PAGE = 6;
-
-// ---------------------------------------------------------------------------
-// Main component
-// ---------------------------------------------------------------------------
 
 export default function PortalClient({ session }: PortalClientProps) {
   const [portalData, setPortalData] = useState<PortalData | null>(null);
   const [isLoading, setIsLoading] = useState(true);
   const [isMutating, setIsMutating] = useState(false);
 
-  // Create modal
   const [showCreateModal, setShowCreateModal] = useState(false);
-  const [createName, setCreateName] = useState("");
-  const [createType, setCreateType] = useState<POSInstance["type"]>("TABLE_SERVICE");
-  const [createTotalTable, setCreateTotalTable] = useState("10");
 
-  // Edit modal
   const [editingId, setEditingId] = useState<string | null>(null);
-  const [editName, setEditName] = useState("");
-  const [editTotalTable, setEditTotalTable] = useState("");
 
-  // Admin panel
   const [adminOpen, setAdminOpen] = useState(false);
   const [tableEditorId, setTableEditorId] = useState<string | null>(null);
-  const [labelDrafts, setLabelDrafts] = useState<Record<string, string>>({});
   const [currentPage, setCurrentPage] = useState(1);
+
+  const createForm = useForm<
+    CreatePortalInstanceFormInput,
+    unknown,
+    CreatePortalInstanceInput
+  >({
+    resolver: zodResolver(createPortalInstanceSchema),
+    defaultValues: {
+      name: "",
+      type: "TABLE_SERVICE",
+      total_table: 10,
+    },
+  });
+
+  const updateForm = useForm<
+    UpdatePortalInstanceFormInput,
+    unknown,
+    UpdatePortalInstanceInput
+  >({
+    resolver: zodResolver(updatePortalInstanceSchema),
+    defaultValues: {
+      name: "",
+      total_table: undefined,
+    },
+  });
+
+  const createType = createForm.watch("type");
 
   const isAdmin = session.role === "admin";
   const activeInstances = useMemo(() => portalData?.items ?? [], [portalData]);
@@ -294,14 +350,10 @@ export default function PortalClient({ session }: PortalClientProps) {
   const loadInstances = useCallback(async () => {
     setIsLoading(true);
     try {
-      const response = await fetch("/api/portal/instances", {
-        method: "GET",
-        cache: "no-store",
-      });
-      const data = await parseApiResponse<PortalData>(response);
+      const data = await fetchPortalInstances();
       setPortalData(data);
     } catch (error) {
-      const message = error instanceof Error ? error.message : "internal_error";
+      const message = getErrorCode(error);
       toast.error(getErrorLabel(message));
     } finally {
       setIsLoading(false);
@@ -316,47 +368,47 @@ export default function PortalClient({ session }: PortalClientProps) {
     setCurrentPage((prev) => Math.min(Math.max(prev, 1), totalPages));
   }, [totalPages]);
 
-  // Create
-  async function handleCreateInstance(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  useEffect(() => {
+    if (!showCreateModal) {
+      createForm.reset({
+        name: "",
+        type: "TABLE_SERVICE",
+        total_table: 10,
+      });
+    }
+  }, [showCreateModal, createForm]);
+
+  async function handleCreateInstance(values: CreatePortalInstanceInput) {
     if (!isAdmin) return;
     setIsMutating(true);
     try {
       const payload: { name: string; type: POSInstance["type"]; total_table?: number } = {
-        name: createName,
-        type: createType,
+        name: values.name,
+        type: values.type,
       };
-      if (createType === "TABLE_SERVICE") payload.total_table = Number(createTotalTable);
+      if (values.type === "TABLE_SERVICE") payload.total_table = values.total_table;
 
-      const response = await fetch("/api/portal/instances", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      await parseApiResponse<POSInstance>(response);
+      await createPortalInstanceRequest(payload);
       toast.success("POS Instance berhasil dibuat.");
-      setCreateName("");
-      setCreateType("TABLE_SERVICE");
-      setCreateTotalTable("10");
       setShowCreateModal(false);
       await loadInstances();
     } catch (error) {
-      const message = error instanceof Error ? error.message : "internal_error";
+      const message = getErrorCode(error);
       toast.error(getErrorLabel(message));
     } finally {
       setIsMutating(false);
     }
   }
 
-  // Edit
   function startEdit(instance: POSInstance) {
     setEditingId(instance.id);
-    setEditName(instance.name);
-    setEditTotalTable(instance.type === "TABLE_SERVICE" ? String(instance.total_table) : "");
+    updateForm.reset({
+      name: instance.name,
+      total_table: instance.type === "TABLE_SERVICE" ? instance.total_table : undefined,
+    });
   }
 
-  async function handleUpdateInstance(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
+  async function handleUpdateInstance(values: UpdatePortalInstanceInput) {
     if (!isAdmin || !editingId) return;
     const target = activeInstances.find((item) => item.id === editingId);
     if (!target) return;
@@ -364,71 +416,56 @@ export default function PortalClient({ session }: PortalClientProps) {
     setIsMutating(true);
     try {
       const payload: { name?: string; total_table?: number } = {};
-      if (editName.trim() !== target.name) payload.name = editName;
+      if (values.name && values.name.trim() !== target.name) payload.name = values.name;
       if (target.type === "TABLE_SERVICE") {
-        const numericTotal = Number(editTotalTable);
-        if (!Number.isNaN(numericTotal) && numericTotal !== target.total_table)
+        const numericTotal = values.total_table;
+        if (numericTotal !== undefined && !Number.isNaN(numericTotal) && numericTotal !== target.total_table)
           payload.total_table = numericTotal;
       }
       if (Object.keys(payload).length === 0) {
         toast.info("Tidak ada perubahan untuk disimpan.");
         return;
       }
-      const response = await fetch(`/api/portal/instances/${editingId}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(payload),
-      });
-      await parseApiResponse<POSInstance>(response);
+      await updatePortalInstanceRequest(editingId, payload);
       toast.success("POS Instance berhasil diperbarui.");
       setEditingId(null);
       await loadInstances();
     } catch (error) {
-      const message = error instanceof Error ? error.message : "internal_error";
+      const message = getErrorCode(error);
       toast.error(getErrorLabel(message));
     } finally {
       setIsMutating(false);
     }
   }
 
-  // Delete
   async function handleDeleteInstance(id: string) {
     if (!isAdmin) return;
     const confirmed = window.confirm("Hapus POS Instance ini?");
     if (!confirmed) return;
     setIsMutating(true);
     try {
-      const response = await fetch(`/api/portal/instances/${id}`, { method: "DELETE" });
-      await parseApiResponse<{ id: string; is_active: boolean }>(response);
+      await deletePortalInstanceRequest(id);
       toast.success("POS Instance berhasil dihapus.");
       if (editingId === id) setEditingId(null);
       if (tableEditorId === id) setTableEditorId(null);
       await loadInstances();
     } catch (error) {
-      const message = error instanceof Error ? error.message : "internal_error";
+      const message = getErrorCode(error);
       toast.error(getErrorLabel(message));
     } finally {
       setIsMutating(false);
     }
   }
 
-  // Table label
-  async function handleSaveLabel(instanceId: string, position: number, fallbackLabel: string) {
+  async function handleSaveLabel(instanceId: string, position: number, label: string) {
     if (!isAdmin) return;
-    const key = `${instanceId}:${position}`;
-    const label = (labelDrafts[key] ?? fallbackLabel).trim().toLowerCase();
     setIsMutating(true);
     try {
-      const response = await fetch(`/api/portal/instances/${instanceId}/tables/${position}`, {
-        method: "PATCH",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ label }),
-      });
-      await parseApiResponse<{ pos_instance_id: string; position: number; label: string }>(response);
+      await updatePortalTableLabelRequest(instanceId, position, { label });
       toast.success(`Label meja #${position} berhasil disimpan.`);
       await loadInstances();
     } catch (error) {
-      const message = error instanceof Error ? error.message : "internal_error";
+      const message = getErrorCode(error);
       toast.error(getErrorLabel(message));
     } finally {
       setIsMutating(false);
@@ -444,13 +481,10 @@ export default function PortalClient({ session }: PortalClientProps) {
 
       <PortalHeader session={session} workspace={portalData?.workspace} />
 
-      {/* ── Main content ── */}
       <main className="mx-auto w-full max-w-7xl px-5 py-10 pt-24 sm:px-7 md:py-12 md:pt-28">
-
-        {/* Page heading */}
         <div className="mb-8 flex flex-wrap items-center justify-between gap-4">
           <div>
-            <p className="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">
+            <p className="text-xs font-semibold uppercase tracking-widest text-(--color-primary-600) dark:text-(--color-primary-400)">
               SIPOS Portal
             </p>
             <h1 className="mt-1.5 text-2xl font-bold text-(--token-gray-900) dark:text-(--token-white) md:text-3xl">
@@ -473,7 +507,7 @@ export default function PortalClient({ session }: PortalClientProps) {
               <button
                 type="button"
                 onClick={() => setShowCreateModal(true)}
-                className="inline-flex items-center gap-2 rounded-lg bg-primary-600 px-3 py-2 text-sm font-semibold text-white transition-opacity hover:opacity-80"
+                className="inline-flex items-center gap-2 rounded-lg bg-(--color-primary-600) px-3 py-2 text-sm font-semibold text-(--token-white) transition-opacity hover:opacity-80"
               >
                 <Plus size={14} />
                 Tambah Instance
@@ -482,7 +516,6 @@ export default function PortalClient({ session }: PortalClientProps) {
           </div>
         </div>
 
-        {/* Instance list */}
         {isLoading ? (
           <div className="grid gap-4 md:grid-cols-2 xl:grid-cols-3">
             {Array.from({ length: 3 }).map((_, i) => (
@@ -517,7 +550,6 @@ export default function PortalClient({ session }: PortalClientProps) {
           </>
         )}
 
-        {/* ── Admin panel (collapsible) ── */}
         {isAdmin && (
           <div className="mt-10 overflow-hidden rounded-2xl border border-soft surface-elevated">
             <button
@@ -526,7 +558,7 @@ export default function PortalClient({ session }: PortalClientProps) {
               className="flex w-full items-center justify-between px-6 py-4 text-left transition-colors hover:bg-(--token-gray-100) dark:hover:bg-(--token-white-5)"
             >
               <div>
-                <p className="text-xs font-semibold uppercase tracking-widest text-primary-600 dark:text-primary-400">
+                <p className="text-xs font-semibold uppercase tracking-widest text-(--color-primary-600) dark:text-(--color-primary-400)">
                   Admin
                 </p>
                 <p className="mt-0.5 text-sm font-bold text-(--token-gray-900) dark:text-(--token-white)">
@@ -542,7 +574,6 @@ export default function PortalClient({ session }: PortalClientProps) {
 
             {adminOpen && (
               <div className="space-y-5 border-t border-soft px-6 py-5">
-                {/* Instance table */}
                 <div className="overflow-x-auto rounded-xl border border-soft">
                   <table className="w-full min-w-[640px] text-left text-sm">
                     <thead className="bg-(--token-gray-100) text-xs text-(--token-gray-600) dark:bg-(--token-white-5) dark:text-(--token-gray-300)">
@@ -616,12 +647,11 @@ export default function PortalClient({ session }: PortalClientProps) {
                   </table>
                 </div>
 
-                {/* Table label editor */}
                 {tableEditorId && (
                   <div className="space-y-3 rounded-xl border border-soft p-4">
                     <div className="flex items-center justify-between">
                       <p className="text-xs font-semibold uppercase tracking-widest text-(--token-gray-500) dark:text-(--token-gray-400)">
-                        Edit Label Meja —{" "}
+                        Edit Label Meja -{" "}
                         {activeInstances.find((item) => item.id === tableEditorId)?.name}
                       </p>
                       <button
@@ -644,36 +674,15 @@ export default function PortalClient({ session }: PortalClientProps) {
                           {Array.from({ length: instance.total_table }, (_, idx) => {
                             const position = idx + 1;
                             const fallback = byPosition.get(position) ?? `${position}`;
-                            const key = `${instance.id}:${position}`;
                             return (
-                              <div
-                                key={key}
-                                className="flex items-center gap-2 rounded-lg border border-soft px-3 py-2"
-                              >
-                                <span className="w-14 shrink-0 text-xs font-semibold text-(--token-gray-500) dark:text-(--token-gray-400)">
-                                  Meja {position}
-                                </span>
-                                <input
-                                  value={labelDrafts[key] ?? fallback}
-                                  onChange={(e) =>
-                                    setLabelDrafts((prev) => ({
-                                      ...prev,
-                                      [key]: e.target.value,
-                                    }))
-                                  }
-                                  className="h-8 flex-1 rounded-md border border-soft bg-transparent px-2 text-xs text-(--token-gray-800) outline-none focus:border-primary-500 dark:text-(--token-gray-200)"
-                                  maxLength={10}
-                                  disabled={isMutating}
-                                />
-                                <button
-                                  type="button"
-                                  onClick={() => void handleSaveLabel(instance.id, position, fallback)}
-                                  className="h-8 shrink-0 rounded-md bg-primary-600 px-2 text-xs font-semibold text-white transition-opacity hover:opacity-85 disabled:opacity-50"
-                                  disabled={isMutating}
-                                >
-                                  Simpan
-                                </button>
-                              </div>
+                              <TableLabelRow
+                                key={`${instance.id}:${position}`}
+                                instanceId={instance.id}
+                                position={position}
+                                fallbackLabel={fallback}
+                                disabled={isMutating}
+                                onSave={handleSaveLabel}
+                              />
                             );
                           })}
                         </div>
@@ -687,30 +696,45 @@ export default function PortalClient({ session }: PortalClientProps) {
         )}
       </main>
 
-      {/* ── Create modal ── */}
       <Dialog open={showCreateModal} onOpenChange={setShowCreateModal}>
         <DialogContent size="md">
           <DialogHeader>
             <DialogTitle>Tambah POS Instance</DialogTitle>
           </DialogHeader>
-          <form onSubmit={handleCreateInstance} className="space-y-4">
+          <form
+            onSubmit={createForm.handleSubmit(async (values) => {
+              await handleCreateInstance(values);
+            })}
+            className="space-y-4"
+          >
             <div>
               <label className={LABEL_CLS}>Nama Instance</label>
               <input
-                value={createName}
-                onChange={(e) => setCreateName(e.target.value)}
+                {...createForm.register("name")}
                 placeholder="Cth: Kasir Utama, Outlet Lantai 2"
                 className={INPUT_CLS}
-                required
                 disabled={isMutating}
               />
+              {createForm.formState.errors.name?.message ? (
+                <p className={FORM_ERROR_CLS}>{createForm.formState.errors.name.message}</p>
+              ) : null}
             </div>
 
             <div>
               <label className={LABEL_CLS}>Tipe</label>
               <select
                 value={createType}
-                onChange={(e) => setCreateType(e.target.value as POSInstance["type"])}
+                onChange={(event) => {
+                  const nextType = event.target.value as POSInstance["type"];
+                  createForm.setValue("type", nextType, { shouldValidate: true });
+                  if (nextType === "TAB_SERVICE") {
+                    createForm.setValue("total_table", undefined, { shouldValidate: true });
+                    return;
+                  }
+                  if (!createForm.getValues("total_table")) {
+                    createForm.setValue("total_table", 10, { shouldValidate: true });
+                  }
+                }}
                 className={SELECT_CLS}
                 disabled={isMutating}
               >
@@ -723,15 +747,24 @@ export default function PortalClient({ session }: PortalClientProps) {
               <div>
                 <label className={LABEL_CLS}>Total Meja</label>
                 <input
-                  value={createTotalTable}
-                  onChange={(e) => setCreateTotalTable(e.target.value)}
+                  value={String(createForm.watch("total_table") ?? "")}
+                  onChange={(event) => {
+                    const next = Number(event.target.value);
+                    createForm.setValue(
+                      "total_table",
+                      Number.isNaN(next) ? undefined : next,
+                      { shouldValidate: true },
+                    );
+                  }}
                   placeholder="10"
                   type="number"
                   min="1"
                   className={INPUT_CLS}
-                  required
                   disabled={isMutating}
                 />
+                {createForm.formState.errors.total_table?.message ? (
+                  <p className={FORM_ERROR_CLS}>{createForm.formState.errors.total_table.message}</p>
+                ) : null}
               </div>
             )}
 
@@ -746,7 +779,7 @@ export default function PortalClient({ session }: PortalClientProps) {
               <button
                 type="submit"
                 disabled={isMutating}
-                className="inline-flex h-10 items-center gap-2 rounded-lg bg-primary-600 px-5 text-sm font-semibold text-white transition-opacity hover:opacity-80 disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-2 rounded-lg bg-(--color-primary-600) px-5 text-sm font-semibold text-(--token-white) transition-opacity hover:opacity-80 disabled:opacity-50"
               >
                 {isMutating ? <Loader2 size={14} className="animate-spin" /> : <Plus size={14} />}
                 Tambah
@@ -762,29 +795,45 @@ export default function PortalClient({ session }: PortalClientProps) {
             <DialogTitle>Edit POS Instance</DialogTitle>
           </DialogHeader>
           {editingId && editingTarget && (
-            <form onSubmit={handleUpdateInstance} className="space-y-4">
+            <form
+              onSubmit={updateForm.handleSubmit(async (values) => {
+                await handleUpdateInstance(values);
+              })}
+              className="space-y-4"
+            >
             <div>
               <label className={LABEL_CLS}>Nama Instance</label>
               <input
-                value={editName}
-                onChange={(e) => setEditName(e.target.value)}
+                {...updateForm.register("name")}
                 className={INPUT_CLS}
-                required
                 disabled={isMutating}
               />
+              {updateForm.formState.errors.name?.message ? (
+                <p className={FORM_ERROR_CLS}>{updateForm.formState.errors.name.message}</p>
+              ) : null}
             </div>
 
             {editingTarget.type === "TABLE_SERVICE" && (
               <div>
                 <label className={LABEL_CLS}>Total Meja</label>
                 <input
-                  value={editTotalTable}
-                  onChange={(e) => setEditTotalTable(e.target.value)}
+                  value={String(updateForm.watch("total_table") ?? "")}
+                  onChange={(event) => {
+                    const next = Number(event.target.value);
+                    updateForm.setValue(
+                      "total_table",
+                      Number.isNaN(next) ? undefined : next,
+                      { shouldValidate: true },
+                    );
+                  }}
                   type="number"
                   min="1"
                   className={INPUT_CLS}
                   disabled={isMutating}
                 />
+                {updateForm.formState.errors.total_table?.message ? (
+                  <p className={FORM_ERROR_CLS}>{updateForm.formState.errors.total_table.message}</p>
+                ) : null}
               </div>
             )}
 
@@ -799,7 +848,7 @@ export default function PortalClient({ session }: PortalClientProps) {
               <button
                 type="submit"
                 disabled={isMutating}
-                className="inline-flex h-10 items-center gap-2 rounded-lg bg-primary-600 px-5 text-sm font-semibold text-white transition-opacity hover:opacity-80 disabled:opacity-50"
+                className="inline-flex h-10 items-center gap-2 rounded-lg bg-(--color-primary-600) px-5 text-sm font-semibold text-(--token-white) transition-opacity hover:opacity-80 disabled:opacity-50"
               >
                 {isMutating ? <Loader2 size={14} className="animate-spin" /> : null}
                 Simpan

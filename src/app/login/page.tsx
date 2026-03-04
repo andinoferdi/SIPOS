@@ -82,7 +82,7 @@ export default async function LoginPage() {
       <div className="hero-dot-grid pointer-events-none absolute inset-0 opacity-[0.035] dark:opacity-[0.055]" />
 
       {/* Soft glow behind card */}
-      <div className="pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full bg-primary-500/8 blur-3xl dark:bg-primary-500/12" />
+      <div className="login-primary-glow pointer-events-none absolute left-1/2 top-1/2 h-80 w-80 -translate-x-1/2 -translate-y-1/2 rounded-full blur-3xl" />
 
       {/* Back link */}
       <div className="relative w-full max-w-[420px]">
@@ -140,7 +140,7 @@ export default async function LoginPage() {
         {/* Card bottom: status bar */}
         <div className="flex items-center justify-between border-t border-soft bg-(--token-gray-50) px-8 py-3 dark:bg-(--token-white-5)">
           <div className="flex items-center gap-1.5">
-            <span className="h-1.5 w-1.5 rounded-full bg-green-400" />
+            <span className="status-dot-success h-1.5 w-1.5 rounded-full" />
             <p className="text-[11px] font-medium text-(--token-gray-400) dark:text-(--token-gray-500)">
               Sistem aktif
             </p>

@@ -9,8 +9,8 @@ export default function CtaSection() {
 
           <div className="relative">
             <div className="mx-auto mb-6 inline-flex items-center gap-2 rounded-full border border-soft bg-(--token-gray-100) px-4 py-2 dark:bg-(--token-white-5)">
-              <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-green-400" />
-              <p className="text-xs font-semibold text-primary-600 dark:text-primary-400">
+              <span className="marketing-live-dot h-1.5 w-1.5 animate-pulse rounded-full" />
+              <p className="marketing-accent-text text-xs font-semibold">
                 Siap dalam 5 menit
               </p>
             </div>
@@ -27,7 +27,7 @@ export default function CtaSection() {
             <div className="mt-8 flex flex-wrap items-center justify-center gap-3">
               <Link
                 href="/login"
-                className="inline-flex items-center gap-2.5 rounded-xl bg-primary-600 px-7 py-3.5 text-sm font-semibold text-white transition-opacity hover:opacity-80"
+                className="marketing-primary-button inline-flex items-center gap-2.5 rounded-xl px-7 py-3.5 text-sm font-semibold transition-opacity"
               >
                 Coba Gratis 14 Hari
                 <svg

@@ -1,12 +1,7 @@
-import { NextResponse } from "next/server";
+import { apiError } from "@/lib/http/api-response";
 
 export const buildNotImplementedResponse = (
-  endpointName: string
-): NextResponse => {
-  return NextResponse.json(
-    {
-      message: `${endpointName} endpoint is planned but not implemented yet.`,
-    },
-    { status: 501 }
-  );
+  _endpointName?: string,
+) => {
+  return apiError("not_implemented", 501);
 };

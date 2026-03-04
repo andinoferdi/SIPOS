@@ -20,11 +20,10 @@ type SimpleSelectProps = {
   disabled?: boolean;
 };
 
-interface SelectTriggerProps
-  extends React.ComponentProps<typeof SelectPrimitive.Trigger> {
+type SelectTriggerProps = React.ComponentProps<typeof SelectPrimitive.Trigger> & {
   size?: "sm" | "default" | "lg";
   hasError?: boolean;
-}
+};
 
 const Select = SelectPrimitive.Root;
 
@@ -39,9 +38,9 @@ const SelectTrigger = React.forwardRef<
     className={cn(
       "group relative flex w-full items-center justify-between gap-2 rounded-xl border transition-all duration-200 cursor-pointer",
       "border-(--token-gray-300) bg-(--token-white) text-(--token-gray-900)",
-      "focus-visible:border-primary-500 focus-visible:ring-2 focus-visible:ring-primary-500/20",
+      "focus-visible:border-(--color-primary-500) focus-visible:ring-2 focus-visible:ring-(--color-accent-soft-light)",
       "disabled:cursor-not-allowed disabled:opacity-50",
-      "hover:border-primary-500/50",
+      "hover:border-(--color-primary-500)",
       "dark:border-(--color-marketing-dark-border) dark:bg-(--color-surface-dark-subtle) dark:text-(--token-white-90)",
       hasError &&
         "border-(--color-intent-error-border) focus-visible:border-(--color-intent-error-border) focus-visible:ring-[var(--color-intent-error-ring)] dark:border-(--color-intent-error-border)",
@@ -62,13 +61,12 @@ const SelectTrigger = React.forwardRef<
 ));
 SelectTrigger.displayName = "SelectTrigger";
 
-interface SelectContentProps
-  extends React.ComponentProps<typeof SelectPrimitive.Content> {
+type SelectContentProps = React.ComponentProps<typeof SelectPrimitive.Content> & {
   hasSearch?: boolean;
   onSearchChange?: (value: string) => void;
   searchValue?: string;
   searchPlaceholder?: string;
-}
+};
 
 const SelectContent = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Content>,
@@ -181,10 +179,10 @@ const SelectLabel = React.forwardRef<
 ));
 SelectLabel.displayName = "SelectLabel";
 
-interface SelectItemProps extends React.ComponentProps<typeof SelectPrimitive.Item> {
+type SelectItemProps = React.ComponentProps<typeof SelectPrimitive.Item> & {
   icon?: React.ReactNode;
   badge?: React.ReactNode;
-}
+};
 
 const SelectItem = React.forwardRef<
   React.ElementRef<typeof SelectPrimitive.Item>,
@@ -208,7 +206,7 @@ const SelectItem = React.forwardRef<
     {badge && <div className="shrink-0 text-xs">{badge}</div>}
     <div className="absolute right-2 flex size-4 items-center justify-center">
       <SelectPrimitive.ItemIndicator>
-        <CheckIcon className="size-4 text-primary-500" />
+        <CheckIcon className="size-4 text-(--color-primary-500)" />
       </SelectPrimitive.ItemIndicator>
     </div>
   </SelectPrimitive.Item>
